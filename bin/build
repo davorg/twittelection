@@ -24,5 +24,5 @@ while (<DATA>) {
 __END__
 Tooting:tooting
 Battersea:battersea
-Mid Bedfordshire:mid_beds
+Mid Bedfordshire:mid-beds
 Clacton:clacton
