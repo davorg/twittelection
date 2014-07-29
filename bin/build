@@ -1,0 +1,28 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+use FindBin '$Bin';
+use Template;
+
+my $tt = Template->new({
+  ABSOLUTE     => 1,
+  INCLUDE_PATH => "$Bin/../ttlib",
+  OUTPUT_PATH  => "$Bin/../c",
+});
+
+while (<DATA>) {
+  chomp;
+  my %c;
+  @c{qw[name list]} = split /:/;
+
+  $tt->process('page.tt', { c => \%c }, "$c{list}.html")
+    or die $tt->error;
+}
+
+__END__
+Tooting:tooting
+Battersea:battersea
+Mid Bedfordshire:mid_beds
+Clacton:clacton
