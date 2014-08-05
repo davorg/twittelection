@@ -1,0 +1,27 @@
+create table list_owner (
+  id integer primary key,
+  name varchar(200) not null
+);
+
+create table party (
+  id integer primary key,
+  name varchar(200) not null
+);
+
+create table constituency (
+  id integer primary key,
+  name varchar(200) not null,
+  list_owner_id integer not null,
+  foreign key (list_owner_id) references list_owner(id)
+);
+
+create table candidate (
+  id integer primary key,
+  name varchar(200) not null,
+  twitter varchar(200),
+  party_id integer not null,
+  constituency_id integer,
+  current_mp integer not null default 0,
+  foreign key (party_id) references party(id),
+  foreign key (constituency_id) references constituency(id)
+);
