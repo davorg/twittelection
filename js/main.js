@@ -6,8 +6,7 @@ function daysToGo () {
 }
 
 function setCounter () {
-  var counter = document.getElementById("counter");
-  counter.innerHTML = daysToGo() + " Days to go";
+  $('#counter').html( daysToGo() + " Days to go" );
 }
 
-window.onload = setCounter;
+$( document ).ready( setCounter );
