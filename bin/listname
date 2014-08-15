@@ -1,0 +1,34 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+use lib 'lib';
+use TwittElection::Schema;
+use Text::Unidecode;
+
+my %compass = (
+  'north east' => 'ne',
+  'north west' => 'nw',
+  'south east' => 'se',
+  'south west' => 'sw',
+  north        => 'n',
+  south        => 's',
+  east         => 'e',
+  west         => 'w',
+);
+
+my $sch = TwittElection::Schema->connect(
+  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+) or die;
+
+foreach my $con ($sch->resultset('Constituency')->all) {
+  my $name = lc unidecode $con->name;
+  $name =~ s/[^A-Za-z]+/-/g;
+  foreach (sort { length $b <=> length $a } keys %compass) {
+    $name =~ s/\b$_\b/$compass{$_}/;
+  }
+  $con->list_name($name);
+  $con->update;
+}
