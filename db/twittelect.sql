@@ -7,7 +7,8 @@ create table party (
 
 create table constituency (
   id integer primary key,
-  name varchar(200) not null
+  name varchar(200) not null,
+  list_name varchar(200) not null
 );
 
 create table candidate (
