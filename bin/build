@@ -3,26 +3,27 @@
 use strict;
 use warnings;
 use 5.010;
+use lib 'lib';
+
 use FindBin '$Bin';
 use Template;
+
+use TwittElection::Schema;
+
+my $sch = TwittElection::Schema->connect(
+  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+  { mysql_enable_utf8 => 1 }
+) or die;
 
 my $tt = Template->new({
   ABSOLUTE     => 1,
   INCLUDE_PATH => "$Bin/../ttlib",
   OUTPUT_PATH  => "$Bin/../c",
+  ENCODING     => 'utf8',
 });
 
-while (<DATA>) {
-  chomp;
-  my %c;
-  @c{qw[name list]} = split /:/;
-
-  $tt->process('page.tt', { c => \%c }, "$c{list}.html")
+foreach my $c ($sch->resultset('Constituency')->all) {
+  $tt->process('page.tt', { c => $c }, $c->list_name . '.html',
+               {binmode => ':utf8'})
     or die $tt->error;
 }
-
-__END__
-Tooting:tooting
-Battersea:battersea
-Mid Bedfordshire:mid-beds
-Clacton:clacton
