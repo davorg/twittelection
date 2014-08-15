@@ -1,7 +1,4 @@
-create table list_owner (
-  id integer primary key,
-  name varchar(200) not null
-);
+begin;
 
 create table party (
   id integer primary key,
@@ -10,9 +7,7 @@ create table party (
 
 create table constituency (
   id integer primary key,
-  name varchar(200) not null,
-  list_owner_id integer not null,
-  foreign key (list_owner_id) references list_owner(id)
+  name varchar(200) not null
 );
 
 create table candidate (
@@ -25,3 +20,5 @@ create table candidate (
   foreign key (party_id) references party(id),
   foreign key (constituency_id) references constituency(id)
 );
+
+commit;
