@@ -51,6 +51,12 @@ __PACKAGE__->table("constituency");
   is_nullable: 0
   size: 200
 
+=head2 list_name
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 200
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -58,6 +64,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
+  "list_name",
+  { data_type => "varchar", is_nullable => 1, size => 200 },
 );
 
 =head1 PRIMARY KEY
@@ -90,8 +98,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-08-15 20:12:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3nXUzbwFvl5i0kTFMaVjNQ
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-08-15 21:16:34
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:XVo8CoAkfeRnlUosED2ESw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
