@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [[ -z $TE_DB  || -z $TE_HOST || -z $TE_USER || -z $TE_PASS ]]
+then
+  echo You must set TE_HOST, TE_DB, TE_USER and TE_PASS
+  exit 1
+fi
+
+# Drop existing database
+echo "DROP DATABASE IF EXISTS $TE_DB" | mysql -u$TE_USER -p$TE_PASS
+
+# Create databsae
+echo "CREATE DATABASE $TE_DB" | mysql -u$TE_USER -p$TE_PASS
+
+# Load DDL
+mysql -u$TE_USER -p$TE_PASS -D$TE_DB < db/twittelect.sql
+
+# Load data
+mysql -u$TE_USER -p$TE_PASS -D$TE_DB < db/constituency.dat
+mysql -u$TE_USER -p$TE_PASS -D$TE_DB < db/party.dat
+
+if [[ -f db/candidate.csv ]]
+then
+  bin/load_cand
+fi
+
