@@ -1,0 +1,1950 @@
+[{
+  "name" : "Aberavon"
+},
+{
+  "name" : "Aberconwy"
+},
+{
+  "name" : "Aberdeen North"
+},
+{
+  "name" : "Aberdeen South"
+},
+{
+  "name" : "Airdrie and Shotts"
+},
+{
+  "name" : "Aldershot"
+},
+{
+  "name" : "Aldridge-Brownhills"
+},
+{
+  "name" : "Altrincham and Sale West"
+},
+{
+  "name" : "Alyn and Deeside"
+},
+{
+  "name" : "Amber Valley"
+},
+{
+  "name" : "Angus"
+},
+{
+  "name" : "Arfon"
+},
+{
+  "name" : "Argyll and Bute"
+},
+{
+  "name" : "Arundel and South Downs"
+},
+{
+  "name" : "Ashfield"
+},
+{
+  "name" : "Ashford"
+},
+{
+  "name" : "Ashton-under-Lyne"
+},
+{
+  "name" : "Aylesbury"
+},
+{
+  "name" : "Ayr, Carrick and Cumnock"
+},
+{
+  "name" : "Banbury"
+},
+{
+  "name" : "Banff and Buchan"
+},
+{
+  "name" : "Barking"
+},
+{
+  "name" : "Barnsley Central"
+},
+{
+  "name" : "Barnsley East"
+},
+{
+  "name" : "Barrow and Furness"
+},
+{
+  "name" : "Basildon and Billericay"
+},
+{
+  "name" : "Basingstoke"
+},
+{
+  "name" : "Bassetlaw"
+},
+{
+  "name" : "Bath"
+},
+{
+  "name" : "Batley and Spen"
+},
+{
+  "name" : "Battersea"
+},
+{
+  "name" : "Beaconsfield"
+},
+{
+  "name" : "Beckenham"
+},
+{
+  "name" : "Bedford"
+},
+{
+  "name" : "Belfast East"
+},
+{
+  "name" : "Belfast North"
+},
+{
+  "name" : "Belfast South"
+},
+{
+  "name" : "Belfast West"
+},
+{
+  "name" : "Bermondsey and Old Southwark"
+},
+{
+  "name" : "Berwick-upon-Tweed"
+},
+{
+  "name" : "Berwickshire, Roxburgh and Selkirk"
+},
+{
+  "name" : "Bethnal Green and Bow"
+},
+{
+  "name" : "Beverley and Holderness"
+},
+{
+  "name" : "Bexhill and Battle"
+},
+{
+  "name" : "Bexleyheath and Crayford"
+},
+{
+  "name" : "Birkenhead"
+},
+{
+  "name" : "Birmingham, Edgbaston"
+},
+{
+  "name" : "Birmingham, Erdington"
+},
+{
+  "name" : "Birmingham, Hall Green"
+},
+{
+  "name" : "Birmingham, Hodge Hill"
+},
+{
+  "name" : "Birmingham, Ladywood"
+},
+{
+  "name" : "Birmingham, Northfield"
+},
+{
+  "name" : "Birmingham, Perry Barr"
+},
+{
+  "name" : "Birmingham, Selly Oak"
+},
+{
+  "name" : "Birmingham, Yardley"
+},
+{
+  "name" : "Bishop Auckland"
+},
+{
+  "name" : "Blackburn"
+},
+{
+  "name" : "Blackley and Broughton"
+},
+{
+  "name" : "Blackpool North and Cleveleys"
+},
+{
+  "name" : "Blackpool South"
+},
+{
+  "name" : "Blaenau Gwent"
+},
+{
+  "name" : "Blaydon"
+},
+{
+  "name" : "Blyth Valley"
+},
+{
+  "name" : "Bognor Regis and Littlehampton"
+},
+{
+  "name" : "Bolsover"
+},
+{
+  "name" : "Bolton North East"
+},
+{
+  "name" : "Bolton South East"
+},
+{
+  "name" : "Bolton West"
+},
+{
+  "name" : "Bootle"
+},
+{
+  "name" : "Boston and Skegness"
+},
+{
+  "name" : "Bosworth"
+},
+{
+  "name" : "Bournemouth East"
+},
+{
+  "name" : "Bournemouth West"
+},
+{
+  "name" : "Bracknell"
+},
+{
+  "name" : "Bradford East"
+},
+{
+  "name" : "Bradford South"
+},
+{
+  "name" : "Bradford West"
+},
+{
+  "name" : "Braintree"
+},
+{
+  "name" : "Brecon and Radnorshire"
+},
+{
+  "name" : "Brent Central"
+},
+{
+  "name" : "Brent North"
+},
+{
+  "name" : "Brentford and Isleworth"
+},
+{
+  "name" : "Brentwood and Ongar"
+},
+{
+  "name" : "Bridgend"
+},
+{
+  "name" : "Bridgwater and West Somerset"
+},
+{
+  "name" : "Brigg and Goole"
+},
+{
+  "name" : "Brighton, Kemptown"
+},
+{
+  "name" : "Brighton, Pavilion"
+},
+{
+  "name" : "Bristol East"
+},
+{
+  "name" : "Bristol North West"
+},
+{
+  "name" : "Bristol South"
+},
+{
+  "name" : "Bristol West"
+},
+{
+  "name" : "Broadland"
+},
+{
+  "name" : "Bromley and Chislehurst"
+},
+{
+  "name" : "Bromsgrove"
+},
+{
+  "name" : "Broxbourne"
+},
+{
+  "name" : "Broxtowe"
+},
+{
+  "name" : "Buckingham"
+},
+{
+  "name" : "Burnley"
+},
+{
+  "name" : "Burton"
+},
+{
+  "name" : "Bury North"
+},
+{
+  "name" : "Bury South"
+},
+{
+  "name" : "Bury St Edmunds"
+},
+{
+  "name" : "Caerphilly"
+},
+{
+  "name" : "Caithness, Sutherland and Easter Ross"
+},
+{
+  "name" : "Calder Valley"
+},
+{
+  "name" : "Camberwell and Peckham"
+},
+{
+  "name" : "Camborne and Redruth"
+},
+{
+  "name" : "Cambridge"
+},
+{
+  "name" : "Cannock Chase"
+},
+{
+  "name" : "Canterbury"
+},
+{
+  "name" : "Cardiff Central"
+},
+{
+  "name" : "Cardiff North"
+},
+{
+  "name" : "Cardiff South and Penarth"
+},
+{
+  "name" : "Cardiff West"
+},
+{
+  "name" : "Carlisle"
+},
+{
+  "name" : "Carmarthen East and Dinefwr"
+},
+{
+  "name" : "Carmarthen West and South Pembrokeshire"
+},
+{
+  "name" : "Carshalton and Wallington"
+},
+{
+  "name" : "Castle Point"
+},
+{
+  "name" : "Central Ayrshire"
+},
+{
+  "name" : "Central Devon"
+},
+{
+  "name" : "Central Suffolk and North Ipswich"
+},
+{
+  "name" : "Ceredigion"
+},
+{
+  "name" : "Charnwood"
+},
+{
+  "name" : "Chatham and Aylesford"
+},
+{
+  "name" : "Cheadle"
+},
+{
+  "name" : "Chelmsford"
+},
+{
+  "name" : "Chelsea and Fulham"
+},
+{
+  "name" : "Cheltenham"
+},
+{
+  "name" : "Chesham and Amersham"
+},
+{
+  "name" : "Chesterfield"
+},
+{
+  "name" : "Chichester"
+},
+{
+  "name" : "Chingford and Woodford Green"
+},
+{
+  "name" : "Chippenham"
+},
+{
+  "name" : "Chipping Barnet"
+},
+{
+  "name" : "Chorley"
+},
+{
+  "name" : "Christchurch"
+},
+{
+  "name" : "Cities of London and Westminster"
+},
+{
+  "name" : "City of Chester"
+},
+{
+  "name" : "City of Durham"
+},
+{
+  "name" : "Clacton"
+},
+{
+  "name" : "Cleethorpes"
+},
+{
+  "name" : "Clwyd South"
+},
+{
+  "name" : "Clwyd West"
+},
+{
+  "name" : "Coatbridge, Chryston and Bellshill"
+},
+{
+  "name" : "Colchester"
+},
+{
+  "name" : "Colne Valley"
+},
+{
+  "name" : "Congleton"
+},
+{
+  "name" : "Copeland"
+},
+{
+  "name" : "Corby"
+},
+{
+  "name" : "Coventry North East"
+},
+{
+  "name" : "Coventry North West"
+},
+{
+  "name" : "Coventry South"
+},
+{
+  "name" : "Crawley"
+},
+{
+  "name" : "Crewe and Nantwich"
+},
+{
+  "name" : "Croydon Central"
+},
+{
+  "name" : "Croydon North"
+},
+{
+  "name" : "Croydon South"
+},
+{
+  "name" : "Cumbernauld, Kilsyth and Kirkintilloch East"
+},
+{
+  "name" : "Cynon Valley"
+},
+{
+  "name" : "Dagenham and Rainham"
+},
+{
+  "name" : "Darlington"
+},
+{
+  "name" : "Dartford"
+},
+{
+  "name" : "Daventry"
+},
+{
+  "name" : "Delyn"
+},
+{
+  "name" : "Denton and Reddish"
+},
+{
+  "name" : "Derby North"
+},
+{
+  "name" : "Derby South"
+},
+{
+  "name" : "Derbyshire Dales"
+},
+{
+  "name" : "Devizes"
+},
+{
+  "name" : "Dewsbury"
+},
+{
+  "name" : "Don Valley"
+},
+{
+  "name" : "Doncaster Central"
+},
+{
+  "name" : "Doncaster North"
+},
+{
+  "name" : "Dover"
+},
+{
+  "name" : "Dudley North"
+},
+{
+  "name" : "Dudley South"
+},
+{
+  "name" : "Dulwich and West Norwood"
+},
+{
+  "name" : "Dumfries and Galloway"
+},
+{
+  "name" : "Dumfriesshire, Clydesdale and Tweeddale"
+},
+{
+  "name" : "Dundee East"
+},
+{
+  "name" : "Dundee West"
+},
+{
+  "name" : "Dunfermline and West Fife"
+},
+{
+  "name" : "Dwyfor Meirionnydd"
+},
+{
+  "name" : "Ealing Central and Acton"
+},
+{
+  "name" : "Ealing North"
+},
+{
+  "name" : "Ealing, Southall"
+},
+{
+  "name" : "Easington"
+},
+{
+  "name" : "East Antrim"
+},
+{
+  "name" : "East Devon"
+},
+{
+  "name" : "East Dunbartonshire"
+},
+{
+  "name" : "East Ham"
+},
+{
+  "name" : "East Hampshire"
+},
+{
+  "name" : "East Kilbride, Strathaven and Lesmahagow"
+},
+{
+  "name" : "East Londonderry"
+},
+{
+  "name" : "East Lothian"
+},
+{
+  "name" : "East Renfrewshire"
+},
+{
+  "name" : "East Surrey"
+},
+{
+  "name" : "East Worthing and Shoreham"
+},
+{
+  "name" : "East Yorkshire"
+},
+{
+  "name" : "Eastbourne"
+},
+{
+  "name" : "Eastleigh"
+},
+{
+  "name" : "Eddisbury"
+},
+{
+  "name" : "Edinburgh East"
+},
+{
+  "name" : "Edinburgh North and Leith"
+},
+{
+  "name" : "Edinburgh South"
+},
+{
+  "name" : "Edinburgh South West"
+},
+{
+  "name" : "Edinburgh West"
+},
+{
+  "name" : "Edmonton"
+},
+{
+  "name" : "Ellesmere Port and Neston"
+},
+{
+  "name" : "Elmet and Rothwell"
+},
+{
+  "name" : "Eltham"
+},
+{
+  "name" : "Enfield North"
+},
+{
+  "name" : "Enfield, Southgate"
+},
+{
+  "name" : "Epping Forest"
+},
+{
+  "name" : "Epsom and Ewell"
+},
+{
+  "name" : "Erewash"
+},
+{
+  "name" : "Erith and Thamesmead"
+},
+{
+  "name" : "Esher and Walton"
+},
+{
+  "name" : "Exeter"
+},
+{
+  "name" : "Falkirk"
+},
+{
+  "name" : "Fareham"
+},
+{
+  "name" : "Faversham and Mid Kent"
+},
+{
+  "name" : "Feltham and Heston"
+},
+{
+  "name" : "Fermanagh and South Tyrone"
+},
+{
+  "name" : "Filton and Bradley Stoke"
+},
+{
+  "name" : "Finchley and Golders Green"
+},
+{
+  "name" : "Folkestone and Hythe"
+},
+{
+  "name" : "Forest of Dean"
+},
+{
+  "name" : "Foyle"
+},
+{
+  "name" : "Fylde"
+},
+{
+  "name" : "Gainsborough"
+},
+{
+  "name" : "Garston and Halewood"
+},
+{
+  "name" : "Gateshead"
+},
+{
+  "name" : "Gedling"
+},
+{
+  "name" : "Gillingham and Rainham"
+},
+{
+  "name" : "Glasgow Central"
+},
+{
+  "name" : "Glasgow East"
+},
+{
+  "name" : "Glasgow North"
+},
+{
+  "name" : "Glasgow North East"
+},
+{
+  "name" : "Glasgow North West"
+},
+{
+  "name" : "Glasgow South"
+},
+{
+  "name" : "Glasgow South West"
+},
+{
+  "name" : "Glenrothes"
+},
+{
+  "name" : "Gloucester"
+},
+{
+  "name" : "Gordon"
+},
+{
+  "name" : "Gosport"
+},
+{
+  "name" : "Gower"
+},
+{
+  "name" : "Grantham and Stamford"
+},
+{
+  "name" : "Gravesham"
+},
+{
+  "name" : "Great Grimsby"
+},
+{
+  "name" : "Great Yarmouth"
+},
+{
+  "name" : "Greenwich and Woolwich"
+},
+{
+  "name" : "Guildford"
+},
+{
+  "name" : "Hackney North and Stoke Newington"
+},
+{
+  "name" : "Hackney South and Shoreditch"
+},
+{
+  "name" : "Halesowen and Rowley Regis"
+},
+{
+  "name" : "Halifax"
+},
+{
+  "name" : "Haltemprice and Howden"
+},
+{
+  "name" : "Halton"
+},
+{
+  "name" : "Hammersmith"
+},
+{
+  "name" : "Hampstead and Kilburn"
+},
+{
+  "name" : "Harborough"
+},
+{
+  "name" : "Harlow"
+},
+{
+  "name" : "Harrogate and Knaresborough"
+},
+{
+  "name" : "Harrow East"
+},
+{
+  "name" : "Harrow West"
+},
+{
+  "name" : "Hartlepool"
+},
+{
+  "name" : "Harwich and North Essex"
+},
+{
+  "name" : "Hastings and Rye"
+},
+{
+  "name" : "Havant"
+},
+{
+  "name" : "Hayes and Harlington"
+},
+{
+  "name" : "Hazel Grove"
+},
+{
+  "name" : "Hemel Hempstead"
+},
+{
+  "name" : "Hemsworth"
+},
+{
+  "name" : "Hendon"
+},
+{
+  "name" : "Henley"
+},
+{
+  "name" : "Hereford and South Herefordshire"
+},
+{
+  "name" : "Hertford and Stortford"
+},
+{
+  "name" : "Hertsmere"
+},
+{
+  "name" : "Hexham"
+},
+{
+  "name" : "Heywood and Middleton"
+},
+{
+  "name" : "High Peak"
+},
+{
+  "name" : "Hitchin and Harpenden"
+},
+{
+  "name" : "Holborn and St Pancras"
+},
+{
+  "name" : "Hornchurch and Upminster"
+},
+{
+  "name" : "Hornsey and Wood Green"
+},
+{
+  "name" : "Horsham"
+},
+{
+  "name" : "Houghton and Sunderland South"
+},
+{
+  "name" : "Hove"
+},
+{
+  "name" : "Huddersfield"
+},
+{
+  "name" : "Huntingdon"
+},
+{
+  "name" : "Hyndburn"
+},
+{
+  "name" : "Ilford North"
+},
+{
+  "name" : "Ilford South"
+},
+{
+  "name" : "Inverclyde"
+},
+{
+  "name" : "Inverness, Nairn, Badenoch and Strathspey"
+},
+{
+  "name" : "Ipswich"
+},
+{
+  "name" : "Isle of Wight"
+},
+{
+  "name" : "Islington North"
+},
+{
+  "name" : "Islington South and Finsbury"
+},
+{
+  "name" : "Islwyn"
+},
+{
+  "name" : "Jarrow"
+},
+{
+  "name" : "Keighley"
+},
+{
+  "name" : "Kenilworth and Southam"
+},
+{
+  "name" : "Kensington"
+},
+{
+  "name" : "Kettering"
+},
+{
+  "name" : "Kilmarnock and Loudoun"
+},
+{
+  "name" : "Kingston and Surbiton"
+},
+{
+  "name" : "Kingston upon Hull East"
+},
+{
+  "name" : "Kingston upon Hull North"
+},
+{
+  "name" : "Kingston upon Hull West and Hessle"
+},
+{
+  "name" : "Kingswood"
+},
+{
+  "name" : "Kirkcaldy and Cowdenbeath"
+},
+{
+  "name" : "Knowsley"
+},
+{
+  "name" : "Lagan Valley"
+},
+{
+  "name" : "Lanark and Hamilton East"
+},
+{
+  "name" : "Lancaster and Fleetwood"
+},
+{
+  "name" : "Leeds Central"
+},
+{
+  "name" : "Leeds East"
+},
+{
+  "name" : "Leeds North East"
+},
+{
+  "name" : "Leeds North West"
+},
+{
+  "name" : "Leeds West"
+},
+{
+  "name" : "Leicester East"
+},
+{
+  "name" : "Leicester South"
+},
+{
+  "name" : "Leicester West"
+},
+{
+  "name" : "Leigh"
+},
+{
+  "name" : "Lewes"
+},
+{
+  "name" : "Lewisham East"
+},
+{
+  "name" : "Lewisham West and Penge"
+},
+{
+  "name" : "Lewisham, Deptford"
+},
+{
+  "name" : "Leyton and Wanstead"
+},
+{
+  "name" : "Lichfield"
+},
+{
+  "name" : "Lincoln"
+},
+{
+  "name" : "Linlithgow and East Falkirk"
+},
+{
+  "name" : "Liverpool, Riverside"
+},
+{
+  "name" : "Liverpool, Walton"
+},
+{
+  "name" : "Liverpool, Wavertree"
+},
+{
+  "name" : "Liverpool, West Derby"
+},
+{
+  "name" : "Livingston"
+},
+{
+  "name" : "Llanelli"
+},
+{
+  "name" : "Loughborough"
+},
+{
+  "name" : "Louth and Horncastle"
+},
+{
+  "name" : "Ludlow"
+},
+{
+  "name" : "Luton North"
+},
+{
+  "name" : "Luton South"
+},
+{
+  "name" : "Macclesfield"
+},
+{
+  "name" : "Maidenhead"
+},
+{
+  "name" : "Maidstone and The Weald"
+},
+{
+  "name" : "Makerfield"
+},
+{
+  "name" : "Maldon"
+},
+{
+  "name" : "Manchester Central"
+},
+{
+  "name" : "Manchester, Gorton"
+},
+{
+  "name" : "Manchester, Withington"
+},
+{
+  "name" : "Mansfield"
+},
+{
+  "name" : "Meon Valley"
+},
+{
+  "name" : "Meriden"
+},
+{
+  "name" : "Merthyr Tydfil and Rhymney"
+},
+{
+  "name" : "Mid Bedfordshire"
+},
+{
+  "name" : "Mid Derbyshire"
+},
+{
+  "name" : "Mid Dorset and North Poole"
+},
+{
+  "name" : "Mid Norfolk"
+},
+{
+  "name" : "Mid Sussex"
+},
+{
+  "name" : "Mid Ulster"
+},
+{
+  "name" : "Mid Worcestershire"
+},
+{
+  "name" : "Middlesbrough"
+},
+{
+  "name" : "Middlesbrough South and East Cleveland"
+},
+{
+  "name" : "Midlothian"
+},
+{
+  "name" : "Milton Keynes North"
+},
+{
+  "name" : "Milton Keynes South"
+},
+{
+  "name" : "Mitcham and Morden"
+},
+{
+  "name" : "Mole Valley"
+},
+{
+  "name" : "Monmouth"
+},
+{
+  "name" : "Montgomeryshire"
+},
+{
+  "name" : "Moray"
+},
+{
+  "name" : "Morecambe and Lunesdale"
+},
+{
+  "name" : "Morley and Outwood"
+},
+{
+  "name" : "Motherwell and Wishaw"
+},
+{
+  "name" : "Na h-Eileanan an Iar"
+},
+{
+  "name" : "Neath"
+},
+{
+  "name" : "New Forest East"
+},
+{
+  "name" : "New Forest West"
+},
+{
+  "name" : "Newark"
+},
+{
+  "name" : "Newbury"
+},
+{
+  "name" : "Newcastle upon Tyne Central"
+},
+{
+  "name" : "Newcastle upon Tyne East"
+},
+{
+  "name" : "Newcastle upon Tyne North"
+},
+{
+  "name" : "Newcastle-under-Lyme"
+},
+{
+  "name" : "Newport East"
+},
+{
+  "name" : "Newport West"
+},
+{
+  "name" : "Newry and Armagh"
+},
+{
+  "name" : "Newton Abbot"
+},
+{
+  "name" : "Normanton, Pontefract and Castleford"
+},
+{
+  "name" : "North Antrim"
+},
+{
+  "name" : "North Ayrshire and Arran"
+},
+{
+  "name" : "North Cornwall"
+},
+{
+  "name" : "North Devon"
+},
+{
+  "name" : "North Dorset"
+},
+{
+  "name" : "North Down"
+},
+{
+  "name" : "North Durham"
+},
+{
+  "name" : "North East Bedfordshire"
+},
+{
+  "name" : "North East Cambridgeshire"
+},
+{
+  "name" : "North East Derbyshire"
+},
+{
+  "name" : "North East Fife"
+},
+{
+  "name" : "North East Hampshire"
+},
+{
+  "name" : "North East Hertfordshire"
+},
+{
+  "name" : "North East Somerset"
+},
+{
+  "name" : "North Herefordshire"
+},
+{
+  "name" : "North Norfolk"
+},
+{
+  "name" : "North Shropshire"
+},
+{
+  "name" : "North Somerset"
+},
+{
+  "name" : "North Swindon"
+},
+{
+  "name" : "North Thanet"
+},
+{
+  "name" : "North Tyneside"
+},
+{
+  "name" : "North Warwickshire"
+},
+{
+  "name" : "North West Cambridgeshire"
+},
+{
+  "name" : "North West Durham"
+},
+{
+  "name" : "North West Hampshire"
+},
+{
+  "name" : "North West Leicestershire"
+},
+{
+  "name" : "North West Norfolk"
+},
+{
+  "name" : "North Wiltshire"
+},
+{
+  "name" : "Northampton North"
+},
+{
+  "name" : "Northampton South"
+},
+{
+  "name" : "Norwich North"
+},
+{
+  "name" : "Norwich South"
+},
+{
+  "name" : "Nottingham East"
+},
+{
+  "name" : "Nottingham North"
+},
+{
+  "name" : "Nottingham South"
+},
+{
+  "name" : "Nuneaton"
+},
+{
+  "name" : "Ochil and South Perthshire"
+},
+{
+  "name" : "Ogmore"
+},
+{
+  "name" : "Old Bexley and Sidcup"
+},
+{
+  "name" : "Oldham East and Saddleworth"
+},
+{
+  "name" : "Oldham West and Royton"
+},
+{
+  "name" : "Orkney and Shetland"
+},
+{
+  "name" : "Orpington"
+},
+{
+  "name" : "Oxford East"
+},
+{
+  "name" : "Oxford West and Abingdon"
+},
+{
+  "name" : "Paisley and Renfrewshire North"
+},
+{
+  "name" : "Paisley and Renfrewshire South"
+},
+{
+  "name" : "Pendle"
+},
+{
+  "name" : "Penistone and Stocksbridge"
+},
+{
+  "name" : "Penrith and The Border"
+},
+{
+  "name" : "Perth and North Perthshire"
+},
+{
+  "name" : "Peterborough"
+},
+{
+  "name" : "Plymouth, Moor View"
+},
+{
+  "name" : "Plymouth, Sutton and Devonport"
+},
+{
+  "name" : "Pontypridd"
+},
+{
+  "name" : "Poole"
+},
+{
+  "name" : "Poplar and Limehouse"
+},
+{
+  "name" : "Portsmouth North"
+},
+{
+  "name" : "Portsmouth South"
+},
+{
+  "name" : "Preseli Pembrokeshire"
+},
+{
+  "name" : "Preston"
+},
+{
+  "name" : "Pudsey"
+},
+{
+  "name" : "Putney"
+},
+{
+  "name" : "Rayleigh and Wickford"
+},
+{
+  "name" : "Reading East"
+},
+{
+  "name" : "Reading West"
+},
+{
+  "name" : "Redcar"
+},
+{
+  "name" : "Redditch"
+},
+{
+  "name" : "Reigate"
+},
+{
+  "name" : "Rhondda"
+},
+{
+  "name" : "Ribble Valley"
+},
+{
+  "name" : "Richmond (Yorks)"
+},
+{
+  "name" : "Richmond Park"
+},
+{
+  "name" : "Rochdale"
+},
+{
+  "name" : "Rochester and Strood"
+},
+{
+  "name" : "Rochford and Southend East"
+},
+{
+  "name" : "Romford"
+},
+{
+  "name" : "Romsey and Southampton North"
+},
+{
+  "name" : "Ross, Skye and Lochaber"
+},
+{
+  "name" : "Rossendale and Darwen"
+},
+{
+  "name" : "Rother Valley"
+},
+{
+  "name" : "Rotherham"
+},
+{
+  "name" : "Rugby"
+},
+{
+  "name" : "Ruislip, Northwood and Pinner"
+},
+{
+  "name" : "Runnymede and Weybridge"
+},
+{
+  "name" : "Rushcliffe"
+},
+{
+  "name" : "Rutherglen and Hamilton West"
+},
+{
+  "name" : "Rutland and Melton"
+},
+{
+  "name" : "Saffron Walden"
+},
+{
+  "name" : "Salford and Eccles"
+},
+{
+  "name" : "Salisbury"
+},
+{
+  "name" : "Scarborough and Whitby"
+},
+{
+  "name" : "Scunthorpe"
+},
+{
+  "name" : "Sedgefield"
+},
+{
+  "name" : "Sefton Central"
+},
+{
+  "name" : "Selby and Ainsty"
+},
+{
+  "name" : "Sevenoaks"
+},
+{
+  "name" : "Sheffield Central"
+},
+{
+  "name" : "Sheffield South East"
+},
+{
+  "name" : "Sheffield, Brightside and Hillsborough"
+},
+{
+  "name" : "Sheffield, Hallam"
+},
+{
+  "name" : "Sheffield, Heeley"
+},
+{
+  "name" : "Sherwood"
+},
+{
+  "name" : "Shipley"
+},
+{
+  "name" : "Shrewsbury and Atcham"
+},
+{
+  "name" : "Sittingbourne and Sheppey"
+},
+{
+  "name" : "Skipton and Ripon"
+},
+{
+  "name" : "Sleaford and North Hykeham"
+},
+{
+  "name" : "Slough"
+},
+{
+  "name" : "Solihull"
+},
+{
+  "name" : "Somerton and Frome"
+},
+{
+  "name" : "South Antrim"
+},
+{
+  "name" : "South Basildon and East Thurrock"
+},
+{
+  "name" : "South Cambridgeshire"
+},
+{
+  "name" : "South Derbyshire"
+},
+{
+  "name" : "South Dorset"
+},
+{
+  "name" : "South Down"
+},
+{
+  "name" : "South East Cambridgeshire"
+},
+{
+  "name" : "South East Cornwall"
+},
+{
+  "name" : "South Holland and The Deepings"
+},
+{
+  "name" : "South Leicestershire"
+},
+{
+  "name" : "South Norfolk"
+},
+{
+  "name" : "South Northamptonshire"
+},
+{
+  "name" : "South Ribble"
+},
+{
+  "name" : "South Shields"
+},
+{
+  "name" : "South Staffordshire"
+},
+{
+  "name" : "South Suffolk"
+},
+{
+  "name" : "South Swindon"
+},
+{
+  "name" : "South Thanet"
+},
+{
+  "name" : "South West Bedfordshire"
+},
+{
+  "name" : "South West Devon"
+},
+{
+  "name" : "South West Hertfordshire"
+},
+{
+  "name" : "South West Norfolk"
+},
+{
+  "name" : "South West Surrey"
+},
+{
+  "name" : "South West Wiltshire"
+},
+{
+  "name" : "Southampton, Itchen"
+},
+{
+  "name" : "Southampton, Test"
+},
+{
+  "name" : "Southend West"
+},
+{
+  "name" : "Southport"
+},
+{
+  "name" : "Spelthorne"
+},
+{
+  "name" : "St Albans"
+},
+{
+  "name" : "St Austell and Newquay"
+},
+{
+  "name" : "St Helens North"
+},
+{
+  "name" : "St Helens South and Whiston"
+},
+{
+  "name" : "St Ives"
+},
+{
+  "name" : "Stafford"
+},
+{
+  "name" : "Staffordshire Moorlands"
+},
+{
+  "name" : "Stalybridge and Hyde"
+},
+{
+  "name" : "Stevenage"
+},
+{
+  "name" : "Stirling"
+},
+{
+  "name" : "Stockport"
+},
+{
+  "name" : "Stockton North"
+},
+{
+  "name" : "Stockton South"
+},
+{
+  "name" : "Stoke-on-Trent Central"
+},
+{
+  "name" : "Stoke-on-Trent North"
+},
+{
+  "name" : "Stoke-on-Trent South"
+},
+{
+  "name" : "Stone"
+},
+{
+  "name" : "Stourbridge"
+},
+{
+  "name" : "Strangford"
+},
+{
+  "name" : "Stratford-on-Avon"
+},
+{
+  "name" : "Streatham"
+},
+{
+  "name" : "Stretford and Urmston"
+},
+{
+  "name" : "Stroud"
+},
+{
+  "name" : "Suffolk Coastal"
+},
+{
+  "name" : "Sunderland Central"
+},
+{
+  "name" : "Surrey Heath"
+},
+{
+  "name" : "Sutton and Cheam"
+},
+{
+  "name" : "Sutton Coldfield"
+},
+{
+  "name" : "Swansea East"
+},
+{
+  "name" : "Swansea West"
+},
+{
+  "name" : "Tamworth"
+},
+{
+  "name" : "Tatton"
+},
+{
+  "name" : "Taunton Deane"
+},
+{
+  "name" : "Telford"
+},
+{
+  "name" : "Tewkesbury"
+},
+{
+  "name" : "The Cotswolds"
+},
+{
+  "name" : "The Wrekin"
+},
+{
+  "name" : "Thirsk and Malton"
+},
+{
+  "name" : "Thornbury and Yate"
+},
+{
+  "name" : "Thurrock"
+},
+{
+  "name" : "Tiverton and Honiton"
+},
+{
+  "name" : "Tonbridge and Malling"
+},
+{
+  "name" : "Tooting"
+},
+{
+  "name" : "Torbay"
+},
+{
+  "name" : "Torfaen"
+},
+{
+  "name" : "Torridge and West Devon"
+},
+{
+  "name" : "Totnes"
+},
+{
+  "name" : "Tottenham"
+},
+{
+  "name" : "Truro and Falmouth"
+},
+{
+  "name" : "Tunbridge Wells"
+},
+{
+  "name" : "Twickenham"
+},
+{
+  "name" : "Tynemouth"
+},
+{
+  "name" : "Upper Bann"
+},
+{
+  "name" : "Uxbridge and South Ruislip"
+},
+{
+  "name" : "Vale of Clwyd"
+},
+{
+  "name" : "Vale of Glamorgan"
+},
+{
+  "name" : "Vauxhall"
+},
+{
+  "name" : "Wakefield"
+},
+{
+  "name" : "Wallasey"
+},
+{
+  "name" : "Walsall North"
+},
+{
+  "name" : "Walsall South"
+},
+{
+  "name" : "Walthamstow"
+},
+{
+  "name" : "Wansbeck"
+},
+{
+  "name" : "Wantage"
+},
+{
+  "name" : "Warley"
+},
+{
+  "name" : "Warrington North"
+},
+{
+  "name" : "Warrington South"
+},
+{
+  "name" : "Warwick and Leamington"
+},
+{
+  "name" : "Washington and Sunderland West"
+},
+{
+  "name" : "Watford"
+},
+{
+  "name" : "Waveney"
+},
+{
+  "name" : "Wealden"
+},
+{
+  "name" : "Weaver Vale"
+},
+{
+  "name" : "Wellingborough"
+},
+{
+  "name" : "Wells"
+},
+{
+  "name" : "Welwyn Hatfield"
+},
+{
+  "name" : "Wentworth and Dearne"
+},
+{
+  "name" : "West Aberdeenshire and Kincardine"
+},
+{
+  "name" : "West Bromwich East"
+},
+{
+  "name" : "West Bromwich West"
+},
+{
+  "name" : "West Dorset"
+},
+{
+  "name" : "West Dunbartonshire"
+},
+{
+  "name" : "West Ham"
+},
+{
+  "name" : "West Lancashire"
+},
+{
+  "name" : "West Suffolk"
+},
+{
+  "name" : "West Tyrone"
+},
+{
+  "name" : "West Worcestershire"
+},
+{
+  "name" : "Westminster North"
+},
+{
+  "name" : "Westmorland and Lonsdale"
+},
+{
+  "name" : "Weston-Super-Mare"
+},
+{
+  "name" : "Wigan"
+},
+{
+  "name" : "Wimbledon"
+},
+{
+  "name" : "Winchester"
+},
+{
+  "name" : "Windsor"
+},
+{
+  "name" : "Wirral South"
+},
+{
+  "name" : "Wirral West"
+},
+{
+  "name" : "Witham"
+},
+{
+  "name" : "Witney"
+},
+{
+  "name" : "Woking"
+},
+{
+  "name" : "Wokingham"
+},
+{
+  "name" : "Wolverhampton North East"
+},
+{
+  "name" : "Wolverhampton South East"
+},
+{
+  "name" : "Wolverhampton South West"
+},
+{
+  "name" : "Worcester"
+},
+{
+  "name" : "Workington"
+},
+{
+  "name" : "Worsley and Eccles South"
+},
+{
+  "name" : "Worthing West"
+},
+{
+  "name" : "Wrexham"
+},
+{
+  "name" : "Wycombe"
+},
+{
+  "name" : "Wyre and Preston North"
+},
+{
+  "name" : "Wyre Forest"
+},
+{
+  "name" : "Wythenshawe and Sale East"
+},
+{
+  "name" : "Yeovil"
+},
+{
+  "name" : "Ynys Môn"
+},
+{
+  "name" : "York Central"
+},
+{
+  "name" : "York Outer"
+}]
