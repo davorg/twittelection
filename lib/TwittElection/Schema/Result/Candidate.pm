@@ -146,6 +146,14 @@ __PACKAGE__->belongs_to(
 # Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-08-16 15:57:37
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yJTz5z4i1okZ1z9DkRBABw
 
+sub dump {
+  my $self = shift;
+  my $delim = $_[0] || '|';
+
+  return join $delim, $self->name, $self->twitter,
+                      $self->party->name, $self->constituency->name;
+}
+
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
