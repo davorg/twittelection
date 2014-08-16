@@ -11,6 +11,7 @@ my $file = shift || 'db/candidate.csv';
 
 my $sch = TwittElection::Schema->connect(
   "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+  { mysql_enable_utf8 => 1 },
 ) or die;
 
 my $cand_rs = $sch->resultset('Candidate');
