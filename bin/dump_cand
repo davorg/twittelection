@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+use lib 'lib';
+use TwittElection::Schema;
+
+my $file = shift || 'db/candidate.csv';
+
+my $sch = TwittElection::Schema->connect(
+  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+) or die;
+
+my $cand_rs = $sch->resultset('Candidate');
+
+open my $fh, '>', $file or die "$!: $file";
+
+while (my $cand = $cand_rs->next) {
+  say $fh $cand->dump;
+}
