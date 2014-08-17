@@ -1,0 +1,53 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+use Net::Twitter;
+
+my $t = Net::Twitter->new(
+  traits          => [ 'API::RESTv1_1', 'OAuth' ],
+  ssl             => 1,
+  consumer_key    => $ENV{TE_TW_API_KEY},
+  consumer_secret => $ENV{TE_TW_API_SEC},
+);
+
+my($access_token, $access_token_secret) = restore_tokens();
+if ($access_token && $access_token_secret) {
+    $t->access_token($access_token);
+    $t->access_token_secret($access_token_secret);
+}
+
+unless ( $t->authorized ) {
+  # The client is not yet authorized: Do it now
+  print "Authorize this app at ", $t->get_authorization_url, " and enter the PIN#\n";
+     
+  my $pin = <STDIN>; # wait for input
+  chomp $pin;
+               
+  my($access_token, $access_token_secret, $user_id, $screen_name) = $t->request_access_token(verifier => $pin);
+  save_tokens($access_token, $access_token_secret); # if necessary
+}
+
+foreach my $list (@{$t->list_ownerships->{lists}}) {
+  say $list->{name};
+  foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
+    say "* \@$mem->{screen_name}";
+  }
+}
+
+sub save_tokens {
+  my ($access_token, $access_token_secret) = @_;
+
+  open my $tw_fh, '>', '.te_tokens' or die $!;
+  print $tw_fh "$access_token $access_token_secret";
+}
+
+sub restore_tokens {
+  open my $tw_fh, '<', '.te_tokens' or die $!;
+
+  my $tokens = <$tw_fh>;
+
+  return split / /, $tokens;
+}
