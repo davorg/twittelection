@@ -16,9 +16,6 @@ my $t = TwittElection::Twitter->new(
 
 $t->authorise;
 
-foreach my $list (@{$t->list_ownerships->{lists}}) {
-  say $list->{name}, ' (', $list->{id}, ')';
-  foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
-    say "* \@$mem->{screen_name}";
-  }
-}
+$t->delete_list({
+  list_id => +shift,
+});
