@@ -51,25 +51,8 @@ body {
       </div>
     </div>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>[% c.name %]</h1>
-        <div class="row">
-          <div class="col-md-8">
-<a class="twitter-timeline" href="https://twitter.com/TwittElection/lists/[% c.list_name %]" data-widget-id="464129893937082368" data-list-owner-screen-name="TwittElection" data-list-slug="[% c.list_name %]">Tweets from https://twitter.com/TwittElection/lists/[% c.list_name %]</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          </div>
-          <div class="col-md-4">
-            <ul>
-[% FOREACH cand IN c.candidates -%]
-              <li>[% cand.name %] ([% cand.party.name %])[% IF cand.twitter %]<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% END %]</li>
-[% END -%]
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+[% content %]
+
     <div id="footer">
       <div class="container">
         <p class="muted">Made by <a href="https://twitter.com/davorg/">@davorg</a></p>
