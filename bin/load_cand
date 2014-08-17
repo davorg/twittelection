@@ -7,7 +7,7 @@ use 5.010;
 use lib 'lib';
 use TwittElection::Schema;
 
-my $file = shift || 'db/candidate.csv';
+my $file = shift || 'db/candidate.tsv';
 
 my $sch = TwittElection::Schema->connect(
   "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
@@ -25,7 +25,7 @@ $sch->resultset('Candidate')->delete;
 while (<$fh>) {
   chomp;
 
-  my ($name, $twitter, $party, $constituency) = split /\|/;
+  my ($name, $twitter, $party, $constituency) = split /\t/;
 
   my $con = $con_rs->find({
     name => $constituency,

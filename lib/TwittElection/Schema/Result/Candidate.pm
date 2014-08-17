@@ -148,7 +148,7 @@ __PACKAGE__->belongs_to(
 
 sub dump {
   my $self = shift;
-  my $delim = $_[0] || '|';
+  my $delim = $_[0] || "\t";
 
   return join $delim, $self->name, $self->twitter,
                       $self->party->name, $self->constituency->name;
