@@ -24,7 +24,7 @@
      IF letter != prev_letter -%]
 <tr><th><a name="[% letter %]">[% letter %]</a></th></tr>
 [%   END -%]
-<tr><td><a href="/constituency/[% c.name %]">[% c.name %]</a></td></tr>
+<tr><td><a href="/constituency/[% c.list_name %]">[% c.name %]</a></td></tr>
 [%   prev_letter = letter;
    END -%]
 </table>
