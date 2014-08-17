@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+use lib 'lib';
+
+use TwittElection::Twitter;
+
+my $t = TwittElection::Twitter->new(
+  traits          => [ 'API::RESTv1_1', 'OAuth' ],
+  ssl             => 1,
+  consumer_key    => $ENV{TE_TW_API_KEY},
+  consumer_secret => $ENV{TE_TW_API_SEC},
+);
+
+$t->authorise;
+
+foreach my $list (@{$t->list_ownerships->{lists}}) {
+  say $list->{name}, ' (', $list->{id}, ')';
+  $t->delete_list({ list_id => $list->{id} });
+}

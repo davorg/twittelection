@@ -1,0 +1,60 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+use lib 'lib';
+
+use TwittElection::Twitter;
+use TwittElection::Schema;
+
+my $sch = TwittElection::Schema->connect(
+  "dbi:mysql:$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+) or die;
+
+my $con_rs = $sch->resultset('Constituency');
+
+my $t = TwittElection::Twitter->new(
+  traits          => [ 'API::RESTv1_1', 'OAuth' ],
+  ssl             => 1,
+  consumer_key    => $ENV{TE_TW_API_KEY},
+  consumer_secret => $ENV{TE_TW_API_SEC},
+);
+
+$t->authorise;
+
+foreach my $con ($con_rs->all) {
+  next unless $con->candidates->count;
+  say $con->name;
+  
+  eval {
+    if ($con->list_id) {
+      say 'Delete ', $con->list_name;
+      $t->delete_list({
+        list_id => $con->list_id,
+      });
+    }
+  };
+  say 'Create ', $con->name;
+  my $list = $t->create_list({
+    owner_screen_name => 'twittelection',
+    name => $con->name,
+  });
+  say "Created $list->{slug} ($list->{id})";
+  sleep 2;
+
+  $con->update({
+    list_name => $list->{slug},
+    list_id   => $list->{id},
+  });
+
+  foreach my $cand ($con->candidates) {
+    next unless $cand->twitter;
+    say ' -> ', $cand->name;
+    $t->add_list_member({
+      list_id     => $list->{id},
+      screen_name => $cand->twitter,
+    });
+    sleep 2;
+  }
+}
