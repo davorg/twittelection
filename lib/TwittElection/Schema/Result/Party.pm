@@ -43,6 +43,7 @@ __PACKAGE__->table("party");
 =head2 id
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
 
 =head2 name
@@ -55,7 +56,7 @@ __PACKAGE__->table("party");
 
 __PACKAGE__->add_columns(
   "id",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
 );
@@ -90,8 +91,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-08-15 20:12:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:JCZbMFhxCEvMkmUtkSBc6A
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-08-16 15:57:37
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:0AnUi1W5jVeiJjxX2M4aKg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

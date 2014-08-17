@@ -1,18 +1,18 @@
 begin;
 
 create table party (
-  id integer primary key,
+  id integer primary key auto_increment,
   name varchar(200) not null
 );
 
 create table constituency (
-  id integer primary key,
+  id integer primary key auto_increment,
   name varchar(200) not null,
   list_name varchar(200) not null
 );
 
 create table candidate (
-  id integer primary key,
+  id integer primary key auto_increment,
   name varchar(200) not null,
   twitter varchar(200),
   party_id integer not null,
