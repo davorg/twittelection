@@ -63,7 +63,7 @@ body {
           <div class="col-md-4">
             <ul>
 [% FOREACH cand IN c.candidates -%]
-              <li>[% cand.name %] ([% cand.party.name %])</li>
+              <li>[% cand.name %] ([% cand.party.name %])[% IF cand.twitter %]<br><a href="https://twitter.com/[% cand.twitter %]>@[% cand.twitter %]</a>[% END %]</li>
 [% END -%]
             </ul>
           </div>
