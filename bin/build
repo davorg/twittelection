@@ -23,6 +23,7 @@ my $tt = Template->new({
 });
 
 foreach my $c ($sch->resultset('Constituency')->all) {
+  next unless $c->candidates->count;
   $tt->process('page.tt', { c => $c }, $c->list_name . '.html',
                {binmode => ':utf8'})
     or die $tt->error;
