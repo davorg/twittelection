@@ -23,6 +23,17 @@ my $t = TwittElection::Twitter->new(
 
 $t->authorise;
 
+# Here's how this should work.
+#
+# IF constit has a list id and that list exists
+#   Delete all members
+# ELSE
+#   Create new list
+#   Update list name and list id
+# END
+#
+# Insert list members
+
 foreach my $con ($con_rs->all) {
   next unless $con->candidates->count;
   say $con->name;
