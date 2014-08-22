@@ -37,27 +37,35 @@ $t->authorise;
 foreach my $con ($con_rs->all) {
   next unless $con->candidates->count;
   say $con->name;
-  
+
+  my $list;
   eval {
     if ($con->list_id) {
-      say 'Delete ', $con->list_name;
-      $t->delete_list({
-        list_id => $con->list_id,
+      $list = $t->show_list({
+        owner_screen_name => 'twittelection',
+        list_id           => $con->list_id,
+      });
+      if ($list) {
+        foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
+          $t->remove_list_members({
+            list_id     => $list->{id},
+            screen_name => $mem->{screen_name},
+          });
+        }
+      }
+    } else {
+      say 'Create ', $con->name;
+      $list = $t->create_list({
+        owner_screen_name => 'twittelection',
+        name => $con->name,
+      });
+
+      $con->update({
+        list_name => $list->{slug},
+        list_id   => $list->{id},
       });
     }
   };
-  say 'Create ', $con->name;
-  my $list = $t->create_list({
-    owner_screen_name => 'twittelection',
-    name => $con->name,
-  });
-  say "Created $list->{slug} ($list->{id})";
-  sleep 2;
-
-  $con->update({
-    list_name => $list->{slug},
-    list_id   => $list->{id},
-  });
 
   foreach my $cand ($con->candidates) {
     next unless $cand->twitter;
@@ -66,6 +74,5 @@ foreach my $con ($con_rs->all) {
       list_id     => $list->{id},
       screen_name => $cand->twitter,
     });
-    sleep 2;
   }
 }
