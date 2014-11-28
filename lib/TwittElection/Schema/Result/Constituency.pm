@@ -46,6 +46,12 @@ __PACKAGE__->table("constituency");
   is_auto_increment: 1
   is_nullable: 0
 
+=head2 mapit_id
+
+  data_type: 'integer'
+  default_value: 0
+  is_nullable: 0
+
 =head2 name
 
   data_type: 'varchar'
@@ -69,6 +75,8 @@ __PACKAGE__->table("constituency");
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
+  "mapit_id",
+  { data_type => "integer", default_value => 0, is_nullable => 0 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "list_name",
@@ -107,8 +115,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-08-17 15:45:17
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yRFppsscDpDeK/hlKiEkkw
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-11-28 21:20:33
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FD7hKDo9GcbmpapoGuAMmA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
