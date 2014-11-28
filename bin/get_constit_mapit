@@ -18,6 +18,7 @@ my $data = decode_json($json);
 my $sch = TwittElection::Schema->connect(
   'dbi:mysql:twittelection',
   $ENV{TE_USER}, $ENV{TE_PASS},
+  { mysql_enable_utf8 => 1 },
 ) or die;
 
 my $con_rs = $sch->resultset('Constituency');
