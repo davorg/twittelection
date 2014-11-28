@@ -19,7 +19,7 @@ mysql -u$TE_USER -p$TE_PASS -D$TE_DB < db/twittelect.sql
 mysql -u$TE_USER -p$TE_PASS -D$TE_DB < db/constituency.dat
 mysql -u$TE_USER -p$TE_PASS -D$TE_DB < db/party.dat
 
-if [[ -f db/candidate.csv ]]
+if [[ -f db/candidate.tsv ]]
 then
   bin/load_cand
 fi
