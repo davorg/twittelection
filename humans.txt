@@ -3,7 +3,7 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Dave Cross -- All the things -- @davorg
 
 # THANKS
 
@@ -11,5 +11,7 @@
 
 # TECHNOLOGY COLOPHON
 
-    HTML5, CSS3
+    HTML5, CSS3, Bootstrap
     jQuery, Modernizr
+    Twitter
+    Perl, DBIx::Class, Moose, Template Toolkit
