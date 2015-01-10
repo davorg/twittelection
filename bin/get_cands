@@ -20,5 +20,9 @@ $cands = $cands->{result}{memberships};
 for (@$cands) {
   next unless $_->{person_id}{standing_in}{2015};
   next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
-  say $_->{person_id}{name}, ' / ', $_->{person_id}{party_memberships}{2015}{name};
+
+  my $cand = $_->{person_id}{versions}[0]{data};
+
+  say $cand->{name}, ' / ', $cand->{party_memberships}{2015}{name},
+    ' / @', $cand->{twitter_username};
 }
