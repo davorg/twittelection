@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+use JSON;
+use LWP::Simple;
+
+my $const_id = shift || die "Must give (Mapit) constituency ID\n";
+
+my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
+          $const_id .
+          '?embed=membership.person';
+
+my $json = get($url);
+
+my $cands = decode_json $json;
+$cands = $cands->{result}{memberships};
+for (@$cands) {
+  next unless $_->{person_id}{standing_in}{2015};
+  next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
+  say $_->{person_id}{name}, ' / ', $_->{person_id}{party_memberships}{2015}{name};
+}
