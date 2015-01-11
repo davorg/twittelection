@@ -7,7 +7,7 @@ use 5.010;
 use lib 'lib';
 use TwittElection::Schema;
 
-my $file = shift || 'db/candidate.csv';
+my $file = shift || 'db/candidate.tsv';
 
 my $sch = TwittElection::Schema->connect(
   "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
@@ -16,7 +16,7 @@ my $sch = TwittElection::Schema->connect(
 
 my $cand_rs = $sch->resultset('Candidate');
 
-open my $fh, '>', $file or die "$!: $file";
+open my $fh, '>:encoding(UTF-8)', $file or die "$!: $file";
 
 while (my $cand = $cand_rs->next) {
   say $fh $cand->dump;

@@ -46,6 +46,11 @@ __PACKAGE__->table("candidate");
   is_auto_increment: 1
   is_nullable: 0
 
+=head2 yournextmp_id
+
+  data_type: 'integer'
+  is_nullable: 0
+
 =head2 name
 
   data_type: 'varchar'
@@ -81,6 +86,8 @@ __PACKAGE__->table("candidate");
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
+  "yournextmp_id",
+  { data_type => "integer", is_nullable => 0 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "twitter",
@@ -104,6 +111,32 @@ __PACKAGE__->add_columns(
 =cut
 
 __PACKAGE__->set_primary_key("id");
+
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<twitter>
+
+=over 4
+
+=item * L</twitter>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("twitter", ["twitter"]);
+
+=head2 C<yournextmp_id>
+
+=over 4
+
+=item * L</yournextmp_id>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("yournextmp_id", ["yournextmp_id"]);
 
 =head1 RELATIONS
 
@@ -143,15 +176,16 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-08-16 15:57:37
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yJTz5z4i1okZ1z9DkRBABw
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-11 19:53:38
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:r23a06Eeu4GoTjd3N2ezDQ
 
 sub dump {
   my $self = shift;
-  my $delim = $_[0] || '|';
+  my $delim = $_[0] || "\t";
 
-  return join $delim, $self->name, $self->twitter,
-                      $self->party->name, $self->constituency->name;
+  return join $delim, $self->name, $self->yournextmp_id, $self->twitter,
+                      $self->party->yournextmp_id,
+                      $self->constituency->mapit_id;
 }
 
 

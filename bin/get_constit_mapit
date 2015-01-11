@@ -1,0 +1,37 @@
+#!/usr/bin/perl -CS
+
+use strict;
+use warnings;
+use 5.010;
+
+use JSON;
+use lib 'lib';
+use TwittElection::Schema;
+
+my $file = shift || 'mapit.json';
+
+open my $json_fh, '<', $file or die "$file: $!\n";
+
+my $json = do { local $/; <$json_fh> };
+my $data = decode_json($json);
+
+my $sch = TwittElection::Schema->connect(
+  'dbi:mysql:twittelection',
+  $ENV{TE_USER}, $ENV{TE_PASS},
+  { mysql_enable_utf8 => 1 },
+) or die;
+
+my $con_rs = $sch->resultset('Constituency');
+
+for (keys $data) {
+  say "$_ -> $data->{$_}{name}";
+  my $con = $con_rs->find({ name => $data->{$_}{name} });
+
+  unless ($con) {
+    warn "Can't find $data->{$_}{name}\n";
+    next;
+  }
+
+  $con->mapit_id($_);
+  $con->update;
+}

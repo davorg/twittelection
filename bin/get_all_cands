@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+use FindBin qw[$Bin];
+
+use lib 'lib';
+use TwittElection::Schema;
+
+my $sch = TwittElection::Schema->connect(
+  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+  { mysql_enable_utf8 => 1 },
+) or die;
+
+my $con_rs = $sch->resultset('Constituency');
+
+for ($con_rs->all) {
+  say $_->name;
+  system "$Bin/get_cands", $_->mapit_id;
+}
+

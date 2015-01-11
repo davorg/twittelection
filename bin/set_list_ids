@@ -1,0 +1,34 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+use lib 'lib';
+
+use TwittElection::Schema;
+use TwittElection::Twitter;
+
+my $sch = TwittElection::Schema->connect(
+  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+  { mysql_enable_utf8 => 1 },
+) or die;
+
+my $const_rs = $sch->resultset('Constituency');
+
+my $t = TwittElection::Twitter->new(
+  traits          => [ 'API::RESTv1_1', 'OAuth' ],
+  ssl             => 1,
+  consumer_key    => $ENV{TE_TW_API_KEY},
+  consumer_secret => $ENV{TE_TW_API_SEC},
+);
+
+$t->authorise;
+
+foreach my $list (@{$t->list_ownerships->{lists}}) {
+  say $list->{name}, ' (', $list->{id}, ')';
+  my $const = $const_rs->find({
+    list_name => $list->{name},
+  });
+
+  $const->update({ list_id => $list->{id} }) if $const;
+}
