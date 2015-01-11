@@ -97,6 +97,20 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<mapit_id>
+
+=over 4
+
+=item * L</mapit_id>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("mapit_id", ["mapit_id"]);
+
 =head1 RELATIONS
 
 =head2 candidates
@@ -115,8 +129,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-11-28 21:20:33
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FD7hKDo9GcbmpapoGuAMmA
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-11 19:53:38
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CH8y+7ncqqc1I/Yo+i9a5w
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
