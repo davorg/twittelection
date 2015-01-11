@@ -7,6 +7,9 @@ use 5.010;
 use JSON;
 use LWP::Simple;
 
+use lib 'lib';
+use TwittElection::Schema;
+
 my $const_id = shift || die "Must give (Mapit) constituency ID\n";
 
 my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
@@ -15,14 +18,47 @@ my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
 
 my $json = get($url);
 
-my $cands = decode_json $json;
-$cands = $cands->{result}{memberships};
+my $data = decode_json $json;
+my $cands = $data->{result}{memberships};
+
+my $sch = TwittElection::Schema->connect(
+  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+  { mysql_enable_utf8 => 1 },
+) or die;
+
+my $con_rs = $sch->resultset('Constituency');
+my $con = $con_rs->find({
+  mapit_id => $const_id,
+});
+
+die "Can't find constituency $const_id\n" unless $con;
+
+my $par_rs = $sch->resultset('Party');
+my $can_rs = $sch->resultset('Candidate');
+
 for (@$cands) {
   next unless $_->{person_id}{standing_in}{2015};
   next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
 
   my $cand = $_->{person_id}{versions}[0]{data};
 
+  my ($party_id) = $cand->{party_memberships}{2015}{id} =~ /(\d+)/;
+  my $party;
+  unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
+    $party = $par_rs->create({
+      name => $cand->{party_memberships}{2015}{name},
+      yournextmp_id => $party_id,
+    });
+  }
+
   say $cand->{name}, ' / ', $cand->{party_memberships}{2015}{name},
     ' / @', $cand->{twitter_username};
+
+  $can_rs->update_or_create({
+      yournextmp_id   => $cand->{id},
+      name            => $cand->{name},
+      twitter         => $cand->{twitter_username},
+      party_id        => $party->id,
+      constituency_id => $con->id,
+  });
 }
