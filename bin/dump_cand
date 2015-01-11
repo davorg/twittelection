@@ -16,7 +16,7 @@ my $sch = TwittElection::Schema->connect(
 
 my $cand_rs = $sch->resultset('Candidate');
 
-open my $fh, '>', $file or die "$!: $file";
+open my $fh, '>:encoding(UTF-8)', $file or die "$!: $file";
 
 while (my $cand = $cand_rs->next) {
   say $fh $cand->dump;
