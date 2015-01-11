@@ -52,6 +52,19 @@ foreach my $con ($con_rs->all) {
             screen_name => $mem->{screen_name},
           });
         }
+      } else {
+        say 'Create ', $con->name;
+        $list = $t->create_list({
+          owner_screen_name => 'twittelection',
+          name => $con->name,
+        });
+
+        say $list->{slug};
+
+        $con->update({
+          list_name => $list->{slug},
+          list_id   => $list->{id},
+        });
       }
     } else {
       say 'Create ', $con->name;
@@ -59,6 +72,8 @@ foreach my $con ($con_rs->all) {
         owner_screen_name => 'twittelection',
         name => $con->name,
       });
+
+      say $list->{slug};
 
       $con->update({
         list_name => $list->{slug},
@@ -69,7 +84,7 @@ foreach my $con ($con_rs->all) {
 
   foreach my $cand ($con->candidates) {
     next unless $cand->twitter;
-    say ' -> ', $cand->name;
+    say "$list->{id} -> ", $cand->name, ' / ', $cand->twitter;
     $t->add_list_member({
       list_id     => $list->{id},
       screen_name => $cand->twitter,
