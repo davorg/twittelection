@@ -86,14 +86,19 @@ foreach my $con ($con_rs->all) {
         list_id   => $list->{id},
       });
     }
+
+    foreach my $cand ($con->candidates) {
+      next unless $cand->twitter;
+      say "$list->{id} -> ", $cand->name, ' / ', $cand->twitter;
+      $t->add_list_member({
+        list_id     => $list->{id},
+        screen_name => $cand->twitter,
+      });
+    }
   };
 
-  foreach my $cand ($con->candidates) {
-    next unless $cand->twitter;
-    say "$list->{id} -> ", $cand->name, ' / ', $cand->twitter;
-    $t->add_list_member({
-      list_id     => $list->{id},
-      screen_name => $cand->twitter,
-    });
+  if ($@) {
+    warn $@;
+    next;
   }
 }
