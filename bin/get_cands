@@ -36,6 +36,12 @@ die "Can't find constituency $const_id\n" unless $con;
 my $par_rs = $sch->resultset('Party');
 my $can_rs = $sch->resultset('Candidate');
 
+# TODO: Need to be smarter about this.
+# Add a 'candidates_updated_timestamp' column to constituency table.
+# Work out whether the candidates have changed since the last run.
+# Only update the candidates if we need to.
+# Update the 'candidates_updated_timestamp' when we update them.
+
 for (@$cands) {
   next unless $_->{person_id}{standing_in}{2015};
   next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
