@@ -70,6 +70,20 @@ __PACKAGE__->table("constituency");
   is_nullable: 1
   size: 20
 
+=head2 candidates_updated_time
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  default_value: '2000-01-01 00:00:00'
+  is_nullable: 0
+
+=head2 list_rebuilt_time
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  default_value: '2000-01-01 00:00:00'
+  is_nullable: 0
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -83,6 +97,20 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "list_id",
   { data_type => "varchar", is_nullable => 1, size => 20 },
+  "candidates_updated_time",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    default_value => "2000-01-01 00:00:00",
+    is_nullable => 0,
+  },
+  "list_rebuilt_time",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    default_value => "2000-01-01 00:00:00",
+    is_nullable => 0,
+  },
 );
 
 =head1 PRIMARY KEY
@@ -129,8 +157,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-11 19:53:38
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CH8y+7ncqqc1I/Yo+i9a5w
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-13 14:08:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:YezA7G8/SfE/ahLAF9v9sQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
