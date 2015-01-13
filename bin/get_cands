@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use 5.010;
 
+use open IO => ':encoding(utf8)';
+
 use JSON;
 use LWP::Simple;
 use DateTime;
@@ -48,7 +50,7 @@ my $can_rs = $sch->resultset('Candidate');
 my %cands;
 foreach (@$cands) {
   next unless $_->{person_id}{standing_in}{2015};
-  next unless $_->{person_id}{standing_in}{2015}{post_id};
+  next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
 
   $cands{$_->{person_id}{id}} = $_;
 }
