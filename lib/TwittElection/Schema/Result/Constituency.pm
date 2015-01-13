@@ -162,5 +162,20 @@ __PACKAGE__->has_many(
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+sub cand_id_list {
+  my $self = shift;
+
+  return sort { $a <=> $b }
+         map { $_->yournextmp_id } $self->candidates;
+}
+
+sub cand_id_list_string {
+  my $self = shift;
+  my $delim = shift // '/';
+
+  return join $delim, $self->cand_id_list;
+}
+
 __PACKAGE__->meta->make_immutable;
 1;
