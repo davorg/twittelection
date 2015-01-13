@@ -45,19 +45,26 @@ my $can_rs = $sch->resultset('Candidate');
 # Only update the candidates if we need to.
 # Update the 'candidates_updated_timestamp' when we update them.
 
+my %cands;
+foreach (@$cands) {
+  next unless $_->{person_id}{standing_in}{2015};
+  next unless $_->{person_id}{standing_in}{2015}{post_id};
+
+  $cands{$_->{person_id}{id}} = $_;
+}
+
+my @cands = values %cands;
+
 my $new_cands = join '/',
                 sort { $a <=> $b }
-                map { $_->{id} } @$cands;
+                map { $_->{person_id}{id} } @cands;
 
 if ($new_cands eq $curr_cands) {
   warn "No changes to candidate list\n";
   exit;
 }
 
-for (@$cands) {
-  next unless $_->{person_id}{standing_in}{2015};
-  next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
-
+for (@cands) {
   my $cand = $_->{person_id}{versions}[0]{data};
 
   my ($party_id) = $cand->{party_memberships}{2015}{id} =~ /(\d+)/;
