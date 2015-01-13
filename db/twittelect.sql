@@ -20,7 +20,7 @@ create table candidate (
   id integer primary key auto_increment,
   yournextmp_id integer not null unique,
   name varchar(200) not null,
-  twitter varchar(200) unique,
+  twitter varchar(200),
   party_id integer not null,
   constituency_id integer,
   current_mp integer not null default 0,
