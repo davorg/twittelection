@@ -41,12 +41,6 @@ my $curr_cands = $con->cand_id_list_string;
 my $par_rs = $sch->resultset('Party');
 my $can_rs = $sch->resultset('Candidate');
 
-# TODO: Need to be smarter about this.
-# Add a 'candidates_updated_timestamp' column to constituency table.
-# Work out whether the candidates have changed since the last run.
-# Only update the candidates if we need to.
-# Update the 'candidates_updated_timestamp' when we update them.
-
 my %cands;
 foreach (@$cands) {
   next unless $_->{person_id}{standing_in}{2015};
