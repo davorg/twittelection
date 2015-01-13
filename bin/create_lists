@@ -5,6 +5,8 @@ use warnings;
 use 5.010;
 use lib 'lib';
 
+use DateTime;
+
 use TwittElection::Twitter;
 use TwittElection::Schema;
 
@@ -57,6 +59,15 @@ foreach my $con ($con_rs->all) {
   next unless $con->candidates->count;
   say $con->name;
 
+  if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
+    warn "No need to rebuild list\n";
+    next;
+  }
+
+  if ($con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
+    warn "List rebuilt too recently\n";
+  }
+
   my $list;
   eval {
     if ($con->list_id) {
@@ -108,10 +119,18 @@ foreach my $con ($con_rs->all) {
         screen_name => $cand->twitter,
       });
     }
+
+    $con->update({
+      list_rebuilt_time => DateTime->now,
+    });
   };
 
   if ($@) {
-    warn $@;
-    next;
+    if ($@->isa('Net::Twitter::Error') && $@->code == 429) {
+      die "Rate limit exceeded\n";
+    } else {
+      warn "$@\n";
+      next;
+    }
   }
 }
