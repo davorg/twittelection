@@ -6,6 +6,7 @@ use 5.010;
 
 use JSON;
 use LWP::Simple;
+use DateTime;
 
 use lib 'lib';
 use TwittElection::Schema;
@@ -33,6 +34,8 @@ my $con = $con_rs->find({
 
 die "Can't find constituency $const_id\n" unless $con;
 
+my $curr_cands = $con->cand_id_list_string;
+
 my $par_rs = $sch->resultset('Party');
 my $can_rs = $sch->resultset('Candidate');
 
@@ -41,6 +44,15 @@ my $can_rs = $sch->resultset('Candidate');
 # Work out whether the candidates have changed since the last run.
 # Only update the candidates if we need to.
 # Update the 'candidates_updated_timestamp' when we update them.
+
+my $new_cands = join '/',
+                sort { $a <=> $b }
+                map { $_->{id} } @$cands;
+
+if ($new_cands eq $curr_cands) {
+  warn "No changes to candidate list\n";
+  exit;
+}
 
 for (@$cands) {
   next unless $_->{person_id}{standing_in}{2015};
@@ -68,3 +80,10 @@ for (@$cands) {
       constituency_id => $con->id,
   });
 }
+
+# TODO: Delete candidates that aren't in the current list.
+
+$con->update({
+  candidates_updated_time => DateTime->now,
+});
+
