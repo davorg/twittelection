@@ -62,13 +62,27 @@ __PACKAGE__->table("constituency");
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 200
+  size: 25
 
 =head2 list_id
 
   data_type: 'varchar'
   is_nullable: 1
   size: 20
+
+=head2 candidates_updated_time
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  default_value: '2000-01-01 00:00:00'
+  is_nullable: 0
+
+=head2 list_rebuilt_time
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  default_value: '2000-01-01 00:00:00'
+  is_nullable: 0
 
 =cut
 
@@ -80,9 +94,23 @@ __PACKAGE__->add_columns(
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "list_name",
-  { data_type => "varchar", is_nullable => 0, size => 200 },
+  { data_type => "varchar", is_nullable => 0, size => 25 },
   "list_id",
   { data_type => "varchar", is_nullable => 1, size => 20 },
+  "candidates_updated_time",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    default_value => "2000-01-01 00:00:00",
+    is_nullable => 0,
+  },
+  "list_rebuilt_time",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    default_value => "2000-01-01 00:00:00",
+    is_nullable => 0,
+  },
 );
 
 =head1 PRIMARY KEY
@@ -129,10 +157,25 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-11 19:53:38
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CH8y+7ncqqc1I/Yo+i9a5w
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-14 11:25:05
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ntUlTTvAvlxD9DtwUsf9vg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+sub cand_id_list {
+  my $self = shift;
+
+  return sort { $a <=> $b }
+         map { $_->yournextmp_id } $self->candidates;
+}
+
+sub cand_id_list_string {
+  my $self = shift;
+  my $delim = shift // '/';
+
+  return join $delim, $self->cand_id_list;
+}
+
 __PACKAGE__->meta->make_immutable;
 1;

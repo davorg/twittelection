@@ -16,5 +16,27 @@ __PACKAGE__->load_namespaces;
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+sub get_schema {
+  my $class = shift;
+
+  my @vars = qw(TE_HOST TE_DB TE_USER TE_PASS);
+  my @missing;
+
+  foreach (@vars) {
+    push @missing, $_ unless defined $ENV{$_};
+  }
+
+  if (@missing) {
+    die "You need to define this environment variables: @missing\n";
+  }
+
+  return $class->connect(
+    "dbi:mysql:database=$ENV{TE_DB}:host=$ENV{TE_HOST}",
+    $ENV{TE_USER}, $ENV{TE_PASS},
+    { mysql_enable_utf8 => 1 },  
+  ) or die;
+}
+
 __PACKAGE__->meta->make_immutable(inline_constructor => 0);
 1;

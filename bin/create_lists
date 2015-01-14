@@ -5,12 +5,12 @@ use warnings;
 use 5.010;
 use lib 'lib';
 
+use DateTime;
+
 use TwittElection::Twitter;
 use TwittElection::Schema;
 
-my $sch = TwittElection::Schema->connect(
-  "dbi:mysql:$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
-) or die;
+my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs = $sch->resultset('Constituency');
 
@@ -40,9 +40,31 @@ $t->authorise;
 # remove_list_members :
 # create_list : 
 # add_list_member : 
+
+# Some thoughts about a more intelligent approach.
+# Add a 'list_updated_timestamp' column to constituency table.
+# Only attempt to rebuild list if
+#   candidates_updated timestamp > list_updated_timestamp
+# Get current list members and current candidate list.
+# Only attempt to rebuild Twitter list if these lists differ.
+# Update list_updated_timestamp when we update Twitter list.
+# 
+# Also, need to think about Twitter rate limiting.
+# Stop working as soon as we get a rate exceeded response.
+# Only attempt to rebuild lists that haven't been rebuilt in the last 24 hours.
+
 foreach my $con ($con_rs->all) {
   next unless $con->candidates->count;
   say $con->name;
+
+  if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
+    warn "No need to rebuild list\n";
+    next;
+  }
+
+  if ($con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
+    warn "List rebuilt too recently\n";
+  }
 
   my $list;
   eval {
@@ -95,10 +117,18 @@ foreach my $con ($con_rs->all) {
         screen_name => $cand->twitter,
       });
     }
+
+    $con->update({
+      list_rebuilt_time => DateTime->now,
+    });
   };
 
   if ($@) {
-    warn $@;
-    next;
+    if ($@->isa('Net::Twitter::Error') && $@->code == 429) {
+      die "Rate limit exceeded\n";
+    } else {
+      warn "$@\n";
+      next;
+    }
   }
 }

@@ -4,15 +4,14 @@ use strict;
 use warnings;
 use 5.010;
 
+use open IO => ':encoding(utf8)';
+
 use FindBin qw[$Bin];
 
 use lib 'lib';
 use TwittElection::Schema;
 
-my $sch = TwittElection::Schema->connect(
-  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
-  { mysql_enable_utf8 => 1 },
-) or die;
+my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs = $sch->resultset('Constituency');
 

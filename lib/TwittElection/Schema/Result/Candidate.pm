@@ -114,18 +114,6 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<twitter>
-
-=over 4
-
-=item * L</twitter>
-
-=back
-
-=cut
-
-__PACKAGE__->add_unique_constraint("twitter", ["twitter"]);
-
 =head2 C<yournextmp_id>
 
 =over 4
@@ -176,8 +164,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-11 19:53:38
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:r23a06Eeu4GoTjd3N2ezDQ
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-13 20:27:19
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:DFRvfe275bYavzuI1+GDXg
 
 sub dump {
   my $self = shift;

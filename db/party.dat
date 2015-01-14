@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.15-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.40, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: twittelection
 -- ------------------------------------------------------
--- Server version	10.0.15-MariaDB
+-- Server version	5.5.40-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,28 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `party`
---
-
-DROP TABLE IF EXISTS `party`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `party` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `yournextmp_id` int(11) NOT NULL,
-  `name` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `yournextmp_id` (`yournextmp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `party`
 --
 
 LOCK TABLES `party` WRITE;
 /*!40000 ALTER TABLE `party` DISABLE KEYS */;
-INSERT INTO `party` VALUES (1,52,'Conservative'),(2,53,'Labour'),(3,90,'Liberal Democrat'),(4,63,'Green'),(5,85,'UKIP'),(6,2,'Independent'),(7,77,'Plaid Cymru - The Party of Wales'),(8,2269,'Class War'),(9,2034,'Justice For Men & Boys'),(10,1931,'National Health Action Party'),(11,102,'Scottish National Party (SNP)'),(12,804,'Trade Unionist and Socialist Coalition'),(13,70,'Democratic Unionist Party - D.U.P.'),(14,103,'Alliance - Alliance Party of Northern Ireland'),(15,51,'Conservative and Unionist Party'),(16,55,'SDLP (Social Democratic & Labour Party)'),(17,39,'Sinn Féin'),(18,733,'Lincolnshire Independents Lincolnshire First'),(19,1969,'Patria'),(20,362,'The Respect Party'),(21,578,'Brighton & Hove Independents'),(22,12522,'Speaker seeking re-election'),(23,2137,'All People\'s Party'),(24,58,'Mebyon Kernow - The Party for Cornwall'),(25,2120,'Yorkshire First'),(26,130,'Scottish Green Party'),(27,1912,'Young People\'s Party YPP'),(28,83,'Ulster Unionist Party'),(29,305,'Green Party'),(30,46,'Scottish Socialist Party'),(31,1958,'Something New'),(32,1732,'People First - Gwerin Gyntaf'),(33,2032,'Liberty Great Britain'),(34,770,'Pirate Party UK'),(35,2310,'The Reality Party'),(36,66,'Official Monster Raving Loony Party'),(37,2380,'The Whig Party');
+INSERT INTO `party` VALUES (1,52,'Conservative'),(2,53,'Labour'),(3,90,'Liberal Democrat'),(4,63,'Green'),(5,85,'UKIP'),(6,2,'Independent'),(7,77,'Plaid Cymru - The Party of Wales'),(8,2269,'Class War'),(9,2034,'Justice For Men & Boys'),(10,1931,'National Health Action Party'),(11,102,'Scottish National Party (SNP)'),(12,804,'Trade Unionist and Socialist Coalition'),(13,70,'Democratic Unionist Party - D.U.P.'),(14,103,'Alliance - Alliance Party of Northern Ireland'),(15,51,'Conservative and Unionist Party'),(16,55,'SDLP (Social Democratic & Labour Party)'),(17,39,'Sinn Féin'),(18,733,'Lincolnshire Independents Lincolnshire First'),(19,1969,'Patria'),(20,362,'The Respect Party'),(21,578,'Brighton & Hove Independents'),(22,12522,'Speaker seeking re-election'),(23,2137,'All People\'s Party'),(24,58,'Mebyon Kernow - The Party for Cornwall'),(25,2120,'Yorkshire First'),(26,130,'Scottish Green Party'),(27,1912,'Young People\'s Party YPP'),(28,83,'Ulster Unionist Party'),(29,305,'Green Party'),(30,46,'Scottish Socialist Party'),(31,1958,'Something New'),(32,1732,'People First - Gwerin Gyntaf'),(33,2032,'Liberty Great Britain'),(34,770,'Pirate Party UK'),(35,2310,'The Reality Party'),(36,66,'Official Monster Raving Loony Party'),(37,2380,'The Whig Party'),(38,133,'The Peace Party - Non-violence, Justice, Environment'),(39,407,'Conservative Democratic Alliance');
 /*!40000 ALTER TABLE `party` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-11 20:47:04
+-- Dump completed on 2015-01-14 12:44:36
