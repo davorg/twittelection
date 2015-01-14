@@ -24,10 +24,7 @@ my $json = get($url);
 my $data = decode_json $json;
 my $cands = $data->{result}{memberships};
 
-my $sch = TwittElection::Schema->connect(
-  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
-  { mysql_enable_utf8 => 1 },
-) or die;
+my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs = $sch->resultset('Constituency');
 my $con = $con_rs->find({

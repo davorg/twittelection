@@ -10,9 +10,7 @@ use DateTime;
 use TwittElection::Twitter;
 use TwittElection::Schema;
 
-my $sch = TwittElection::Schema->connect(
-  "dbi:mysql:$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
-) or die;
+my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs = $sch->resultset('Constituency');
 

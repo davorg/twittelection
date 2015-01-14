@@ -19,10 +19,7 @@ my %compass = (
   west         => 'w',
 );
 
-my $sch = TwittElection::Schema->connect(
-  "dbi:mysql:database=$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
-  { mysql_enable_utf8 => 1 },
-) or die;
+my $sch = TwittElection::Schema->get_schema;
 
 foreach my $con ($sch->resultset('Constituency')->all) {
   my $name = lc unidecode $con->name;
