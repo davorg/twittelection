@@ -32,7 +32,8 @@ sub get_schema {
   }
 
   return $class->connect(
-    "dbi:mysql:$ENV{TE_DB}", $ENV{TE_USER}, $ENV{TE_PASS},
+    "dbi:mysql:database=$ENV{TE_DB}:host=$ENV{TE_HOST}",
+    $ENV{TE_USER}, $ENV{TE_PASS},
     { mysql_enable_utf8 => 1 },  
   ) or die;
 }
