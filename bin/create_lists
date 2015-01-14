@@ -12,7 +12,15 @@ use TwittElection::Schema;
 
 my $sch = TwittElection::Schema->get_schema;
 
-my $con_rs = $sch->resultset('Constituency');
+my $con_rs;
+
+if (@ARGV) {
+  $con_rs = $sch->resultset('Constituency')->search({
+    mapit_id => \@ARGV,
+  });
+} else {
+  $con_rs = $sch->resultset('Constituency');
+}
 
 my $t = TwittElection::Twitter->new(
   traits          => [ 'API::RESTv1_1', 'OAuth' ],
@@ -55,7 +63,7 @@ $t->authorise;
 
 foreach my $con ($con_rs->all) {
   next unless $con->candidates->count;
-  say $con->name;
+  say $con->name, ' (', $con->mapit_id, ')';
 
   if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
     warn "No need to rebuild list\n";
