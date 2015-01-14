@@ -37,7 +37,10 @@ foreach my $con ($cons_rs->all) {
   my $data = decode_json $json;
   my $cands = $data->{result}{memberships};
 
-  my $curr_cands = $con->cand_id_list_string;
+  my %curr_cands;
+  my @curr_cands = $con->cand_id_list;
+  @curr_cands{@curr_cands} = (1) x @curr_cands;
+  my $curr_cands = join '/', sort { $a <=> $b } keys %curr_cands;
 
   my $par_rs = $sch->resultset('Party');
   my $can_rs = $sch->resultset('Candidate');
@@ -85,7 +88,13 @@ foreach my $con ($cons_rs->all) {
     });
   }
 
-  # TODO: Delete candidates that aren't in the current list.
+  foreach (keys %curr_cands) {
+    unless ($cands{$_}) {
+      $can_rs->search({
+        yournextmp_id => $_,
+      })->delete;
+    }
+  }
 
   $con->update({
     candidates_updated_time => DateTime->now,
