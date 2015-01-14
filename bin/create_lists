@@ -84,7 +84,7 @@ foreach my $con ($con_rs->all) {
         say 'Create ', $con->name;
         $list = $t->create_list({
           owner_screen_name => 'twittelection',
-          name => $con->name,
+          name => $con->list_name,
         });
 
         say $list->{slug};
@@ -98,7 +98,7 @@ foreach my $con ($con_rs->all) {
       say 'Create ', $con->name;
       $list = $t->create_list({
         owner_screen_name => 'twittelection',
-        name => $con->name,
+        name => $con->list_name,
       });
 
       say $list->{slug};
