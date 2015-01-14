@@ -62,7 +62,7 @@ __PACKAGE__->table("constituency");
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 200
+  size: 25
 
 =head2 list_id
 
@@ -94,7 +94,7 @@ __PACKAGE__->add_columns(
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "list_name",
-  { data_type => "varchar", is_nullable => 0, size => 200 },
+  { data_type => "varchar", is_nullable => 0, size => 25 },
   "list_id",
   { data_type => "varchar", is_nullable => 1, size => 20 },
   "candidates_updated_time",
@@ -157,8 +157,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-13 14:08:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:YezA7G8/SfE/ahLAF9v9sQ
+# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-14 11:25:05
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ntUlTTvAvlxD9DtwUsf9vg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

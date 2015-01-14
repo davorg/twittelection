@@ -10,7 +10,7 @@ create table constituency (
   id integer primary key auto_increment,
   mapit_id integer not null default 0 unique,
   name varchar(200) not null,
-  list_name varchar(200) not null,
+  list_name varchar(25) not null,
   list_id varchar(20),
   candidates_updated_time datetime not null default '2000-01-01 00:00:00',
   list_rebuilt_time datetime not null default '2000-01-01 00:00:00'
