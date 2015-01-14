@@ -62,8 +62,12 @@ $t->authorise;
 # Only attempt to rebuild lists that haven't been rebuilt in the last 24 hours.
 
 foreach my $con ($con_rs->all) {
-  next unless $con->candidates->count;
   say $con->name, ' (', $con->mapit_id, ')';
+
+  unless ($con->candidates->count) {
+    warn "No candidates found\n";
+    next;
+  }
 
   if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
     warn "No need to rebuild list\n";
@@ -72,6 +76,7 @@ foreach my $con ($con_rs->all) {
 
   if ($con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
     warn "List rebuilt too recently\n";
+    next;
   }
 
   my $list;
