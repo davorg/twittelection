@@ -6,13 +6,22 @@ use 5.010;
 use lib 'lib';
 
 use DateTime;
+use Scalar::Util qw[blessed];
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
 
 my $sch = TwittElection::Schema->get_schema;
 
-my $con_rs = $sch->resultset('Constituency');
+my $con_rs;
+
+if (@ARGV) {
+  $con_rs = $sch->resultset('Constituency')->search({
+    mapit_id => \@ARGV,
+  });
+} else {
+  $con_rs = $sch->resultset('Constituency');
+}
 
 my $t = TwittElection::Twitter->new(
   traits          => [ 'API::RESTv1_1', 'OAuth' ],
@@ -54,8 +63,12 @@ $t->authorise;
 # Only attempt to rebuild lists that haven't been rebuilt in the last 24 hours.
 
 foreach my $con ($con_rs->all) {
-  next unless $con->candidates->count;
-  say $con->name;
+  say $con->name, ' (', $con->mapit_id, ')';
+
+  unless ($con->candidates->count) {
+    warn "No candidates found\n";
+    next;
+  }
 
   if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
     warn "No need to rebuild list\n";
@@ -64,6 +77,7 @@ foreach my $con ($con_rs->all) {
 
   if ($con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
     warn "List rebuilt too recently\n";
+    next;
   }
 
   my $list;
@@ -84,7 +98,7 @@ foreach my $con ($con_rs->all) {
         say 'Create ', $con->name;
         $list = $t->create_list({
           owner_screen_name => 'twittelection',
-          name => $con->name,
+          name => $con->list_name,
         });
 
         say $list->{slug};
@@ -98,7 +112,7 @@ foreach my $con ($con_rs->all) {
       say 'Create ', $con->name;
       $list = $t->create_list({
         owner_screen_name => 'twittelection',
-        name => $con->name,
+        name => $con->list_name,
       });
 
       say $list->{slug};
@@ -124,10 +138,12 @@ foreach my $con ($con_rs->all) {
   };
 
   if ($@) {
-    if ($@->isa('Net::Twitter::Error') && $@->code == 429) {
+    my $err = $@;
+    die $err unless blessed $err and $err->isa('Net::Twitter::Error');
+    if ($err->code == 429) {
       die "Rate limit exceeded\n";
     } else {
-      warn "$@\n";
+      warn $err->code, ': ', $err->error, "\n";
       next;
     }
   }

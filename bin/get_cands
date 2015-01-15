@@ -13,77 +13,98 @@ use DateTime;
 use lib 'lib';
 use TwittElection::Schema;
 
-my $const_id = shift || die "Must give (Mapit) constituency ID\n";
-
-my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
-          $const_id .
-          '?embed=membership.person';
-
-my $json = get($url);
-
-my $data = decode_json $json;
-my $cands = $data->{result}{memberships};
-
 my $sch = TwittElection::Schema->get_schema;
 
-my $con_rs = $sch->resultset('Constituency');
-my $con = $con_rs->find({
-  mapit_id => $const_id,
-});
-
-die "Can't find constituency $const_id\n" unless $con;
-
-my $curr_cands = $con->cand_id_list_string;
-
-my $par_rs = $sch->resultset('Party');
-my $can_rs = $sch->resultset('Candidate');
-
-my %cands;
-foreach (@$cands) {
-  next unless $_->{person_id}{standing_in}{2015};
-  next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
-
-  $cands{$_->{person_id}{id}} = $_;
+my $cons_rs;
+if (@ARGV) {
+  $cons_rs = $sch->resultset('Constituency')->search({
+    mapit_id => \@ARGV,
+  });
+} else {
+  $cons_rs = $sch->resultset('Constituency');
 }
 
-my @cands = values %cands;
+foreach my $con ($cons_rs->all) {
+  my $changed = 0;
+  say $con->name, ' (', $con->mapit_id, ')';
+  my $const_id = $con->mapit_id;
 
-my $new_cands = join '/',
-                sort { $a <=> $b }
-                map { $_->{person_id}{id} } @cands;
+  my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
+            $const_id .
+            '?embed=membership.person';
 
-if ($new_cands eq $curr_cands) {
-  warn "No changes to candidate list\n";
-  exit;
-}
+  my $json = get($url);
 
-for (@cands) {
-  my $cand = $_->{person_id}{versions}[0]{data};
+  my $data = decode_json $json;
+  my $cands = $data->{result}{memberships};
 
-  my ($party_id) = $cand->{party_memberships}{2015}{id} =~ /(\d+)/;
-  my $party;
-  unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
-    $party = $par_rs->create({
-      name => $cand->{party_memberships}{2015}{name},
-      yournextmp_id => $party_id,
-    });
+  my %curr_cands;
+  foreach ($con->candidates) {
+    $curr_cands{$_->yournextmp_id} = $_;
   }
 
-  say $cand->{name}, ' / ', $cand->{party_memberships}{2015}{name},
-    ' / @', $cand->{twitter_username};
+  my $par_rs = $sch->resultset('Party');
+  my $can_rs = $sch->resultset('Candidate');
 
-  $can_rs->update_or_create({
-      yournextmp_id   => $cand->{id},
-      name            => $cand->{name},
-      twitter         => $cand->{twitter_username},
-      party_id        => $party->id,
-      constituency_id => $con->id,
-  });
+  my %cands;
+  for (@$cands) {
+    next unless $_->{person_id}{standing_in}{2015};
+    next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
+
+    $cands{$_->{person_id}{id}} = $_;
+  }
+
+  for (values %cands) {
+    my $cand = $_->{person_id}{versions}[0]{data};
+
+    say $cand->{name}, ' / ', $cand->{party_memberships}{2015}{name},
+      ' / @', $cand->{twitter_username};
+
+    my ($party_id) = $cand->{party_memberships}{2015}{id} =~ /(\d+)/;
+    my $party;
+    unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
+      $party = $par_rs->create({
+        name => $cand->{party_memberships}{2015}{name},
+        yournextmp_id => $party_id,
+      });
+    }
+
+    if (exists $curr_cands{$cand->{id}}) {
+      my $curr_cand = delete $curr_cands{$cand->{id}};
+      if ($cand->{name} ne $curr_cand->name
+       or $cand->{twitter_username} ne $curr_cand->twitter) {
+         $curr_cand->update({
+           yournextmp_id   => $cand->{id},
+           name            => $cand->{name},
+           twitter         => $cand->{twitter_username},
+           party_id        => $party->id,
+           constituency_id => $con->id,           
+         });
+         $changed = 1;
+      }
+    } else {
+      $can_rs->create({
+        yournextmp_id   => $cand->{id},
+        name            => $cand->{name},
+        twitter         => $cand->{twitter_username},
+        party_id        => $party->id,
+        constituency_id => $con->id,
+      });
+      $changed = 1;
+    }
+  }
+
+  # Any candidates left in %curr_cands need to be deleted
+  foreach (keys %curr_cands) {
+    $can_rs->search({
+      yournextmp_id => $_,
+    })->delete;
+  }
+
+  if ($changed) {
+    $con->update({
+      candidates_updated_time => DateTime->now,
+    });
+  }
 }
-
-# TODO: Delete candidates that aren't in the current list.
-
-$con->update({
-  candidates_updated_time => DateTime->now,
-});
 
