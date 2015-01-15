@@ -1,7 +1,7 @@
 [% WRAPPER page.tt -%]
 [% prev_letter = '';
    letters = [];
-   FOREACH p IN parties;
+   FOREACH p IN parties.sort('name');
      NEXT UNLESS p.candidates.size;
      letter = p.name.substr(0, 1);
      IF letter != prev_letter;
@@ -18,7 +18,7 @@
             <p>Jump to: [% letters.join(' | ') %]</p>
 <table class="table table-striped table-condensed table-bordered">
 [% prev_letter = '';
-   FOREACH p IN parties;
+   FOREACH p IN parties.sort('name');
      NEXT UNLESS p.candidates.size;
      letter = p.name.substr(0, 1);
      IF letter != prev_letter -%]
