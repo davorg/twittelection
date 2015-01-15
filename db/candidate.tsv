@@ -206,7 +206,7 @@ Paul Jeater	4658	essexwomble	63	65670
 Toby Pereira	5195		2	65670
 Malcolm Fincken	4273	MalcolmFincken	53	65670
 Chris Davies	4166		52	66088
-Roger Williams	1472	RogerWilliamsMP	90	66088
+Roger Williams	1472	RogerWilliamsLD	90	66088
 Matthew Dorrance	4274	matthewdorrance	53	66088
 Chris Carmichael	5265		63	66088
 Freddy Greaves	4977		77	66088
@@ -225,7 +225,7 @@ James Radcliffe	4699	jradcliffeplaid	77	66095
 Julie Harvey-Smith	5225		63	65620
 Ian Liddell-Grainger	1759		52	65620
 Mick Lerry	4277		53	65620
-Justine Baker	4484	cllrjaybaker	90	65620
+Justine Baker	4484	CllJustineBaker	90	65620
 Natalie Hurst	4985		63	66000
 Jacky Crawford	4278	jackycrawford	53	66000
 Matt Taylor	4549	sosleader	578	65844
@@ -248,7 +248,7 @@ Clare Campion-Smith	5018		90	66009
 Charlotte Leslie	1152	CLeslieMP	52	66009
 Karin Smyth	4280	karinsmyth	53	66031
 Isobel Grant	5033	isogrant	52	66031
-Tony Dyer	5408		63	66031
+Tony Dyer	5408	tonyddyer	63	66031
 Mark Wright	1155		90	66031
 Jan McDonald	4727		2269	65574
 Darren Hall	4554	darrenhall2015	63	65574
@@ -269,7 +269,7 @@ David Kirwan	4791	davegaz	63	65849
 Frank Dunne	5054		85	65849
 Anna Soubry	4072		52	65849
 John Bercow	357		12522	65909
-Gordon Birtwistle	1534	GBritwistle_MP	90	65846
+Gordon Birtwistle	1534	GBirtwistle_MP	90	65846
 Julie Cooper	627		53	65846
 Jon Wheale	4285	JonWheale	53	65708
 James Frith	4286	Frith4BuryNorth	53	66015
@@ -304,7 +304,7 @@ Daniel Zeichner	45	DanielZeichner	53	65927
 Rupert Read	4556	GreenRupertRead	63	65927
 Chamali Fernando	4171	whereis007	52	65927
 Julian Huppert	47	JulianHuppert	90	65927
-Daniel Brett	4586	brett4cambridge	2269	65927
+Daniel Brett	4586		2269	65927
 Patrick O'Flynn	4587	oflynnmep	85	65927
 Amanda Milling	4172		52	65790
 Janos Toth	4291		53	65790
@@ -370,9 +370,9 @@ Mary Robinson	4175		52	65727
 Mark Hunter	3853		90	65727
 Mark Gough	5109		85	65797
 Chris Vince	4305	votevince2015	53	65797
-Alex Chalk	4176		52	65946
+Alex Chalk	4176	AlexChalkChelt	52	65946
 Adam Van Coevorden	4609	AdamForGreenMP	63	65946
-Martin Horwood	622		90	65946
+Martin Horwood	622	MartinChelt	90	65946
 Richard Lupson-Darnell	4788	richardchelt15	2	65946
 Gill Walker	4660		63	65801
 Ben Davies	4903		53	65801
@@ -562,13 +562,13 @@ Greg Knight	2878		52	65979
 Kevin Hickson	5113		53	65979
 Stephen Lloyd	1056		90	65714
 Nigel Jones	5287		85	65714
-Jake Lambert	5292	jakeyfellow	53	65714
+Jake Lambert	5292	JakeyLambert	53	65714
 Caroline Ansell	4188		52	65714
 Mike Thornton	4495	mike4eastleigh	90	65881
 Mims Davies	4189		52	65881
 Mark Latham	5089	MarkLathamUK	53	65881
 James Laing	5006	eddisburylabour	53	65756
-Ian Priestner	4991		90	65756
+Ian Priestner	4991	ianpriestnerLD	90	65756
 Peter McColl	5163	petermccoll	130	14419
 James McMordie	5043	JFJMcMordie	52	14419
 Sarah Beattie-Smith	4993	SarahBS_27	130	14420
@@ -758,7 +758,7 @@ Pearl Lewis	4196		52	65912
 Clifford Dixon	1451		85	65912
 Laura Booth	4351		2	65557
 William Wragg	4197		52	65557
-Lisa Smart	4503	lisa_smart	90	65557
+Lisa Smart	4503	Lisa_Smart	90	65557
 Michael Taylor	5000	marpleleaf	53	65557
 Darran J Palmer	5375		85	65557
 Tony Breslin	5180		53	65967
@@ -1006,7 +1006,7 @@ Jonathan Clark	2752		77	66084
 Christopher Were	5264		63	66084
 Jane Dodds	4515	DoddsJane	90	66111
 Glyn Davies	2754		52	66111
-Gwynfor Owen	4959		77	66111
+Gwynfor Owen	4959	GwynforO	77	66111
 Douglas Ross	2756		52	14442
 Sean Morton	4384		53	14442
 Phil Chandler	5208		63	65633
@@ -1333,7 +1333,7 @@ Dave Perkins	4743		2269	65632
 Kevin Warnes	1072	kevinwarnes	63	65959
 Steve Clapcote	5165	steveclapcote	53	65959
 Philip Davies	835	PhilipDaviesMP	52	65959
-Suzanne Evans	4668		85	65563
+Suzanne Evans	4668	suzanneevans1	85	65563
 Christine Tinker	5093	ctinker2	90	65563
 Laura Davies	4943	LauraShrewsbury	53	65563
 Guy Nicholson	4423	Guy_SittShepp	53	65610
@@ -1781,3 +1781,8 @@ Mary Di Mauro	5474		90	65769
 Elizabeth Jewkes	2125		90	65847
 Phill Roberts	5475		90	65625
 Al Murray - The Pub Landlord	5480	FUKPnews	2	65829
+Jane Ellison	3433	janeellison	52	65731
+Mark Thackray	5482		85	65746
+Alistair Burt	1636		52	65855
+Ian Luder	5481		85	65962
+Stephen Hammond	2253		52	65827
