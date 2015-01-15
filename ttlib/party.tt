@@ -10,8 +10,8 @@
           </div>
           <div class="col-md-4">
             <ul>
-[% FOREACH cand IN p.candidates -%]
-              <li>[% cand.name %] ([% cand.party.name %])[% IF cand.twitter %]<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% END %]</li>
+[% FOREACH cand IN p.candidates.sort('name'i) -%]
+              <li>[% cand.name %] ([% cand.constituency.name %])[% IF cand.twitter %]<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% END %]</li>
 [% END -%]
             </ul>
           </div>
