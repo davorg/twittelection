@@ -57,9 +57,6 @@ foreach my $con ($cons_rs->all) {
   for (values %cands) {
     my $cand = $_->{person_id}{versions}[0]{data};
 
-    say $cand->{name}, ' / ', $cand->{party_memberships}{2015}{name},
-      ' / @', $cand->{twitter_username};
-
     my ($party_id) = $cand->{party_memberships}{2015}{id} =~ /(\d+)/;
     my $party;
     unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
@@ -72,17 +69,27 @@ foreach my $con ($cons_rs->all) {
     if (exists $curr_cands{$cand->{id}}) {
       my $curr_cand = delete $curr_cands{$cand->{id}};
       if ($cand->{name} ne $curr_cand->name
-       or $cand->{twitter_username} ne $curr_cand->twitter) {
-         $curr_cand->update({
-           yournextmp_id   => $cand->{id},
-           name            => $cand->{name},
-           twitter         => $cand->{twitter_username},
-           party_id        => $party->id,
-           constituency_id => $con->id,           
-         });
-         $changed = 1;
+	or $cand->{twitter_username} ne $curr_cand->twitter) {
+        say "* Updating $cand->{name} / ",
+            $cand->{party_memberships}{2015}{name},
+            " / \@$cand->{twitter_username}";
+        $curr_cand->update({
+          yournextmp_id   => $cand->{id},
+          name            => $cand->{name},
+          twitter         => $cand->{twitter_username},
+          party_id        => $party->id,
+          constituency_id => $con->id,
+        });
+        $changed = 1;
+      } else {
+	say "* No change $cand->{name} / ",
+            $cand->{party_memberships}{2015}{name},
+            " / \@$cand->{twitter_username}";
       }
     } else {
+      say "* Adding $cand->{name} / ",
+          $cand->{party_memberships}{2015}{name},
+          " / \@$cand->{twitter_username}";
       $can_rs->create({
         yournextmp_id   => $cand->{id},
         name            => $cand->{name},
