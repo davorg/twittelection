@@ -4,7 +4,7 @@ Will Martindale	4263	WillJMartindale	53	65731
 Jonathan Tier	5328		63	66101
 Stephen Kinnock	4252	SKinnock	53	66101
 Helen Ceri Clarke	4561	helenceri	90	66101
-Captain Beany	20		2	66101
+Captain Beany	20	captainbeany	2	66101
 Dafydd Meurig	4575	dafyddmeurig	77	66085
 Mary Wimbury	4253	MaryWimbury	53	66085
 Victor Babu	5027		90	66085
@@ -95,7 +95,7 @@ Mahmud Henry Rogers	4478	MahmudHenryR	90	65561
 Charlie Smith	4816	charlie_ukip	85	65561
 Ben Foley	1602		63	65561
 Patrick Hall	2466	patrickhall4mp	53	65561
-Neil Wilson	5404		51	66124
+Neil Wilson	5404	neil4ebelfast	51	66124
 Naomi Long	2454	naomi_long	103	66124
 Gavin Robinson	4595	grobinsondup	70	66124
 Jason O'Neill	4598		103	66125
@@ -598,7 +598,7 @@ Deborah Cairns	4887		85	66050
 Bambos Charlambous	4331		53	65567
 David Schofield	4888		85	65567
 Paul D Smith	2465		90	65567
-Jean Robertson-Molloy	4617		63	65567
+Jean Robertson-Molloy	4617	jeanrobertsonmo	63	65567
 Gerard Mark Wadsworth	5395	Mark_Wadsworth	1912	66044
 Anna Widdup	5218		63	66044
 Gareth Barrett	4689	garethpbarrett	53	66044
@@ -856,7 +856,7 @@ Clare Keogh	4884		63	65778
 Edward Davey	4507	EdwardDaveyMP	90	65778
 Emma Ideson	5066	EmmaIdeson	52	65709
 Mike Ross	746	cllrmikeross	90	65618
-Dehenna Davison	4202	DehannaForHull	52	65618
+Dehenna Davison	4202	DehennaForHull	52	65618
 Martin Deane	2862	martinjdeane	63	65618
 Claire Thomas	4504	clairethomas1	90	65984
 Angela Needham	5231	angelan1	63	65984
@@ -959,7 +959,7 @@ George Hollingbery	1557	GHollingbery	52	65772
 Dave Alexander	5277		85	65772
 Tom McNeil	4379	mcneil_tom	53	65932
 Elspeth Parris	5452	elspethp	63	66086
-Gerald Jones	5097	gerald_jones3	53	66086
+Gerald Jones	5097	GeraldJonesLAB	53	66086
 David Rowlands	5183		85	66086
 Rhayna Pritchard	4958		77	66086
 Nigel Wicken	5082	NigelWickens	85	65718
@@ -1167,7 +1167,7 @@ Jo Johnson	2204	JoJohnsonMP	52	65682
 Ann Duncan	4559	ann4oxfordeast	63	66060
 Andrew Smith	2208	AndrewSmithMP	53	66060
 Mark Mann	4521	oxfordmann	90	66060
-Ian Macdonald	4560	ianmacdonald91	85	66060
+Ian Macdonald	4560		85	66060
 Melanie Magee	5019	cllr_magee	52	66060
 Alan Harris	4550	alharr666	85	65564
 Nicola Blackwood	3139	nicolablackwood	52	65564
@@ -1485,7 +1485,7 @@ Jim Shannon	3066		70	66139
 Nadhim Zahawi	75		52	65648
 Elizabeth Adams	4535	liz4stratford	90	65648
 Jeff Kenner	4444		53	65648
-Bruce Machan	4667		85	66042
+Bruce Machan	4667	MachanUkip	85	66042
 Amna Ahmad	4536	amnajahmad	90	66042
 Jonathan Bartley	4878	jon_bartley	63	66042
 Kim Caddy	4232		52	66042
@@ -1692,7 +1692,7 @@ Jonathan Stanley	5398	JonMarcStanley	85	65963
 John Penrose	1329	johnpenrosenews	52	65742
 John Munro	5449	johnpetermunro	90	65742
 Tim Taylor	4467	TimTaylorWeston	53	65742
-Lisa Nandy	2241		53	65612
+Lisa Nandy	2241	lisanandy	53	65612
 Andrew Judge	2257	Andjudge	53	65827
 Shas Sheehan	2260	sheehanshas	90	65827
 Jackie Porter	4542	jackielibdem	90	65921
@@ -1727,7 +1727,7 @@ Pete McNally	5348		804	65577
 Jill Perry	4641		63	65625
 Rozila Kana	5436		52	65625
 Mark Jenkinson	4926	markjenk	85	65625
-Iain Lindley	2940		52	65757
+Iain Lindley	2940	cllrilindley	52	65757
 Barbara Keeley	2947		53	65757
 Christopher Bertenshaw	5096		63	65757
 Tim Cross	5235		85	65562
@@ -1787,3 +1787,14 @@ Ian Luder	5481		85	65962
 Stephen Hammond	2253		52	65827
 Richard Royal	5483		52	65990
 Beth Prescott	5484	YorkshireBeth	52	65918
+Ian Blackford	5485	iblackfordskye	102	14452
+Nicola Dodgson	5488		63	65856
+Andrew Durling	5487		63	65714
+Susan McGrath	5489		63	65803
+Lawrence Webb	3526	ukipwebb4london	85	66069
+Rob White	1039		63	65973
+Jonathan Essex	439		63	66005
+Christine Tinker	2602	ctinker2	90	65563
+Tim Andrewes	686		63	65854
+Andrew Illsley	2217		85	65950
+Sam Hale	5486	samhale123	53	65950

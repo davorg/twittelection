@@ -9,9 +9,13 @@ use open IO => ':encoding(utf8)';
 use JSON;
 use LWP::Simple;
 use DateTime;
+use Getopt::Long;
 
 use lib 'lib';
 use TwittElection::Schema;
+
+my $verbose;
+GetOptions(verbose => \$verbose);
 
 my $sch = TwittElection::Schema->get_schema;
 
@@ -84,7 +88,7 @@ foreach my $con ($cons_rs->all) {
       } else {
 	say "* No change $cand->{name} / ",
             $cand->{party_memberships}{2015}{name},
-            " / \@$cand->{twitter_username}";
+            " / \@$cand->{twitter_username}" if $verbose;
       }
     } else {
       say "* Adding $cand->{name} / ",
@@ -103,9 +107,12 @@ foreach my $con ($cons_rs->all) {
 
   # Any candidates left in %curr_cands need to be deleted
   foreach (keys %curr_cands) {
-    $can_rs->search({
-      yournextmp_id => $_,
-    })->delete;
+    my $curr_cand = $curr_cands{$_};
+    say '* Deleting ', $curr_cand->name, ' / ',
+        $curr_cand->party->name,
+        ' / ', $curr_cand->twitter;
+    $curr_cand->delete;
+    $changed = 1;
   }
 
   if ($changed) {
