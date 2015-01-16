@@ -140,10 +140,10 @@ foreach my $con ($con_rs->all) {
   if ($@) {
     my $err = $@;
     die $err unless blessed $err and $err->isa('Net::Twitter::Error');
-    if ($err->code == 429) {
+    if ($err->code == 429 or $err->code == 403) {
+      warn $err->code, ': ', $err->error, "\n";
       die "Rate limit exceeded\n";
     } else {
-      warn $err->code, ': ', $err->error, "\n";
       next;
     }
   }
