@@ -112,6 +112,7 @@ foreach my $con ($cons_rs->all) {
         $curr_cand->party->name,
         ' / ', $curr_cand->twitter;
     $curr_cand->delete;
+    $changed = 1;
   }
 
   if ($changed) {

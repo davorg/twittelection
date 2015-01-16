@@ -1,3 +1,4 @@
+[% USE Dumper -%]
 [% WRAPPER page.tt -%]
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
@@ -9,8 +10,10 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
           <div class="col-md-4">
+<!-- [% p.candidates.list %] -->
             <ul>
 [% FOREACH cand IN p.candidates.sort('name') -%]
+<!-- [% Dumper.dump(cand) %] -->
               <li>[% cand.name %] ([% cand.constituency.name %])[% IF cand.twitter %]<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% END %]</li>
 [% END -%]
             </ul>
