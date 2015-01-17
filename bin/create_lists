@@ -117,6 +117,9 @@ foreach my $con ($con_rs->all) {
 
       say $list->{slug};
 
+      # Remove the number that Twitter will sometimes add at the end
+      $list->{slug} =~ s/-\d+$//;
+
       $con->update({
         list_name => $list->{slug},
         list_id   => $list->{id},
