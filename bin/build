@@ -41,3 +41,4 @@ $tt->process('parties.tt', { parties => [ $sch->resultset('Party')->all ] },
              'p/index.html', {binmode => ':utf8'})
     or die $tt->error;
 
+$tt->process('index.tt', { }, 'index.html', { binmode => ':utf8' });
