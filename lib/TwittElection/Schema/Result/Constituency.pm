@@ -160,21 +160,15 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-14 11:25:05
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ntUlTTvAvlxD9DtwUsf9vg
 
-
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 
-sub cand_id_list {
+sub slug_name {
   my $self = shift;
 
-  return sort { $a <=> $b }
-         map { $_->yournextmp_id } $self->candidates;
-}
+  my $slug = $self->list_name;
+  $slug =~ s/-\d+$//;
 
-sub cand_id_list_string {
-  my $self = shift;
-  my $delim = shift // '/';
-
-  return join $delim, $self->cand_id_list;
+  return $slug;
 }
 
 __PACKAGE__->meta->make_immutable;

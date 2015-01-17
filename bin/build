@@ -21,7 +21,7 @@ my $tt = Template->new({
 
 foreach my $c ($sch->resultset('Constituency')->all) {
   next unless $c->candidates->count;
-  $tt->process('constituency.tt', { c => $c }, 'c/' . $c->list_name . '.html',
+  $tt->process('constituency.tt', { c => $c }, 'c/' . $c->slug_name . '.html',
                {binmode => ':utf8'})
     or die $tt->error;
 }
@@ -41,3 +41,4 @@ $tt->process('parties.tt', { parties => [ $sch->resultset('Party')->all ] },
              'p/index.html', {binmode => ':utf8'})
     or die $tt->error;
 
+$tt->process('index.tt', { }, 'index.html', { binmode => ':utf8' });
