@@ -1,0 +1,58 @@
+[% WRAPPER page.tt -%]
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>About this site</h1>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="tabbable">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#site" data-toggle="tab">Site</a></li>
+                <li><a href="#tech" data-toggle="tab">Tech</a></li>
+                <li><a href="#author" data-toggle="tab">Author</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="site">
+                  <p>Since the last general election in 2010, Twitter use in the UK has
+                    expanded massively. You're no-one if your not on Twitter.</p>
+                  <p>With that in mind, this site gives you a simple way to track what
+                    candidates in the 2015 general election are saying on Twitter.</p>
+                  <p>We have created a Twitter list for each constituency. Each list is
+                    automatically populated with the Twitter usernames of all the known
+                    candidates in that constituency. We have a page for each constituency
+                    which displays what the candidates are saying on Twitter.</p>
+                  <p>If you find this site useful, please
+                    <a href="https://twitter.com/TwittElection">let us know</a>.</p>
+                </div>
+                <div class="tab-pane" id="tech">
+                  <p>This site is built using the <a href="https://dev.twitter.com/rest/public">Twitter API</a>.</p>
+                  <p>The site was built using
+                    <a href="http://getbootstrap.com">Bootstrap</a>,
+                    <a href="http://jquery.com/">jQuery</a>,
+                    <a href="http://modernizr.com/">Modernizr</a> and
+                    <a href="http://www.initializr.com/">Initializr</a>.</p>
+                  <p>The site is hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+                  <p>The code is written in <a href="http://perl.org/">Perl</a> (and is
+                    available <a href="https://github.com/davorg/twittelection">on GitHub</a>).</p>
+                  <p>The data comes from <a href="https://yournextmp.com/">YourNextMP</a>. If you have
+                    any information about candidates for the upcoming election, then please consider
+                    sharing it there.</p>
+                </div>
+                <div class="tab-pane" id="author">
+                  <p><a href="http://dave.org.uk/">Dave Cross</a> was convinced that the 2010 general
+                    election would be dominated by Twitter. He was wrong, but now thinks that if he
+                    makes the same prediction for every general election he'll get it right eventually.</p>
+                  <p>He has voted in every general election since 1983 and has even been known to be
+                    one of those annoying people who try to collect you voter number at the polling
+                    station. On another occasion he stayed up all night trying to ensure that the
+                    Guardian web site published results as quickly as possible.</p>
+                  <p>He is <a href="https://twitter.com/">@davorg</a> on Twitter. And would love to
+                    hear whether you found this site at all useful.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+[% END -%]
