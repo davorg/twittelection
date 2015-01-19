@@ -79,86 +79,42 @@ body {
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
           <div class="col-md-4">
-<!-- ARRAY(0x3c63e88) -->
+<!-- ARRAY(0x3e89fe8) -->
             <ul>
 <!-- $VAR1 = bless( {
-                 '_in_storage' => 1,
-                 '_column_data' => {
-                                     'constituency_id' => '229',
-                                     'current_mp' => '0',
-                                     'party_id' => '27',
-                                     'id' => '640',
-                                     'yournextmp_id' => '5394',
-                                     'name' => 'Dr Rohen Kapur',
-                                     'twitter' => 'Dr_RohenKapur'
-                                   },
                  '_result_source' => bless( {
-                                              '_unique_constraints' => {
-                                                                         'primary' => [
-                                                                                        'id'
-                                                                                      ],
-                                                                         'yournextmp_id' => [
-                                                                                              'yournextmp_id'
-                                                                                            ]
-                                                                       },
+                                              'result_class' => 'TwittElection::Schema::Result::Candidate',
+                                              'resultset_attributes' => {},
+                                              'name' => 'candidate',
                                               'schema' => bless( {
+                                                                   'class_mappings' => {
+                                                                                         'TwittElection::Schema::Result::Constituency' => 'Constituency',
+                                                                                         'TwittElection::Schema::Result::Candidate' => 'Candidate',
+                                                                                         'TwittElection::Schema::Result::Party' => 'Party'
+                                                                                       },
                                                                    'source_registrations' => {
-                                                                                               'Party' => bless( {
-                                                                                                                   'name' => 'party',
-                                                                                                                   '_columns_info_loaded' => 0,
-                                                                                                                   '_ordered_columns' => [
-                                                                                                                                           'id',
-                                                                                                                                           'yournextmp_id',
-                                                                                                                                           'name'
-                                                                                                                                         ],
-                                                                                                                   'source_name' => 'Party',
-                                                                                                                   'schema' => $VAR1->{'_result_source'}{'schema'},
-                                                                                                                   '_unique_constraints' => {
-                                                                                                                                              'yournextmp_id' => [
-                                                                                                                                                                   'yournextmp_id'
-                                                                                                                                                                 ],
-                                                                                                                                              'primary' => [
-                                                                                                                                                             'id'
-                                                                                                                                                           ]
-                                                                                                                                            },
-                                                                                                                   '_primaries' => $VAR1->{'_result_source'}{'schema'}{'source_registrations'}{'Party'}{'_unique_constraints'}{'primary'},
-                                                                                                                   '_relationships' => {
-                                                                                                                                         'candidates' => {
-                                                                                                                                                           'attrs' => {
-                                                                                                                                                                        'accessor' => 'multi',
-                                                                                                                                                                        'cascade_copy' => 0,
-                                                                                                                                                                        'cascade_delete' => 0,
-                                                                                                                                                                        'join_type' => 'LEFT'
-                                                                                                                                                                      },
-                                                                                                                                                           'cond' => {
-                                                                                                                                                                       'foreign.party_id' => 'self.id'
-                                                                                                                                                                     },
-                                                                                                                                                           'source' => 'TwittElection::Schema::Result::Candidate',
-                                                                                                                                                           'class' => 'TwittElection::Schema::Result::Candidate'
-                                                                                                                                                         }
-                                                                                                                                       },
-                                                                                                                   'resultset_class' => 'DBIx::Class::ResultSet',
-                                                                                                                   '_columns' => {
-                                                                                                                                   'name' => {
-                                                                                                                                               'is_nullable' => 0,
-                                                                                                                                               'data_type' => 'varchar',
-                                                                                                                                               'size' => 200
-                                                                                                                                             },
-                                                                                                                                   'yournextmp_id' => {
-                                                                                                                                                        'data_type' => 'integer',
-                                                                                                                                                        'is_nullable' => 0
-                                                                                                                                                      },
-                                                                                                                                   'id' => {
-                                                                                                                                             'is_auto_increment' => 1,
-                                                                                                                                             'data_type' => 'integer',
-                                                                                                                                             'is_nullable' => 0
-                                                                                                                                           }
-                                                                                                                                 },
-                                                                                                                   'result_class' => 'TwittElection::Schema::Result::Party',
-                                                                                                                   'resultset_attributes' => {}
-                                                                                                                 }, 'DBIx::Class::ResultSource::Table' ),
                                                                                                'Constituency' => bless( {
+                                                                                                                          'result_class' => 'TwittElection::Schema::Result::Constituency',
+                                                                                                                          'resultset_attributes' => {},
+                                                                                                                          'name' => 'constituency',
+                                                                                                                          'schema' => $VAR1->{'_result_source'}{'schema'},
+                                                                                                                          '_relationships' => {
+                                                                                                                                                'candidates' => {
+                                                                                                                                                                  'cond' => {
+                                                                                                                                                                              'foreign.constituency_id' => 'self.id'
+                                                                                                                                                                            },
+                                                                                                                                                                  'source' => 'TwittElection::Schema::Result::Candidate',
+                                                                                                                                                                  'attrs' => {
+                                                                                                                                                                               'join_type' => 'LEFT',
+                                                                                                                                                                               'cascade_copy' => 0,
+                                                                                                                                                                               'cascade_delete' => 0,
+                                                                                                                                                                               'accessor' => 'multi'
+                                                                                                                                                                             },
+                                                                                                                                                                  'class' => 'TwittElection::Schema::Result::Candidate'
+                                                                                                                                                                }
+                                                                                                                                              },
                                                                                                                           'source_name' => 'Constituency',
+                                                                                                                          '_columns_info_loaded' => 0,
                                                                                                                           '_ordered_columns' => [
                                                                                                                                                   'id',
                                                                                                                                                   'mapit_id',
@@ -168,188 +124,136 @@ body {
                                                                                                                                                   'candidates_updated_time',
                                                                                                                                                   'list_rebuilt_time'
                                                                                                                                                 ],
-                                                                                                                          'name' => 'constituency',
-                                                                                                                          '_columns_info_loaded' => 0,
-                                                                                                                          '_relationships' => {
-                                                                                                                                                'candidates' => {
-                                                                                                                                                                  'cond' => {
-                                                                                                                                                                              'foreign.constituency_id' => 'self.id'
-                                                                                                                                                                            },
-                                                                                                                                                                  'attrs' => {
-                                                                                                                                                                               'accessor' => 'multi',
-                                                                                                                                                                               'cascade_copy' => 0,
-                                                                                                                                                                               'cascade_delete' => 0,
-                                                                                                                                                                               'join_type' => 'LEFT'
-                                                                                                                                                                             },
-                                                                                                                                                                  'source' => 'TwittElection::Schema::Result::Candidate',
-                                                                                                                                                                  'class' => 'TwittElection::Schema::Result::Candidate'
-                                                                                                                                                                }
-                                                                                                                                              },
+                                                                                                                          '_primaries' => [
+                                                                                                                                            'id'
+                                                                                                                                          ],
                                                                                                                           'resultset_class' => 'DBIx::Class::ResultSet',
-                                                                                                                          'result_class' => 'TwittElection::Schema::Result::Constituency',
-                                                                                                                          'resultset_attributes' => {},
                                                                                                                           '_columns' => {
-                                                                                                                                          'candidates_updated_time' => {
-                                                                                                                                                                         '_inflate_info' => {
-                                                                                                                                                                                              'deflate' => sub { "DUMMY" },
-                                                                                                                                                                                              'inflate' => sub { "DUMMY" }
-                                                                                                                                                                                            },
-                                                                                                                                                                         'data_type' => 'datetime',
-                                                                                                                                                                         'is_nullable' => 0,
-                                                                                                                                                                         '_ic_dt_method' => 'datetime',
-                                                                                                                                                                         'default_value' => '2000-01-01 00:00:00',
-                                                                                                                                                                         'datetime_undef_if_invalid' => 1
-                                                                                                                                                                       },
+                                                                                                                                          'name' => {
+                                                                                                                                                      'data_type' => 'varchar',
+                                                                                                                                                      'is_nullable' => 0,
+                                                                                                                                                      'size' => 200
+                                                                                                                                                    },
+                                                                                                                                          'id' => {
+                                                                                                                                                    'data_type' => 'integer',
+                                                                                                                                                    'is_auto_increment' => 1,
+                                                                                                                                                    'is_nullable' => 0
+                                                                                                                                                  },
                                                                                                                                           'list_name' => {
                                                                                                                                                            'data_type' => 'varchar',
                                                                                                                                                            'is_nullable' => 0,
                                                                                                                                                            'size' => 25
                                                                                                                                                          },
                                                                                                                                           'list_id' => {
-                                                                                                                                                         'is_nullable' => 1,
                                                                                                                                                          'data_type' => 'varchar',
+                                                                                                                                                         'is_nullable' => 1,
                                                                                                                                                          'size' => 20
                                                                                                                                                        },
-                                                                                                                                          'id' => {
-                                                                                                                                                    'is_auto_increment' => 1,
-                                                                                                                                                    'data_type' => 'integer',
-                                                                                                                                                    'is_nullable' => 0
-                                                                                                                                                  },
-                                                                                                                                          'mapit_id' => {
-                                                                                                                                                          'is_nullable' => 0,
-                                                                                                                                                          'data_type' => 'integer',
-                                                                                                                                                          'default_value' => 0
-                                                                                                                                                        },
-                                                                                                                                          'name' => {
-                                                                                                                                                      'is_nullable' => 0,
-                                                                                                                                                      'data_type' => 'varchar',
-                                                                                                                                                      'size' => 200
-                                                                                                                                                    },
                                                                                                                                           'list_rebuilt_time' => {
                                                                                                                                                                    '_ic_dt_method' => 'datetime',
+                                                                                                                                                                   'data_type' => 'datetime',
                                                                                                                                                                    'default_value' => '2000-01-01 00:00:00',
-                                                                                                                                                                   'datetime_undef_if_invalid' => 1,
                                                                                                                                                                    '_inflate_info' => {
                                                                                                                                                                                         'inflate' => sub { "DUMMY" },
                                                                                                                                                                                         'deflate' => sub { "DUMMY" }
                                                                                                                                                                                       },
-                                                                                                                                                                   'data_type' => 'datetime',
+                                                                                                                                                                   'datetime_undef_if_invalid' => 1,
                                                                                                                                                                    'is_nullable' => 0
-                                                                                                                                                                 }
+                                                                                                                                                                 },
+                                                                                                                                          'mapit_id' => {
+                                                                                                                                                          'data_type' => 'integer',
+                                                                                                                                                          'default_value' => 0,
+                                                                                                                                                          'is_nullable' => 0
+                                                                                                                                                        },
+                                                                                                                                          'candidates_updated_time' => {
+                                                                                                                                                                         '_ic_dt_method' => 'datetime',
+                                                                                                                                                                         'data_type' => 'datetime',
+                                                                                                                                                                         'default_value' => '2000-01-01 00:00:00',
+                                                                                                                                                                         '_inflate_info' => {
+                                                                                                                                                                                              'inflate' => sub { "DUMMY" },
+                                                                                                                                                                                              'deflate' => sub { "DUMMY" }
+                                                                                                                                                                                            },
+                                                                                                                                                                         'datetime_undef_if_invalid' => 1,
+                                                                                                                                                                         'is_nullable' => 0
+                                                                                                                                                                       }
                                                                                                                                         },
-                                                                                                                          '_primaries' => [
-                                                                                                                                            'id'
-                                                                                                                                          ],
                                                                                                                           '_unique_constraints' => {
+                                                                                                                                                     'primary' => $VAR1->{'_result_source'}{'schema'}{'source_registrations'}{'Constituency'}{'_primaries'},
                                                                                                                                                      'mapit_id' => [
                                                                                                                                                                      'mapit_id'
-                                                                                                                                                                   ],
-                                                                                                                                                     'primary' => $VAR1->{'_result_source'}{'schema'}{'source_registrations'}{'Constituency'}{'_primaries'}
-                                                                                                                                                   },
-                                                                                                                          'schema' => $VAR1->{'_result_source'}{'schema'}
+                                                                                                                                                                   ]
+                                                                                                                                                   }
                                                                                                                         }, 'DBIx::Class::ResultSource::Table' ),
-                                                                                               'Candidate' => $VAR1->{'_result_source'}
+                                                                                               'Candidate' => $VAR1->{'_result_source'},
+                                                                                               'Party' => bless( {
+                                                                                                                   'result_class' => 'TwittElection::Schema::Result::Party',
+                                                                                                                   'resultset_attributes' => {},
+                                                                                                                   'name' => 'party',
+                                                                                                                   'schema' => $VAR1->{'_result_source'}{'schema'},
+                                                                                                                   '_relationships' => {
+                                                                                                                                         'candidates' => {
+                                                                                                                                                           'cond' => {
+                                                                                                                                                                       'foreign.party_id' => 'self.id'
+                                                                                                                                                                     },
+                                                                                                                                                           'source' => 'TwittElection::Schema::Result::Candidate',
+                                                                                                                                                           'attrs' => {
+                                                                                                                                                                        'join_type' => 'LEFT',
+                                                                                                                                                                        'cascade_copy' => 0,
+                                                                                                                                                                        'cascade_delete' => 0,
+                                                                                                                                                                        'accessor' => 'multi'
+                                                                                                                                                                      },
+                                                                                                                                                           'class' => 'TwittElection::Schema::Result::Candidate'
+                                                                                                                                                         }
+                                                                                                                                       },
+                                                                                                                   'source_name' => 'Party',
+                                                                                                                   '_columns_info_loaded' => 0,
+                                                                                                                   '_ordered_columns' => [
+                                                                                                                                           'id',
+                                                                                                                                           'yournextmp_id',
+                                                                                                                                           'name'
+                                                                                                                                         ],
+                                                                                                                   '_primaries' => [
+                                                                                                                                     'id'
+                                                                                                                                   ],
+                                                                                                                   'resultset_class' => 'DBIx::Class::ResultSet',
+                                                                                                                   '_columns' => {
+                                                                                                                                   'yournextmp_id' => {
+                                                                                                                                                        'data_type' => 'integer',
+                                                                                                                                                        'is_nullable' => 0
+                                                                                                                                                      },
+                                                                                                                                   'name' => {
+                                                                                                                                               'data_type' => 'varchar',
+                                                                                                                                               'is_nullable' => 0,
+                                                                                                                                               'size' => 200
+                                                                                                                                             },
+                                                                                                                                   'id' => {
+                                                                                                                                             'data_type' => 'integer',
+                                                                                                                                             'is_auto_increment' => 1,
+                                                                                                                                             'is_nullable' => 0
+                                                                                                                                           }
+                                                                                                                                 },
+                                                                                                                   '_unique_constraints' => {
+                                                                                                                                              'yournextmp_id' => [
+                                                                                                                                                                   'yournextmp_id'
+                                                                                                                                                                 ],
+                                                                                                                                              'primary' => $VAR1->{'_result_source'}{'schema'}{'source_registrations'}{'Party'}{'_primaries'}
+                                                                                                                                            }
+                                                                                                                 }, 'DBIx::Class::ResultSource::Table' )
                                                                                              },
-                                                                   'class_mappings' => {
-                                                                                         'TwittElection::Schema::Result::Constituency' => 'Constituency',
-                                                                                         'TwittElection::Schema::Result::Party' => 'Party',
-                                                                                         'TwittElection::Schema::Result::Candidate' => 'Candidate'
-                                                                                       },
                                                                    'storage' => bless( {
+                                                                                         '_in_do_block' => 0,
                                                                                          '_dbi_connect_info' => [
                                                                                                                   'dbi:mysql:database=twittelection:host=localhost',
                                                                                                                   'twittelection',
                                                                                                                   '7w1773l3c710n',
                                                                                                                   {
-                                                                                                                    'PrintError' => 0,
                                                                                                                     'mysql_enable_utf8' => 1,
                                                                                                                     'AutoCommit' => 1,
+                                                                                                                    'ShowErrorStatement' => 1,
                                                                                                                     'RaiseError' => 1,
-                                                                                                                    'ShowErrorStatement' => 1
+                                                                                                                    'PrintError' => 0
                                                                                                                   }
                                                                                                                 ],
-                                                                                         '_driver_determined' => 1,
-                                                                                         '_sql_maker_opts' => {},
-                                                                                         'savepoints' => [],
-                                                                                         '_dbh_details' => {
-                                                                                                             '_datatype_map_cache' => {
-                                                                                                                                        'integer' => undef
-                                                                                                                                      }
-                                                                                                           },
-                                                                                         '_dbh' => bless( {}, 'DBI::db' ),
-                                                                                         '_sql_maker' => bless( {
-                                                                                                                  'unary_ops' => [
-                                                                                                                                   {
-                                                                                                                                     'regex' => qr/^ and  (?: [_\s]? \d+ )? $/ix,
-                                                                                                                                     'handler' => '_where_op_ANDOR'
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'handler' => '_where_op_ANDOR',
-                                                                                                                                     'regex' => qr/^ or   (?: [_\s]? \d+ )? $/ix
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'handler' => '_where_op_NEST',
-                                                                                                                                     'regex' => qr/^ nest (?: [_\s]? \d+ )? $/ix
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'regex' => qr/^ (?: not \s )? bool     $/ix,
-                                                                                                                                     'handler' => '_where_op_BOOL'
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'regex' => qr/^ ident                  $/ix,
-                                                                                                                                     'handler' => '_where_op_IDENT'
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'handler' => '_where_op_VALUE',
-                                                                                                                                     'regex' => qr/^ value                  $/ix
-                                                                                                                                   }
-                                                                                                                                 ],
-                                                                                                                  'name_sep' => '.',
-                                                                                                                  'sqltrue' => '1=1',
-                                                                                                                  'not_like_op' => qr/^ (is\s+)? not \s+ r?like $/ix,
-                                                                                                                  'array_datatypes' => 1,
-                                                                                                                  'equality_op' => qr/^( \= | \= )$/ix,
-                                                                                                                  'inequality_op' => qr/^( != | <> )$/ix,
-                                                                                                                  'like_op' => qr/^ (is\s+)? r?like $/ix,
-                                                                                                                  'injection_guard' => qr/
-    \;
-      |
-    ^ \s* go \s
-  /mix,
-                                                                                                                  'special_ops' => [
-                                                                                                                                     {
-                                                                                                                                       'handler' => '_where_field_BETWEEN',
-                                                                                                                                       'regex' => qr/^ (?: not \s )? between $/ix
-                                                                                                                                     },
-                                                                                                                                     {
-                                                                                                                                       'handler' => '_where_field_IN',
-                                                                                                                                       'regex' => qr/^ (?: not \s )? in      $/ix
-                                                                                                                                     },
-                                                                                                                                     {
-                                                                                                                                       'regex' => qr/^ ident                 $/ix,
-                                                                                                                                       'handler' => '_where_op_IDENT'
-                                                                                                                                     },
-                                                                                                                                     {
-                                                                                                                                       'handler' => '_where_op_VALUE',
-                                                                                                                                       'regex' => qr/^ value                 $/ix
-                                                                                                                                     },
-                                                                                                                                     {
-                                                                                                                                       'regex' => qr/^ is (?: \s+ not )?     $/ix,
-                                                                                                                                       'handler' => '_where_field_IS'
-                                                                                                                                     }
-                                                                                                                                   ],
-                                                                                                                  'bindtype' => 'columns',
-                                                                                                                  'sqlfalse' => '0=1',
-                                                                                                                  'cmp' => '=',
-                                                                                                                  'limit_dialect' => 'LimitXY',
-                                                                                                                  'logic' => 'OR'
-                                                                                                                }, 'DBIx::Class::SQLMaker::MySQL' ),
-                                                                                         'schema' => $VAR1->{'_result_source'}{'schema'},
-                                                                                         '_conn_pid' => 3752,
-                                                                                         '_dbh_autocommit' => 1,
-                                                                                         'transaction_depth' => 0,
-                                                                                         '_in_do_block' => 0,
-                                                                                         '_dbic_connect_attributes' => $VAR1->{'_result_source'}{'schema'}{'storage'}{'_dbi_connect_info'}[3],
                                                                                          '_connect_info' => [
                                                                                                               'dbi:mysql:database=twittelection:host=localhost',
                                                                                                               'twittelection',
@@ -357,89 +261,135 @@ body {
                                                                                                               {
                                                                                                                 'mysql_enable_utf8' => 1
                                                                                                               }
-                                                                                                            ]
+                                                                                                            ],
+                                                                                         '_dbic_connect_attributes' => $VAR1->{'_result_source'}{'schema'}{'storage'}{'_dbi_connect_info'}[3],
+                                                                                         'savepoints' => [],
+                                                                                         '_sql_maker_opts' => {},
+                                                                                         'schema' => $VAR1->{'_result_source'}{'schema'},
+                                                                                         '_driver_determined' => 1,
+                                                                                         '_conn_pid' => 16719,
+                                                                                         '_dbh_gen' => 0,
+                                                                                         'transaction_depth' => 0,
+                                                                                         '_dbh_autocommit' => 1,
+                                                                                         '_dbh' => bless( {}, 'DBI::db' ),
+                                                                                         '_sql_maker' => bless( {
+                                                                                                                  'sqlfalse' => '0=1',
+                                                                                                                  'equality_op' => qr/(?i-xsm:^(\=|is|(is\s+)?like)$)/,
+                                                                                                                  'special_ops' => [
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_field_BETWEEN',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ (?: not \s )? between $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_field_IN',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ (?: not \s )? in      $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_op_IDENT',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ ident                 $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_op_VALUE',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ value                 $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_op_IDENT',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ ident $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_op_VALUE',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ value $)/
+                                                                                                                                     }
+                                                                                                                                   ],
+                                                                                                                  'sqltrue' => '1=1',
+                                                                                                                  'limit_dialect' => 'LimitXY',
+                                                                                                                  'unary_ops' => [
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_ANDOR',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ and  (?: [_\s]? \d+ )? $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_ANDOR',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ or   (?: [_\s]? \d+ )? $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_NEST',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ nest (?: [_\s]? \d+ )? $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_BOOL',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ (?: not \s )? bool     $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_IDENT',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ ident                  $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_VALUE',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ value                  $)/
+                                                                                                                                   },
+                                                                                                                                   $VAR1->{'_result_source'}{'schema'}{'storage'}{'_sql_maker'}{'special_ops'}[4],
+                                                                                                                                   $VAR1->{'_result_source'}{'schema'}{'storage'}{'_sql_maker'}{'special_ops'}[5]
+                                                                                                                                 ],
+                                                                                                                  'injection_guard' => qr/(?mix-s:
+    \;
+      |
+    ^ \s* go \s
+  )/,
+                                                                                                                  'cmp' => '=',
+                                                                                                                  'inequality_op' => qr/(?i-xsm:^(!=|<>|(is\s+)?not(\s+like)?)$)/,
+                                                                                                                  'name_sep' => '.',
+                                                                                                                  'bindtype' => 'columns',
+                                                                                                                  'array_datatypes' => 1,
+                                                                                                                  'logic' => 'OR'
+                                                                                                                }, 'DBIx::Class::SQLMaker::MySQL' ),
+                                                                                         '_dbh_details' => {
+                                                                                                             '_datatype_map_cache' => {
+                                                                                                                                        'integer' => undef
+                                                                                                                                      }
+                                                                                                           }
                                                                                        }, 'DBIx::Class::Storage::DBI::mysql' )
                                                                  }, 'TwittElection::Schema' ),
-                                              '_primaries' => $VAR1->{'_result_source'}{'_unique_constraints'}{'primary'},
                                               '_relationships' => {
-                                                                    'party' => {
-                                                                                 'class' => 'TwittElection::Schema::Result::Party',
-                                                                                 'source' => 'TwittElection::Schema::Result::Party',
-                                                                                 'cond' => {
-                                                                                             'foreign.id' => 'self.party_id'
-                                                                                           },
-                                                                                 'attrs' => {
-                                                                                              'fk_columns' => {
-                                                                                                                'party_id' => 1
-                                                                                                              },
-                                                                                              'on_update' => 'RESTRICT',
-                                                                                              'on_delete' => 'RESTRICT',
-                                                                                              'is_deferrable' => 1,
-                                                                                              'accessor' => 'single',
-                                                                                              'is_foreign_key_constraint' => 1,
-                                                                                              'undef_on_null_fk' => 1
-                                                                                            }
-                                                                               },
                                                                     'constituency' => {
-                                                                                        'class' => 'TwittElection::Schema::Result::Constituency',
-                                                                                        'source' => 'TwittElection::Schema::Result::Constituency',
                                                                                         'cond' => {
                                                                                                     'foreign.id' => 'self.constituency_id'
                                                                                                   },
+                                                                                        'source' => 'TwittElection::Schema::Result::Constituency',
                                                                                         'attrs' => {
-                                                                                                     'on_update' => 'RESTRICT',
-                                                                                                     'on_delete' => 'RESTRICT',
-                                                                                                     'undef_on_null_fk' => 1,
                                                                                                      'is_foreign_key_constraint' => 1,
+                                                                                                     'on_update' => 'RESTRICT',
+                                                                                                     'is_deferrable' => 1,
                                                                                                      'accessor' => 'single',
-                                                                                                     'join_type' => 'LEFT',
                                                                                                      'fk_columns' => {
                                                                                                                        'constituency_id' => 1
                                                                                                                      },
-                                                                                                     'is_deferrable' => 1
-                                                                                                   }
-                                                                                      }
+                                                                                                     'on_delete' => 'RESTRICT',
+                                                                                                     'undef_on_null_fk' => 1,
+                                                                                                     'join_type' => 'LEFT'
+                                                                                                   },
+                                                                                        'class' => 'TwittElection::Schema::Result::Constituency'
+                                                                                      },
+                                                                    'party' => {
+                                                                                 'cond' => {
+                                                                                             'foreign.id' => 'self.party_id'
+                                                                                           },
+                                                                                 'source' => 'TwittElection::Schema::Result::Party',
+                                                                                 'attrs' => {
+                                                                                              'is_foreign_key_constraint' => 1,
+                                                                                              'fk_columns' => {
+                                                                                                                'party_id' => 1
+                                                                                                              },
+                                                                                              'on_delete' => 'RESTRICT',
+                                                                                              'on_update' => 'RESTRICT',
+                                                                                              'undef_on_null_fk' => 1,
+                                                                                              'is_deferrable' => 1,
+                                                                                              'accessor' => 'single'
+                                                                                            },
+                                                                                 'class' => 'TwittElection::Schema::Result::Party'
+                                                                               }
                                                                   },
-                                              'resultset_class' => 'DBIx::Class::ResultSet',
-                                              '_columns' => {
-                                                              'twitter' => {
-                                                                             'size' => 200,
-                                                                             'data_type' => 'varchar',
-                                                                             'is_nullable' => 1
-                                                                           },
-                                                              'name' => {
-                                                                          'is_nullable' => 0,
-                                                                          'data_type' => 'varchar',
-                                                                          'size' => 200
-                                                                        },
-                                                              'yournextmp_id' => {
-                                                                                   'data_type' => 'integer',
-                                                                                   'is_nullable' => 0
-                                                                                 },
-                                                              'id' => {
-                                                                        'is_auto_increment' => 1,
-                                                                        'data_type' => 'integer',
-                                                                        'is_nullable' => 0
-                                                                      },
-                                                              'current_mp' => {
-                                                                                'data_type' => 'integer',
-                                                                                'is_nullable' => 0,
-                                                                                'default_value' => 0
-                                                                              },
-                                                              'party_id' => {
-                                                                              'is_nullable' => 0,
-                                                                              'data_type' => 'integer',
-                                                                              'is_foreign_key' => 1
-                                                                            },
-                                                              'constituency_id' => {
-                                                                                     'is_nullable' => 1,
-                                                                                     'is_foreign_key' => 1,
-                                                                                     'data_type' => 'integer'
-                                                                                   }
-                                                            },
-                                              'resultset_attributes' => {},
-                                              'result_class' => 'TwittElection::Schema::Result::Candidate',
-                                              'name' => 'candidate',
+                                              'source_name' => 'Candidate',
                                               '_columns_info_loaded' => 0,
                                               '_ordered_columns' => [
                                                                       'id',
@@ -450,79 +400,100 @@ body {
                                                                       'constituency_id',
                                                                       'current_mp'
                                                                     ],
-                                              'source_name' => 'Candidate'
-                                            }, 'DBIx::Class::ResultSource::Table' )
+                                              '_primaries' => [
+                                                                'id'
+                                                              ],
+                                              'resultset_class' => 'DBIx::Class::ResultSet',
+                                              '_columns' => {
+                                                              'constituency_id' => {
+                                                                                     'data_type' => 'integer',
+                                                                                     'is_foreign_key' => 1,
+                                                                                     'is_nullable' => 1
+                                                                                   },
+                                                              'yournextmp_id' => {
+                                                                                   'data_type' => 'integer',
+                                                                                   'is_nullable' => 0
+                                                                                 },
+                                                              'party_id' => {
+                                                                              'data_type' => 'integer',
+                                                                              'is_foreign_key' => 1,
+                                                                              'is_nullable' => 0
+                                                                            },
+                                                              'twitter' => {
+                                                                             'data_type' => 'varchar',
+                                                                             'is_nullable' => 1,
+                                                                             'size' => 200
+                                                                           },
+                                                              'name' => {
+                                                                          'data_type' => 'varchar',
+                                                                          'is_nullable' => 0,
+                                                                          'size' => 200
+                                                                        },
+                                                              'id' => {
+                                                                        'data_type' => 'integer',
+                                                                        'is_auto_increment' => 1,
+                                                                        'is_nullable' => 0
+                                                                      },
+                                                              'current_mp' => {
+                                                                                'data_type' => 'integer',
+                                                                                'default_value' => 0,
+                                                                                'is_nullable' => 0
+                                                                              }
+                                                            },
+                                              '_unique_constraints' => {
+                                                                         'yournextmp_id' => [
+                                                                                              'yournextmp_id'
+                                                                                            ],
+                                                                         'primary' => $VAR1->{'_result_source'}{'_primaries'}
+                                                                       }
+                                            }, 'DBIx::Class::ResultSource::Table' ),
+                 '_in_storage' => 1,
+                 '_column_data' => {
+                                     'constituency_id' => '229',
+                                     'party_id' => '27',
+                                     'yournextmp_id' => '5394',
+                                     'twitter' => 'Dr_RohenKapur',
+                                     'name' => 'Dr Rohen Kapur',
+                                     'id' => '639',
+                                     'current_mp' => '0'
+                                   }
                }, 'TwittElection::Schema::Result::Candidate' );
  -->
               <li>Dr Rohen Kapur (Folkestone and Hythe)<br><a href="https://twitter.com/Dr_RohenKapur">@Dr_RohenKapur</a></li>
 <!-- $VAR1 = bless( {
                  '_result_source' => bless( {
-                                              '_unique_constraints' => {
-                                                                         'primary' => [
-                                                                                        'id'
-                                                                                      ],
-                                                                         'yournextmp_id' => [
-                                                                                              'yournextmp_id'
-                                                                                            ]
-                                                                       },
+                                              'result_class' => 'TwittElection::Schema::Result::Candidate',
+                                              'resultset_attributes' => {},
+                                              'name' => 'candidate',
                                               'schema' => bless( {
+                                                                   'class_mappings' => {
+                                                                                         'TwittElection::Schema::Result::Constituency' => 'Constituency',
+                                                                                         'TwittElection::Schema::Result::Candidate' => 'Candidate',
+                                                                                         'TwittElection::Schema::Result::Party' => 'Party'
+                                                                                       },
                                                                    'source_registrations' => {
-                                                                                               'Party' => bless( {
-                                                                                                                   'name' => 'party',
-                                                                                                                   '_columns_info_loaded' => 0,
-                                                                                                                   '_ordered_columns' => [
-                                                                                                                                           'id',
-                                                                                                                                           'yournextmp_id',
-                                                                                                                                           'name'
-                                                                                                                                         ],
-                                                                                                                   'source_name' => 'Party',
-                                                                                                                   'schema' => $VAR1->{'_result_source'}{'schema'},
-                                                                                                                   '_unique_constraints' => {
-                                                                                                                                              'yournextmp_id' => [
-                                                                                                                                                                   'yournextmp_id'
-                                                                                                                                                                 ],
-                                                                                                                                              'primary' => [
-                                                                                                                                                             'id'
-                                                                                                                                                           ]
-                                                                                                                                            },
-                                                                                                                   '_primaries' => $VAR1->{'_result_source'}{'schema'}{'source_registrations'}{'Party'}{'_unique_constraints'}{'primary'},
-                                                                                                                   '_relationships' => {
-                                                                                                                                         'candidates' => {
-                                                                                                                                                           'attrs' => {
-                                                                                                                                                                        'accessor' => 'multi',
-                                                                                                                                                                        'cascade_copy' => 0,
-                                                                                                                                                                        'cascade_delete' => 0,
-                                                                                                                                                                        'join_type' => 'LEFT'
-                                                                                                                                                                      },
-                                                                                                                                                           'cond' => {
-                                                                                                                                                                       'foreign.party_id' => 'self.id'
-                                                                                                                                                                     },
-                                                                                                                                                           'source' => 'TwittElection::Schema::Result::Candidate',
-                                                                                                                                                           'class' => 'TwittElection::Schema::Result::Candidate'
-                                                                                                                                                         }
-                                                                                                                                       },
-                                                                                                                   'resultset_class' => 'DBIx::Class::ResultSet',
-                                                                                                                   '_columns' => {
-                                                                                                                                   'name' => {
-                                                                                                                                               'is_nullable' => 0,
-                                                                                                                                               'data_type' => 'varchar',
-                                                                                                                                               'size' => 200
-                                                                                                                                             },
-                                                                                                                                   'yournextmp_id' => {
-                                                                                                                                                        'data_type' => 'integer',
-                                                                                                                                                        'is_nullable' => 0
-                                                                                                                                                      },
-                                                                                                                                   'id' => {
-                                                                                                                                             'is_auto_increment' => 1,
-                                                                                                                                             'data_type' => 'integer',
-                                                                                                                                             'is_nullable' => 0
-                                                                                                                                           }
-                                                                                                                                 },
-                                                                                                                   'result_class' => 'TwittElection::Schema::Result::Party',
-                                                                                                                   'resultset_attributes' => {}
-                                                                                                                 }, 'DBIx::Class::ResultSource::Table' ),
                                                                                                'Constituency' => bless( {
+                                                                                                                          'result_class' => 'TwittElection::Schema::Result::Constituency',
+                                                                                                                          'resultset_attributes' => {},
+                                                                                                                          'name' => 'constituency',
+                                                                                                                          'schema' => $VAR1->{'_result_source'}{'schema'},
+                                                                                                                          '_relationships' => {
+                                                                                                                                                'candidates' => {
+                                                                                                                                                                  'cond' => {
+                                                                                                                                                                              'foreign.constituency_id' => 'self.id'
+                                                                                                                                                                            },
+                                                                                                                                                                  'source' => 'TwittElection::Schema::Result::Candidate',
+                                                                                                                                                                  'attrs' => {
+                                                                                                                                                                               'join_type' => 'LEFT',
+                                                                                                                                                                               'cascade_copy' => 0,
+                                                                                                                                                                               'cascade_delete' => 0,
+                                                                                                                                                                               'accessor' => 'multi'
+                                                                                                                                                                             },
+                                                                                                                                                                  'class' => 'TwittElection::Schema::Result::Candidate'
+                                                                                                                                                                }
+                                                                                                                                              },
                                                                                                                           'source_name' => 'Constituency',
+                                                                                                                          '_columns_info_loaded' => 0,
                                                                                                                           '_ordered_columns' => [
                                                                                                                                                   'id',
                                                                                                                                                   'mapit_id',
@@ -532,188 +503,136 @@ body {
                                                                                                                                                   'candidates_updated_time',
                                                                                                                                                   'list_rebuilt_time'
                                                                                                                                                 ],
-                                                                                                                          'name' => 'constituency',
-                                                                                                                          '_columns_info_loaded' => 0,
-                                                                                                                          '_relationships' => {
-                                                                                                                                                'candidates' => {
-                                                                                                                                                                  'cond' => {
-                                                                                                                                                                              'foreign.constituency_id' => 'self.id'
-                                                                                                                                                                            },
-                                                                                                                                                                  'attrs' => {
-                                                                                                                                                                               'accessor' => 'multi',
-                                                                                                                                                                               'cascade_copy' => 0,
-                                                                                                                                                                               'cascade_delete' => 0,
-                                                                                                                                                                               'join_type' => 'LEFT'
-                                                                                                                                                                             },
-                                                                                                                                                                  'source' => 'TwittElection::Schema::Result::Candidate',
-                                                                                                                                                                  'class' => 'TwittElection::Schema::Result::Candidate'
-                                                                                                                                                                }
-                                                                                                                                              },
+                                                                                                                          '_primaries' => [
+                                                                                                                                            'id'
+                                                                                                                                          ],
                                                                                                                           'resultset_class' => 'DBIx::Class::ResultSet',
-                                                                                                                          'result_class' => 'TwittElection::Schema::Result::Constituency',
-                                                                                                                          'resultset_attributes' => {},
                                                                                                                           '_columns' => {
-                                                                                                                                          'candidates_updated_time' => {
-                                                                                                                                                                         '_inflate_info' => {
-                                                                                                                                                                                              'deflate' => sub { "DUMMY" },
-                                                                                                                                                                                              'inflate' => sub { "DUMMY" }
-                                                                                                                                                                                            },
-                                                                                                                                                                         'data_type' => 'datetime',
-                                                                                                                                                                         'is_nullable' => 0,
-                                                                                                                                                                         '_ic_dt_method' => 'datetime',
-                                                                                                                                                                         'default_value' => '2000-01-01 00:00:00',
-                                                                                                                                                                         'datetime_undef_if_invalid' => 1
-                                                                                                                                                                       },
+                                                                                                                                          'name' => {
+                                                                                                                                                      'data_type' => 'varchar',
+                                                                                                                                                      'is_nullable' => 0,
+                                                                                                                                                      'size' => 200
+                                                                                                                                                    },
+                                                                                                                                          'id' => {
+                                                                                                                                                    'data_type' => 'integer',
+                                                                                                                                                    'is_auto_increment' => 1,
+                                                                                                                                                    'is_nullable' => 0
+                                                                                                                                                  },
                                                                                                                                           'list_name' => {
                                                                                                                                                            'data_type' => 'varchar',
                                                                                                                                                            'is_nullable' => 0,
                                                                                                                                                            'size' => 25
                                                                                                                                                          },
                                                                                                                                           'list_id' => {
-                                                                                                                                                         'is_nullable' => 1,
                                                                                                                                                          'data_type' => 'varchar',
+                                                                                                                                                         'is_nullable' => 1,
                                                                                                                                                          'size' => 20
                                                                                                                                                        },
-                                                                                                                                          'id' => {
-                                                                                                                                                    'is_auto_increment' => 1,
-                                                                                                                                                    'data_type' => 'integer',
-                                                                                                                                                    'is_nullable' => 0
-                                                                                                                                                  },
-                                                                                                                                          'mapit_id' => {
-                                                                                                                                                          'is_nullable' => 0,
-                                                                                                                                                          'data_type' => 'integer',
-                                                                                                                                                          'default_value' => 0
-                                                                                                                                                        },
-                                                                                                                                          'name' => {
-                                                                                                                                                      'is_nullable' => 0,
-                                                                                                                                                      'data_type' => 'varchar',
-                                                                                                                                                      'size' => 200
-                                                                                                                                                    },
                                                                                                                                           'list_rebuilt_time' => {
                                                                                                                                                                    '_ic_dt_method' => 'datetime',
+                                                                                                                                                                   'data_type' => 'datetime',
                                                                                                                                                                    'default_value' => '2000-01-01 00:00:00',
-                                                                                                                                                                   'datetime_undef_if_invalid' => 1,
                                                                                                                                                                    '_inflate_info' => {
                                                                                                                                                                                         'inflate' => sub { "DUMMY" },
                                                                                                                                                                                         'deflate' => sub { "DUMMY" }
                                                                                                                                                                                       },
-                                                                                                                                                                   'data_type' => 'datetime',
+                                                                                                                                                                   'datetime_undef_if_invalid' => 1,
                                                                                                                                                                    'is_nullable' => 0
-                                                                                                                                                                 }
+                                                                                                                                                                 },
+                                                                                                                                          'mapit_id' => {
+                                                                                                                                                          'data_type' => 'integer',
+                                                                                                                                                          'default_value' => 0,
+                                                                                                                                                          'is_nullable' => 0
+                                                                                                                                                        },
+                                                                                                                                          'candidates_updated_time' => {
+                                                                                                                                                                         '_ic_dt_method' => 'datetime',
+                                                                                                                                                                         'data_type' => 'datetime',
+                                                                                                                                                                         'default_value' => '2000-01-01 00:00:00',
+                                                                                                                                                                         '_inflate_info' => {
+                                                                                                                                                                                              'inflate' => sub { "DUMMY" },
+                                                                                                                                                                                              'deflate' => sub { "DUMMY" }
+                                                                                                                                                                                            },
+                                                                                                                                                                         'datetime_undef_if_invalid' => 1,
+                                                                                                                                                                         'is_nullable' => 0
+                                                                                                                                                                       }
                                                                                                                                         },
-                                                                                                                          '_primaries' => [
-                                                                                                                                            'id'
-                                                                                                                                          ],
                                                                                                                           '_unique_constraints' => {
+                                                                                                                                                     'primary' => $VAR1->{'_result_source'}{'schema'}{'source_registrations'}{'Constituency'}{'_primaries'},
                                                                                                                                                      'mapit_id' => [
                                                                                                                                                                      'mapit_id'
-                                                                                                                                                                   ],
-                                                                                                                                                     'primary' => $VAR1->{'_result_source'}{'schema'}{'source_registrations'}{'Constituency'}{'_primaries'}
-                                                                                                                                                   },
-                                                                                                                          'schema' => $VAR1->{'_result_source'}{'schema'}
+                                                                                                                                                                   ]
+                                                                                                                                                   }
                                                                                                                         }, 'DBIx::Class::ResultSource::Table' ),
-                                                                                               'Candidate' => $VAR1->{'_result_source'}
+                                                                                               'Candidate' => $VAR1->{'_result_source'},
+                                                                                               'Party' => bless( {
+                                                                                                                   'result_class' => 'TwittElection::Schema::Result::Party',
+                                                                                                                   'resultset_attributes' => {},
+                                                                                                                   'name' => 'party',
+                                                                                                                   'schema' => $VAR1->{'_result_source'}{'schema'},
+                                                                                                                   '_relationships' => {
+                                                                                                                                         'candidates' => {
+                                                                                                                                                           'cond' => {
+                                                                                                                                                                       'foreign.party_id' => 'self.id'
+                                                                                                                                                                     },
+                                                                                                                                                           'source' => 'TwittElection::Schema::Result::Candidate',
+                                                                                                                                                           'attrs' => {
+                                                                                                                                                                        'join_type' => 'LEFT',
+                                                                                                                                                                        'cascade_copy' => 0,
+                                                                                                                                                                        'cascade_delete' => 0,
+                                                                                                                                                                        'accessor' => 'multi'
+                                                                                                                                                                      },
+                                                                                                                                                           'class' => 'TwittElection::Schema::Result::Candidate'
+                                                                                                                                                         }
+                                                                                                                                       },
+                                                                                                                   'source_name' => 'Party',
+                                                                                                                   '_columns_info_loaded' => 0,
+                                                                                                                   '_ordered_columns' => [
+                                                                                                                                           'id',
+                                                                                                                                           'yournextmp_id',
+                                                                                                                                           'name'
+                                                                                                                                         ],
+                                                                                                                   '_primaries' => [
+                                                                                                                                     'id'
+                                                                                                                                   ],
+                                                                                                                   'resultset_class' => 'DBIx::Class::ResultSet',
+                                                                                                                   '_columns' => {
+                                                                                                                                   'yournextmp_id' => {
+                                                                                                                                                        'data_type' => 'integer',
+                                                                                                                                                        'is_nullable' => 0
+                                                                                                                                                      },
+                                                                                                                                   'name' => {
+                                                                                                                                               'data_type' => 'varchar',
+                                                                                                                                               'is_nullable' => 0,
+                                                                                                                                               'size' => 200
+                                                                                                                                             },
+                                                                                                                                   'id' => {
+                                                                                                                                             'data_type' => 'integer',
+                                                                                                                                             'is_auto_increment' => 1,
+                                                                                                                                             'is_nullable' => 0
+                                                                                                                                           }
+                                                                                                                                 },
+                                                                                                                   '_unique_constraints' => {
+                                                                                                                                              'yournextmp_id' => [
+                                                                                                                                                                   'yournextmp_id'
+                                                                                                                                                                 ],
+                                                                                                                                              'primary' => $VAR1->{'_result_source'}{'schema'}{'source_registrations'}{'Party'}{'_primaries'}
+                                                                                                                                            }
+                                                                                                                 }, 'DBIx::Class::ResultSource::Table' )
                                                                                              },
-                                                                   'class_mappings' => {
-                                                                                         'TwittElection::Schema::Result::Constituency' => 'Constituency',
-                                                                                         'TwittElection::Schema::Result::Party' => 'Party',
-                                                                                         'TwittElection::Schema::Result::Candidate' => 'Candidate'
-                                                                                       },
                                                                    'storage' => bless( {
+                                                                                         '_in_do_block' => 0,
                                                                                          '_dbi_connect_info' => [
                                                                                                                   'dbi:mysql:database=twittelection:host=localhost',
                                                                                                                   'twittelection',
                                                                                                                   '7w1773l3c710n',
                                                                                                                   {
-                                                                                                                    'PrintError' => 0,
                                                                                                                     'mysql_enable_utf8' => 1,
                                                                                                                     'AutoCommit' => 1,
+                                                                                                                    'ShowErrorStatement' => 1,
                                                                                                                     'RaiseError' => 1,
-                                                                                                                    'ShowErrorStatement' => 1
+                                                                                                                    'PrintError' => 0
                                                                                                                   }
                                                                                                                 ],
-                                                                                         '_driver_determined' => 1,
-                                                                                         '_sql_maker_opts' => {},
-                                                                                         'savepoints' => [],
-                                                                                         '_dbh_details' => {
-                                                                                                             '_datatype_map_cache' => {
-                                                                                                                                        'integer' => undef
-                                                                                                                                      }
-                                                                                                           },
-                                                                                         '_dbh' => bless( {}, 'DBI::db' ),
-                                                                                         '_sql_maker' => bless( {
-                                                                                                                  'special_ops' => [
-                                                                                                                                     {
-                                                                                                                                       'handler' => '_where_field_BETWEEN',
-                                                                                                                                       'regex' => qr/^ (?: not \s )? between $/ix
-                                                                                                                                     },
-                                                                                                                                     {
-                                                                                                                                       'handler' => '_where_field_IN',
-                                                                                                                                       'regex' => qr/^ (?: not \s )? in      $/ix
-                                                                                                                                     },
-                                                                                                                                     {
-                                                                                                                                       'regex' => qr/^ ident                 $/ix,
-                                                                                                                                       'handler' => '_where_op_IDENT'
-                                                                                                                                     },
-                                                                                                                                     {
-                                                                                                                                       'handler' => '_where_op_VALUE',
-                                                                                                                                       'regex' => qr/^ value                 $/ix
-                                                                                                                                     },
-                                                                                                                                     {
-                                                                                                                                       'regex' => qr/^ is (?: \s+ not )?     $/ix,
-                                                                                                                                       'handler' => '_where_field_IS'
-                                                                                                                                     }
-                                                                                                                                   ],
-                                                                                                                  'like_op' => qr/^ (is\s+)? r?like $/ix,
-                                                                                                                  'injection_guard' => qr/
-    \;
-      |
-    ^ \s* go \s
-  /mix,
-                                                                                                                  'bindtype' => 'columns',
-                                                                                                                  'cmp' => '=',
-                                                                                                                  'sqlfalse' => '0=1',
-                                                                                                                  'limit_dialect' => 'LimitXY',
-                                                                                                                  'logic' => 'OR',
-                                                                                                                  'unary_ops' => [
-                                                                                                                                   {
-                                                                                                                                     'regex' => qr/^ and  (?: [_\s]? \d+ )? $/ix,
-                                                                                                                                     'handler' => '_where_op_ANDOR'
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'handler' => '_where_op_ANDOR',
-                                                                                                                                     'regex' => qr/^ or   (?: [_\s]? \d+ )? $/ix
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'handler' => '_where_op_NEST',
-                                                                                                                                     'regex' => qr/^ nest (?: [_\s]? \d+ )? $/ix
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'regex' => qr/^ (?: not \s )? bool     $/ix,
-                                                                                                                                     'handler' => '_where_op_BOOL'
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'regex' => qr/^ ident                  $/ix,
-                                                                                                                                     'handler' => '_where_op_IDENT'
-                                                                                                                                   },
-                                                                                                                                   {
-                                                                                                                                     'handler' => '_where_op_VALUE',
-                                                                                                                                     'regex' => qr/^ value                  $/ix
-                                                                                                                                   }
-                                                                                                                                 ],
-                                                                                                                  'name_sep' => '.',
-                                                                                                                  'sqltrue' => '1=1',
-                                                                                                                  'equality_op' => qr/^( \= | \= )$/ix,
-                                                                                                                  'inequality_op' => qr/^( != | <> )$/ix,
-                                                                                                                  'not_like_op' => qr/^ (is\s+)? not \s+ r?like $/ix,
-                                                                                                                  'array_datatypes' => 1
-                                                                                                                }, 'DBIx::Class::SQLMaker::MySQL' ),
-                                                                                         'schema' => $VAR1->{'_result_source'}{'schema'},
-                                                                                         '_conn_pid' => 3752,
-                                                                                         '_dbh_autocommit' => 1,
-                                                                                         'transaction_depth' => 0,
-                                                                                         '_in_do_block' => 0,
-                                                                                         '_dbic_connect_attributes' => $VAR1->{'_result_source'}{'schema'}{'storage'}{'_dbi_connect_info'}[3],
                                                                                          '_connect_info' => [
                                                                                                               'dbi:mysql:database=twittelection:host=localhost',
                                                                                                               'twittelection',
@@ -721,89 +640,135 @@ body {
                                                                                                               {
                                                                                                                 'mysql_enable_utf8' => 1
                                                                                                               }
-                                                                                                            ]
+                                                                                                            ],
+                                                                                         '_dbic_connect_attributes' => $VAR1->{'_result_source'}{'schema'}{'storage'}{'_dbi_connect_info'}[3],
+                                                                                         'savepoints' => [],
+                                                                                         '_sql_maker_opts' => {},
+                                                                                         'schema' => $VAR1->{'_result_source'}{'schema'},
+                                                                                         '_driver_determined' => 1,
+                                                                                         '_conn_pid' => 16719,
+                                                                                         '_dbh_gen' => 0,
+                                                                                         'transaction_depth' => 0,
+                                                                                         '_dbh_autocommit' => 1,
+                                                                                         '_dbh' => bless( {}, 'DBI::db' ),
+                                                                                         '_sql_maker' => bless( {
+                                                                                                                  'sqlfalse' => '0=1',
+                                                                                                                  'equality_op' => qr/(?i-xsm:^(\=|is|(is\s+)?like)$)/,
+                                                                                                                  'special_ops' => [
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_field_BETWEEN',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ (?: not \s )? between $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_field_IN',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ (?: not \s )? in      $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_op_IDENT',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ ident                 $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_op_VALUE',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ value                 $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_op_IDENT',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ ident $)/
+                                                                                                                                     },
+                                                                                                                                     {
+                                                                                                                                       'handler' => '_where_op_VALUE',
+                                                                                                                                       'regex' => qr/(?ix-sm:^ value $)/
+                                                                                                                                     }
+                                                                                                                                   ],
+                                                                                                                  'sqltrue' => '1=1',
+                                                                                                                  'limit_dialect' => 'LimitXY',
+                                                                                                                  'unary_ops' => [
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_ANDOR',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ and  (?: [_\s]? \d+ )? $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_ANDOR',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ or   (?: [_\s]? \d+ )? $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_NEST',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ nest (?: [_\s]? \d+ )? $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_BOOL',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ (?: not \s )? bool     $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_IDENT',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ ident                  $)/
+                                                                                                                                   },
+                                                                                                                                   {
+                                                                                                                                     'handler' => '_where_op_VALUE',
+                                                                                                                                     'regex' => qr/(?ix-sm:^ value                  $)/
+                                                                                                                                   },
+                                                                                                                                   $VAR1->{'_result_source'}{'schema'}{'storage'}{'_sql_maker'}{'special_ops'}[4],
+                                                                                                                                   $VAR1->{'_result_source'}{'schema'}{'storage'}{'_sql_maker'}{'special_ops'}[5]
+                                                                                                                                 ],
+                                                                                                                  'injection_guard' => qr/(?mix-s:
+    \;
+      |
+    ^ \s* go \s
+  )/,
+                                                                                                                  'cmp' => '=',
+                                                                                                                  'inequality_op' => qr/(?i-xsm:^(!=|<>|(is\s+)?not(\s+like)?)$)/,
+                                                                                                                  'name_sep' => '.',
+                                                                                                                  'bindtype' => 'columns',
+                                                                                                                  'array_datatypes' => 1,
+                                                                                                                  'logic' => 'OR'
+                                                                                                                }, 'DBIx::Class::SQLMaker::MySQL' ),
+                                                                                         '_dbh_details' => {
+                                                                                                             '_datatype_map_cache' => {
+                                                                                                                                        'integer' => undef
+                                                                                                                                      }
+                                                                                                           }
                                                                                        }, 'DBIx::Class::Storage::DBI::mysql' )
                                                                  }, 'TwittElection::Schema' ),
-                                              '_primaries' => $VAR1->{'_result_source'}{'_unique_constraints'}{'primary'},
                                               '_relationships' => {
-                                                                    'party' => {
-                                                                                 'class' => 'TwittElection::Schema::Result::Party',
-                                                                                 'source' => 'TwittElection::Schema::Result::Party',
-                                                                                 'cond' => {
-                                                                                             'foreign.id' => 'self.party_id'
-                                                                                           },
-                                                                                 'attrs' => {
-                                                                                              'fk_columns' => {
-                                                                                                                'party_id' => 1
-                                                                                                              },
-                                                                                              'on_update' => 'RESTRICT',
-                                                                                              'on_delete' => 'RESTRICT',
-                                                                                              'is_deferrable' => 1,
-                                                                                              'accessor' => 'single',
-                                                                                              'is_foreign_key_constraint' => 1,
-                                                                                              'undef_on_null_fk' => 1
-                                                                                            }
-                                                                               },
                                                                     'constituency' => {
-                                                                                        'class' => 'TwittElection::Schema::Result::Constituency',
-                                                                                        'source' => 'TwittElection::Schema::Result::Constituency',
                                                                                         'cond' => {
                                                                                                     'foreign.id' => 'self.constituency_id'
                                                                                                   },
+                                                                                        'source' => 'TwittElection::Schema::Result::Constituency',
                                                                                         'attrs' => {
-                                                                                                     'on_update' => 'RESTRICT',
-                                                                                                     'on_delete' => 'RESTRICT',
-                                                                                                     'undef_on_null_fk' => 1,
                                                                                                      'is_foreign_key_constraint' => 1,
+                                                                                                     'on_update' => 'RESTRICT',
+                                                                                                     'is_deferrable' => 1,
                                                                                                      'accessor' => 'single',
-                                                                                                     'join_type' => 'LEFT',
                                                                                                      'fk_columns' => {
                                                                                                                        'constituency_id' => 1
                                                                                                                      },
-                                                                                                     'is_deferrable' => 1
-                                                                                                   }
-                                                                                      }
+                                                                                                     'on_delete' => 'RESTRICT',
+                                                                                                     'undef_on_null_fk' => 1,
+                                                                                                     'join_type' => 'LEFT'
+                                                                                                   },
+                                                                                        'class' => 'TwittElection::Schema::Result::Constituency'
+                                                                                      },
+                                                                    'party' => {
+                                                                                 'cond' => {
+                                                                                             'foreign.id' => 'self.party_id'
+                                                                                           },
+                                                                                 'source' => 'TwittElection::Schema::Result::Party',
+                                                                                 'attrs' => {
+                                                                                              'is_foreign_key_constraint' => 1,
+                                                                                              'fk_columns' => {
+                                                                                                                'party_id' => 1
+                                                                                                              },
+                                                                                              'on_delete' => 'RESTRICT',
+                                                                                              'on_update' => 'RESTRICT',
+                                                                                              'undef_on_null_fk' => 1,
+                                                                                              'is_deferrable' => 1,
+                                                                                              'accessor' => 'single'
+                                                                                            },
+                                                                                 'class' => 'TwittElection::Schema::Result::Party'
+                                                                               }
                                                                   },
-                                              'resultset_class' => 'DBIx::Class::ResultSet',
-                                              '_columns' => {
-                                                              'twitter' => {
-                                                                             'size' => 200,
-                                                                             'data_type' => 'varchar',
-                                                                             'is_nullable' => 1
-                                                                           },
-                                                              'name' => {
-                                                                          'is_nullable' => 0,
-                                                                          'data_type' => 'varchar',
-                                                                          'size' => 200
-                                                                        },
-                                                              'yournextmp_id' => {
-                                                                                   'data_type' => 'integer',
-                                                                                   'is_nullable' => 0
-                                                                                 },
-                                                              'id' => {
-                                                                        'is_auto_increment' => 1,
-                                                                        'data_type' => 'integer',
-                                                                        'is_nullable' => 0
-                                                                      },
-                                                              'current_mp' => {
-                                                                                'data_type' => 'integer',
-                                                                                'is_nullable' => 0,
-                                                                                'default_value' => 0
-                                                                              },
-                                                              'party_id' => {
-                                                                              'is_nullable' => 0,
-                                                                              'data_type' => 'integer',
-                                                                              'is_foreign_key' => 1
-                                                                            },
-                                                              'constituency_id' => {
-                                                                                     'is_nullable' => 1,
-                                                                                     'is_foreign_key' => 1,
-                                                                                     'data_type' => 'integer'
-                                                                                   }
-                                                            },
-                                              'resultset_attributes' => {},
-                                              'result_class' => 'TwittElection::Schema::Result::Candidate',
-                                              'name' => 'candidate',
+                                              'source_name' => 'Candidate',
                                               '_columns_info_loaded' => 0,
                                               '_ordered_columns' => [
                                                                       'id',
@@ -814,18 +779,63 @@ body {
                                                                       'constituency_id',
                                                                       'current_mp'
                                                                     ],
-                                              'source_name' => 'Candidate'
+                                              '_primaries' => [
+                                                                'id'
+                                                              ],
+                                              'resultset_class' => 'DBIx::Class::ResultSet',
+                                              '_columns' => {
+                                                              'constituency_id' => {
+                                                                                     'data_type' => 'integer',
+                                                                                     'is_foreign_key' => 1,
+                                                                                     'is_nullable' => 1
+                                                                                   },
+                                                              'yournextmp_id' => {
+                                                                                   'data_type' => 'integer',
+                                                                                   'is_nullable' => 0
+                                                                                 },
+                                                              'party_id' => {
+                                                                              'data_type' => 'integer',
+                                                                              'is_foreign_key' => 1,
+                                                                              'is_nullable' => 0
+                                                                            },
+                                                              'twitter' => {
+                                                                             'data_type' => 'varchar',
+                                                                             'is_nullable' => 1,
+                                                                             'size' => 200
+                                                                           },
+                                                              'name' => {
+                                                                          'data_type' => 'varchar',
+                                                                          'is_nullable' => 0,
+                                                                          'size' => 200
+                                                                        },
+                                                              'id' => {
+                                                                        'data_type' => 'integer',
+                                                                        'is_auto_increment' => 1,
+                                                                        'is_nullable' => 0
+                                                                      },
+                                                              'current_mp' => {
+                                                                                'data_type' => 'integer',
+                                                                                'default_value' => 0,
+                                                                                'is_nullable' => 0
+                                                                              }
+                                                            },
+                                              '_unique_constraints' => {
+                                                                         'yournextmp_id' => [
+                                                                                              'yournextmp_id'
+                                                                                            ],
+                                                                         'primary' => $VAR1->{'_result_source'}{'_primaries'}
+                                                                       }
                                             }, 'DBIx::Class::ResultSource::Table' ),
+                 '_in_storage' => 1,
                  '_column_data' => {
-                                     'id' => '602',
-                                     'yournextmp_id' => '5395',
-                                     'name' => 'Gerard Mark Wadsworth',
-                                     'twitter' => 'Mark_Wadsworth',
                                      'constituency_id' => '216',
                                      'party_id' => '27',
+                                     'yournextmp_id' => '5395',
+                                     'twitter' => 'Mark_Wadsworth',
+                                     'name' => 'Gerard Mark Wadsworth',
+                                     'id' => '601',
                                      'current_mp' => '0'
-                                   },
-                 '_in_storage' => 1
+                                   }
                }, 'TwittElection::Schema::Result::Candidate' );
  -->
               <li>Gerard Mark Wadsworth (Epping Forest)<br><a href="https://twitter.com/Mark_Wadsworth">@Mark_Wadsworth</a></li>
