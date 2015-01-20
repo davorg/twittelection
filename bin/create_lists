@@ -93,7 +93,7 @@ foreach my $con ($con_rs->all) {
     if ($con->list_id) {
       $list = $t->show_list({
         owner_screen_name => 'twittelection',
-        list_id           => $con->list_id,
+        slug              => $con->list_name,
       });
       if ($list) {
         foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
