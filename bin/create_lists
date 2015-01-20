@@ -120,6 +120,7 @@ foreach my $con ($con_rs->all) {
       $logger->info('Create ' . $con->name);
       $list = $t->create_list({
         owner_screen_name => 'twittelection',
+        description       => $con->name,
         name => $con->list_name,
       });
 
