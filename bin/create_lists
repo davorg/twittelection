@@ -7,9 +7,14 @@ use lib 'lib';
 
 use DateTime;
 use Scalar::Util qw[blessed];
+use Log::Log4perl qw[:easy];
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
+
+Log::Log4perl->easy_init($INFO);
+
+my $logger = Log::Log4perl->get_logger;
 
 my $sch = TwittElection::Schema->get_schema;
 
@@ -66,20 +71,20 @@ $t->authorise;
 # Only attempt to rebuild lists that haven't been rebuilt in the last 24 hours.
 
 foreach my $con ($con_rs->all) {
-  say $con->name, ' (', $con->mapit_id, ')';
+  $logger->info($con->name . ' (' . $con->mapit_id . ')');
 
   unless ($con->candidates->count) {
-    warn "No candidates found\n";
+    $logger->info('No candidates found');
     next;
   }
 
   if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
-    warn "No need to rebuild list\n";
+    $logger->info('No need to rebuild list');
     next;
   }
 
   if ($delay and $con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
-    warn "List rebuilt too recently\n";
+    $logger->info('List rebuilt too recently');
     next;
   }
 
@@ -98,13 +103,13 @@ foreach my $con ($con_rs->all) {
           });
         }
       } else {
-        say 'Create ', $con->name;
+        $logger->info('Create ' . $con->name);
         $list = $t->create_list({
           owner_screen_name => 'twittelection',
           name => $con->list_name,
         });
 
-        say $list->{slug};
+        $logger->info($list->{slug});
 
         $con->update({
           list_name => $list->{slug},
@@ -112,13 +117,13 @@ foreach my $con ($con_rs->all) {
         });
       }
     } else {
-      say 'Create ', $con->name;
+      $logger->info('Create ' . $con->name);
       $list = $t->create_list({
         owner_screen_name => 'twittelection',
         name => $con->list_name,
       });
 
-      say $list->{slug};
+      $logger->info($list->{slug});
 
       # Remove the number that Twitter will sometimes add at the end
       $list->{slug} =~ s/-\d+$//;
@@ -131,7 +136,7 @@ foreach my $con ($con_rs->all) {
 
     foreach my $cand ($con->candidates) {
       next unless $cand->twitter;
-      say "$list->{id} -> ", $cand->name, ' / ', $cand->twitter;
+      $logger->info("$list->{id} -> " . $cand->name . ' / ' . $cand->twitter);
       $t->add_list_member({
         list_id     => $list->{id},
         screen_name => $cand->twitter,
@@ -145,10 +150,11 @@ foreach my $con ($con_rs->all) {
 
   if ($@) {
     my $err = $@;
-    die $err unless blessed $err and $err->isa('Net::Twitter::Error');
+    $logger->logdie($err)
+      unless blessed $err and $err->isa('Net::Twitter::Error');
     if ($err->code == 429 or $err->code == 403) {
-      warn $err->code, ': ', $err->error, "\n";
-      die "Rate limit exceeded\n";
+      $logger->logwarn($err->code . ': ' . $err->error);
+      $logger->logdie('Rate limit exceeded');
     } else {
       next;
     }
