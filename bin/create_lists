@@ -152,8 +152,8 @@ foreach my $con ($con_rs->all) {
     my $err = $@;
     $logger->logdie($err)
       unless blessed $err and $err->isa('Net::Twitter::Error');
+    $logger->logwarn($err->code . ': ' . $err->error);
     if ($err->code == 429 or $err->code == 403) {
-      $logger->logwarn($err->code . ': ' . $err->error);
       $logger->logdie('Rate limit exceeded');
     } else {
       next;
