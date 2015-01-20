@@ -10,12 +10,21 @@ use JSON;
 use LWP::Simple;
 use DateTime;
 use Getopt::Long;
+use Log::Log4perl qw[:easy];
 
 use lib 'lib';
 use TwittElection::Schema;
 
 my $verbose;
 GetOptions(verbose => \$verbose);
+
+if ($verbose) {
+  Log::Log4perl->easy_init($TRACE);
+} else {
+  Log::Log4perl->easy_init($INFO);
+}
+
+my $logger = Log::Log4perl->get_logger;
 
 my $sch = TwittElection::Schema->get_schema;
 
@@ -30,7 +39,7 @@ if (@ARGV) {
 
 foreach my $con ($cons_rs->all) {
   my $changed = 0;
-  say $con->name, ' (', $con->mapit_id, ')';
+  $logger->info($con->name . ' (' . $con->mapit_id . ')');
   my $const_id = $con->mapit_id;
 
   my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
@@ -73,10 +82,10 @@ foreach my $con ($cons_rs->all) {
     if (exists $curr_cands{$cand->{id}}) {
       my $curr_cand = delete $curr_cands{$cand->{id}};
       if ($cand->{name} ne $curr_cand->name
-	or $cand->{twitter_username} ne $curr_cand->twitter) {
-        say "* Updating $cand->{name} / ",
-            $cand->{party_memberships}{2015}{name},
-            " / \@$cand->{twitter_username}";
+        or $cand->{twitter_username} ne $curr_cand->twitter) {
+        $logger->info("* Updating $cand->{name} / " .
+            $cand->{party_memberships}{2015}{name} .
+            " / \@$cand->{twitter_username}");
         $curr_cand->update({
           yournextmp_id   => $cand->{id},
           name            => $cand->{name},
@@ -86,14 +95,14 @@ foreach my $con ($cons_rs->all) {
         });
         $changed = 1;
       } else {
-	say "* No change $cand->{name} / ",
-            $cand->{party_memberships}{2015}{name},
-            " / \@$cand->{twitter_username}" if $verbose;
+        $logger->trace("* No change $cand->{name} / " .
+            $cand->{party_memberships}{2015}{name} .
+            " / \@$cand->{twitter_username}");
       }
     } else {
-      say "* Adding $cand->{name} / ",
-          $cand->{party_memberships}{2015}{name},
-          " / \@$cand->{twitter_username}";
+      $logger->info("* Adding $cand->{name} / " .
+          $cand->{party_memberships}{2015}{name} .
+          " / \@$cand->{twitter_username}");
       $can_rs->create({
         yournextmp_id   => $cand->{id},
         name            => $cand->{name},
@@ -108,9 +117,9 @@ foreach my $con ($cons_rs->all) {
   # Any candidates left in %curr_cands need to be deleted
   foreach (keys %curr_cands) {
     my $curr_cand = $curr_cands{$_};
-    say '* Deleting ', $curr_cand->name, ' / ',
-        $curr_cand->party->name,
-        ' / ', $curr_cand->twitter;
+    $logger->info('* Deleting ' . $curr_cand->name . ' / ' .
+        $curr_cand->party->name .
+        ' / ' . $curr_cand->twitter);
     $curr_cand->delete;
     $changed = 1;
   }
@@ -121,4 +130,3 @@ foreach my $con ($cons_rs->all) {
     });
   }
 }
-
