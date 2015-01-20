@@ -15,9 +15,12 @@ my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs;
 
+my $delay = 1;
+
 if (@ARGV) {
   $con_rs = $sch->resultset('Constituency')->search({
     mapit_id => \@ARGV,
+    $delay = 0;
   });
 } else {
   $con_rs = $sch->resultset('Constituency');
@@ -75,7 +78,7 @@ foreach my $con ($con_rs->all) {
     next;
   }
 
-  if ($con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
+  if ($delay and $con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
     warn "List rebuilt too recently\n";
     next;
   }
