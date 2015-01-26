@@ -10,7 +10,7 @@ function setCounter () {
 }
 
 $( document ).ready(function() {
-  setCounter;
+  setCounter();
 
   $('a[href^="#"]').on('click',function (e) {
     e.preventDefault();
