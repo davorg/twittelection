@@ -30,16 +30,16 @@ $tt->process('constituencies.tt', { constits => [ $sch->resultset('Constituency'
              'c/index.html', {binmode => ':utf8'})
     or die $tt->error;
 
-foreach my $p ($sch->resultset('Party')->all) {
-  next unless $p->candidates->count;
-  $tt->process('party.tt', { p => $p }, 'p/' . $p->slugname . '.html',
-               {binmode => ':utf8'})
-    or die $tt->error;
-}
-
-$tt->process('parties.tt', { parties => [ $sch->resultset('Party')->all ] },
-             'p/index.html', {binmode => ':utf8'})
-    or die $tt->error;
+#foreach my $p ($sch->resultset('Party')->all) {
+#  next unless $p->candidates->count;
+#  $tt->process('party.tt', { p => $p }, 'p/' . $p->slugname . '.html',
+#               {binmode => ':utf8'})
+#    or die $tt->error;
+#}
+#
+#$tt->process('parties.tt', { parties => [ $sch->resultset('Party')->all ] },
+#             'p/index.html', {binmode => ':utf8'})
+#    or die $tt->error;
 
 for (qw[index about/index]) {
   $tt->process("$_.tt", { }, "$_.html", { binmode => ':utf8' });
