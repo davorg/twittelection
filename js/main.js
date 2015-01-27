@@ -12,6 +12,7 @@ function setCounter () {
 $( document ).ready(function() {
   setCounter();
 
+/*
   $('a[href^="#"]').on('click',function (e) {
     e.preventDefault();
 
@@ -24,4 +25,5 @@ $( document ).ready(function() {
         window.location.hash = target;
     });
   });
+*/
 } );
