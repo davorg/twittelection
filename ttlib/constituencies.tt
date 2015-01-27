@@ -1,4 +1,5 @@
-[% WRAPPER page.tt -%]
+[% WRAPPER page.tt
+   title = 'Constituencies' -%]
 [% prev_letter = '';
    letters = [];
    FOREACH c IN constits;

@@ -1,4 +1,5 @@
-[% WRAPPER page.tt -%]
+[% WRAPPER page.tt
+   title = 'Parties' -%]
 [% prev_letter = '';
    letters = [];
    FOREACH p IN parties.sort('name');
