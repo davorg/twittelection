@@ -20,7 +20,7 @@ my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs;
 
-my $delay = 1;
+my $delay = 0;
 
 if (@ARGV) {
   $con_rs = $sch->resultset('Constituency')->search({
