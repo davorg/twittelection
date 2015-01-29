@@ -155,7 +155,7 @@ foreach my $con ($con_rs->all) {
       unless blessed $err and $err->isa('Net::Twitter::Error');
     $logger->logwarn($err->code . ': ' . $err->error . ' (' .
                      $err->message . ')');
-    if ($logger->has_twitter_error) {
+    if ($err->has_twitter_error) {
       $logger->logwarn($err->twitter_error_code . ': ' .
                        $err->twitter_error_text);
     }
