@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.15-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.1.73, for redhat-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: twittelection
 -- ------------------------------------------------------
--- Server version	10.0.15-MariaDB
+-- Server version	5.1.73
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -10,6 +10,7 @@
 /*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
@@ -20,16 +21,17 @@
 
 LOCK TABLES `party` WRITE;
 /*!40000 ALTER TABLE `party` DISABLE KEYS */;
-INSERT INTO `party` VALUES (1,52,'Conservative'),(2,53,'Labour'),(3,90,'Liberal Democrat'),(4,63,'Green'),(5,85,'UKIP'),(6,2,'Independent'),(7,77,'Plaid Cymru - The Party of Wales'),(8,2269,'Class War'),(9,2034,'Justice For Men & Boys'),(10,1931,'National Health Action Party'),(11,102,'Scottish National Party (SNP)'),(12,804,'Trade Unionist and Socialist Coalition'),(13,70,'Democratic Unionist Party - D.U.P.'),(14,103,'Alliance - Alliance Party of Northern Ireland'),(15,51,'Conservative and Unionist Party'),(16,55,'SDLP (Social Democratic & Labour Party)'),(17,39,'Sinn Féin'),(18,733,'Lincolnshire Independents Lincolnshire First'),(19,1969,'Patria'),(20,362,'The Respect Party'),(21,578,'Brighton & Hove Independents'),(22,12522,'Speaker seeking re-election'),(23,2137,'All People\'s Party'),(24,58,'Mebyon Kernow - The Party for Cornwall'),(25,2120,'Yorkshire First'),(26,130,'Scottish Green Party'),(27,1912,'Young People\'s Party YPP'),(28,83,'Ulster Unionist Party'),(29,305,'Green Party'),(30,46,'Scottish Socialist Party'),(31,1958,'Something New'),(32,1732,'People First - Gwerin Gyntaf'),(33,2032,'Liberty Great Britain'),(34,770,'Pirate Party UK'),(35,2310,'The Reality Party'),(36,66,'Official Monster Raving Loony Party'),(37,2380,'The Whig Party'),(38,133,'The Peace Party - Non-violence, Justice, Environment'),(39,407,'Conservative Democratic Alliance');
+INSERT INTO `party` VALUES (1,52,'Conservative'),(2,53,'Labour'),(3,90,'Liberal Democrat'),(4,63,'Green'),(5,85,'UK Independence Party'),(6,2,'Independent'),(7,77,'Plaid Cymru - The Party of Wales'),(8,2269,'Class War'),(9,2034,'Justice For Men & Boys'),(10,1931,'National Health Action Party'),(11,102,'Scottish National Party (SNP)'),(12,804,'Trade Unionist and Socialist Coalition'),(13,70,'Democratic Unionist Party - D.U.P.'),(14,103,'Alliance - Alliance Party of Northern Ireland'),(15,51,'Conservative and Unionist Party'),(16,55,'SDLP (Social Democratic & Labour Party)'),(17,39,'Sinn Féin'),(18,733,'Lincolnshire Independents Lincolnshire First'),(19,1969,'Patria'),(20,362,'The Respect Party'),(21,578,'Brighton & Hove Independents'),(22,12522,'Speaker seeking re-election'),(23,2137,'All People\'s Party'),(24,58,'Mebyon Kernow - The Party for Cornwall'),(25,2120,'Yorkshire First'),(26,130,'Scottish Green Party'),(27,1912,'Young People\'s Party YPP'),(28,83,'Ulster Unionist Party'),(29,305,'Green Party'),(30,46,'Scottish Socialist Party'),(31,1958,'Something New'),(32,1732,'People First - Gwerin Gyntaf'),(33,2032,'Liberty Great Britain'),(34,770,'Pirate Party UK'),(35,2310,'The Reality Party'),(36,66,'Official Monster Raving Loony Party'),(37,2380,'The Whig Party'),(38,133,'The Peace Party - Non-violence, Justice, Environment'),(39,407,'Conservative Democratic Alliance'),(40,17,'English Democrats'),(41,2063,'The 30-50 Coalition'),(42,2533,'2015 Constitutionalists UK'),(43,110,'The Socialist Party of Great Britain'),(44,67,'Alliance For Green Socialism'),(45,789,'Lewisham People Before Profit'),(46,78,'Communist Party of Britain'),(47,396,'City INDEPENDENTS'),(48,2187,'Patriotic Socialist Party'),(49,2464,'Alter Change - Politics. Only Different'),(50,73,'Socialist Labour Party'),(51,1887,'The Pluralist Party'),(52,2535,'Guildford Greenbelt Group'),(53,2413,'The Eccentric Party of Great Britain'),(54,2038,'Independents for Bristol');
 /*!40000 ALTER TABLE `party` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-18 17:57:49
+-- Dump completed on 2015-01-31 17:28:02
