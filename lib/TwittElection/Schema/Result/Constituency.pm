@@ -171,5 +171,16 @@ sub slug_name {
   return $slug;
 }
 
+sub tweeting_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_tweeting;
+}
+
+sub non_tweeting_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_nontweeting;
+}
 __PACKAGE__->meta->make_immutable;
 1;
