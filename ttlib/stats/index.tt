@@ -1,0 +1,42 @@
+[% WRAPPER page.tt
+   title = 'Statistics' -%]
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Stats</h1>
+        <div class="row">
+          <div class="col-md-8">
+            <p>Here are some statistics about the data on this site.</p>
+            <ul>
+              <li>We have details of [% num_cands %] candidates</li>
+              <li>[% num_twit_cands %] of them are on Twitter
+                (that's [% num_twit_cands * 100 / num_cands | format('%.1f') %]%)</li>
+              <li>[% num_no_twit_cands %] of them are not on Twitter
+                (that's [% num_no_twit_cands * 100 / num_cands | format('%.1f') %]%)</li>
+            </ul>
+            <p>Candidates by party:</p>
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Party</th><th>Candidates</th>
+                  <th>Twitter</th><th>%</th><th>No Twitter</th><th>%</th>
+                </tr>
+              </thead>
+              <tbody>
+[% FOR p IN party -%]
+                <tr>
+                  <td>[% p.name %]</td>
+                  <td>[% p.count %]</td>
+                  <td>[% p.twit %]</td>
+                  <td>[% p.twit * 100 / p.count | format('%.1f') %]</td>
+                  <td>[% p.no_twit %]</td>
+                  <td>[% p.no_twit * 100 / p.count | format('%.1f') %]</td>
+                </tr>
+[% END -%]
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+[% END -%]
