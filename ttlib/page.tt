@@ -41,10 +41,10 @@ body {
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/c/">Constituencies</a></li>
-            <li><a href="/stats/">Statistics</a></li>
-            <li><a href="/about/">About</a></li>
+            <li[% IF page == 'home' %] class="active"[% END %]><a href="/">Home</a></li>
+            <li[% IF page == 'constituencies' %] class="active"[% END %]><a href="/c/">Constituencies</a></li>
+            <li[% IF page == 'stats' %] class="active"[% END %]><a href="/stats/">Statistics</a></li>
+            <li[% IF page == 'about' %] class="active"[% END %]><a href="/about/">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
