@@ -12,6 +12,9 @@ function setCounter () {
 $( document ).ready(function() {
   setCounter();
 
+  $(function(){
+    $('#tablesorter').tablesorter();
+  });
 /*
   $('a[href^="#"]').on('click',function (e) {
     e.preventDefault();
