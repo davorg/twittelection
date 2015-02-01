@@ -41,6 +41,27 @@ $tt->process('constituencies.tt', { constits => [ $sch->resultset('Constituency'
 #             'p/index.html', {binmode => ':utf8'})
 #    or die $tt->error;
 
+my $cand_rs  = $sch->resultset('Candidate');
+my $party_rs = $sch->resultset('Party');
+my @party;
+foreach ($party_rs->all) {
+  push @party, {
+    name    => $_->name,
+    count   => $_->candidates->count,
+    twit    => $_->candidates->filter_tweeting->count,
+    no_twit => $_->candidates->filter_nontweeting->count,
+  };
+}
+
+@party = sort { $b->{count} <=> $a->{count} } @party;
+
+$tt->process('stats/index.tt', {
+  num_cands         => $cand_rs->count,
+  num_twit_cands    => $cand_rs->filter_tweeting->count,
+  num_no_twit_cands => $cand_rs->filter_nontweeting->count,
+  party             => \@party,
+}, 'stats/index.html', { binmode => ':utf8' });
+
 for (qw[index about/index]) {
   $tt->process("$_.tt", { }, "$_.html", { binmode => ':utf8' });
 }
