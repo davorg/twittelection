@@ -1,6 +1,7 @@
 [% USE Dumper -%]
 [% WRAPPER page.tt
-   title = p.name -%]
+   title = p.name
+   page = 'party' -%]
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">

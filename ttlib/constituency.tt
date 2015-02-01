@@ -1,5 +1,6 @@
 [% WRAPPER page.tt
-   title = c.name -%]
+   title = c.name
+   page = 'constituency' -%]
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
