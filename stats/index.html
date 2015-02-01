@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta name="google-site-verification" content="HLLWtUo79tD2Q-IdJGZxpGmwygtSUjSgFsLSQYaWH9w" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>TwittElection: Statistics</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+    </style>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">TwittElection</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/c/">Constituencies</a></li>
+            <li><a href="/stats/">Statistics</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Share
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="socials"><g:plusone annotation="inline" width="150"></g:plusone> </li>
+                <li class="socials"><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+                <li class="socials"><div class="fb-like" data-send="false" data-width="150" data-show-faces="true"></div></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form -->
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Stats</h1>
+        <div class="row">
+          <div class="col-md-8">
+            <p>Here are some statistics about the data on this site.</p>
+            <ul>
+              <li>We have details of 2657 candidates</li>
+              <li>1493 of them are on Twitter
+                (that's 56.2%)</li>
+              <li>1164 of them are not on Twitter
+                (that's 43.8%)</li>
+            </ul>
+            <p>Candidates by party:</p>
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Party</th><th>Candidates</th>
+                  <th>Twitter</th><th>%</th><th>No Twitter</th><th>%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Labour</td>
+                  <td>603</td>
+                  <td>473</td>
+                  <td>78.4</td>
+                  <td>130</td>
+                  <td>21.6</td>
+                </tr>
+                <tr>
+                  <td>Conservative</td>
+                  <td>559</td>
+                  <td>328</td>
+                  <td>58.7</td>
+                  <td>231</td>
+                  <td>41.3</td>
+                </tr>
+                <tr>
+                  <td>UK Independence Party</td>
+                  <td>448</td>
+                  <td>152</td>
+                  <td>33.9</td>
+                  <td>296</td>
+                  <td>66.1</td>
+                </tr>
+                <tr>
+                  <td>Liberal Democrat</td>
+                  <td>345</td>
+                  <td>221</td>
+                  <td>64.1</td>
+                  <td>124</td>
+                  <td>35.9</td>
+                </tr>
+                <tr>
+                  <td>Green</td>
+                  <td>343</td>
+                  <td>153</td>
+                  <td>44.6</td>
+                  <td>190</td>
+                  <td>55.4</td>
+                </tr>
+                <tr>
+                  <td>Independent</td>
+                  <td>44</td>
+                  <td>23</td>
+                  <td>52.3</td>
+                  <td>21</td>
+                  <td>47.7</td>
+                </tr>
+                <tr>
+                  <td>Plaid Cymru - The Party of Wales</td>
+                  <td>38</td>
+                  <td>17</td>
+                  <td>44.7</td>
+                  <td>21</td>
+                  <td>55.3</td>
+                </tr>
+                <tr>
+                  <td>Trade Unionist and Socialist Coalition</td>
+                  <td>38</td>
+                  <td>8</td>
+                  <td>21.1</td>
+                  <td>30</td>
+                  <td>78.9</td>
+                </tr>
+                <tr>
+                  <td>Scottish National Party (SNP)</td>
+                  <td>36</td>
+                  <td>30</td>
+                  <td>83.3</td>
+                  <td>6</td>
+                  <td>16.7</td>
+                </tr>
+                <tr>
+                  <td>Class War</td>
+                  <td>30</td>
+                  <td>3</td>
+                  <td>10.0</td>
+                  <td>27</td>
+                  <td>90.0</td>
+                </tr>
+                <tr>
+                  <td>English Democrats</td>
+                  <td>18</td>
+                  <td>2</td>
+                  <td>11.1</td>
+                  <td>16</td>
+                  <td>88.9</td>
+                </tr>
+                <tr>
+                  <td>National Health Action Party</td>
+                  <td>13</td>
+                  <td>13</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Alliance - Alliance Party of Northern Ireland</td>
+                  <td>13</td>
+                  <td>6</td>
+                  <td>46.2</td>
+                  <td>7</td>
+                  <td>53.8</td>
+                </tr>
+                <tr>
+                  <td>Sinn Féin</td>
+                  <td>12</td>
+                  <td>6</td>
+                  <td>50.0</td>
+                  <td>6</td>
+                  <td>50.0</td>
+                </tr>
+                <tr>
+                  <td>Democratic Unionist Party - D.U.P.</td>
+                  <td>10</td>
+                  <td>4</td>
+                  <td>40.0</td>
+                  <td>6</td>
+                  <td>60.0</td>
+                </tr>
+                <tr>
+                  <td>The Socialist Party of Great Britain</td>
+                  <td>10</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>10</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>SDLP (Social Democratic & Labour Party)</td>
+                  <td>8</td>
+                  <td>4</td>
+                  <td>50.0</td>
+                  <td>4</td>
+                  <td>50.0</td>
+                </tr>
+                <tr>
+                  <td>Scottish Green Party</td>
+                  <td>8</td>
+                  <td>6</td>
+                  <td>75.0</td>
+                  <td>2</td>
+                  <td>25.0</td>
+                </tr>
+                <tr>
+                  <td>Socialist Labour Party</td>
+                  <td>7</td>
+                  <td>2</td>
+                  <td>28.6</td>
+                  <td>5</td>
+                  <td>71.4</td>
+                </tr>
+                <tr>
+                  <td>Mebyon Kernow - The Party for Cornwall</td>
+                  <td>6</td>
+                  <td>2</td>
+                  <td>33.3</td>
+                  <td>4</td>
+                  <td>66.7</td>
+                </tr>
+                <tr>
+                  <td>Ulster Unionist Party</td>
+                  <td>5</td>
+                  <td>3</td>
+                  <td>60.0</td>
+                  <td>2</td>
+                  <td>40.0</td>
+                </tr>
+                <tr>
+                  <td>The Respect Party</td>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>The Peace Party - Non-violence, Justice, Environment</td>
+                  <td>4</td>
+                  <td>1</td>
+                  <td>25.0</td>
+                  <td>3</td>
+                  <td>75.0</td>
+                </tr>
+                <tr>
+                  <td>Justice For Men & Boys</td>
+                  <td>3</td>
+                  <td>2</td>
+                  <td>66.7</td>
+                  <td>1</td>
+                  <td>33.3</td>
+                </tr>
+                <tr>
+                  <td>Conservative and Unionist Party</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Yorkshire First</td>
+                  <td>3</td>
+                  <td>1</td>
+                  <td>33.3</td>
+                  <td>2</td>
+                  <td>66.7</td>
+                </tr>
+                <tr>
+                  <td>Green Party</td>
+                  <td>3</td>
+                  <td>2</td>
+                  <td>66.7</td>
+                  <td>1</td>
+                  <td>33.3</td>
+                </tr>
+                <tr>
+                  <td>Scottish Socialist Party</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Pirate Party UK</td>
+                  <td>3</td>
+                  <td>2</td>
+                  <td>66.7</td>
+                  <td>1</td>
+                  <td>33.3</td>
+                </tr>
+                <tr>
+                  <td>The Reality Party</td>
+                  <td>3</td>
+                  <td>1</td>
+                  <td>33.3</td>
+                  <td>2</td>
+                  <td>66.7</td>
+                </tr>
+                <tr>
+                  <td>Official Monster Raving Loony Party</td>
+                  <td>3</td>
+                  <td>1</td>
+                  <td>33.3</td>
+                  <td>2</td>
+                  <td>66.7</td>
+                </tr>
+                <tr>
+                  <td>Alliance For Green Socialism</td>
+                  <td>3</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>3</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Young People's Party YPP</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Something New</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Communist Party of Britain</td>
+                  <td>2</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>2</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Lincolnshire Independents Lincolnshire First</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Patria</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Brighton & Hove Independents</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Speaker seeking re-election</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>All People's Party</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>People First - Gwerin Gyntaf</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Liberty Great Britain</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>The Whig Party</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Conservative Democratic Alliance</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>The 30-50 Coalition</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>2015 Constitutionalists UK</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Lewisham People Before Profit</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>City INDEPENDENTS</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Patriotic Socialist Party</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Alter Change - Politics. Only Different</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>The Pluralist Party</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Guildford Greenbelt Group</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>The Eccentric Party of Great Britain</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>Independents for Bristol</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>An Independence from Europe</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Christian Peoples Alliance</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Traditional Unionist Voice - TUV</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>100.0</td>
+                  <td>0</td>
+                  <td>0.0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="footer">
+      <div class="container">
+        <p class="muted">Made by <a href="https://twitter.com/davorg/">@davorg</a></p>
+      </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery-1.11.0.min.js"><\/script>')</script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/main.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56332-52', 'twittelection.co.uk');
+  ga('send', 'pageview');
+
+    </script>
+  </body>
+  <!-- Built at: 17:14:19 01-Feb-2015 -->
+</html>
