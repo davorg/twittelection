@@ -153,15 +153,16 @@ foreach my $con ($con_rs->all) {
     my $err = $@;
     $logger->logdie($err)
       unless blessed $err and $err->isa('Net::Twitter::Error');
-    $logger->logwarn($err->code . ': ' . $err->error . ' (' .
-                     $err->message . ')');
+    $logger->warn($err->code . ': ' . $err->error . ' (' .
+                  $err->message . ')');
     # Twitter error code 108 is "can't find user"
     if ($err->has_twitter_error) {
-      $logger->logwarn($err->twitter_error_code . ': ' .
-                       $err->twitter_error_text);
+      $logger->warn($err->twitter_error_code . ': ' .
+                    $err->twitter_error_text);
     }
     if ($err->code == 429 or $err->code == 403) {
-      $logger->logdie('Rate limit exceeded');
+      $logger->error('Rate limit exceeded');
+      exit;
     } else {
       next;
     }
