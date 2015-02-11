@@ -159,6 +159,8 @@ foreach my $con ($con_rs->all) {
     if ($err->has_twitter_error) {
       $logger->warn($err->twitter_error_code . ': ' .
                     $err->twitter_error_text);
+      # 108 means you're trying to add a non-existent user to a list
+      next if $err->twitter_error_code == 108;
     }
     if ($err->code == 429 or $err->code == 403) {
       $logger->error('Rate limit exceeded');
