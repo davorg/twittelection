@@ -60,7 +60,8 @@ $tt->process('stats/index.tt', {
   num_twit_cands    => $cand_rs->filter_tweeting->count,
   num_no_twit_cands => $cand_rs->filter_nontweeting->count,
   party             => \@party,
-}, 'stats/index.html', { binmode => ':utf8' });
+}, 'stats/index.html', { binmode => ':utf8' })
+  or die $tt->error;;
 
 for (qw[index about/index]) {
   $tt->process("$_.tt", { }, "$_.html", { binmode => ':utf8' });
