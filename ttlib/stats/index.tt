@@ -33,6 +33,7 @@
               </thead>
               <tbody>
 [% FOR p IN party -%]
+[% NEXT UNLESS p.count -%]
                 <tr>
                   <td>[% p.name %]</td>
                   <td>[% p.count %]</td>
