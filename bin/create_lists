@@ -68,7 +68,6 @@ $t->authorise;
 # 
 # Also, need to think about Twitter rate limiting.
 # Stop working as soon as we get a rate exceeded response.
-# Only attempt to rebuild lists that haven't been rebuilt in the last 24 hours.
 
 foreach my $con ($con_rs->all) {
   $logger->info($con->name . ' (' . $con->mapit_id . ')');
