@@ -159,6 +159,8 @@ foreach my $con ($con_rs->all) {
     if ($err->has_twitter_error) {
       $logger->warn($err->twitter_error_code . ': ' .
                     $err->twitter_error_text);
+      # 106 means the user has blocked you
+      next if $err->twitter_error_code == 106;
       # 108 means you're trying to add a non-existent user to a list
       next if $err->twitter_error_code == 108;
     }
