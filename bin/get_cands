@@ -103,7 +103,10 @@ foreach my $con ($cons_rs->all) {
       $logger->info("* Adding $cand->{name} / " .
           $cand->{party_memberships}{2015}{name} .
           " / \@$cand->{twitter_username}");
-      $can_rs->create({
+      # Note: We use update_or_create here instead of create in order to
+      # deal with the situation where a candidate moves from one
+      # constituency to another.
+      $can_rs->update_or_create({
         yournextmp_id   => $cand->{id},
         name            => $cand->{name},
         twitter         => $cand->{twitter_username},
