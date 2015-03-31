@@ -18,11 +18,14 @@ use TwittElection::Schema;
 my $verbose;
 GetOptions(verbose => \$verbose);
 
-if ($verbose) {
-  Log::Log4perl->easy_init($TRACE);
-} else {
-  Log::Log4perl->easy_init($INFO);
-}
+my $log_options = {
+  level => $INFO,
+  utf8  => 1,
+};
+
+$log_options->{level} = $TRACE if $verbose;
+
+Log::Log4perl->easy_init($log_options);
 
 my $logger = Log::Log4perl->get_logger;
 
