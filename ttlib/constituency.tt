@@ -15,7 +15,7 @@
             <ul>
 [% FOREACH cand IN c.tweeting_candidates -%]
               <li>[% cand.name %] ([% cand.party.name %])<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a><br />
-              <a href="http://election.awedience.com/[% cand.twitter %]>Twitter stats</a></li>
+              <a href="http://election.awedience.com/[% cand.twitter %]">Twitter stats</a></li>
 [% END -%]
             </ul>
             <b>Non-Tweeting Candidates</b>
