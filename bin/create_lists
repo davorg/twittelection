@@ -9,6 +9,7 @@ use DateTime;
 use Scalar::Util qw[blessed];
 use Getopt::Long;
 use Log::Log4perl qw[:easy];
+use Try::Tiny;
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
@@ -32,12 +33,14 @@ my $sch = TwittElection::Schema->get_schema;
 my $con_rs;
 
 my $delay = 0;
+my $force = 0;
 
 if (@ARGV) {
   $con_rs = $sch->resultset('Constituency')->search({
     mapit_id => \@ARGV,
   });
   $delay = 0;
+  $force = 1;
 } else {
   $con_rs = $sch->resultset('Constituency');
 }
@@ -88,18 +91,20 @@ foreach my $con ($con_rs->all) {
     next;
   }
 
-  if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
-    $logger->info('No need to rebuild list');
-    next;
-  }
+  unless ($force) {
+    if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
+      $logger->info('No need to rebuild list');
+      next;
+    }
 
-  if ($delay and $con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
-    $logger->info('List rebuilt too recently');
-    next;
+    if ($delay and $con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
+      $logger->info('List rebuilt too recently');
+      next;
+    }
   }
 
   my $list;
-  eval {
+  try {
     if ($con->list_id) {
       $list = $t->show_list({
         owner_screen_name => 'twittelection',
@@ -148,31 +153,37 @@ foreach my $con ($con_rs->all) {
     foreach my $cand ($con->candidates) {
       next unless $cand->twitter;
       $logger->info("$list->{id} -> " . $cand->name . ' / ' . $cand->twitter);
-      $t->add_list_member({
-        list_id     => $list->{id},
-        screen_name => $cand->twitter,
-      });
-    }
 
+      try {
+        $t->add_list_member({
+          list_id     => $list->{id},
+          screen_name => $cand->twitter,
+        });
+      } catch {
+        my $err = $_;
+        die $_ unless blessed $err and $err->isa('Net::Twitter::Error');
+        die $_ unless $err->has_twitter_error;
+        $logger->warn($err->twitter_error_code . ': ' .
+                      $err->twitter_error_text);
+
+        # 106 means the user has blocked you
+        # 108 means you're trying to add a non-existent user to a list
+        die $_ unless $err->twitter_error_code == 106 or
+                      $err->twitter_error_code == 108;
+      }
+    }
     $con->update({
       list_rebuilt_time => DateTime->now,
     });
-  };
-
-  if ($@) {
-    my $err = $@;
+  } catch {
+    my $err = $_;
     $logger->logdie($err)
       unless blessed $err and $err->isa('Net::Twitter::Error');
     $logger->warn($err->code . ': ' . $err->error . ' (' .
                   $err->message . ')');
-    # Twitter error code 108 is "can't find user"
     if ($err->has_twitter_error) {
       $logger->warn($err->twitter_error_code . ': ' .
                     $err->twitter_error_text);
-      # 106 means the user has blocked you
-      next if $err->twitter_error_code == 106;
-      # 108 means you're trying to add a non-existent user to a list
-      next if $err->twitter_error_code == 108;
     }
     if ($err->code == 429 or $err->code == 403) {
       $logger->error('Rate limit exceeded');
