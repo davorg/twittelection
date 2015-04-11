@@ -163,13 +163,14 @@ foreach my $con ($con_rs->all) {
         my $err = $_;
         die $_ unless blessed $err and $err->isa('Net::Twitter::Error');
         die $_ unless $err->has_twitter_error;
-        $logger->warn($err->twitter_error_code . ': ' .
-                      $err->twitter_error_text);
 
         # 106 means the user has blocked you
         # 108 means you're trying to add a non-existent user to a list
         die $_ unless $err->twitter_error_code == 106 or
                       $err->twitter_error_code == 108;
+
+        $logger->warn($err->twitter_error_code . ': ' .
+                      $err->twitter_error_text);
       }
     }
     $con->update({
