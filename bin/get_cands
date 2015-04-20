@@ -11,6 +11,7 @@ use LWP::Simple;
 use DateTime;
 use Getopt::Long;
 use Log::Log4perl qw[:easy];
+use Sys::RunAlone;
 
 use lib 'lib';
 use TwittElection::Schema;
@@ -136,3 +137,5 @@ foreach my $con ($cons_rs->all) {
     });
   }
 }
+
+__END__

@@ -10,6 +10,7 @@ use Scalar::Util qw[blessed];
 use Getopt::Long;
 use Log::Log4perl qw[:easy];
 use Try::Tiny;
+use Sys::RunAlone;
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
@@ -194,3 +195,5 @@ foreach my $con ($con_rs->all) {
     }
   }
 }
+
+__END__
