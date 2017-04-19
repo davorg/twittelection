@@ -18,9 +18,13 @@ $t->authorise;
 
 my $i = 1;
 
-foreach my $list (@{$t->list_ownerships->{lists}}) {
-  say $i++, ': ', $list->{name}, ' (', $list->{id}, ')';
-  foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
-    say "* \@$mem->{screen_name}";
+for (my $cursor = -1, my $r; $cursor; $cursor = $r->{next_cursor}) {
+  $r = $t->list_ownerships({ cursor => $cursor });
+
+  foreach my $list (@{$r->{lists}}) {
+    say $i++, ': ', $list->{name}, ' (', $list->{id}, ')';
+    foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
+      say "* \@$mem->{screen_name}";
+    }
   }
 }
