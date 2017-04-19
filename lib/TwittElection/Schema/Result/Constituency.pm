@@ -171,6 +171,13 @@ sub slug_name {
   return $slug;
 }
 
+# List names can't be longer than 25 characters
+sub abbrev_name {
+  my $self = shift;
+
+  return substr($self->name, 0, 25);
+}
+
 sub tweeting_candidates {
   my $self = shift;
 

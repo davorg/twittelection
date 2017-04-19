@@ -17,10 +17,12 @@
               the information.</p>
             <ul>
               <li>We have details of [% num_cands %] candidates</li>
+[% IF num_cands -%]
               <li>[% num_twit_cands %] of them are on Twitter
                 (that's [% num_twit_cands * 100 / num_cands | format('%.1f') %]%)</li>
               <li>[% num_no_twit_cands %] of them are not on Twitter
                 (that's [% num_no_twit_cands * 100 / num_cands | format('%.1f') %]%)</li>
+[% END -%]
             </ul>
             <p>Candidates by party:</p>
             <table class="table table-striped table-bordered table-hover"

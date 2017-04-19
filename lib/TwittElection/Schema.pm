@@ -31,11 +31,11 @@ sub get_schema {
     die "You need to define this environment variables: @missing\n";
   }
 
-  return $class->connect(
+  return ($class->connect(
     "dbi:mysql:database=$ENV{TE_DB}:host=$ENV{TE_HOST}",
     $ENV{TE_USER}, $ENV{TE_PASS},
     { mysql_enable_utf8 => 1 },  
-  ) or die;
+  ) or die);
 }
 
 __PACKAGE__->meta->make_immutable(inline_constructor => 0);
