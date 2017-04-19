@@ -16,7 +16,9 @@ my $t = TwittElection::Twitter->new(
 
 $t->authorise;
 
+my $i = 1;
+
 foreach my $list (@{$t->list_ownerships->{lists}}) {
-  say $list->{name}, ' (', $list->{id}, ')';
+  say $i++, ': ', $list->{name}, ' (', $list->{id}, ')';
   $t->delete_list({ list_id => $list->{id} });
 }
