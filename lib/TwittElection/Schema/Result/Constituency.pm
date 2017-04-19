@@ -162,6 +162,22 @@ __PACKAGE__->has_many(
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 
+use LWP::Simple;
+use JSON;
+
+sub retrieve_candidates {
+  my $self = shift;
+
+  my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
+            $self->mapit_id .
+            '?embed=membership.person';
+
+  my $json = get($url);
+
+  my $data = decode_json $json;
+  return $data->{result}{memberships};
+}
+
 sub slug_name {
   my $self = shift;
 
