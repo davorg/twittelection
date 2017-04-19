@@ -16,6 +16,8 @@ use Sys::RunAlone;
 use lib 'lib';
 use TwittElection::Schema;
 
+my $election_year = 2017;
+
 my $verbose;
 GetOptions(verbose => \$verbose);
 
@@ -65,8 +67,8 @@ foreach my $con ($cons_rs->all) {
 
   my %cands;
   for (@$cands) {
-    next unless $_->{person_id}{standing_in}{2015};
-    next unless $_->{person_id}{standing_in}{2015}{post_id} == $const_id;
+    next unless $_->{person_id}{standing_in}{$election_year};
+    next unless $_->{person_id}{standing_in}{$election_year}{post_id} == $const_id;
 
     $cands{$_->{person_id}{id}} = $_;
   }
@@ -74,11 +76,11 @@ foreach my $con ($cons_rs->all) {
   for (values %cands) {
     my $cand = $_->{person_id}{versions}[0]{data};
 
-    my ($party_id) = $cand->{party_memberships}{2015}{id} =~ /(\d+)/;
+    my ($party_id) = $cand->{party_memberships}{$election_year}{id} =~ /(\d+)/;
     my $party;
     unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
       $party = $par_rs->create({
-        name => $cand->{party_memberships}{2015}{name},
+        name => $cand->{party_memberships}{$election_year}{name},
         yournextmp_id => $party_id,
       });
     }
@@ -88,7 +90,7 @@ foreach my $con ($cons_rs->all) {
       if ($cand->{name} ne $curr_cand->name
         or $cand->{twitter_username} ne $curr_cand->twitter) {
         $logger->info("* Updating $cand->{name} / " .
-            $cand->{party_memberships}{2015}{name} .
+            $cand->{party_memberships}{$election_year}{name} .
             " / \@$cand->{twitter_username}");
         $curr_cand->update({
           yournextmp_id   => $cand->{id},
@@ -100,12 +102,12 @@ foreach my $con ($cons_rs->all) {
         $changed = 1;
       } else {
         $logger->trace("* No change $cand->{name} / " .
-            $cand->{party_memberships}{2015}{name} .
+            $cand->{party_memberships}{$election_year}{name} .
             " / \@$cand->{twitter_username}");
       }
     } else {
       $logger->info("* Adding $cand->{name} / " .
-          $cand->{party_memberships}{2015}{name} .
+          $cand->{party_memberships}{$election_year}{name} .
           " / \@$cand->{twitter_username}");
       # Note: We use update_or_create here instead of create in order to
       # deal with the situation where a candidate moves from one
