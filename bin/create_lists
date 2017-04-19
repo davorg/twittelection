@@ -16,7 +16,9 @@ use TwittElection::Twitter;
 use TwittElection::Schema;
 
 my $verbose;
-GetOptions(verbose => \$verbose);
+my $force = 0;
+GetOptions(verbose => \$verbose,
+           force   => \$force);
 
 my $log_options = {
   level => $INFO,
@@ -34,7 +36,6 @@ my $sch = TwittElection::Schema->get_schema;
 my $con_rs;
 
 my $delay = 0;
-my $force = 0;
 
 if (@ARGV) {
   $con_rs = $sch->resultset('Constituency')->search({
@@ -87,7 +88,7 @@ $t->authorise;
 foreach my $con ($con_rs->all) {
   $logger->info($con->name . ' (' . $con->mapit_id . ')');
 
-  unless ($con->candidates->count) {
+  unless ($force or $con->candidates->count) {
     $logger->info('No candidates found');
     next;
   }
@@ -122,7 +123,8 @@ foreach my $con ($con_rs->all) {
         $logger->info('Create ' . $con->name);
         $list = $t->create_list({
           owner_screen_name => 'twittelection',
-          name => $con->list_name,
+          description       => $con->name,
+          name              => $con->abbrev_name,
         });
 
         $logger->info($list->{slug});
@@ -137,7 +139,7 @@ foreach my $con ($con_rs->all) {
       $list = $t->create_list({
         owner_screen_name => 'twittelection',
         description       => $con->name,
-        name => $con->list_name,
+        name              => $con->abbrev_name,
       });
 
       $logger->info($list->{slug});
