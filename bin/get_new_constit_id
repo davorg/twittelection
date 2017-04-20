@@ -1,0 +1,29 @@
+#!/usr/bin/perl -CS
+
+use strict;
+use warnings;
+use 5.010;
+
+use JSON;
+use LWP::UserAgent;
+use lib 'lib';
+use TwittElection::Schema;
+
+my $sch = TwittElection::Schema->get_schema;
+
+my $con_rs = $sch->resultset('Constituency');
+
+my $ua = LWP::UserAgent->new;
+
+while (my $con = $con_rs->next) {
+  warn $con->mapit_id, ' / ', $con->name, "\n";
+  my $resp = $ua->get('https://mapit.mysociety.org/area/' . $con->mapit_id);
+
+  if ($resp->is_success) {
+    my $c = decode_json($resp->content);
+    say join ':', $c->{id}, $c->{name}, $c->{type}, $c->{codes}{gss};
+  } else {
+    die $resp->status_line;
+  }
+}
+
