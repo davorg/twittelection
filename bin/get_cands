@@ -55,7 +55,7 @@ foreach my $con ($cons_rs->all) {
   my %cands;
   for (@$cands) {
     next unless $_->{person_id}{standing_in}{$election_year};
-    next unless $_->{person_id}{standing_in}{$election_year}{post_id} == $const_id;
+    next unless $_->{person_id}{standing_in}{$election_year}{post_id} == $con->mapit_id;
 
     $cands{$_->{person_id}{id}} = $_;
   }
