@@ -6,8 +6,6 @@ use 5.010;
 
 use open IO => ':encoding(utf8)';
 
-use JSON;
-use LWP::Simple;
 use DateTime;
 use Getopt::Long;
 use Log::Log4perl qw[:easy];
@@ -46,21 +44,10 @@ if (@ARGV) {
 foreach my $con ($cons_rs->all) {
   my $changed = 0;
   $logger->info($con->name . ' (' . $con->mapit_id . ')');
-  my $const_id = $con->mapit_id;
 
-  my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
-            $const_id .
-            '?embed=membership.person';
+  my $cands = $con->retrieve_candidates;
 
-  my $json = get($url);
-
-  my $data = decode_json $json;
-  my $cands = $data->{result}{memberships};
-
-  my %curr_cands;
-  foreach ($con->candidates) {
-    $curr_cands{$_->yournextmp_id} = $_;
-  }
+  my %curr_cands = map { $_->yournextmp_id => $_ } $con->candidates;
 
   my $par_rs = $sch->resultset('Party');
   my $can_rs = $sch->resultset('Candidate');
