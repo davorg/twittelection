@@ -4,7 +4,6 @@
 [% prev_letter = '';
    letters = [];
    FOREACH c IN constits;
-     NEXT UNLESS c.candidates.size;
      letter = c.name.substr(0, 1);
      IF letter != prev_letter;
        letters.push('<a href="#' _ letter _ '">' _ letter _ '</a>');
@@ -24,7 +23,6 @@
 <table class="table table-striped table-condensed table-bordered">
 [% prev_letter = '';
    FOREACH c IN constits;
-     NEXT UNLESS c.candidates.size;
      letter = c.name.substr(0, 1);
      IF letter != prev_letter -%]
 <tr><th><a name="[% letter %]">[% letter %]</a></th></tr>

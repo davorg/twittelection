@@ -168,7 +168,7 @@ use JSON;
 sub retrieve_candidates {
   my $self = shift;
 
-  my $url = 'http://yournextmp.popit.mysociety.org/api/v0.1/posts/' .
+  my $url = 'https://candidates.democracyclub.org.uk/api/v0.9/posts/' .
             $self->mapit_id .
             '?embed=membership.person';
 
