@@ -52,6 +52,12 @@ __PACKAGE__->table("constituency");
   default_value: 0
   is_nullable: 0
 
+=head2 demclub_id
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 20
+
 =head2 name
 
   data_type: 'varchar'
@@ -91,6 +97,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "mapit_id",
   { data_type => "integer", default_value => 0, is_nullable => 0 },
+  "demclub_id",
+  { data_type => "varchar", is_nullable => 1, size => 20 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "list_name",
@@ -157,8 +165,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-14 11:25:05
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ntUlTTvAvlxD9DtwUsf9vg
+# Created by DBIx::Class::Schema::Loader v0.07043 @ 2017-04-21 08:48:10
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:gGP29u1Li4fvFQj4/nn0+Q
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 
