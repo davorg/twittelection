@@ -9,24 +9,24 @@ use LWP::UserAgent;
 use lib 'lib';
 use TwittElection::Schema;
 
+@ARGV = 'areas.json';
+my $json = do { local $/; <> };
+
+my $cons = decode_json($json);
+
 my $sch = TwittElection::Schema->get_schema;
 
-my $con_rs = $sch->resultset('Constituency')->search({
-  demclub_id => undef,
-});
+my $con_rs = $sch->resultset('Constituency');
 
-my $ua = LWP::UserAgent->new;
+foreach my $key (keys %$cons) {
+  my $c = $cons->{$key};
+  my $con = $con_rs->find({ mapit_id => $key });
 
-while (my $con = $con_rs->next) {
-  warn $con->mapit_id, ' / ', $con->name, "\n";
-  my $resp = $ua->get('https://mapit.mysociety.org/area/' . $con->mapit_id);
-
-  if ($resp->is_success) {
-    my $c = decode_json($resp->content);
-    say join ':', $c->{id}, $c->{name}, $c->{type}, $c->{codes}{gss};
-    $con->update({ demclub_id => "$c->{type}--gss:$c->{codes}{gss}"});
-  } else {
-    die $resp->status_line;
+  unless ($con) {
+    warn "Can't find constituency for MapIt id <$key>\n";
+    next;
   }
+
+  $con->update({ demclub_id => "$c->{type}--gss:$c->{codes}{gss}"});
 }
 
