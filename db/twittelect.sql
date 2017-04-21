@@ -9,6 +9,7 @@ create table party (
 create table constituency (
   id integer primary key auto_increment,
   mapit_id integer not null default 0 unique,
+  demclub_id varchar(20),
   name varchar(200) not null,
   list_name varchar(25) not null,
   list_id varchar(20),
