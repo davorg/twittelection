@@ -202,6 +202,13 @@ sub abbrev_name {
   return substr($self->name, 0, 25);
 }
 
+sub demclub_url {
+  my $self = shift;
+
+  return 'https://candidates.democracyclub.org.uk/areas/' .
+    $self->demclub_id;
+}
+
 sub tweeting_candidates {
   my $self = shift;
 

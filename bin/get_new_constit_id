@@ -11,7 +11,9 @@ use TwittElection::Schema;
 
 my $sch = TwittElection::Schema->get_schema;
 
-my $con_rs = $sch->resultset('Constituency');
+my $con_rs = $sch->resultset('Constituency')->search({
+  demclub_id => undef,
+});
 
 my $ua = LWP::UserAgent->new;
 
@@ -22,6 +24,7 @@ while (my $con = $con_rs->next) {
   if ($resp->is_success) {
     my $c = decode_json($resp->content);
     say join ':', $c->{id}, $c->{name}, $c->{type}, $c->{codes}{gss};
+    $con->update({ demclub_id => "$c->{type}--gss:$c->{codes}{gss}"});
   } else {
     die $resp->status_line;
   }
