@@ -41,6 +41,9 @@ if (@ARGV) {
   $cons_rs = $sch->resultset('Constituency');
 }
 
+my $par_rs = $sch->resultset('Party');
+my $can_rs = $sch->resultset('Candidate');
+
 foreach my $con ($cons_rs->all) {
   my $changed = 0;
   $logger->info($con->name . ' (' . $con->mapit_id . ')');
@@ -48,9 +51,6 @@ foreach my $con ($cons_rs->all) {
   my $cands = $con->retrieve_candidates;
 
   my %curr_cands = map { $_->yournextmp_id => $_ } $con->candidates;
-
-  my $par_rs = $sch->resultset('Party');
-  my $can_rs = $sch->resultset('Candidate');
 
   my %cands;
   for (@$cands) {
