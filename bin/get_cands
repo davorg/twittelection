@@ -61,48 +61,47 @@ foreach my $con ($cons_rs->all) {
   }
 
   for (values %cands) {
-    my $cand = $_->{person_id}{versions}[0]{data};
 
-    my ($party_id) = $cand->{party_memberships}{$election_year}{id} =~ /(\d+)/;
+    my ($party_id) = $_->{on_behalf_of}{id} =~ /(\d+)/;
     my $party;
     unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
       $party = $par_rs->create({
-        name => $cand->{party_memberships}{$election_year}{name},
+        name => $_->{on_behalf_of}{name},
         yournextmp_id => $party_id,
       });
     }
 
-    if (exists $curr_cands{$cand->{id}}) {
-      my $curr_cand = delete $curr_cands{$cand->{id}};
-      if ($cand->{name} ne $curr_cand->name
-        or $cand->{twitter_username} ne $curr_cand->twitter) {
-        $logger->info("* Updating $cand->{name} / " .
-            $cand->{party_memberships}{$election_year}{name} .
-            " / \@$cand->{twitter_username}");
+    if (exists $curr_cands{$_->{id}}) {
+      my $curr_cand = delete $curr_cands{$_->{id}};
+      if ($_->{name} ne $curr_cand->name
+        or $_->{twitter_username} ne $curr_cand->twitter) {
+        $logger->info("* Updating $_->{name} / " .
+            $_->{on_behalf_of}{name} .
+            " / \@$_->{twitter_username}");
         $curr_cand->update({
-          yournextmp_id   => $cand->{id},
-          name            => $cand->{name},
-          twitter         => $cand->{twitter_username},
+          yournextmp_id   => $_->{id},
+          name            => $_->{name},
+          twitter         => $_->{twitter_username},
           party_id        => $party->id,
           constituency_id => $con->id,
         });
         $changed = 1;
       } else {
-        $logger->trace("* No change $cand->{name} / " .
-            $cand->{party_memberships}{$election_year}{name} .
-            " / \@$cand->{twitter_username}");
+        $logger->trace("* No change $_->{name} / " .
+            $_->{on_behalf_of}{name} .
+            " / \@$_->{twitter_username}");
       }
     } else {
-      $logger->info("* Adding $cand->{name} / " .
-          $cand->{party_memberships}{$election_year}{name} .
-          " / \@$cand->{twitter_username}");
+      $logger->info("* Adding $_->{name} / " .
+          $_->{on_behalf_of}{name} .
+          " / \@$_->{twitter_username}");
       # Note: We use update_or_create here instead of create in order to
       # deal with the situation where a candidate moves from one
       # constituency to another.
       $can_rs->update_or_create({
-        yournextmp_id   => $cand->{id},
-        name            => $cand->{name},
-        twitter         => $cand->{twitter_username},
+        yournextmp_id   => $_->{id},
+        name            => $_->{name},
+        twitter         => $_->{twitter_username},
         party_id        => $party->id,
         constituency_id => $con->id,
       });
