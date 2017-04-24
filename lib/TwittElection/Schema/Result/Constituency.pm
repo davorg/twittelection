@@ -183,7 +183,7 @@ sub retrieve_candidates {
   my $json = get($url);
 
   my $data = decode_json $json;
-  return $data->{result}{memberships};
+  return $data->{memberships};
 }
 
 sub slug_name {
