@@ -177,8 +177,7 @@ sub retrieve_candidates {
   my $self = shift;
 
   my $url = 'https://candidates.democracyclub.org.uk/api/v0.9/posts/' .
-            $self->mapit_id .
-            '?embed=membership.person';
+            $self->api_id;
 
   my $json = get($url);
 
@@ -193,6 +192,15 @@ sub slug_name {
   $slug =~ s/-\d+$//;
 
   return $slug;
+}
+
+sub api_id {
+  my $self = shift;
+
+  my $api_id = $self->demclub_id
+  $api_id =~ s/--gss://;
+
+  return $api_id;
 }
 
 # List names can't be longer than 25 characters

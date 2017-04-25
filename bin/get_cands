@@ -15,6 +15,7 @@ use lib 'lib';
 use TwittElection::Schema;
 
 my $election_year = 2017;
+my $election_id   = 'parl.2017-06-08';
 
 my $verbose;
 GetOptions(verbose => \$verbose);
@@ -54,8 +55,8 @@ foreach my $con ($cons_rs->all) {
 
   my %cands;
   for (@$cands) {
-    next unless $_->{election}{id} == $election_year;
-    next unless $_->{post}{id}     == $con->mapit_id;
+    next unless $_->{election}{id} == $election_id;
+    next unless $_->{post}{id}     == $con->api_id;
 
     $cands{$_->{id}} = $_;
   }
