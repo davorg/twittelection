@@ -1,0 +1,158 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+use open IO => ':encoding(utf8)';
+
+use DateTime;
+use Getopt::Long;
+use Log::Log4perl qw[:easy];
+use Sys::RunAlone;
+use Text::CSV_XS;
+use LWP::Simple;
+
+use lib 'lib';
+use TwittElection::Schema;
+
+my $election_year = 2017;
+my $election_id   = 'parl.2017-06-08';
+
+my $verbose;
+GetOptions(verbose => \$verbose);
+
+my $log_options = {
+  level => $INFO,
+  utf8  => 1,
+};
+
+$log_options->{level} = $TRACE if $verbose;
+
+Log::Log4perl->easy_init($log_options);
+
+my $logger = Log::Log4perl->get_logger;
+
+my $sch = TwittElection::Schema->get_schema;
+
+my $csv_file = 'candidates-parl.2017-06-08.csv';
+my $csv_url =  "https://candidates.democracyclub.org.uk/media/$csv_file";
+
+getstore($csv_url, $csv_file);
+open my $csv_fh, '<', $csv_file or die $!;
+
+my $csv = Text::CSV_XS->new({ binary => 1, auto_diag => 1 });
+
+my %constits;
+
+$csv->getline($csv_fh); # skip headers
+
+while (my $row = $csv->getline($csv_fh)) {
+  $constits{$row->[9]}{name} = $row->[10];
+  my $cand;
+  $cand->{id} = $row->[0];
+  $cand->{name} = $row->[1];
+  $cand->{party}{id} = $row->[7];
+  $cand->{party}{name} = $row->[8];
+  $cand->{twitter} = $row->[14];
+
+  push @{ $constits{$row->[9]}{cands} }, $cand;
+}
+
+exit;
+
+my $cons_rs;
+if (@ARGV) {
+  $cons_rs = $sch->resultset('Constituency')->search({
+    mapit_id => \@ARGV,
+  });
+} else {
+  $cons_rs = $sch->resultset('Constituency');
+}
+
+my $par_rs = $sch->resultset('Party');
+my $can_rs = $sch->resultset('Candidate');
+
+foreach my $con ($cons_rs->all) {
+  my $changed = 0;
+  $logger->info($con->name . ' (' . $con->mapit_id . ')');
+
+  my $cands = $con->retrieve_candidates;
+
+  my %curr_cands = map { $_->yournextmp_id => $_ } $con->candidates;
+
+  my %cands;
+  for (@$cands) {
+    next unless $_->{election}{id} == $election_id;
+    next unless $_->{post}{id}     == $con->api_id;
+
+    $cands{$_->{id}} = $_;
+  }
+
+  for (values %cands) {
+
+    my ($party_id) = $_->{on_behalf_of}{id} =~ /(\d+)/;
+    my $party;
+    unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
+      $party = $par_rs->create({
+        name => $_->{on_behalf_of}{name},
+        yournextmp_id => $party_id,
+      });
+    }
+
+    if (exists $curr_cands{$_->{id}}) {
+      my $curr_cand = delete $curr_cands{$_->{id}};
+      if ($_->{name} ne $curr_cand->name
+        or $_->{twitter_username} ne $curr_cand->twitter) {
+        $logger->info("* Updating $_->{name} / " .
+            $_->{on_behalf_of}{name} .
+            " / \@$_->{twitter_username}");
+        $curr_cand->update({
+          yournextmp_id   => $_->{id},
+          name            => $_->{name},
+          twitter         => $_->{twitter_username},
+          party_id        => $party->id,
+          constituency_id => $con->id,
+        });
+        $changed = 1;
+      } else {
+        $logger->trace("* No change $_->{name} / " .
+            $_->{on_behalf_of}{name} .
+            " / \@$_->{twitter_username}");
+      }
+    } else {
+      $logger->info("* Adding $_->{name} / " .
+          $_->{on_behalf_of}{name} .
+          " / \@$_->{twitter_username}");
+      # Note: We use update_or_create here instead of create in order to
+      # deal with the situation where a candidate moves from one
+      # constituency to another.
+      $can_rs->update_or_create({
+        yournextmp_id   => $_->{id},
+        name            => $_->{name},
+        twitter         => $_->{twitter_username},
+        party_id        => $party->id,
+        constituency_id => $con->id,
+      });
+      $changed = 1;
+    }
+  }
+
+  # Any candidates left in %curr_cands need to be deleted
+  foreach (keys %curr_cands) {
+    my $curr_cand = $curr_cands{$_};
+    $logger->info('* Deleting ' . $curr_cand->name . ' / ' .
+        $curr_cand->party->name .
+        ' / ' . $curr_cand->twitter);
+    $curr_cand->delete;
+    $changed = 1;
+  }
+
+  if ($changed) {
+    $con->update({
+      candidates_updated_time => DateTime->now,
+    });
+  }
+}
+
+__END__
