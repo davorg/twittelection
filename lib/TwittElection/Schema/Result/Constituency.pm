@@ -197,7 +197,7 @@ sub slug_name {
 sub api_id {
   my $self = shift;
 
-  my $api_id = $self->demclub_id
+  my $api_id = $self->demclub_id;
   $api_id =~ s/--gss://;
 
   return $api_id;
