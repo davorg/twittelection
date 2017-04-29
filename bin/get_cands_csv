@@ -59,8 +59,6 @@ while (my $row = $csv->getline($csv_fh)) {
   push @{ $constits{$row->[9]}{cands} }, $cand;
 }
 
-exit;
-
 my $cons_rs;
 if (@ARGV) {
   $cons_rs = $sch->resultset('Constituency')->search({

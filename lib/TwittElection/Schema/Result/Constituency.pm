@@ -197,8 +197,7 @@ sub slug_name {
 sub api_id {
   my $self = shift;
 
-  my $api_id = $self->demclub_id;
-  $api_id =~ s/--gss://;
+  my $api_id = 'WMC' . $self->demclub_id;
 
   return $api_id;
 }
@@ -213,7 +212,7 @@ sub abbrev_name {
 sub demclub_url {
   my $self = shift;
 
-  return 'https://candidates.democracyclub.org.uk/areas/' .
+  return 'https://candidates.democracyclub.org.uk/areas/WMC--gss:' .
     $self->demclub_id;
 }
 
