@@ -10,11 +10,12 @@
             <p>Here are some statistics about the data on this site.</p>
             <p class="alert alert-warning" role="alert">It's worth pointing
               out that we get our data from
-              <a href="https://yournextmp.com/">YourNextMP</a> who, in turn,
-              get their data from you. So if if you know of candidates or
-              Twitter accounts that we have missed, please get over to
-              <a href="https://yournextmp.com/">YourNextMP</a> and give them
-              the information.</p>
+              <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>
+              who, in turn, get their data from you. So if if you know of
+              candidates or Twitter accounts that we have missed, please get
+              over to
+              <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>
+              and give them the information.</p>
             <ul>
               <li>We have details of [% num_cands %] candidates</li>
 [% IF num_cands -%]
