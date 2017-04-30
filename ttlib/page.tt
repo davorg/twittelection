@@ -8,7 +8,7 @@
     <meta name="google-site-verification" content="HLLWtUo79tD2Q-IdJGZxpGmwygtSUjSgFsLSQYaWH9w" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>TwittElection[% IF title; ': ' _ title; END %]</title>
+    <title>TwittElection: [% IF title; title; ELSE 'A Twitter List For Each Constituency'; END %]</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
