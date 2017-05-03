@@ -194,7 +194,7 @@ foreach my $con ($con_rs->all) {
       $logger->error('Rate limit exceeded');
       exit;
     } else {
-      next;
+      return;
     }
   }
 }
