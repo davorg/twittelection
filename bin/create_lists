@@ -8,29 +8,20 @@ use lib 'lib';
 use DateTime;
 use Scalar::Util qw[blessed];
 use Getopt::Long;
-use Log::Log4perl qw[:easy];
 use Try::Tiny;
 use Sys::RunAlone;
 
 use TwittElection::App;
-
-my $app = TwittElection::App->new;
 
 my $verbose;
 my $force = 0;
 GetOptions(verbose => \$verbose,
            force   => \$force);
 
-my $log_options = {
-  level => $INFO,
-  utf8  => 1,
-};
-
-$log_options->{level} = $TRACE if $verbose;
-
-Log::Log4perl->easy_init($log_options);
-
-my $logger = Log::Log4perl->get_logger;
+my $app = TwittElection::App->new({
+  verbose => $verbose,
+  force   => $force,
+});
 
 my $con_rs;
 
@@ -78,21 +69,21 @@ my $t = $app->twitter;
 # Stop working as soon as we get a rate exceeded response.
 
 foreach my $con ($con_rs->all) {
-  $logger->info($con->name . ' (' . $con->mapit_id . ')');
+  $app->logger->info($con->name . ' (' . $con->mapit_id . ')');
 
   unless ($force or $con->candidates->count) {
-    $logger->info('No candidates found');
+    $app->logger->info('No candidates found');
     next;
   }
 
-  unless ($force) {
+  unless ($app->force) {
     if ($con->candidates_updated_time <= $con->list_rebuilt_time) {
-      $logger->info('No need to rebuild list');
+      $app->logger->info('No need to rebuild list');
       next;
     }
 
     if ($delay and $con->list_rebuilt_time > DateTime->now->subtract(days=>1)) {
-      $logger->info('List rebuilt too recently');
+      $app->logger->info('List rebuilt too recently');
       next;
     }
   }
@@ -100,29 +91,29 @@ foreach my $con ($con_rs->all) {
   my $list;
   try {
     if ($con->list_id) {
-      $logger->info('Looking for list ', $con->list_name);
+      $app->logger->info('Looking for list ', $con->list_name);
       $list = $t->show_list({
         owner_screen_name => 'twittelection',
         slug              => $con->list_name,
       });
       if ($list) {
-        $logger->info("Found list: $list->{id}");
+        $app->logger->info("Found list: $list->{id}");
         foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
-          $logger->info("Removing list member: $mem->{screen_name}");
+          $app->logger->info("Removing list member: $mem->{screen_name}");
           $t->remove_list_members({
             list_id     => $list->{id},
             screen_name => $mem->{screen_name},
           });
         }
       } else {
-        $logger->info('Create ' . $con->name);
+        $app->logger->info('Create ' . $con->name);
         $list = $t->create_list({
           owner_screen_name => 'twittelection',
           description       => $con->name,
           name              => $con->abbrev_name,
         });
 
-        $logger->info($list->{slug});
+        $app->logger->info($list->{slug});
 
         $con->update({
           list_name => $list->{slug},
@@ -130,14 +121,14 @@ foreach my $con ($con_rs->all) {
         });
       }
     } else {
-      $logger->info('Create ' . $con->name);
+      $app->logger->info('Create ' . $con->name);
       $list = $t->create_list({
         owner_screen_name => 'twittelection',
         description       => $con->name,
         name              => $con->abbrev_name,
       });
 
-      $logger->info($list->{slug});
+      $app->logger->info($list->{slug});
 
       # Remove the number that Twitter will sometimes add at the end
       $list->{slug} =~ s/-\d+$//;
@@ -150,7 +141,7 @@ foreach my $con ($con_rs->all) {
 
     foreach my $cand ($con->candidates) {
       next unless $cand->twitter;
-      $logger->info("$list->{id} -> " . $cand->name . ' / ' . $cand->twitter);
+      $app->logger->info("$list->{id} -> " . $cand->name . ' / ' . $cand->twitter);
 
       try {
         $t->add_list_member({
@@ -168,8 +159,8 @@ foreach my $con ($con_rs->all) {
                       $err->twitter_error_code == 106 or
                       $err->twitter_error_code == 108;
 
-        $logger->warn($err->twitter_error_code . ': ' .
-                      $err->twitter_error_text);
+        $app->logger->warn($err->twitter_error_code . ': ' .
+                           $err->twitter_error_text);
       }
     }
     $con->update({
@@ -177,16 +168,16 @@ foreach my $con ($con_rs->all) {
     });
   } catch {
     my $err = $_;
-    $logger->logdie($err)
+    $app->logger->logdie($err)
       unless blessed $err and $err->isa('Net::Twitter::Error');
-    $logger->warn($err->code . ': ' . $err->error . ' (' .
-                  $err->message . ')');
+    $app->logger->warn($err->code . ': ' . $err->error . ' (' .
+                       $err->message . ')');
     if ($err->has_twitter_error) {
-      $logger->warn($err->twitter_error_code . ': ' .
-                    $err->twitter_error_text);
+      $app->logger->warn($err->twitter_error_code . ': ' .
+                         $err->twitter_error_text);
     }
     if ($err->code == 429 or $err->code == 403) {
-      $logger->error('Rate limit exceeded');
+      $app->logger->error('Rate limit exceeded');
       exit;
     } else {
       return;

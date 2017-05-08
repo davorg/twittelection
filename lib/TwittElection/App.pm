@@ -5,6 +5,7 @@ use warnings;
 use 5.010;
 
 use Moose;
+use Log::Log4perl qw[:easy];
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
@@ -48,10 +49,37 @@ sub _build_constituency_rs {
   return $_[0]->schema->resultset('Constituency');
 }
 
+has verbose => (
+  is         => 'ro',
+  isa        => 'Bool',
+  required   => 1,
+  default    => 0,
+);
+
+has force => (
+  is         => 'ro',
+  isa        => 'Bool',
+  required   => 1,
+  default    => 0,
+);
+
 has logger => (
   is         => 'ro',
   isa        => 'Log::Log4perl::Logger',
   lazy_build => 1,
 );
+
+sub _build_logger {
+  my $log_options = {
+    level => $INFO,
+    utf8  => 1,
+  };
+
+  $log_options->{level} = $TRACE if $_[0]->verbose;
+
+  Log::Log4perl->easy_init($log_options);
+
+  return Log::Log4perl->get_logger;
+}
 
 1;
