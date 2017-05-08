@@ -12,8 +12,9 @@ use Log::Log4perl qw[:easy];
 use Try::Tiny;
 use Sys::RunAlone;
 
-use TwittElection::Twitter;
-use TwittElection::Schema;
+use TwittElection::App;
+
+my $app = TwittElection::App->new;
 
 my $verbose;
 my $force = 0;
@@ -31,30 +32,21 @@ Log::Log4perl->easy_init($log_options);
 
 my $logger = Log::Log4perl->get_logger;
 
-my $sch = TwittElection::Schema->get_schema;
-
 my $con_rs;
 
 my $delay = 0;
 
 if (@ARGV) {
-  $con_rs = $sch->resultset('Constituency')->search({
+  $con_rs = $app->constituency_rs->search({
     mapit_id => \@ARGV,
   });
   $delay = 0;
   $force = 1;
 } else {
-  $con_rs = $sch->resultset('Constituency');
+  $con_rs = $app->constituency_rs;
 }
 
-my $t = TwittElection::Twitter->new(
-  traits          => [ 'API::RESTv1_1', 'OAuth' ],
-  ssl             => 1,
-  consumer_key    => $ENV{TE_TW_API_KEY},
-  consumer_secret => $ENV{TE_TW_API_SEC},
-);
-
-$t->authorise;
+my $t = $app->twitter;
 
 # Here's how this should work.
 #
@@ -71,8 +63,8 @@ $t->authorise;
 # show_list : 15 / 15 min
 # list_members : 15 / 15 min
 # remove_list_members :
-# create_list : 
-# add_list_member : 
+# create_list :
+# add_list_member :
 
 # Some thoughts about a more intelligent approach.
 # Add a 'list_updated_timestamp' column to constituency table.
@@ -81,7 +73,7 @@ $t->authorise;
 # Get current list members and current candidate list.
 # Only attempt to rebuild Twitter list if these lists differ.
 # Update list_updated_timestamp when we update Twitter list.
-# 
+#
 # Also, need to think about Twitter rate limiting.
 # Stop working as soon as we get a rate exceeded response.
 
