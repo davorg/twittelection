@@ -108,12 +108,15 @@ foreach my $con ($con_rs->all) {
   my $list;
   try {
     if ($con->list_id) {
+      $logger->info('Looking for list ', $con->list_name);
       $list = $t->show_list({
         owner_screen_name => 'twittelection',
         slug              => $con->list_name,
       });
       if ($list) {
+        $logger->info("Found list: $list->{id}");
         foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
+          $logger->info("Removing list member: $mem->{screen_name}");
           $t->remove_list_members({
             list_id     => $list->{id},
             screen_name => $mem->{screen_name},
