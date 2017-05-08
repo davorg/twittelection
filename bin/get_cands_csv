@@ -16,7 +16,6 @@ use LWP::Simple;
 use lib 'lib';
 use TwittElection::Schema;
 
-my $election_year = 2017;
 my $election_id   = 'parl.2017-06-08';
 
 my $verbose;
