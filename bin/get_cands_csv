@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-#!/usr/bin/perl
 
 use strict;
 use warnings;
@@ -9,32 +8,19 @@ use open IO => ':encoding(utf8)';
 
 use DateTime;
 use Getopt::Long;
-use Log::Log4perl qw[:easy];
 use Sys::RunAlone;
 use Text::CSV_XS;
 use LWP::Simple;
 
 use lib 'lib';
-use TwittElection::Schema;
+use TwittElection::App;
 
-my $election_year = 2017;
 my $election_id   = 'parl.2017-06-08';
 
 my $verbose;
 GetOptions(verbose => \$verbose);
 
-my $log_options = {
-  level => $INFO,
-  utf8  => 1,
-};
-
-$log_options->{level} = $TRACE if $verbose;
-
-Log::Log4perl->easy_init($log_options);
-
-my $logger = Log::Log4perl->get_logger;
-
-my $sch = TwittElection::Schema->get_schema;
+my $app = TwittElection::App->new({ verbose => $verbose });
 
 my $csv_file = 'candidates-parl.2017-06-08.csv';
 my $csv_url =  "https://candidates.democracyclub.org.uk/media/$csv_file";
@@ -64,19 +50,19 @@ while (my $row = $csv->getline($csv_fh)) {
 
 my $cons_rs;
 if (@ARGV) {
-  $cons_rs = $sch->resultset('Constituency')->search({
+  $cons_rs = $app->constituency_rs->search({
     mapit_id => \@ARGV,
   });
 } else {
-  $cons_rs = $sch->resultset('Constituency');
+  $cons_rs = $app->constituency_rs;
 }
 
-my $par_rs = $sch->resultset('Party');
-my $can_rs = $sch->resultset('Candidate');
+my $par_rs = $app->schema->resultset('Party');
+my $can_rs = $app->schema->resultset('Candidate');
 
 foreach my $con ($cons_rs->all) {
   my $changed = 0;
-  $logger->info($con->name . ' (' . $con->mapit_id . ')');
+  $app->logger->info($con->name . ' (' . $con->mapit_id . ')');
 
   my $cands = $constits{$con->demclub_id}{cands};
 
@@ -102,7 +88,7 @@ foreach my $con ($cons_rs->all) {
       my $curr_cand = delete $curr_cands{$_->{id}};
       if ($_->{name} ne $curr_cand->name
         or $_->{twitter} ne $curr_cand->twitter) {
-        $logger->info("* Updating $_->{name} / " .
+        $app->logger->info("* Updating $_->{name} / " .
             $_->{party}{name} .
             " / \@$_->{twitter}");
         $curr_cand->update({
@@ -114,12 +100,12 @@ foreach my $con ($cons_rs->all) {
         });
         $changed = 1;
       } else {
-        $logger->trace("* No change $_->{name} / " .
+        $app->logger->trace("* No change $_->{name} / " .
             $_->{party}{name} .
             " / \@$_->{twitter}");
       }
     } else {
-      $logger->info("* Adding $_->{name} / " .
+      $app->logger->info("* Adding $_->{name} / " .
           $_->{party}{name} .
           " / \@$_->{twitter}");
       # Note: We use update_or_create here instead of create in order to
@@ -139,7 +125,7 @@ foreach my $con ($cons_rs->all) {
   # Any candidates left in %curr_cands need to be deleted
   foreach (keys %curr_cands) {
     my $curr_cand = $curr_cands{$_};
-    $logger->info('* Deleting ' . $curr_cand->name . ' / ' .
+    $app->logger->info('* Deleting ' . $curr_cand->name . ' / ' .
         $curr_cand->party->name .
         ' / ' . $curr_cand->twitter);
     $curr_cand->delete;
