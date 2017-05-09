@@ -82,4 +82,11 @@ sub _build_logger {
   return Log::Log4perl->get_logger;
 }
 
+has has_changed => (
+  is       => 'rw',
+  isa      => 'Bool',
+  required => 1,
+  default  => 0,
+);
+
 1;

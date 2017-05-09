@@ -136,7 +136,14 @@ foreach my $con ($cons_rs->all) {
     $con->update({
       candidates_updated_time => DateTime->now,
     });
+    $app->has_changed(1);
   }
+}
+
+if ($app->has_changed) {
+  $app->logger->info('Candidate updates received');
+} else {
+  $app->logger->info('No candidate updates received');
 }
 
 __END__
