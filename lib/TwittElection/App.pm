@@ -6,6 +6,7 @@ use 5.010;
 
 use Moose;
 use Log::Log4perl qw[:easy];
+use LWP::Simple;
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
@@ -111,5 +112,11 @@ has has_changed => (
   required => 1,
   default  => 0,
 );
+
+sub get_file {
+  my $self = shift;
+
+  getstore($self->data_url, $self->data_filename);
+}
 
 1;

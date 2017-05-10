@@ -10,7 +10,6 @@ use DateTime;
 use Getopt::Long;
 use Sys::RunAlone;
 use Text::CSV_XS;
-use LWP::Simple;
 
 use lib 'lib';
 use TwittElection::App;
@@ -22,7 +21,8 @@ GetOptions(verbose => \$verbose);
 
 my $app = TwittElection::App->new({ verbose => $verbose });
 
-getstore($app->data_url, $app->data_filename);
+$app->get_file;
+
 open my $csv_fh, '<', $app->data_filename or die $!;
 
 my $csv = Text::CSV_XS->new({ binary => 1, auto_diag => 1 });
