@@ -10,6 +10,7 @@ use DateTime;
 use Getopt::Long;
 use Sys::RunAlone;
 use Text::CSV_XS;
+use Carp::Always;
 
 use lib 'lib';
 use TwittElection::App;

@@ -130,7 +130,7 @@ sub _build_data_fh {
 
   open my $fh, '<', $self->data_filename or die $!;
 
-  $self->csv_parser->getline($fh); # skip header
+  <$fh>; # Skip header line
 
   return $fh;
 }
