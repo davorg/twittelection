@@ -151,7 +151,7 @@ sub get_file {
 sub get_data_line {
   my $self = shift;
 
-  return $self->csv_parser($self->data_fh);
+  return $self->csv_parser->getline($self->data_fh);
 }
 
 1;
