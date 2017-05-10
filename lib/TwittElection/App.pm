@@ -82,6 +82,29 @@ sub _build_logger {
   return Log::Log4perl->get_logger;
 }
 
+has data_filename => (
+  is         => 'ro',
+  isa        => 'Str',
+  lazy_build => 1,
+);
+
+sub _build_data_filename {
+  return 'candidates-parl.2017-06-08.csv';
+}
+
+has data_url => (
+  is         => 'ro',
+  isa        => 'Str', # TODO: Url
+  lazy_build => 1,
+);
+
+sub _build_data_url {
+  my $self = shift;
+
+  return 'https://candidates.democracyclub.org.uk/media/' .
+    $self->data_filename;
+}
+
 has has_changed => (
   is       => 'rw',
   isa      => 'Bool',

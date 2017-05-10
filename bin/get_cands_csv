@@ -22,11 +22,8 @@ GetOptions(verbose => \$verbose);
 
 my $app = TwittElection::App->new({ verbose => $verbose });
 
-my $csv_file = 'candidates-parl.2017-06-08.csv';
-my $csv_url =  "https://candidates.democracyclub.org.uk/media/$csv_file";
-
-getstore($csv_url, $csv_file);
-open my $csv_fh, '<', $csv_file or die $!;
+getstore($app->data_url, $app->data_filename);
+open my $csv_fh, '<', $app->data_filename or die $!;
 
 my $csv = Text::CSV_XS->new({ binary => 1, auto_diag => 1 });
 
