@@ -21,17 +21,9 @@ GetOptions(verbose => \$verbose);
 
 my $app = TwittElection::App->new({ verbose => $verbose });
 
-$app->get_file;
-
-open my $csv_fh, '<', $app->data_filename or die $!;
-
-my $csv = Text::CSV_XS->new({ binary => 1, auto_diag => 1 });
-
 my %constits;
 
-$csv->getline($csv_fh); # skip headers
-
-while (my $row = $csv->getline($csv_fh)) {
+while (my $row = $app->get_data_line) {
   my $constit_id = $row->[9];
   $constit_id =~ s/^WMC://;
   $constits{$constit_id}{name} = $row->[10];

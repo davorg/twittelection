@@ -7,6 +7,7 @@ use 5.010;
 use Moose;
 use Log::Log4perl qw[:easy];
 use LWP::Simple;
+use Text::CSV_XS;
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
@@ -48,6 +49,16 @@ has constituency_rs => (
 
 sub _build_constituency_rs {
   return $_[0]->schema->resultset('Constituency');
+}
+
+has csv_parser => (
+  is         => 'ro',
+  isa        => 'Text::CSV_XS',
+  lazy_build => 1,
+);
+
+sub _build_csv_parser {
+  return Text::CSV_XS->new({ binary => 1, auto_diag => 1 });
 }
 
 has verbose => (
@@ -106,6 +117,24 @@ sub _build_data_url {
     $self->data_filename;
 }
 
+has data_fh => (
+  is         => 'ro',
+  isa        => 'FileHandle',
+  lazy_build => 1,
+);
+
+sub _build_data_fh {
+  my $self = shift;
+
+  $self->get_file;
+
+  open my $fh, '<', $self->data_filename or die $!;
+
+  $self->csv_parser->getline($fh); # skip header
+
+  return $fh;
+}
+
 has has_changed => (
   is       => 'rw',
   isa      => 'Bool',
@@ -117,6 +146,12 @@ sub get_file {
   my $self = shift;
 
   getstore($self->data_url, $self->data_filename);
+}
+
+sub get_data_line {
+  my $self = shift;
+
+  return $self->csv_parser($self->data_fh);
 }
 
 1;
