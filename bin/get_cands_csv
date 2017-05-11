@@ -10,7 +10,7 @@ use DateTime;
 use Getopt::Long;
 use Sys::RunAlone;
 use Text::CSV_XS;
-use Carp::Always;
+#use Carp::Always;
 
 use lib 'lib';
 use TwittElection::App;
@@ -23,6 +23,9 @@ GetOptions(verbose => \$verbose);
 my $app = TwittElection::App->new({ verbose => $verbose });
 
 my %constits;
+
+# Skip header
+$app->get_data_line;
 
 while (my $row = $app->get_data_line) {
   my $constit_id = $row->[9];
