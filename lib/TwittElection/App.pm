@@ -6,6 +6,8 @@ use 5.010;
 
 use Moose;
 use Log::Log4perl qw[:easy];
+use LWP::Simple;
+use Text::CSV_XS;
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
@@ -49,6 +51,16 @@ sub _build_constituency_rs {
   return $_[0]->schema->resultset('Constituency');
 }
 
+has csv_parser => (
+  is         => 'ro',
+  isa        => 'Text::CSV_XS',
+  lazy_build => 1,
+);
+
+sub _build_csv_parser {
+  return Text::CSV_XS->new({ binary => 1, auto_diag => 1 });
+}
+
 has verbose => (
   is         => 'ro',
   isa        => 'Bool',
@@ -80,6 +92,66 @@ sub _build_logger {
   Log::Log4perl->easy_init($log_options);
 
   return Log::Log4perl->get_logger;
+}
+
+has data_filename => (
+  is         => 'ro',
+  isa        => 'Str',
+  lazy_build => 1,
+);
+
+sub _build_data_filename {
+  return 'candidates-parl.2017-06-08.csv';
+}
+
+has data_url => (
+  is         => 'ro',
+  isa        => 'Str', # TODO: Url
+  lazy_build => 1,
+);
+
+sub _build_data_url {
+  my $self = shift;
+
+  return 'https://candidates.democracyclub.org.uk/media/' .
+    $self->data_filename;
+}
+
+has data_fh => (
+  is         => 'ro',
+  isa        => 'FileHandle',
+  lazy_build => 1,
+);
+
+sub _build_data_fh {
+  my $self = shift;
+
+  $self->get_file;
+
+  open my $fh, '<', $self->data_filename or die $!;
+
+  return $fh;
+}
+
+has has_changed => (
+  is       => 'rw',
+  isa      => 'Bool',
+  required => 1,
+  default  => 0,
+);
+
+sub get_file {
+  my $self = shift;
+
+  getstore($self->data_url, $self->data_filename);
+}
+
+sub get_data_line {
+  my $self = shift;
+
+  my $csv_parser = $self->csv_parser;
+
+  return $csv_parser->getline($self->data_fh);
 }
 
 1;

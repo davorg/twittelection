@@ -10,7 +10,7 @@ use DateTime;
 use Getopt::Long;
 use Sys::RunAlone;
 use Text::CSV_XS;
-use LWP::Simple;
+#use Carp::Always;
 
 use lib 'lib';
 use TwittElection::App;
@@ -22,19 +22,12 @@ GetOptions(verbose => \$verbose);
 
 my $app = TwittElection::App->new({ verbose => $verbose });
 
-my $csv_file = 'candidates-parl.2017-06-08.csv';
-my $csv_url =  "https://candidates.democracyclub.org.uk/media/$csv_file";
-
-getstore($csv_url, $csv_file);
-open my $csv_fh, '<', $csv_file or die $!;
-
-my $csv = Text::CSV_XS->new({ binary => 1, auto_diag => 1 });
-
 my %constits;
 
-$csv->getline($csv_fh); # skip headers
+# Skip header
+$app->get_data_line;
 
-while (my $row = $csv->getline($csv_fh)) {
+while (my $row = $app->get_data_line) {
   my $constit_id = $row->[9];
   $constit_id =~ s/^WMC://;
   $constits{$constit_id}{name} = $row->[10];
@@ -136,7 +129,14 @@ foreach my $con ($cons_rs->all) {
     $con->update({
       candidates_updated_time => DateTime->now,
     });
+    $app->has_changed(1);
   }
+}
+
+if ($app->has_changed) {
+  $app->logger->info('Candidate updates received');
+} else {
+  $app->logger->info('No candidate updates received');
 }
 
 __END__

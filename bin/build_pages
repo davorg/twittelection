@@ -9,7 +9,7 @@ git commit -a -m "Regenerated pages"
 git push
 git checkout gh-pages
 git pull
-git merge master
+git merge --no-edit master
 git push
 git checkout master
 
