@@ -89,6 +89,7 @@ foreach my $con ($con_rs->all) {
   }
 
   my $list;
+  my (%not_on_twitter, %on_both, %extra_on_twitter);
   try {
     if ($con->list_id) {
       $app->logger->info('Looking for list ', $con->list_name);
@@ -99,11 +100,7 @@ foreach my $con ($con_rs->all) {
       if ($list) {
         $app->logger->info("Found list: $list->{id}");
         foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
-          $app->logger->info("Removing list member: $mem->{screen_name}");
-          $t->remove_list_members({
-            list_id     => $list->{id},
-            screen_name => $mem->{screen_name},
-          });
+          $extra_on_twitter{$mem->{screen_name}} = 1;
         }
       } else {
         $app->logger->info('Create ' . $con->name);
@@ -143,10 +140,20 @@ foreach my $con ($con_rs->all) {
       next unless $cand->twitter;
       $app->logger->info("$list->{id} -> " . $cand->name . ' / ' . $cand->twitter);
 
+      if (exists $extra_on_twitter{$cand->twitter}) {
+        delete $extra_on_twitter{$cand->twitter};
+        $on_both{$cand->twitter} = 1;
+      } else {
+        $not_on_twitter{$cand->twitter} = 1;
+      }
+    }
+
+    foreach (keys %not_on_twitter) {
       try {
+        $app->logger->info("Adding list member: $_");
         $t->add_list_member({
           list_id     => $list->{id},
-          screen_name => $cand->twitter,
+          screen_name => $_,
         });
       } catch {
         my $err = $_;
@@ -163,6 +170,15 @@ foreach my $con ($con_rs->all) {
                            $err->twitter_error_text);
       }
     }
+
+    foreach (keys %extra_on_twitter) {
+      $app->logger->info("Removing list member: $_");
+      $t->remove_list_members({
+        list_id     => $list->{id},
+        screen_name => $_,
+      });
+    }
+
     $con->update({
       list_rebuilt_time => DateTime->now,
     });
