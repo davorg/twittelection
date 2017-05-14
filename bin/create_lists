@@ -32,7 +32,7 @@ if (@ARGV) {
     mapit_id => \@ARGV,
   });
   $delay = 0;
-  $force = 1;
+  $app->force(1);
 } else {
   $con_rs = $app->constituency_rs;
 }
