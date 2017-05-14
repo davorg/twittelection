@@ -69,7 +69,7 @@ has verbose => (
 );
 
 has force => (
-  is         => 'ro',
+  is         => 'rw',
   isa        => 'Bool',
   required   => 1,
   default    => 0,

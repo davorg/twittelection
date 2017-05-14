@@ -1,0 +1,96 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+use lib 'lib';
+
+use DateTime;
+use Scalar::Util qw[blessed];
+use Getopt::Long;
+use Try::Tiny;
+use Sys::RunAlone;
+
+use TwittElection::App;
+
+
+my $app = TwittElection::App->new;
+
+my $con_rs;
+
+if (@ARGV) {
+  $con_rs = $app->constituency_rs->search({
+    mapit_id => \@ARGV,
+  });
+  $app->force(1);
+} else {
+  $con_rs = $app->constituency_rs;
+}
+
+my $t = $app->twitter;
+
+foreach my $con ($con_rs->all) {
+  unless ($con->candidates->count) {
+    $app->logger->info('No candidates found');
+    next;
+  }
+
+  my $list;
+  my (%not_on_twitter, %on_both, %extra_on_twitter);
+  try {
+    if ($con->list_id) {
+      $list = $t->show_list({
+        owner_screen_name => 'twittelection',
+        slug              => $con->list_name,
+      });
+      if ($list) {
+        foreach my $mem (@{$t->list_members({ list_id => $list->{id} })->{users}}) {
+          $extra_on_twitter{$mem->{screen_name}} = 1;
+        }
+      } else {
+        $app->logger->info('No list found');
+      }
+    } else {
+      $app->logger->info('No list found');
+    }
+
+    foreach my $cand ($con->candidates) {
+      next unless $cand->twitter;
+
+      if (exists $extra_on_twitter{$cand->twitter}) {
+        delete $extra_on_twitter{$cand->twitter};
+        $on_both{$cand->twitter} = 1;
+      } else {
+        $not_on_twitter{$cand->twitter} = 1;
+      }
+    }
+
+    if (keys %not_on_twitter or keys %extra_on_twitter) {
+      $app->logger->info($con->name . ' (' . $con->mapit_id . ')');
+      $app->logger->info('Discrepancy found');
+      $app->logger->info('Missing on Twitter: ',
+                         join(' / ', keys %not_on_twitter));
+      $app->logger->info('Extra on Twitter: ',
+                         join(' / ', keys %extra_on_twitter));
+      exit;
+    }
+  } catch {
+    my $err = $_;
+    $app->logger->logdie($err)
+      unless blessed $err and $err->isa('Net::Twitter::Error');
+    $app->logger->warn($err->code . ': ' . $err->error . ' (' .
+                       $err->message . ')');
+    if ($err->has_twitter_error) {
+      $app->logger->warn($err->twitter_error_code . ': ' .
+                         $err->twitter_error_text);
+    }
+    if ($err->code == 429 or $err->code == 403) {
+      $app->logger->error('Rate limit exceeded');
+      exit;
+    } else {
+      return;
+    }
+  }
+}
+
+__END__
