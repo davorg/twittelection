@@ -10,11 +10,14 @@ use Scalar::Util qw[blessed];
 use Getopt::Long;
 use Try::Tiny;
 use Sys::RunAlone;
+use Getopt::Long;
 
 use TwittElection::App;
 
-
 my $app = TwittElection::App->new;
+
+my $all;
+GetOptions(all => \$all);
 
 my $con_rs;
 
@@ -72,7 +75,7 @@ foreach my $con ($con_rs->all) {
                          join(' / ', keys %not_on_twitter));
       $app->logger->info('Extra on Twitter: ',
                          join(' / ', keys %extra_on_twitter));
-      exit;
+      exit unless $all;
     }
   } catch {
     my $err = $_;
