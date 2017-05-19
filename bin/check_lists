@@ -32,7 +32,7 @@ if (@ARGV) {
 
 my $t = $app->twitter;
 
-foreach my $con ($con_rs->all) {
+foreach my $con ($con_rs->search({ list_checked_time => undef })->all) {
   unless ($con->candidates->count) {
     $app->logger->info('No candidates found');
     next;
@@ -76,6 +76,8 @@ foreach my $con ($con_rs->all) {
       $app->logger->info('Extra on Twitter: ',
                          join(' / ', keys %extra_on_twitter));
       exit unless $all;
+    } else {
+      $con->update({ list_checked_time => \'now()' });
     }
   } catch {
     my $err = $_;
