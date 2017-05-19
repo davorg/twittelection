@@ -14,7 +14,8 @@ create table constituency (
   list_name varchar(25) not null,
   list_id varchar(20),
   candidates_updated_time datetime not null default '2000-01-01 00:00:00',
-  list_rebuilt_time datetime not null default '2000-01-01 00:00:00'
+  list_rebuilt_time datetime not null default '2000-01-01 00:00:00',
+  list_checked_time datetime
 );
 
 create table candidate (
