@@ -21,4 +21,12 @@ sub filter_nontweeting {
     });
 }
 
+sub filter_protected {
+  my $self = shift;
+
+  return $self->search({
+    twitter_problem => 104,
+  });
+}
+
 1;
