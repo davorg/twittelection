@@ -150,12 +150,12 @@ foreach my $con ($con_rs->all) {
       }
     }
 
-    foreach (keys %not_on_twitter) {
+    foreach my $tw (keys %not_on_twitter) {
       try {
-        $app->logger->info("Adding list member: $_");
+        $app->logger->info("Adding list member: $tw");
         $t->add_list_member({
           list_id     => $list->{id},
-          screen_name => $_,
+          screen_name => $tw,
         });
       } catch {
         my $err = $_;
@@ -168,7 +168,7 @@ foreach my $con ($con_rs->all) {
                       $err->twitter_error_code == 106 or
                       $err->twitter_error_code == 108;
 
-        push @{$problems{$err->twitter_error_code}}, $_;
+        push @{$problems{$err->twitter_error_code}}, $tw;
 
         $app->logger->warn($err->twitter_error_code . ': ' .
                            $err->twitter_error_text);
