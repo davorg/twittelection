@@ -68,6 +68,8 @@ my $t = $app->twitter;
 # Also, need to think about Twitter rate limiting.
 # Stop working as soon as we get a rate exceeded response.
 
+my %problems;
+
 foreach my $con ($con_rs->all) {
   $app->logger->info($con->name . ' (' . $con->mapit_id . ')');
 
@@ -148,8 +150,6 @@ foreach my $con ($con_rs->all) {
       }
     }
 
-    my @problems;
-
     foreach (keys %not_on_twitter) {
       try {
         $app->logger->info("Adding list member: $_");
@@ -168,11 +168,7 @@ foreach my $con ($con_rs->all) {
                       $err->twitter_error_code == 106 or
                       $err->twitter_error_code == 108;
 
-        push @problems, {
-          twitter_name => $_,
-          twitter_err  => $err->twitter_error_text,
-          twitter_code => $err->twitter_error_code,
-        };
+        push @{$problems{$err->twitter_error_code}}, $_;
 
         $app->logger->warn($err->twitter_error_code . ': ' .
                            $err->twitter_error_text);
@@ -206,6 +202,16 @@ foreach my $con ($con_rs->all) {
     } else {
       return;
     }
+  }
+}
+
+if (keys %problems) {
+  foreach (keys %problems) {
+    $app->candidate_rs->search({
+      twitter => $problems{$_},
+    })->update({
+      twitter_problem => $_,
+    });
   }
 }
 
