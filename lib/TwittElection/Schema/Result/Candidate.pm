@@ -81,6 +81,12 @@ __PACKAGE__->table("candidate");
   default_value: 0
   is_nullable: 0
 
+=head2 twitter_problem
+
+  data_type: 'smallint'
+  default_value: 0
+  is_nullable: 0
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -98,6 +104,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
   "current_mp",
   { data_type => "integer", default_value => 0, is_nullable => 0 },
+  "twitter_problem",
+  { data_type => "smallint", default_value => 0, is_nullable => 0 },
 );
 
 =head1 PRIMARY KEY
@@ -164,8 +172,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-13 20:27:19
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:DFRvfe275bYavzuI1+GDXg
+# Created by DBIx::Class::Schema::Loader v0.07043 @ 2017-05-20 10:26:00
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uJvpnzO4IW9E1bBHm9OpWA
 
 sub dump {
   my $self = shift;

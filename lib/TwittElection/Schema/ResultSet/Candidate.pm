@@ -6,19 +6,27 @@ use warnings;
 use base 'DBIx::Class::ResultSet';
 
 sub filter_tweeting {
-    my $self = shift;
+  my $self = shift;
 
-    return $self->search({
-        twitter => { '!=' => '' },
-    });
+  return $self->search({
+    twitter => { '!=' => '' },
+  });
 }
 
 sub filter_nontweeting {
-    my $self = shift;
+  my $self = shift;
 
-    return $self->search({
-        twitter => '',
-    });
+  return $self->search({
+    twitter => '',
+  });
+}
+
+sub filter_protected {
+  my $self = shift;
+
+  return $self->search({
+    twitter_problem => 104,
+  });
 }
 
 1;

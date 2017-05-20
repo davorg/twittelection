@@ -51,6 +51,16 @@ sub _build_constituency_rs {
   return $_[0]->schema->resultset('Constituency');
 }
 
+has candidate_rs => (
+  is         => 'ro',
+  isa        => 'DBIx::Class::ResultSet',
+  lazy_build => 1,
+);
+
+sub _build_candidate_rs {
+  return $_[0]->schema->resultset('Candidate');
+}
+
 has csv_parser => (
   is         => 'ro',
   isa        => 'Text::CSV_XS',
