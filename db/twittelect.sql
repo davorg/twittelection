@@ -26,6 +26,7 @@ create table candidate (
   party_id integer not null,
   constituency_id integer,
   current_mp integer not null default 0,
+  twitter_problem smallint not null default 0,
   foreign key (party_id) references party(id),
   foreign key (constituency_id) references constituency(id)
 );
