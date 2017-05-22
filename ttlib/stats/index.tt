@@ -60,7 +60,7 @@
 [%   NEXT UNLESS p.count_protected_candidates -%]
           <h4>[% p.name %]</h4>
           <ul>
-[%   FOR c IN p.protected_candidates.sort('name') -%]
+[%   FOR c IN p.protected_candidates -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %] ([% c.constituency.name %])</a></li>
 [%   END -%]
           </ul>
