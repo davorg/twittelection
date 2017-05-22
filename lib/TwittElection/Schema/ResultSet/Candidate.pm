@@ -29,4 +29,12 @@ sub filter_protected {
   });
 }
 
+sub filter_blocked {
+  my $self = shift;
+
+  return $self->search({
+    twitter_problem => 106,
+  });
+}
+
 1;
