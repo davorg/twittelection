@@ -57,9 +57,9 @@
 
           <h3>Protected accounts</h3>
 [% FOR p IN party -%]
-[%   NEXT UNLESS p.candidates.protected.count -%]
+[%   NEXT UNLESS p.candidates.filter_protected.count -%]
           <ul>
-[%   FOR c IN p.candidates.protected -%]
+[%   FOR c IN p.candidates.filter_protected -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %] ([% c.constituency.name %])</a></li>
 [%   END -%]
           </ul>
@@ -67,9 +67,9 @@
 
           <h3>Accounts that block @twittelection</h3>
 [% FOR p IN party -%]
-[%   NEXT UNLESS p.candidates.blocked.count -%]
+[%   NEXT UNLESS p.candidates.filter_blocked.count -%]
           <ul>
-[%   FOR c IN p.candidates.blocked -%]
+[%   FOR c IN p.candidates.filter_blocked -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %] ([% c.constituency.name %])</a></li>
 [%   END -%]
           </ul>
