@@ -39,7 +39,7 @@
 [% NEXT UNLESS p.count_candidates -%]
                 <tr>
                   <td>[% p.name %]</td>
-                  <td>[% p.candidate_count %]</td>
+                  <td>[% p.count_candidates %]</td>
                   <td>[% p.count_tweeting_candidates %]</td>
                   <td>[% p.count_tweeting_candidates * 100 / p.count_candidates | format('%.1f') %]</td>
                   <td>[% p.count_nontweeting_candidates %]</td>
