@@ -56,11 +56,11 @@
             by party.</p>
 
           <h3>Protected accounts</h3>
-[% FOR p IN party -%]
+[% FOR p IN party.nsort('count_protected_candidates').reverse -%]
 [%   NEXT UNLESS p.count_protected_candidates -%]
           <h4>[% p.name %]</h4>
           <ul>
-[%   FOR c IN p.protected_candidates -%]
+[%   FOR c IN p.protected_candidates.sort('name') -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %] ([% c.constituency.name %])</a></li>
 [%   END -%]
           </ul>
