@@ -127,5 +127,59 @@ sub slugname {
   return $slug;
 }
 
+sub count_blocking_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_blocked->count;
+}
+
+sub count_protected_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_protected->count;
+}
+
+sub blocking_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_blocked;
+}
+
+sub protected_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_protected;
+}
+
+sub count_tweeting_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_tweeting->count;
+}
+
+sub count_nontweeting_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_nontweeting->count;
+}
+
+sub tweeting_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_tweeting;
+}
+
+sub nontweeting_candidates {
+  my $self = shift;
+
+  return $self->candidates->filter_nontweeting;
+}
+
+sub count_candidates {
+  my $self = shift;
+
+  return $self->candidates->count;
+}
+
 __PACKAGE__->meta->make_immutable;
 1;
