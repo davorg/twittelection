@@ -36,14 +36,14 @@
               </thead>
               <tbody>
 [% FOR p IN party -%]
-[% NEXT UNLESS p.count -%]
+[% NEXT UNLESS p.count_candidates -%]
                 <tr>
                   <td>[% p.name %]</td>
-                  <td>[% p.count %]</td>
-                  <td>[% p.twit %]</td>
-                  <td>[% p.twit * 100 / p.count | format('%.1f') %]</td>
-                  <td>[% p.no_twit %]</td>
-                  <td>[% p.no_twit * 100 / p.count | format('%.1f') %]</td>
+                  <td>[% p.candidate_count %]</td>
+                  <td>[% p.count_tweeting_candidates %]</td>
+                  <td>[% p.count_tweeting_candidates * 100 / p.count_candidates | format('%.1f') %]</td>
+                  <td>[% p.count_nontweeting_candidates %]</td>
+                  <td>[% p.count_nontweeting_candidates * 100 / p.count_candidates | format('%.1f') %]</td>
                 </tr>
 [% END -%]
               </tbody>
@@ -57,9 +57,9 @@
 
           <h3>Protected accounts</h3>
 [% FOR p IN party -%]
-[%   NEXT UNLESS p.candidates.filter_protected.count -%]
+[%   NEXT UNLESS p.count_protected_candidates -%]
           <ul>
-[%   FOR c IN p.candidates.filter_protected -%]
+[%   FOR c IN p.protected_candidates -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %] ([% c.constituency.name %])</a></li>
 [%   END -%]
           </ul>
@@ -67,9 +67,9 @@
 
           <h3>Accounts that block @twittelection</h3>
 [% FOR p IN party -%]
-[%   NEXT UNLESS p.candidates.filter_blocked.count -%]
+[%   NEXT UNLESS p.count_blocked_candidates -%]
           <ul>
-[%   FOR c IN p.candidates.filter_blocked -%]
+[%   FOR c IN p.blocked_candidates -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %] ([% c.constituency.name %])</a></li>
 [%   END -%]
           </ul>

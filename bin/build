@@ -43,17 +43,9 @@ $tt->process('constituencies.tt', { constits => [ $sch->resultset('Constituency'
 
 my $cand_rs  = $sch->resultset('Candidate');
 my $party_rs = $sch->resultset('Party');
-my @party;
-foreach ($party_rs->all) {
-  push @party, {
-    name    => $_->name,
-    count   => $_->candidates->count,
-    twit    => $_->candidates->filter_tweeting->count,
-    no_twit => $_->candidates->filter_nontweeting->count,
-  };
-}
+my @party    = $party_rs-> all;
 
-@party = sort { $b->{count} <=> $a->{count} } @party;
+@party = sort { $b->count_candidates <=> $a->count_candidates } @party;
 
 $tt->process('stats/index.tt', {
   num_cands         => $cand_rs->count,
