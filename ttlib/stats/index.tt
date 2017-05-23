@@ -68,10 +68,10 @@
 
           <h3>Accounts that block @twittelection</h3>
 [% FOR p IN party -%]
-[%   NEXT UNLESS p.count_blocked_candidates -%]
+[%   NEXT UNLESS p.count_blocking_candidates -%]
           <h4>[% p.name %]</h4>
           <ul>
-[%   FOR c IN p.blocked_candidates.all -%]
+[%   FOR c IN p.blocking_candidates -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %] ([% c.constituency.name %])</a></li>
 [%   END -%]
           </ul>
