@@ -16,6 +16,11 @@
               over to
               <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>
               and give them the information.</p>
+
+            <p>See also <a href="#protected">candidates with protected
+              Twitter accounts</a> and <a href="#blocking">candidates who
+              block @twittelection on Twitter</a>.</p>
+
             <ul>
               <li>We have details of [% num_cands %] candidates</li>
 [% IF num_cands -%]
@@ -55,7 +60,7 @@
             have blocked @twittelection. Here is a list of these candidates
             by party.</p>
 
-          <h3>Protected accounts</h3>
+          <h3 id="protected">Protected accounts</h3>
 [% FOR p IN party.nsort('count_protected_candidates').reverse -%]
 [%   NEXT UNLESS p.count_protected_candidates -%]
           <h4>[% p.name %]</h4>
@@ -66,7 +71,7 @@
           </ul>
 [% END -%]
 
-          <h3>Accounts that block @twittelection</h3>
+          <h3 id="blocking">Accounts that block @twittelection</h3>
 [% FOR p IN party -%]
 [%   NEXT UNLESS p.count_blocking_candidates -%]
           <h4>[% p.name %]</h4>
