@@ -67,7 +67,7 @@ my @redirections = map {
 for (@redirections) {
   $tt->process('redirect.tt', {
     redirect_to => $_->[1],
-  }, $_->[0], { binmode => 'utfb' })
+  }, $_->[0], { binmode => 'utf8' })
     or die $tt->error;
 }
 
