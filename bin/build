@@ -58,3 +58,77 @@ $tt->process('stats/index.tt', {
 for (qw[index about/index]) {
   $tt->process("$_.tt", { }, "$_.html", { binmode => ':utf8' });
 }
+
+my @redirections = map {
+  chomp;
+  [ split /,/ ];
+} <DATA>;
+
+for (@redirections) {
+  $tt->process('redirect.tt', {
+    redirect_to => $_->[1],
+  }, $_->[0], { binmode => 'utfb' })
+    or die $tt->error;
+}
+
+__DATA__
+c/s-cambridgeshire.html,/c/south-cambridgeshire.html
+c/dudley-n.html,/c/dudley-north.html
+c/kingston-upon-hull-n.html,/c/kingston-upon-hull-north.html
+c/norwich-s.html,/c/norwich-south.html
+c/newport-e.html,/c/newport-east.html
+c/enfield-n.html,/c/enfield-north.html
+c/n-e-bedfordshire.html,/c/north-east-bedfordshire.html
+c/edinburgh-e.html,/c/edinburgh-east.html
+c/islington-s-and-finsbury.html,/c/islington-soutn-and-finsbury.html
+c/coventry-s.html,/c/coventry-south.html
+c/n-ayrshire-and-arran.html,/c/north-ayrshire-and-arran.html
+c/central-suffolk-and-n-ips.html,/c/central-suffolk-and-north.html
+c/w-dunbartonshire.html,/c/west-dunbartonshire.html
+c/hackney-n-and-stoke-newin.html,/c/hackney-north-and-stoke-nn.html
+c/edinburgh-s-w.html,/c/edinburgh-south-west.html
+c/portsmouth-n.html,/c/portsmouth-north.html
+c/hereford-and-s-herefordsh.html,/c/hereford-and-south-herefo.html
+c/new-forest-e.html,/c/new-forest-east.html
+c/romsey-and-southampton-n.html,/c/romsey-and-southampton-no.html
+c/e-londonderry.html,/c/east-londonderry.html
+c/oldham-e-and-saddleworth.html,/c/oldham-east-and-saddleworth.html
+c/paisley-and-renfrew-n.html,/c/paisley-and-renfrew-north.html
+c/ilford-n.html,/c/ilford-north.html
+c/e-ham.html,/c/east-ham.html
+c/e-dunbartonshire.html,/c/east-dunbartonshire.html
+c/swansea-w.html,/c/swansea-west.html
+c/inverness-nairn-badenoch.html,/c/inverness-nairn-badenoc.html
+c/newcastle-upon-tyne-n.html,/c/newcastle-upon-tyne-north.html
+c/nottingham-n.html,/c/nottingham-north.html
+c/sheffield-s-e.html,/c/sheffield-south-east.html
+c/northampton-n.html,/c/northampton-north.html
+c/s-staffordshire.html,/c/south-staffordshire.html
+c/n-e-hampshire.html,/c/north-east-hampshire.html
+c/w-ham.html,/c/estw-ham.html
+c/s-w-norfolk.html,/c/south-west-norfolk.html
+c/e-surrey.html,/c/east-surrey.html
+c/glasgow-n-w.html,/c/glasgow-north-west.html
+c/worthing-w.html,/c/worthing-west.html
+c/bristol-w.html,/c/bristol-west.html
+c/wythenshawe-and-sale-e.html,/c/wythenshawe-and-sale-east.html
+c/n-durham.html,/c/north-durham.html
+c/n-thanet.html,/c/north-thanet.html
+c/milton-keynes-n.html,/c/milton-keynes-north.html
+c/carmarthen-w-and-s-pembro.html,/c/carmarthen-west-and-south.html
+c/st-helens-n.html,/c/st-helens-north.html
+c/s-northamptonshire.html,/c/south-northamptonshire.html
+c/brent-n.html,/c/brent-north.html
+c/e-worthing-and-shoreham.html,/c/east-worthing-and-shoreham.html
+c/e-yorkshire.html,/c/east-yorkshire.html
+c/worsley-and-eccles-s.html,/c/worsley-and-eccles-south.html
+c/glasgow-s.html,/c/glasgow-south.html
+c/w-dorset.html,/c/west-dorset.html
+c/n-e-somerset.html,/c/north-east-somerset.html
+c/e-renfrewshire.html,/c/east-renfrewshire.html
+c/s-suffolk.html,/c/south-suffolk.html
+c/bridgwater-and-w-somerset.html,/c/bridgwater-and-west-somerset.html
+c/e-hampshire.html,/c/east-hampshire.html
+c/southend-w.html,/c/southend-west.html
+c/liverpool-w-derby.html,/c/liverpool-west-derby.html
+c/leeds-n-e.html,/c/leeds-north-east.html
