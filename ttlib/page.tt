@@ -22,6 +22,21 @@ body {
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/main.css">
 
+    <script type="application/ld+json>
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "TwittElection",
+  "url": "http://twittelection.co.uk",
+  "logo": "http://twittelection.co.uk/234px-Ballot_Box_Silhouette.svg.png",
+  "sameAs": [
+    "https://www.facebook.com/twittelection",
+    "https://twitter.com/twittelection"
+  ]
+}
+    </script>
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
   </head>
   <body>
