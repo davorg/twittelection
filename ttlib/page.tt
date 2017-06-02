@@ -22,7 +22,7 @@ body {
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/main.css">
 
-    <script type="application/ld+json>
+    <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "Organization",
