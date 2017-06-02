@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+use TwittElection::Schema;
+
+my $sch = TwittElection::Schema->get_schema;
+
+foreach my $c ($sch->resultset('Constituency')->all) {
+  my $tw  = $c->candidates->filter_tweeting->count;
+  my $ntw = $c->candidates->filter_nontweeting->count;
+  my $pc  = $ntw ? $tw * 100/($tw + $ntw) : 100;
+  say join "\t", $c->name, $tw, $ntw, $pc;
+}
