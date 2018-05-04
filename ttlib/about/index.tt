@@ -29,19 +29,19 @@
                 <div class="tab-pane fade" id="tech">
                   <p>This site is built using the <a href="https://dev.twitter.com/rest/public">Twitter API</a>.</p>
                   <p>The site was built using
-                    <a href="http://getbootstrap.com">Bootstrap</a>,
-                    <a href="http://jquery.com/">jQuery</a>,
-                    <a href="http://modernizr.com/">Modernizr</a> and
-                    <a href="http://www.initializr.com/">Initializr</a>.</p>
+                    <a href="https://getbootstrap.com">Bootstrap</a>,
+                    <a href="https://jquery.com/">jQuery</a>,
+                    <a href="https://modernizr.com/">Modernizr</a> and
+                    <a href="https://www.initializr.com/">Initializr</a>.</p>
                   <p>The site is hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
-                  <p>The code is written in <a href="http://perl.org/">Perl</a> (and is
+                  <p>The code is written in <a href="https://perl.org/">Perl</a> (and is
                     available <a href="https://github.com/davorg/twittelection">on GitHub</a>).</p>
                   <p>The data comes from <a href="https://yournextmp.com/">YourNextMP</a>. If you have
                     any information about candidates for the upcoming election, then please consider
                     sharing it there.</p>
                 </div>
                 <div class="tab-pane fade" id="author">
-                  <p><a href="http://dave.org.uk/">Dave Cross</a> was convinced that the 2010 general
+                  <p><a href="https://dave.org.uk/">Dave Cross</a> was convinced that the 2010 general
                     election would be dominated by Twitter. He was wrong, but now thinks that if he
                     makes the same prediction for every general election he'll get it right eventually.</p>
                   <p>He has voted in every general election since 1983 and has even been known to be
