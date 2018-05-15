@@ -15,7 +15,7 @@ my $sch = TwittElection::Schema->get_schema;
 my $tt = Template->new({
   ABSOLUTE     => 1,
   INCLUDE_PATH => "$Bin/../ttlib",
-  OUTPUT_PATH  => "$Bin/../",
+  OUTPUT_PATH  => "$Bin/../docs",
   ENCODING     => 'utf8',
 });
 
