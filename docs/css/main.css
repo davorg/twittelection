@@ -29,8 +29,8 @@ div#footer {
 }
 
 hr {
-  width: 100%;
-  background-color: black;
+  width: 80%;
+  background-color: #666;
   height: 1px;
   border-color : transparent;
 }
