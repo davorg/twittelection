@@ -224,8 +224,9 @@ sub abbrev_name {
 sub demclub_url {
   my $self = shift;
 
-  return 'https://candidates.democracyclub.org.uk/areas/WMC--gss:' .
-    $self->demclub_id;
+  # TODO: Get the date from the app class
+  return 'https://candidates.democracyclub.org.uk/elections/parl.' .
+    $self->list_name . '.2019-12-12';
 }
 
 sub tweeting_candidates {
