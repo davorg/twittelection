@@ -18,6 +18,20 @@ my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs = $sch->resultset('Constituency');
 
+my $m = 1;
 foreach (@$data) {
-  $con_rs->create({ name => $_->{name}, list_name => $_->{name} });
+  $con_rs->create({
+    name => $_->{name},
+    list_name => list_name($_->{name}),
+    mapit_id => $m++,
+  });
+}
+
+sub list_name {
+  my ($name) = @_;
+
+  $name = lc $name;
+  $name =~ s/\s+/_/g;
+
+  return $name;
 }

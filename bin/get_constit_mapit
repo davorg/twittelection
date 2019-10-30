@@ -19,7 +19,7 @@ my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs = $sch->resultset('Constituency');
 
-for (keys $data) {
+for (keys %$data) {
   say "$_ -> $data->{$_}{name}";
   my $con = $con_rs->find({ name => $data->{$_}{name} });
 
