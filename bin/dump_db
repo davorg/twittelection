@@ -12,4 +12,4 @@ mysqldump --skip-extended-insert \
   -P"${TE_PORT:-3306}" \
   -u"$TE_USER" \
   -p"$TE_PASS" \
-  "$TE_DB" > data/succession_dump.sql
+  "$TE_DB" > data/twittelection_dump.sql
