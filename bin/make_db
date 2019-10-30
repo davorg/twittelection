@@ -6,11 +6,16 @@ dir=$(dirname "$0")
 
 check_vars
 
-# Drop existing database
-echo "DROP DATABASE IF EXISTS $TE_DB" | mysql -u$TE_USER -p$TE_PASS
+root_user=$1
 
-# Create databsae
-echo "CREATE DATABASE $TE_DB" | mysql -u$TE_USER -p$TE_PASS
+# Drop existing database
+echo "DROP DATABASE IF EXISTS $TE_DB" | mysql -u$root_user -p
+
+# Create database
+echo "CREATE DATABASE $TE_DB" | mysql -u$root_user -p$root_pass
+
+# Create user and permissions
+echo "GRANT ALL ON $TE_DB.* TO '$TE_USER'@'localhost' IDENTIFIED BY '$TE_PASS'" | mysql -u$root_user -p$root_pass
 
 # Load DDL
 mysql -u$TE_USER -p$TE_PASS -D$TE_DB < db/twittelect.sql
