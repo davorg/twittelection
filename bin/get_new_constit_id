@@ -9,7 +9,7 @@ use LWP::UserAgent;
 use lib 'lib';
 use TwittElection::Schema;
 
-@ARGV = 'areas.json';
+@ARGV = 'areas.json' if ! @ARGV;
 my $json = do { local $/; <> };
 
 my $cons = decode_json($json);
