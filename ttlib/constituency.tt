@@ -11,18 +11,23 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
           <div class="col-md-4">
+[% IF c.tweeting_candidates.count -%]
             <b>Tweeting Candidates</b>
             <ul>
-[% FOREACH cand IN c.tweeting_candidates -%]
+[%   FOREACH cand IN c.tweeting_candidates -%]
               <li>[% cand.name %] ([% cand.party.name %])<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% IF cand.twitter_problem == 104 %] <b><i>(protected account)</i></b>[% END %][% IF cand.twitter_problem == 106 %] <b><i>(blocks @twittelection)</i></b>[% END %]</li>
-[% END -%]
+[%   END -%]
             </ul>
+[% END -%]
+[% IF c.non_tweeting_candidates -%]
             <b>Non-Tweeting Candidates</b>
             <ul>
-[% FOREACH cand IN c.non_tweeting_candidates -%]
+[%   FOREACH cand IN c.non_tweeting_candidates -%]
               <li>[% cand.name %] ([% cand.party.name %])</li>
+[%   END -%]
+            </ul>
 [% END -%]
-            </ul>           
+            <b>Corrections</b>
             <p><small>If you wish to make any corrections to this list, please see the
               <a href="[% c.demclub_url %]">[% c.name %] page</a> on <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>.</small></p>
             <!-- Go to www.addthis.com/dashboard to customize your tools -->
