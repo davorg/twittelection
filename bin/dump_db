@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dir=$(dirname "$0")
+# shellcheck source=bin/func_defs
+. "$dir/func_defs"
+
+check_vars
+
+echo Dumping database
+mysqldump --skip-extended-insert \
+  -h"$TE_HOST" \
+  -P"${TE_PORT:-3306}" \
+  -u"$TE_USER" \
+  -p"$TE_PASS" \
+  "$TE_DB" > data/succession_dump.sql

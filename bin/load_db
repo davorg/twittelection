@@ -1,0 +1,16 @@
+#!/bin/bash
+
+dir=$(dirname "$0")
+# shellcheck source=bin/func_defs
+. "$dir/func_defs"
+
+check_vars
+
+echo Loading database
+mysql \
+  -h"$TE_HOST" \
+  -P"${TE_PORT:-3306}" \
+  -u"$TE_USER" \
+  -p"$TE_PASS" \
+  "$TE_DB" < data/twittelection_dump.sql
+
