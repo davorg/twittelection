@@ -1,0 +1,18 @@
+#!/bin/bash
+
+check_vars() {
+  declare -a vars=(TE_HOST TE_DB TE_USER TE_PASS)
+
+  for var_name in "${vars[@]}"
+  do
+    if [ -z "$(eval "echo \$$var_name")" ]; then
+      errors+=($var_name)
+    fi
+  done
+
+  if [ ${#errors[@]} -ne 0 ]; then
+      echo "Missing environment variable(s): ${errors[*]}"
+      exit 1
+  fi
+}
+

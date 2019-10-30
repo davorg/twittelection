@@ -1,0 +1,14 @@
+#!/bin/bash
+
+dir=$(dirname "$0")
+# shellcheck source=bin/func_defs
+. "$dir/func_defs"
+
+check_vars
+
+if [ $# -eq 0 ]
+then
+  mysql -h"$TE_HOST" -u"$TE_USER" -p"$TE_PASS" "$TE_DB"
+else
+  echo "$*" | mysql -t -h"$TE_HOST" -u"$TE_USER" -p"$TE_PASS" "$TE_DB"
+fi
