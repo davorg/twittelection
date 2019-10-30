@@ -15,12 +15,12 @@ use Text::CSV_XS;
 use lib 'lib';
 use TwittElection::App;
 
-my $election_id   = 'parl.2017-06-08';
-
 my $verbose;
 GetOptions(verbose => \$verbose);
 
 my $app = TwittElection::App->new({ verbose => $verbose });
+
+my $election_id   = 'parl.' . $app->election_date->ymd;
 
 my %constits;
 
@@ -60,6 +60,11 @@ foreach my $con ($cons_rs->all) {
   my $cands = $constits{$con->demclub_id}{cands};
 
   my %curr_cands = map { $_->yournextmp_id => $_ } $con->candidates;
+
+  unless ($cands or keys %curr_cands) {
+    warn "No candidates in file or database. Skipping...\n";
+    next;
+  }
 
   my %cands;
   for (@$cands) {

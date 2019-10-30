@@ -12,10 +12,12 @@ use Log::Log4perl qw[:easy];
 use Sys::RunAlone;
 
 use lib 'lib';
-use TwittElection::Schema;
+use TwittElection::App;
 
-my $election_year = 2017;
-my $election_id   = 'parl.2017-06-08';
+my $app = TwittElection::App->new;
+
+my $election_year = $app->election_date->year;
+my $election_id   = 'parl.' . $app->election_date->ymd;
 
 my $verbose;
 GetOptions(verbose => \$verbose);
@@ -31,7 +33,7 @@ Log::Log4perl->easy_init($log_options);
 
 my $logger = Log::Log4perl->get_logger;
 
-my $sch = TwittElection::Schema->get_schema;
+my $sch = $app->schema;
 
 my $cons_rs;
 if (@ARGV) {

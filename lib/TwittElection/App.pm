@@ -8,9 +8,16 @@ use Moose;
 use Log::Log4perl qw[:easy];
 use LWP::Simple;
 use Text::CSV_XS;
+use DateTime;
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
+
+has election_date => (
+  is => 'ro',
+  isa => 'DateTime',
+  default => sub { DateTime->new( year => 2019, month => 12, day => 12 ) },
+);
 
 has twitter => (
   is         => 'ro',
@@ -111,7 +118,8 @@ has data_filename => (
 );
 
 sub _build_data_filename {
-  return 'candidates-parl.2017-06-08.csv';
+  my $self = shift;
+  return 'candidates-parl.' . $self->election_date->ymd . '.csv';
 }
 
 has data_url => (

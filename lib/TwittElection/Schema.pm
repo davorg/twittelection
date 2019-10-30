@@ -28,7 +28,7 @@ sub get_schema {
   }
 
   if (@missing) {
-    die "You need to define this environment variables: @missing\n";
+    die "You need to define these environment variables: @missing\n";
   }
 
   return ($class->connect(

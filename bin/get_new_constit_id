@@ -27,6 +27,6 @@ foreach my $key (keys %$cons) {
     next;
   }
 
-  $con->update({ demclub_id => "$c->{type}--gss:$c->{codes}{gss}"});
+  $con->update({ demclub_id => "$c->{codes}{gss}"});
 }
 
