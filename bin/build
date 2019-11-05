@@ -68,17 +68,17 @@ for (qw[index about/index]) {
   $tt->process("$_.tt", { url => "$url/$path" }, "$_.html", { binmode => ':utf8' });
 }
 
-my @redirections = map {
-  chomp;
-  [ split /,/ ];
-} <DATA>;
-
-for (@redirections) {
-  $tt->process('redirect.tt', {
-    redirect_to => $_->[1],
-  }, $_->[0], { binmode => 'utf8' })
-    or die $tt->error;
-}
+#my @redirections = map {
+#  chomp;
+#  [ split /,/ ];
+#} <DATA>;
+#
+#for (@redirections) {
+#  $tt->process('redirect.tt', {
+#    redirect_to => $_->[1],
+#  }, $_->[0], { binmode => 'utf8' })
+#    or die $tt->error;
+#}
 
 __DATA__
 c/s-cambridgeshire.html,/c/south-cambridgeshire.html
