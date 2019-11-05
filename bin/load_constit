@@ -6,6 +6,8 @@ use 5.010;
 use lib 'lib';
 
 use JSON;
+use Text::Unidecode;
+
 use TwittElection::Schema;
 
 open my $js_fh, '<', 'db/constit.json' or die $!;
@@ -30,7 +32,7 @@ foreach (@$data) {
 sub list_name {
   my ($name) = @_;
 
-  $name = lc $name;
+  $name = lc unidecode($name);
   $name =~ s/\s+/_/g;
 
   return $name;
