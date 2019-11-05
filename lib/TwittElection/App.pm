@@ -9,9 +9,16 @@ use Log::Log4perl qw[:easy];
 use LWP::Simple;
 use Text::CSV_XS;
 use DateTime;
+use URI;
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
+
+has base_url => (
+  is => 'ro',
+  isa => 'URI',
+  default => sub { URI->new('https//twittelection.co.uk') },
+);
 
 has election_date => (
   is => 'ro',

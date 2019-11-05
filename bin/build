@@ -8,9 +8,11 @@ use lib 'lib';
 use FindBin '$Bin';
 use Template;
 
-use TwittElection::Schema;
+use TwittElection::App;
 
-my $sch = TwittElection::Schema->get_schema;
+my $app = TwittElection::App->new;
+my $sch = $app->schema;
+my $url = $app->base_url;
 
 my $tt = Template->new({
   ABSOLUTE     => 1,
@@ -21,12 +23,16 @@ my $tt = Template->new({
 
 foreach my $c ($sch->resultset('Constituency')->all) {
 #  next unless $c->candidates->count;
-  $tt->process('constituency.tt', { c => $c }, 'c/' . $c->slug_name . '.html',
+  my $path = 'c/' . $c->slug_name . '.html';
+  $tt->process('constituency.tt', { c => $c, url => "$url/$path" }, $path,
                {binmode => ':utf8'})
     or die $tt->error;
 }
 
-$tt->process('constituencies.tt', { constits => [ $sch->resultset('Constituency')->all ] },
+$tt->process('constituencies.tt', {
+  constits => [ $sch->resultset('Constituency')->all ],
+  url      => "$url/c/",
+},
              'c/index.html', {binmode => ':utf8'})
     or die $tt->error;
 
@@ -52,11 +58,14 @@ $tt->process('stats/index.tt', {
   num_twit_cands    => $cand_rs->filter_tweeting->count,
   num_no_twit_cands => $cand_rs->filter_nontweeting->count,
   party             => \@party,
+  url               => "$url/stats/",
 }, 'stats/index.html', { binmode => ':utf8' })
   or die $tt->error;;
 
 for (qw[index about/index]) {
-  $tt->process("$_.tt", { }, "$_.html", { binmode => ':utf8' });
+  my ($path, $page) = split m|/|;
+  $path = '' if $path eq 'index';
+  $tt->process("$_.tt", { url => "$url/$path" }, "$_.html", { binmode => ':utf8' });
 }
 
 my @redirections = map {
