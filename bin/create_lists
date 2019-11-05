@@ -12,6 +12,7 @@ use Try::Tiny;
 use Sys::RunAlone;
 
 use TwittElection::App;
+use TwittElection::Constants;
 
 my $verbose;
 my $force = 0;
@@ -172,9 +173,9 @@ foreach my $con ($con_rs->all) {
 
         # 104 and 106 means the user has blocked you
         # 108 means you're trying to add a non-existent user to a list
-        die $_ unless $err->twitter_error_code == 104 or
-                      $err->twitter_error_code == 106 or
-                      $err->twitter_error_code == 108;
+        die $_ unless $err->twitter_error_code == TWITTER_ACCT_PROTECTED or
+                      $err->twitter_error_code == TWITTER_ACCT_BLOCKED or
+                      $err->twitter_error_code == TWITTER_LIST_MISSING;
 
         push @{$problems{$err->twitter_error_code}}, $tw;
 
