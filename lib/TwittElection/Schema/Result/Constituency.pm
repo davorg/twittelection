@@ -240,5 +240,12 @@ sub non_tweeting_candidates {
 
   return $self->candidates->filter_nontweeting;
 }
+
+sub url {
+  my $self = shift;
+
+  return 'https://twittelection.co.uk/c/' . $self->slug_name . '.html';
+}
+
 __PACKAGE__->meta->make_immutable;
 1;

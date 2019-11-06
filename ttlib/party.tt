@@ -16,7 +16,7 @@
             <ul>
 [% FOREACH cand IN p.candidates.sort('name') -%]
 <!-- [% Dumper.dump(cand) %] -->
-              <li>[% cand.name %] ([% cand.constituency.name %])[% IF cand.twitter %]<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% END %]</li>
+              <li>[% cand.name %] (<a href="[% cand.constituency.url %]">[% cand.constituency.name %]</a>)[% IF cand.twitter %]<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% END %]</li>
 [% END -%]
             </ul>
           </div>
