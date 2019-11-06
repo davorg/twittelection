@@ -131,15 +131,15 @@ sub _build_data_filename {
 
 has data_url => (
   is         => 'ro',
-  isa        => 'Str', # TODO: Url
+  isa        => 'URI',
   lazy_build => 1,
 );
 
 sub _build_data_url {
   my $self = shift;
 
-  return 'https://candidates.democracyclub.org.uk/media/' .
-    $self->data_filename;
+  return URI->new('https://candidates.democracyclub.org.uk/media/' .
+                  $self->data_filename);
 }
 
 has data_fh => (
