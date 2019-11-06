@@ -53,7 +53,7 @@
 [% END -%]
               </tbody>
             </table>
-          <h2>Exceptions by party:<h2>
+          <h2 id="exceptions">Exceptions by party:<h2>
           <p>There are several candidates who are on Twitter but aren't using
             it as a campaigning tool. Some have protected accounts (which
             means that only certain people can see their tweets) and some
