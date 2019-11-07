@@ -168,7 +168,7 @@ has has_changed => (
 sub get_file {
   my $self = shift;
 
-  getstore($self->data_url, $self->data_filename);
+  warn mirror($self->data_url, $self->data_filename);
 }
 
 sub get_data_line {
