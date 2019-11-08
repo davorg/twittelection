@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <img style="float:right; padding: 0 0 5px 5px" src="/234px-Ballot_Box_Silhouette.svg.png">
+            <img style="float:right; padding: 0 0 5px 5px" src="/234px-Ballot_Box_Silhouette.svg.png" alt="">
             <h1>12 December 2019</h1>
             <div id="counter"></div>
             <p>The UK will be having our third general election in five years on Thursday, 12th December 2019.</p>
