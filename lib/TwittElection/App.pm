@@ -86,17 +86,24 @@ sub _build_csv_parser {
 }
 
 has verbose => (
-  is         => 'ro',
-  isa        => 'Bool',
-  required   => 1,
-  default    => 0,
+  is       => 'ro',
+  isa      => 'Bool',
+  required => 1,
+  default  => 0,
 );
 
 has force => (
-  is         => 'rw',
-  isa        => 'Bool',
-  required   => 1,
-  default    => 0,
+  is       => 'rw',
+  isa      => 'Bool',
+  required => 1,
+  default  => 0,
+);
+
+has delay => (
+  is       => 'rw',
+  isa      => 'Bool',
+  required => 1,
+  default  => 0,
 );
 
 has logger => (
