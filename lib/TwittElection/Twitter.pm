@@ -40,6 +40,9 @@ sub save_tokens {
 }
 
 sub restore_tokens {
+  if (! -f '.te_tokens') {
+    return (undef, undef);
+  }  
   open my $tw_fh, '<', '.te_tokens' or die $!;
 
   my $tokens = <$tw_fh>;
