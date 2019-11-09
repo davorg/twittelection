@@ -1,7 +1,7 @@
 #!/bin/bash
 
 check_vars() {
-  declare -a vars=(TE_HOST TE_DB TE_USER TE_PASS)
+  declare -a vars=(TE_DB_HOST TE_DB_NAME TE_DB_USER TE_DB_PASS)
 
   for var_name in "${vars[@]}"
   do

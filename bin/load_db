@@ -8,9 +8,9 @@ check_vars
 
 echo Loading database
 mysql \
-  -h"$TE_HOST" \
+  -h"$TE_DB_HOST" \
   -P"${TE_PORT:-3306}" \
-  -u"$TE_USER" \
-  -p"$TE_PASS" \
-  "$TE_DB" < data/twittelection_dump.sql
+  -u"$TE_DB_USER" \
+  -p"$TE_DB_PASS" \
+  "$TE_DB_NAME" < data/twittelection_dump.sql
 

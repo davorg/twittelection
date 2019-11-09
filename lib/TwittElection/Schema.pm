@@ -20,7 +20,7 @@ __PACKAGE__->load_namespaces;
 sub get_schema {
   my $class = shift;
 
-  my @vars = qw(TE_HOST TE_DB TE_USER TE_PASS);
+  my @vars = qw(TE_DB_HOST TE_DB_NAME TE_DB_USER TE_DB_PASS);
   my @missing;
 
   foreach (@vars) {
@@ -32,8 +32,8 @@ sub get_schema {
   }
 
   return ($class->connect(
-    "dbi:mysql:database=$ENV{TE_DB}:host=$ENV{TE_HOST}",
-    $ENV{TE_USER}, $ENV{TE_PASS},
+    "dbi:mysql:database=$ENV{TE_DB_NAME}:host=$ENV{TE_DB_HOST}",
+    $ENV{TE_DB_USER}, $ENV{TE_DB_PASS},
     { mysql_enable_utf8 => 1 },  
   ) or die);
 }

@@ -9,20 +9,20 @@ check_vars
 root_user=$1
 
 # Drop existing database
-echo "DROP DATABASE IF EXISTS $TE_DB" | mysql -h $TE_HOST -u$root_user -p
+echo "DROP DATABASE IF EXISTS $TE_DB" | mysql -h $TE_DB_HOST -u$root_user -p
 
 # Create database
-echo "CREATE DATABASE $TE_DB" | mysql -h $TE_HOST -u$root_user -p$root_pass
+echo "CREATE DATABASE $TE_DB" | mysql -h $TE_DB_HOST -u$root_user -p$root_pass
 
 # Create user and permissions
-echo "GRANT ALL ON $TE_DB.* TO '$TE_USER'@'localhost' IDENTIFIED BY '$TE_PASS'" | mysql -h $TE_HOST -u$root_user -p$root_pass
+echo "GRANT ALL ON $TE_DB.* TO '$TE_DB_USER'@'localhost' IDENTIFIED BY '$TE_DB_PASS'" | mysql -h $TE_DB_HOST -u$root_user -p$root_pass
 
 # Load DDL
-mysql -h $TE_HOST -u$TE_USER -p$TE_PASS -D$TE_DB < db/twittelect.sql
+mysql -h $TE_DB_HOST -u$TE_DB_USER -p$TE_DB_PASS -D$TE_DB_NAME < db/twittelect.sql
 
 # Load data
-mysql -h $TE_HOST -u$TE_USER -p$TE_PASS -D$TE_DB < db/constituency.dat
-mysql -h $TE_HOST -u$TE_USER -p$TE_PASS -D$TE_DB < db/party.dat
+mysql -h $TE_DB_HOST -u$TE_DB_USER -p$TE_DB_PASS -D$TE_DB_NAME < db/constituency.dat
+mysql -h $TE_DB_HOST -u$TE_DB_USER -p$TE_DB_PASS -D$TE_DB_NAME < db/party.dat
 
 if [[ -f db/candidate.tsv ]]
 then

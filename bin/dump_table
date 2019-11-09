@@ -6,4 +6,4 @@ then
   exit 1
 fi
 
-mysqldump -u$TE_USER -p$TE_PASS -h$TE_HOST $TE_DB --no-create-info $1 > db/$1.dat
+mysqldump -u$TE_DB_USER -p$TE_DB_PASS -h$TE_DB_HOST $TE_DB_NAME --no-create-info $1 > db/$1.dat
