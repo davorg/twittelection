@@ -189,6 +189,13 @@ sub maintain_lists {
                         $err->twitter_error_code == TWITTER_ACCT_BLOCKED or
                         $err->twitter_error_code == TWITTER_LIST_MISSING;
 
+	  my $cand = $app->candidate_rs->find({ twitter => $tw });
+
+          unless ($cand) {
+	    $app->logger->warn("Can't find candidate: $tw");
+	    next;
+	  }
+
 	  $cand->update({
 	    twitter_problem => $err->twitter_error_code,
 	  });
