@@ -83,8 +83,6 @@ sub maintain_lists {
   my $self = shift;
   my ($app, $rs) = @_;
 
-  my %problems;
-
   foreach my $obj ($rs->all) {
     $app->logger->info($obj->name . ' (' . $obj->mapit_id . ')');
 
@@ -191,7 +189,9 @@ sub maintain_lists {
                         $err->twitter_error_code == TWITTER_ACCT_BLOCKED or
                         $err->twitter_error_code == TWITTER_LIST_MISSING;
 
-          push @{$problems{$err->twitter_error_code}}, $tw;
+	  $cand->update({
+	    twitter_problem => $err->twitter_error_code,
+	  });
 
           $app->logger->warn($err->twitter_error_code . ': ' .
                              $err->twitter_error_text);
@@ -225,16 +225,6 @@ sub maintain_lists {
       } else {
         return;
       }
-    }
-  }
-
-  if (keys %problems) {
-    foreach (keys %problems) {
-      $app->candidate_rs->search({
-        twitter => $problems{$_},
-      })->update({
-        twitter_problem => $_,
-      });
     }
   }
 }
