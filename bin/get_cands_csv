@@ -63,7 +63,7 @@ foreach my $con ($cons_rs->all) {
   # * Candidates to update in the database.
   # * Candidates to remove from the database.
 
-  my $changed = 0;
+  my $con_changed = 0;
   $app->logger->info($con->name . ' (' . $con->mapit_id . ')');
 
   my %file_cands = ();
@@ -103,7 +103,7 @@ foreach my $con ($cons_rs->all) {
           party_id        => $party->id,
           constituency_id => $con->id,
         });
-        $changed = 1;
+        $con_changed = 1;
       } else {
         $app->logger->trace("* No change $_->{name} / " .
             $_->{party}{name} .
@@ -123,7 +123,7 @@ foreach my $con ($cons_rs->all) {
         party_id        => $party->id,
         constituency_id => $con->id,
       });
-      $changed = 1;
+      $con_changed = 1;
     }
   }
 
@@ -134,10 +134,10 @@ foreach my $con ($cons_rs->all) {
         $db_cand->party->name .
         ' / ' . $db_cand->twitter);
     $db_cand->delete;
-    $changed = 1;
+    $con_changed = 1;
   }
 
-  if ($changed) {
+  if ($con_changed) {
     $con->update({
       candidates_updated_time => DateTime->now,
       list_checked_time       => undef,
