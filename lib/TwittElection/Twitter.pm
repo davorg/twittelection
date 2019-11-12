@@ -1,5 +1,8 @@
 package TwittElection::Twitter;
 
+use strict;
+use warnings;
+
 use parent 'Net::Twitter';
 
 use DateTime;
