@@ -54,24 +54,31 @@ my $par_rs = $app->party_rs;
 my $can_rs = $app->candidate_rs;
 
 foreach my $con ($cons_rs->all) {
+  # What we need to do here.
+  # We have a constituency.
+  # Get the candidates we have in the database.
+  # Get the candidates we have in the new file.
+  # Create three lists:
+  # * Candidates to add to the database.
+  # * Candidates to update in the database.
+  # * Candidates to remove from the database.
+
   my $changed = 0;
   $app->logger->info($con->name . ' (' . $con->mapit_id . ')');
 
-  my $cands = $constits{$con->demclub_id}{cands};
+  my %file_cands = ();
+  if ($constits{$con->demclub_id}{cands}) {
+    %file_cands = map { $_->{id} => $_ } @{ $constits{$con->demclub_id}{cands} };
+  }
 
-  my %curr_cands = map { $_->yournextmp_id => $_ } $con->candidates;
+  my %db_cands = map { $_->yournextmp_id => $_ } $con->candidates;
 
-  unless ($cands or keys %curr_cands) {
+  unless (keys %file_cands or keys %db_cands) {
     $app->logger->info("No candidates in file or database. Skipping...");
     next;
   }
 
-  my %cands;
-  for (@$cands) {
-    $cands{$_->{id}} = $_;
-  }
-
-  for (values %cands) {
+  for (values %file_cands) {
 
     my ($party_id) = $_->{party}{id} =~ /(\d+)/;
     my $party;
@@ -82,14 +89,14 @@ foreach my $con ($cons_rs->all) {
       });
     }
 
-    if (exists $curr_cands{$_->{id}}) {
-      my $curr_cand = delete $curr_cands{$_->{id}};
-      if ($_->{name} ne $curr_cand->name
-        or $_->{twitter} ne $curr_cand->twitter) {
+    if (exists $db_cands{$_->{id}}) {
+      my $db_cand = delete $db_cands{$_->{id}};
+      if ($_->{name} ne $db_cand->name
+        or $_->{twitter} ne $db_cand->twitter) {
         $app->logger->info("* Updating $_->{name} / " .
             $_->{party}{name} .
             " / \@$_->{twitter}");
-        $curr_cand->update({
+        $db_cand->update({
           yournextmp_id   => $_->{id},
           name            => $_->{name},
           twitter         => $_->{twitter},
@@ -121,12 +128,12 @@ foreach my $con ($cons_rs->all) {
   }
 
   # Any candidates left in %curr_cands need to be deleted
-  foreach (keys %curr_cands) {
-    my $curr_cand = $curr_cands{$_};
-    $app->logger->info('* Deleting ' . $curr_cand->name . ' / ' .
-        $curr_cand->party->name .
-        ' / ' . $curr_cand->twitter);
-    $curr_cand->delete;
+  foreach (keys %db_cands) {
+    my $db_cand = $db_cands{$_};
+    $app->logger->info('* Deleting ' . $db_cand->name . ' / ' .
+        $db_cand->party->name .
+        ' / ' . $db_cand->twitter);
+    $db_cand->delete;
     $changed = 1;
   }
 
