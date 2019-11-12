@@ -75,6 +75,16 @@ sub _build_candidate_rs {
   return $_[0]->schema->resultset('Candidate');
 }
 
+has party_rs => (
+  is         => 'ro',
+  isa        => 'DBIx::Class::ResultSet',
+  lazy_build => 1,
+);
+
+sub _build_party_rs {
+  return $_[0]->schema->resultset('Party');
+}
+
 has csv_parser => (
   is         => 'ro',
   isa        => 'Text::CSV_XS',

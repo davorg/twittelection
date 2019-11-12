@@ -50,8 +50,8 @@ if (@ARGV) {
   $cons_rs = $app->constituency_rs;
 }
 
-my $par_rs = $app->schema->resultset('Party');
-my $can_rs = $app->schema->resultset('Candidate');
+my $par_rs = $app->party_rs;
+my $can_rs = $app->candidate_rs;
 
 foreach my $con ($cons_rs->all) {
   my $changed = 0;
@@ -62,7 +62,7 @@ foreach my $con ($cons_rs->all) {
   my %curr_cands = map { $_->yournextmp_id => $_ } $con->candidates;
 
   unless ($cands or keys %curr_cands) {
-    warn "No candidates in file or database. Skipping...\n";
+    $app->logger->info("No candidates in file or database. Skipping...");
     next;
   }
 
