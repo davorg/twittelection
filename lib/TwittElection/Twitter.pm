@@ -22,10 +22,10 @@ sub authorise {
     # The client is not yet authorized: Do it now
     print "Authorize this app at ", $self->get_authorization_url,
           " and enter the PIN#\n";
-     
+
     my $pin = <STDIN>; # wait for input
     chomp $pin;
-               
+
     my($access_token, $access_token_secret, $user_id, $screen_name) =
       $self->request_access_token(verifier => $pin);
     save_tokens($access_token, $access_token_secret); # if necessary
@@ -189,16 +189,16 @@ sub maintain_lists {
                         $err->twitter_error_code == TWITTER_ACCT_BLOCKED or
                         $err->twitter_error_code == TWITTER_LIST_MISSING;
 
-	  my $cand = $app->candidate_rs->find({ twitter => $tw });
+          my $cand = $app->candidate_rs->find({ twitter => $tw });
 
           unless ($cand) {
-	    $app->logger->warn("Can't find candidate: $tw");
-	    next;
-	  }
+            $app->logger->warn("Can't find candidate: $tw");
+            next;
+          }
 
-	  $cand->update({
-	    twitter_problem => $err->twitter_error_code,
-	  });
+          $cand->update({
+            twitter_problem => $err->twitter_error_code,
+          });
 
           $app->logger->warn($err->twitter_error_code . ': ' .
                              $err->twitter_error_text);
