@@ -186,4 +186,7 @@ sub get_data_line {
   return $csv_parser->getline($self->data_fh);
 }
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;
