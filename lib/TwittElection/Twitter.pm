@@ -1,7 +1,6 @@
 package TwittElection::Twitter;
 
-use Moose;
-extends 'Net::Twitter';
+use parent 'Net::Twitter';
 
 use DateTime;
 use Try::Tiny;
@@ -237,8 +236,5 @@ sub maintain_lists {
     }
   }
 }
-
-no Moose;
-__PACKAGE__->meta->make_immutable;
 
 1;
