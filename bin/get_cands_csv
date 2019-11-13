@@ -14,6 +14,7 @@ use Text::CSV_XS;
 
 use lib 'lib';
 use TwittElection::App;
+use TwittElection::Util 'partition_hash';
 
 my $verbose;
 GetOptions(verbose => \$verbose);
@@ -77,6 +78,8 @@ foreach my $con ($cons_rs->all) {
     $app->logger->info("No candidates in file or database. Skipping...");
     next;
   }
+
+  # my ($file_only, $both, $db_only) = partition_hash(\%file_cands, \%db_cands);
 
   for (values %file_cands) {
 
