@@ -77,10 +77,9 @@ foreach my $con ($cons_rs->all) {
     next;
   }
 
-  # my ($file_only, $both, $db_only) = partition_hash(\%file_cands, \%db_cands);
+  my ($file_only, $both, $db_only) = partition_hash(\%file_cands, \%db_cands);
 
-  for (values %file_cands) {
-
+  for (values %$file_only) {
     my ($party_id) = $_->{party}{id} =~ /(\d+)/;
     my $party;
     unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
@@ -90,37 +89,41 @@ foreach my $con ($cons_rs->all) {
       });
     }
 
-    if (exists $db_cands{$_->{id}}) {
-      my $db_cand = delete $db_cands{$_->{id}};
-      if ($_->{name} ne $db_cand->name
-        or $_->{twitter} ne $db_cand->twitter) {
-        $app->logger->info("* Updating $_->{name} / " .
-            $_->{party}{name} .
-            " / \@$_->{twitter}");
-        $db_cand->update({
-          yournextmp_id   => $_->{id},
-          name            => $_->{name},
-          twitter         => $_->{twitter},
-          party_id        => $party->id,
-          constituency_id => $con->id,
-        });
-        $con_changed = 1;
-      } else {
-        $app->logger->trace("* No change $_->{name} / " .
-            $_->{party}{name} .
-            " / \@$_->{twitter}");
-      }
-    } else {
-      $app->logger->info("* Adding $_->{name} / " .
-          $_->{party}{name} .
-          " / \@$_->{twitter}");
-      # Note: We use update_or_create here instead of create in order to
-      # deal with the situation where a candidate moves from one
-      # constituency to another.
-      $can_rs->update_or_create({
-        yournextmp_id   => $_->{id},
-        name            => $_->{name},
-        twitter         => $_->{twitter},
+    $app->logger->info("* Adding $_->{name} / " .
+        $_->{party}{name} .
+        " / \@$_->{twitter}");
+    # Note: We use update_or_create here instead of create in order to
+    # deal with the situation where a candidate moves from one
+    # constituency to another.
+    $can_rs->update_or_create({
+      yournextmp_id   => $_->{id},
+      name            => $_->{name},
+      twitter         => $_->{twitter},
+      party_id        => $party->id,
+      constituency_id => $con->id,
+    });
+    $con_changed = 1;
+  }
+
+  for (values %$both) {
+    my ($party_id) = $_->[0]{party}{id} =~ /(\d+)/;
+    my $party;
+    unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
+      $party = $par_rs->create({
+        name => $_->[0]{party}{name},
+        yournextmp_id => $party_id,
+      });
+    }
+
+    if ($_->[0]{name} ne $_->[1]->name
+      or $_->[0]{twitter} ne $_->[1]->twitter) {
+      $app->logger->info("* Updating $_->[0]{name} / " .
+          $_->[0]{party}{name} .
+          " / \@$_->[0]->{twitter}");
+      $_->[1]->update({
+        yournextmp_id   => $_->[0]{id},
+        name            => $_->[0]{name},
+        twitter         => $_->[0]{twitter},
         party_id        => $party->id,
         constituency_id => $con->id,
       });
@@ -128,13 +131,11 @@ foreach my $con ($cons_rs->all) {
     }
   }
 
-  # Any candidates left in %curr_cands need to be deleted
-  foreach (keys %db_cands) {
-    my $db_cand = $db_cands{$_};
-    $app->logger->info('* Deleting ' . $db_cand->name . ' / ' .
-        $db_cand->party->name .
-        ' / ' . $db_cand->twitter);
-    $db_cand->delete;
+  for (values %$db_only) {
+    $app->logger->info('* Deleting ' . $_->name . ' / ' .
+        $_->party->name .
+        ' / ' . $_->twitter);
+    $_->delete;
     $con_changed = 1;
   }
 
