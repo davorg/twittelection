@@ -4,7 +4,13 @@
   <head>
     <meta name="google-site-verification" content="HLLWtUo79tD2Q-IdJGZxpGmwygtSUjSgFsLSQYaWH9w" />
     <meta charset="utf-8">
-    <title>TwittElection: [% IF title; title; ELSE; 'A Twitter List For Each Constituency'; END %]</title>
+[% fulltitle = 'TwittElection: ';
+   IF title;
+     fulltitle = fulltitle _ title;
+   ELSE;
+     fulltitle = fulltitle _ 'A Twitter List For Each Constituency';
+   END -%] 
+    <title>[% fulltitle %]</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -24,6 +30,14 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+
+    <meta name="twitter:card" content="summary" />↩
+    <meta name="twitter:image" content="https://twittelection.co.uk/234px-Ballot_Box_Silhouette.svg.png"/>↩
+    <meta property="og:title" content="[% fulltitle %]" />↩
+    <meta property="og:type" content="website" />↩
+    <meta property="og:url" content="[% url %]" />↩
+    <meta property="og:description" content="See what your general election candidates are saying on Twitter." />↩
+    <meta property="og:image" content="https://twittelection.co.uk/234px-Ballot_Box_Silhouette.svg.png" />
 
     <link href="[% url %]" rel="canonical">
     <link rel="alternate" href="[% url %]" hreflang="en-gb" />
