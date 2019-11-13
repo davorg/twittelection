@@ -15,6 +15,7 @@ use Text::CSV_XS;
 use lib 'lib';
 use TwittElection::App;
 use TwittElection::Util 'partition_hash';
+use TwittElection::Constants;
 
 my $verbose;
 GetOptions(verbose => \$verbose);
@@ -43,7 +44,7 @@ if ($app->has_changed) {
 }
 
 sub process_con {
-  my ($con, $app) = @_;
+  my ($con, $ap) = @_;
 
   # What we need to do here.
   # We have a constituency.
@@ -55,7 +56,7 @@ sub process_con {
   # * Candidates to remove from the database.
 
   my $con_changed = 0;
-  $app->logger->info($con->name . ' (' . $con->mapit_id . ')');
+  $ap->logger->info($con->name . ' (' . $con->mapit_id . ')');
 
   my %file_cands = ();
   if ($constits{$con->demclub_id}{cands}) {
@@ -64,35 +65,35 @@ sub process_con {
 
   my %db_cands = map { $_->yournextmp_id => $_ } $con->candidates;
 
-  unless (keys %file_cands or keys %db_cands) {
-    $app->logger->info("No candidates in file or database. Skipping...");
+  if (not keys %file_cands and not keys %db_cands) {
+    $ap->logger->info('No candidates in file or database. Skipping...');
     next;
   }
 
   my ($file_only, $both, $db_only) = partition_hash(\%file_cands, \%db_cands);
 
   for (values %$file_only) {
-    my ($party_id) = $_->{party}{id} =~ /(\d+)/;
-    my $party = get_party($party_id, $app);
+    my ($party_id) = $_->{party}{id} =~ /(\d+)/sxm;
+    my $party = get_party($party_id, $ap);
 
-    add_candidate($_, $con, $party, $app);
+    add_candidate($_, $con, $party, $ap);
 
     $con_changed = 1;
   }
 
   for (values %$both) {
-    my ($party_id) = $_->[0]{party}{id} =~ /(\d+)/;
-    my $party = get_party($party_id, $app);
+    my ($party_id) = $_->[0]{party}{id} =~ /(\d+)/sxm;
+    my $party = get_party($party_id, $ap);
 
     if (cand_data_changed(@$_)) {
-      update_cand(@$_, $party, $con, $app);
+      update_cand(@$_, $party, $con, $ap);
 
       $con_changed = 1;
     }
   }
 
   for (values %$db_only) {
-    delete_cand($_, $app);
+    delete_cand($_, $ap);
 
     $con_changed = 1;
   }
@@ -102,24 +103,28 @@ sub process_con {
       candidates_updated_time => DateTime->now,
       list_checked_time       => undef,
     });
-    $app->has_changed(1);
+    $ap->has_changed(1);
   }
+
+  return;
 }
 
 sub delete_cand {
-  my ($cand, $app) = @_;
-  
-  $app->logger->info('* Deleting ' . $cand->name . ' / ' .
+  my ($cand, $a) = @_;
+
+  $a->logger->info('* Deleting ' . $cand->name . ' / ' .
       $cand->party->name .
       ' / ' . $cand->twitter);
 
   $cand->delete;
+
+  return;
 }
 
 sub update_cand {
-  my ($file, $db, $party, $con, $app) = @_;
-  
-  $app->logger->info("* Updating $file->{name} / " .
+  my ($file, $db, $party, $con, $a) = @_;
+
+  $a->logger->info("* Updating $file->{name} / " .
       $file->{party}{name} .
       " / \@$file->{twitter}");
   $db->update({
@@ -129,37 +134,39 @@ sub update_cand {
     party_id        => $party->id,
     constituency_id => $con->id,
   });
+
+  return;
 }
 
 sub cand_data_changed {
   my ($file, $db) = @_;
-  
+
   return 1 if $file->{name}    ne $db->name;
   return 1 if $file->{twitter} ne $db->twitter;
   return;
 }
 
 sub get_party {
-  my ($party_id, $app) = @_;
-  my $par_rs = $app->party_rs;
+  my ($party_id, $a) = @_;
+  my $par_rs = $a->party_rs;
 
   my $party;
-  unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
+  if ( not $party = $par_rs->find({ yournextmp_id => $party_id })) {
     $party = $par_rs->create({
       name => $_->{party}{name},
       yournextmp_id => $party_id,
     });
   }
-  
+
   return $party;
 }
 
 sub add_candidate {
-  my ($cand, $con, $party, $app) = @_;
+  my ($cand, $con, $party, $a) = @_;
 
-  my $can_rs = $app->candidate_rs;
+  my $can_rs = $a->candidate_rs;
 
-  $app->logger->info("* Adding $cand->{name} / " .
+  $a->logger->info("* Adding $cand->{name} / " .
       $cand->{party}{name} .
       " / \@$cand->{twitter}");
   # Note: We use update_or_create here instead of create in order to
@@ -172,23 +179,25 @@ sub add_candidate {
     party_id        => $party->id,
     constituency_id => $con->id,
   });
+
+  return;
 }
 
 sub get_new_data {
-  my ($app) = @_;
+  my ($a) = @_;
   # Skip header
   $app->get_data_line;
 
-  while (my $row = $app->get_data_line) {
-    my $constit_id = $row->[9];
-    $constit_id =~ s/^WMC://;
-    $constits{$constit_id}{name} = $row->[10];
+  while (my $row = $a->get_data_line) {
+    my $constit_id = $row->[COL_CONSTIT_ID];
+    $constit_id =~ s/^WMC://sxm;
+    $constits{$constit_id}{name} = $row->[COL_CONSTIT_NAME];
     my $cand;
-    $cand->{id} = $row->[0];
-    $cand->{name} = $row->[1];
-    $cand->{party}{id} = $row->[7];
-    $cand->{party}{name} = $row->[8];
-    $cand->{twitter} = $row->[14];
+    $cand->{id} = $row->[COL_CAND_ID];
+    $cand->{name} = $row->[COL_CAND_NAME];
+    $cand->{party}{id} = $row->[COL_PARTY_ID];
+    $cand->{party}{name} = $row->[COL_PARTY_NAME];
+    $cand->{twitter} = $row->[COL_CAND_TWITTER];
 
     push @{ $constits{$constit_id}{cands} }, $cand;
   }
