@@ -21,8 +21,6 @@ GetOptions(verbose => \$verbose);
 
 my $app = TwittElection::App->new({ verbose => $verbose });
 
-my $election_id   = 'parl.' . $app->election_date->ymd;
-
 my %constits;
 
 # Skip header
