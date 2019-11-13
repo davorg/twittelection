@@ -10,8 +10,8 @@
             <div id="counter"></div>
             <p>The UK will be having our third general election in five years on Thursday, 12th December 2019.</p>
             <hr>
-            <p>As for the last two elections, we will be creating a Twitter list for each of the 650 parliamentary constituencies in the UK and populating those lists with the known candidates from those constituencies (using data from those lovely people at <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>). This will, hopefully, make it easier for you to find your candidates on Twitter and follow what they are saying.</p>
-            <p>Just go to our <a href="/c/">constituencies page</a> and find your constituency on the list.</p>
+            <p>As for the last two elections, we have created a Twitter list for each of the 650 parliamentary constituencies in the UK and we are populating those lists with the known candidates from those constituencies (using data from those lovely people at <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>). This will, hopefully, make it easier for you to find your candidates on Twitter and follow what they are saying.</p>
+            <p>Just go to our <a href="/c/">constituencies page</a> and find your constituency on the list. You can find out which constituency you can vote in by visiting <a href="https://members.parliament.uk/constituencies/">this useful page</a>.</p>
           </div>
           <div class="col-md-4">
             <a class="twitter-timeline" href="https://twitter.com/TwittElection" data-widget-id="557981942126497792">Tweets by @TwittElection</a>
