@@ -21,24 +21,7 @@ GetOptions(verbose => \$verbose);
 
 my $app = TwittElection::App->new({ verbose => $verbose });
 
-my %constits;
-
-# Skip header
-$app->get_data_line;
-
-while (my $row = $app->get_data_line) {
-  my $constit_id = $row->[9];
-  $constit_id =~ s/^WMC://;
-  $constits{$constit_id}{name} = $row->[10];
-  my $cand;
-  $cand->{id} = $row->[0];
-  $cand->{name} = $row->[1];
-  $cand->{party}{id} = $row->[7];
-  $cand->{party}{name} = $row->[8];
-  $cand->{twitter} = $row->[14];
-
-  push @{ $constits{$constit_id}{cands} }, $cand;
-}
+my %constits = get_new_data($app);
 
 my $cons_rs;
 if (@ARGV) {
@@ -49,10 +32,19 @@ if (@ARGV) {
   $cons_rs = $app->constituency_rs;
 }
 
-my $par_rs = $app->party_rs;
-my $can_rs = $app->candidate_rs;
-
 foreach my $con ($cons_rs->all) {
+  process_con($con, $app);
+}
+
+if ($app->has_changed) {
+  $app->logger->info('Candidate updates received');
+} else {
+  $app->logger->info('No candidate updates received');
+}
+
+sub process_con {
+  my ($con, $app) = @_;
+
   # What we need to do here.
   # We have a constituency.
   # Get the candidates we have in the database.
@@ -81,61 +73,27 @@ foreach my $con ($cons_rs->all) {
 
   for (values %$file_only) {
     my ($party_id) = $_->{party}{id} =~ /(\d+)/;
-    my $party;
-    unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
-      $party = $par_rs->create({
-        name => $_->{party}{name},
-        yournextmp_id => $party_id,
-      });
-    }
+    my $party = get_party($party_id, $app);
 
-    $app->logger->info("* Adding $_->{name} / " .
-        $_->{party}{name} .
-        " / \@$_->{twitter}");
-    # Note: We use update_or_create here instead of create in order to
-    # deal with the situation where a candidate moves from one
-    # constituency to another.
-    $can_rs->update_or_create({
-      yournextmp_id   => $_->{id},
-      name            => $_->{name},
-      twitter         => $_->{twitter},
-      party_id        => $party->id,
-      constituency_id => $con->id,
-    });
+    add_candidate($_, $con, $party, $app);
+
     $con_changed = 1;
   }
 
   for (values %$both) {
     my ($party_id) = $_->[0]{party}{id} =~ /(\d+)/;
-    my $party;
-    unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
-      $party = $par_rs->create({
-        name => $_->[0]{party}{name},
-        yournextmp_id => $party_id,
-      });
-    }
+    my $party = get_party($party_id, $app);
 
-    if ($_->[0]{name} ne $_->[1]->name
-      or $_->[0]{twitter} ne $_->[1]->twitter) {
-      $app->logger->info("* Updating $_->[0]{name} / " .
-          $_->[0]{party}{name} .
-          " / \@$_->[0]->{twitter}");
-      $_->[1]->update({
-        yournextmp_id   => $_->[0]{id},
-        name            => $_->[0]{name},
-        twitter         => $_->[0]{twitter},
-        party_id        => $party->id,
-        constituency_id => $con->id,
-      });
+    if (cand_data_changed(@$_)) {
+      update_cand(@$_, $party, $con, $app);
+
       $con_changed = 1;
     }
   }
 
   for (values %$db_only) {
-    $app->logger->info('* Deleting ' . $_->name . ' / ' .
-        $_->party->name .
-        ' / ' . $_->twitter);
-    $_->delete;
+    delete_cand($_, $app);
+
     $con_changed = 1;
   }
 
@@ -148,10 +106,94 @@ foreach my $con ($cons_rs->all) {
   }
 }
 
-if ($app->has_changed) {
-  $app->logger->info('Candidate updates received');
-} else {
-  $app->logger->info('No candidate updates received');
+sub delete_cand {
+  my ($cand, $app) = @_;
+  
+  $app->logger->info('* Deleting ' . $cand->name . ' / ' .
+      $cand->party->name .
+      ' / ' . $cand->twitter);
+
+  $cand->delete;
+}
+
+sub update_cand {
+  my ($file, $db, $party, $con, $app) = @_;
+  
+  $app->logger->info("* Updating $file->{name} / " .
+      $file->{party}{name} .
+      " / \@$file->{twitter}");
+  $db->update({
+    yournextmp_id   => $file->{id},
+    name            => $file->{name},
+    twitter         => $file->{twitter},
+    party_id        => $party->id,
+    constituency_id => $con->id,
+  });
+}
+
+sub cand_data_changed {
+  my ($file, $db) = @_;
+  
+  return 1 if $file->{name}    ne $db->name;
+  return 1 if $file->{twitter} ne $db->twitter;
+  return;
+}
+
+sub get_party {
+  my ($party_id, $app) = @_;
+  my $par_rs = $app->party_rs;
+
+  my $party;
+  unless ($party = $par_rs->find({ yournextmp_id => $party_id })) {
+    $party = $par_rs->create({
+      name => $_->{party}{name},
+      yournextmp_id => $party_id,
+    });
+  }
+  
+  return $party;
+}
+
+sub add_candidate {
+  my ($cand, $con, $party, $app) = @_;
+
+  my $can_rs = $app->candidate_rs;
+
+  $app->logger->info("* Adding $cand->{name} / " .
+      $cand->{party}{name} .
+      " / \@$cand->{twitter}");
+  # Note: We use update_or_create here instead of create in order to
+  # deal with the situation where a candidate moves from one
+  # constituency to another.
+  $can_rs->update_or_create({
+    yournextmp_id   => $cand->{id},
+    name            => $cand->{name},
+    twitter         => $cand->{twitter},
+    party_id        => $party->id,
+    constituency_id => $con->id,
+  });
+}
+
+sub get_new_data {
+  my ($app) = @_;
+  # Skip header
+  $app->get_data_line;
+
+  while (my $row = $app->get_data_line) {
+    my $constit_id = $row->[9];
+    $constit_id =~ s/^WMC://;
+    $constits{$constit_id}{name} = $row->[10];
+    my $cand;
+    $cand->{id} = $row->[0];
+    $cand->{name} = $row->[1];
+    $cand->{party}{id} = $row->[7];
+    $cand->{party}{name} = $row->[8];
+    $cand->{twitter} = $row->[14];
+
+    push @{ $constits{$constit_id}{cands} }, $cand;
+  }
+
+  return %constits;
 }
 
 __END__
