@@ -26,6 +26,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <link href="[% url %]" rel="canonical">
+    <link rel="alternate" href="[% url %]" hreflang="en-gb" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
 body {
