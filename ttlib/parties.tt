@@ -24,7 +24,7 @@
      NEXT UNLESS p.candidates.size;
      letter = p.name.substr(0, 1);
      IF letter != prev_letter -%]
-<tr><th><a name="[% letter %]">[% letter %]</a></th></tr>
+<tr><th><a id="[% letter %]">[% letter %]</a></th></tr>
 [%   END -%]
 <tr><td><a href="/p/[% p.slugname %].html">[% p.name %]</a></td></tr>
 [%   prev_letter = letter;

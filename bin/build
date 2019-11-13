@@ -38,12 +38,16 @@ $tt->process('constituencies.tt', {
 
 foreach my $p ($sch->resultset('Party')->sort_by_name->all) {
   next unless $p->candidates->count;
-  $tt->process('party.tt', { p => $p }, 'p/' . $p->slugname . '.html',
+  my $path = 'p/' . $p->slugname . '.html';
+  $tt->process('party.tt', { p => $p, url => "$url/$path" }, $path,
                {binmode => ':utf8'})
     or die $tt->error;
 }
 
-$tt->process('parties.tt', { parties => [ $sch->resultset('Party')->sort_by_name->all ] },
+$tt->process('parties.tt', {
+  parties => [ $sch->resultset('Party')->sort_by_name->all ],
+  url     => "$url/p/",
+},
              'p/index.html', {binmode => ':utf8'})
     or die $tt->error;
 
