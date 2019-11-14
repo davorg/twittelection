@@ -17,7 +17,7 @@ use TwittElection::Schema;
 has base_url => (
   is => 'ro',
   isa => 'URI',
-  default => sub { URI->new('https//twittelection.co.uk') },
+  default => sub { URI->new('https://twittelection.co.uk') },
 );
 
 has election_date => (
