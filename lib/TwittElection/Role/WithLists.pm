@@ -7,7 +7,8 @@ use Try::Tiny;
 use Scalar::Util qw[blessed];
 use TwittElection::Constants;
 
-# requires qw[all];
+requires qw[name mapit_id candidates candidates_updated_time
+            list_rebuilt_time update ];
 
 sub maintain_list {
   # Here's how this should work.
@@ -188,7 +189,7 @@ sub maintain_list {
     }
     if ($err->code == 429 or $err->code == 403) {
       $app->logger->error('Rate limit exceeded');
-      exit;
+      die;
     } else {
       return;
     }
