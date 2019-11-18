@@ -200,6 +200,12 @@ sub retrieve_candidates {
   return $data->{memberships};
 }
 
+sub describe {
+  my $self = shift;
+
+  return $self->name . ' (' . $self->mapit_id . ')';
+}
+
 sub slug_name {
   my $self = shift;
 

@@ -7,7 +7,7 @@ use Try::Tiny;
 use Scalar::Util qw[blessed];
 use TwittElection::Constants;
 
-requires qw[name mapit_id candidates candidates_updated_time
+requires qw[name describe candidates candidates_updated_time
             list_rebuilt_time update list_name list_id];
 
 sub maintain_list {
@@ -45,7 +45,7 @@ sub maintain_list {
   
   my $t = $app->twitter;
 
-  $app->logger->info($self->name . ' (' . $self->mapit_id . ')');
+  $app->logger->info($self->describe);
 
   unless ($app->force) {
     unless ($self->candidates->count) {
@@ -87,14 +87,14 @@ sub maintain_list {
           $extra_on_twitter{$mem->{screen_name}} = 1;
         }
       } else {
-        $app->logger->info('Create ' . $self->name);
+        $app->logger->info('Create list for ' . $self->name);
         $list = $t->create_list({
           owner_screen_name => 'twittelection',
           description       => $self->name,
           name              => $self->abbrev_name,
         });
 
-        $app->logger->info($list->{slug});
+        $app->logger->info('Created list: ', $list->{slug});
 
         $self->update({
           list_name => $list->{slug},
@@ -102,14 +102,14 @@ sub maintain_list {
         });
       }
     } else {
-      $app->logger->info('Create ' . $self->name);
+      $app->logger->info('Create list for ' . $self->name);
       $list = $t->create_list({
         owner_screen_name => 'twittelection',
         description       => $self->name,
         name              => $self->abbrev_name,
       });
 
-      $app->logger->info($list->{slug});
+      $app->logger->info('Created list: ', $list->{slug});
 
       # Remove the number that Twitter will sometimes add at the end
       $list->{slug} =~ s/-\d+$//;
