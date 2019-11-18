@@ -47,11 +47,6 @@ sub maintain_list {
 
   $app->logger->info($self->name . ' (' . $self->mapit_id . ')');
 
-  unless ($app->force or $self->candidates->count) {
-    $app->logger->info('No candidates found');
-    return;
-  }
-
   unless ($app->force) {
     unless ($self->candidates->count) {
       $app->logger->info('No candidates found');
