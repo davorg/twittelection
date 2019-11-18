@@ -74,7 +74,7 @@ sub process_con {
 
   for (values %$file_only) {
     my ($party_id) = $_->{party}{id} =~ /(\d+)/sxm;
-    my $party = get_party($party_id, $ap);
+    my $party = get_party($party_id, $_->{party}{name}, $ap);
 
     add_candidate($_, $db_con, $party, $ap);
 
@@ -83,7 +83,7 @@ sub process_con {
 
   for (values %$both) {
     my ($party_id) = $_->[0]{party}{id} =~ /(\d+)/sxm;
-    my $party = get_party($party_id, $ap);
+    my $party = get_party($party_id, $_->[0]{party}{name}, $ap);
 
     if (cand_data_changed(@$_)) {
       update_cand(@$_, $party, $db_con, $ap);
@@ -147,13 +147,13 @@ sub cand_data_changed {
 }
 
 sub get_party {
-  my ($party_id, $a) = @_;
+  my ($party_id, $party_name, $a) = @_;
   my $par_rs = $a->party_rs;
 
   my $party;
   if ( not $party = $par_rs->find({ yournextmp_id => $party_id })) {
     $party = $par_rs->create({
-      name => $_->{party}{name},
+      name => $party_name,
       yournextmp_id => $party_id,
     });
   }
