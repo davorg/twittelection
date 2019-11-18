@@ -67,7 +67,7 @@
           <ul>
 [%   FOR c IN p.protected_candidates -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %]</a>
-              (<a href="[% c.url %]">[% c.constituency.name %]</a>)</li>
+              (<a href="[% c.constituency.url %]">[% c.constituency.name %]</a>)</li>
 [%   END -%]
           </ul>
 [% END -%]
@@ -79,7 +79,7 @@
           <ul>
 [%   FOR c IN p.blocking_candidates -%]
             <li><a href="https://twitter.com/[% c.twitter %]">[% c.name %]</a>
-              (<a href="[% c.url %]">[% c.constituency.name %]</a>)</li>
+              (<a href="[% c.constituency.url %]">[% c.constituency.name %]</a>)</li>
 [%   END -%]
           </ul>
 [% END -%]
