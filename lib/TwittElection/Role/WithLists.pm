@@ -8,7 +8,7 @@ use Scalar::Util qw[blessed];
 use TwittElection::Constants;
 
 requires qw[name mapit_id candidates candidates_updated_time
-            list_rebuilt_time update ];
+            list_rebuilt_time update list_name list_id];
 
 sub maintain_list {
   # Here's how this should work.
@@ -53,6 +53,11 @@ sub maintain_list {
   }
 
   unless ($app->force) {
+    unless ($self->candidates->count) {
+      $app->logger->info('No candidates found');
+      return;
+    }
+
     if ($self->candidates_updated_time <= $self->list_rebuilt_time) {
       $app->logger->info('No need to rebuild list');
       return;
