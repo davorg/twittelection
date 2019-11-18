@@ -36,6 +36,8 @@ if (@ARGV) {
 
 my $t = $app->twitter;
 
-$t->maintain_lists($app, $con_rs);
+for ($con_rs->all) {
+  $_->maintain_list($app);
+}
 
 __END__
