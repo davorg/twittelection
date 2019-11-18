@@ -223,13 +223,6 @@ sub api_id {
   return $api_id;
 }
 
-# List names can't be longer than 25 characters
-sub abbrev_name {
-  my $self = shift;
-
-  return substr($self->name, 0, 25);
-}
-
 sub demclub_url {
   my $self = shift;
 

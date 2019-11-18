@@ -196,4 +196,11 @@ sub maintain_list {
   }
 }
 
+# List names can't be longer than 25 characters
+sub abbrev_name {
+  my $self = shift;
+
+  return substr($self->name, 0, 25);
+}
+
 1;

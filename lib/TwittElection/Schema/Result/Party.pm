@@ -57,6 +57,33 @@ __PACKAGE__->table("party");
   is_nullable: 0
   size: 200
 
+=head2 list_name
+
+  data_type: 'varchar'
+  default_value: (empty string)
+  is_nullable: 0
+  size: 25
+
+=head2 list_id
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 20
+
+=head2 candidates_updated_time
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  default_value: '2000-01-01 00:00:00'
+  is_nullable: 0
+
+=head2 list_rebuilt_time
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  default_value: '2000-01-01 00:00:00'
+  is_nullable: 0
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -66,6 +93,24 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_nullable => 0 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
+  "list_name",
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 25 },
+  "list_id",
+  { data_type => "varchar", is_nullable => 1, size => 20 },
+  "candidates_updated_time",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    default_value => "2000-01-01 00:00:00",
+    is_nullable => 0,
+  },
+  "list_rebuilt_time",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    default_value => "2000-01-01 00:00:00",
+    is_nullable => 0,
+  },
 );
 
 =head1 PRIMARY KEY
@@ -112,11 +157,20 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2015-01-11 19:53:38
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:AcBediHPwiMDFwtJHot2+Q
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2019-11-18 18:47:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pGYSPBlZJK6+u/x8g8AVtg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+use Moose;
+with 'TwittElection::Role::WithLists';
+
+sub describe {
+  my $self = shift;
+
+  return $self->name, ' (', $self->yournextmp_id, ')';
+}
 
 sub slugname {
   my $self = shift;

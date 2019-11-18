@@ -1,0 +1,43 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+use lib 'lib';
+
+use Getopt::Long;
+use Sys::RunAlone;
+
+use TwittElection::App;
+
+my $verbose;
+my $force = 0;
+GetOptions(verbose => \$verbose,
+           force   => \$force);
+
+my $app = TwittElection::App->new({
+  verbose => $verbose,
+  force   => $force,
+});
+
+my $party_rs;
+
+$app->delay(0);
+
+if (@ARGV) {
+  $party_rs = $app->party_rs->search({
+    yournextmp_id => \@ARGV,
+  });
+  $app->delay(0);
+  $app->force(1);
+} else {
+  $party_rs = $app->party_rs;
+}
+
+my $t = $app->twitter;
+
+for ($party_rs->all) {
+  $_->maintain_list($app);
+}
+
+__END__
