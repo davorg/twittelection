@@ -30,25 +30,6 @@
 [%   END -%]
             </ul>
 [% END -%]
-[% IF c.candidates.filter_protected.count OR c.candidates.filter_blocked.count -%]
-            <b>Twitter Problems</p>
-[%   IF c.candidates.filter_protected.count -%]
-            <p>The following candidates have protected Twitter accounts:</p>
-            <ul>
-[%     FOR cand IN c.candidates.filter_protected -%]
-              <li>[% cand.name %] ([% cand.party.name %])</li>
-[%     END %]
-            </ul>
-[%   END -%]
-[%   IF c.candidates.filter_blocked.count -%]
-            <p>The following candidates have blocked @twittelection:</p>
-            <ul>
-[%     FOR cand IN c.candidates.filter_blocked -%]
-              <li>[% cand.name %] ([% cand.party.name %])</li>
-[%     END %]
-            </ul>
-[%   END -%]
-[% END -%]
             <b>Corrections</b>
             <p><small>If you wish to make any corrections to this list, please see the
               <a href="[% c.demclub_url %]">[% c.name %] page</a> on <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>.</small></p>
