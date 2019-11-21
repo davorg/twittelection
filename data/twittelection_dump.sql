@@ -2323,7 +2323,7 @@ INSERT INTO `candidate` VALUES (2708,40253,'Wayne Bridges','WayneBridges88',1,27
 INSERT INTO `candidate` VALUES (2709,3454,'\'Chinners\' Chinnery','Chinners2',36,312,0,104);
 INSERT INTO `candidate` VALUES (2710,19722,'Gary Hynds','GaryHynds',15,319,0,104);
 INSERT INTO `candidate` VALUES (2711,39856,'James Braun','Green_JamesBee',4,333,0,104);
-INSERT INTO `candidate` VALUES (2712,19723,'Matthew Robinson','MrMatt_Robinson',15,402,0,104);
+INSERT INTO `candidate` VALUES (2712,19723,'Matthew Robinson','matrobinson',15,402,0,104);
 INSERT INTO `candidate` VALUES (2713,72077,'Grant Abraham','',15,555,0,0);
 INSERT INTO `candidate` VALUES (2714,72095,'Charlotte Lang','CharlotteJLang',1,3,0,0);
 INSERT INTO `candidate` VALUES (2715,7174,'Frank McCoubrey','FMcCoubrey1',13,40,0,104);
@@ -3796,7 +3796,7 @@ INSERT INTO `constituency` VALUES (398,14445,'S14000048','North Ayrshire and Arr
 INSERT INTO `constituency` VALUES (399,65602,'E14000837','North Cornwall','north-cornwall','1189551720441012224','2019-11-19 09:16:11','2019-11-19 09:16:29',NULL);
 INSERT INTO `constituency` VALUES (400,65658,'E14000838','North Devon','north-devon','1189551723179851776','2019-11-19 09:16:11','2019-11-19 09:16:30',NULL);
 INSERT INTO `constituency` VALUES (401,65702,'E14000839','North Dorset','north-dorset','1189551725050585088','2019-11-15 09:28:29','2019-11-15 11:27:59',NULL);
-INSERT INTO `constituency` VALUES (402,66136,'N06000013','North Down','north-down','1192768235680260096','2019-11-21 09:43:52','2019-11-21 09:44:45',NULL);
+INSERT INTO `constituency` VALUES (402,66136,'N06000013','North Down','north-down','1192768235680260096','2019-11-21 09:43:52','2019-11-21 11:36:04',NULL);
 INSERT INTO `constituency` VALUES (403,65745,'E14000840','North Durham','north-durham','1189551728775045120','2019-11-15 09:28:29','2019-11-15 11:28:00',NULL);
 INSERT INTO `constituency` VALUES (404,65855,'E14000841','North East Bedfordshire','north-east-bedfordshire','1189551731606278145','2019-11-15 09:28:29','2019-11-15 11:28:01',NULL);
 INSERT INTO `constituency` VALUES (405,66063,'E14000842','North East Cambridgeshire','north-east-cambridgeshire','1189551733351038978','2019-11-12 09:19:19','2019-11-12 09:20:10',NULL);
@@ -4279,4 +4279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-21  9:45:37
+-- Dump completed on 2019-11-21 11:36:44
