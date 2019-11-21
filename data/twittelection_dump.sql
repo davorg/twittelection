@@ -2323,7 +2323,7 @@ INSERT INTO `candidate` VALUES (2708,40253,'Wayne Bridges','WayneBridges88',1,27
 INSERT INTO `candidate` VALUES (2709,3454,'\'Chinners\' Chinnery','Chinners2',36,312,0,104);
 INSERT INTO `candidate` VALUES (2710,19722,'Gary Hynds','GaryHynds',15,319,0,104);
 INSERT INTO `candidate` VALUES (2711,39856,'James Braun','Green_JamesBee',4,333,0,104);
-INSERT INTO `candidate` VALUES (2712,19723,'Matthew Robinson','matrobinson',15,402,0,104);
+INSERT INTO `candidate` VALUES (2712,19723,'Matthew Robinson','matrobinson',15,402,0,0);
 INSERT INTO `candidate` VALUES (2713,72077,'Grant Abraham','',15,555,0,0);
 INSERT INTO `candidate` VALUES (2714,72095,'Charlotte Lang','CharlotteJLang',1,3,0,0);
 INSERT INTO `candidate` VALUES (2715,7174,'Frank McCoubrey','FMcCoubrey1',13,40,0,104);
@@ -4279,4 +4279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-21 11:36:44
+-- Dump completed on 2019-11-21 11:40:07
