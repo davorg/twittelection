@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.43-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.17  Distrib 10.3.17-MariaDB, for Linux (x86_64)
 --
--- Host: localhost    Database: twittelection
+-- Host: 127.0.0.1    Database: twittelection
 -- ------------------------------------------------------
--- Server version	10.1.43-MariaDB-0ubuntu0.18.04.1
+-- Server version	10.3.16-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,8 +29,8 @@ CREATE TABLE `candidate` (
   `twitter` varchar(200) DEFAULT NULL,
   `party_id` int(11) NOT NULL,
   `constituency_id` int(11) DEFAULT NULL,
-  `current_mp` int(11) NOT NULL DEFAULT '0',
-  `twitter_problem` smallint(6) NOT NULL DEFAULT '0',
+  `current_mp` int(11) NOT NULL DEFAULT 0,
+  `twitter_problem` smallint(6) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `yournextmp_id` (`yournextmp_id`),
   KEY `party_id` (`party_id`),
@@ -2770,7 +2770,7 @@ INSERT INTO `candidate` VALUES (3174,65593,'Anna-Maria Coda','',2,281,0,0);
 INSERT INTO `candidate` VALUES (3175,56395,'Alistair David Lindsay','',5,282,0,0);
 INSERT INTO `candidate` VALUES (3176,72603,'Brian William Percival','',6,282,0,0);
 INSERT INTO `candidate` VALUES (3177,67604,'Alan Graves Jnr','AlanJackGraves',156,286,0,104);
-INSERT INTO `candidate` VALUES (3178,2692,'David William Lomax','DJwlomax',3,286,0,104);
+INSERT INTO `candidate` VALUES (3178,2692,'David William Lomax',NULL,3,286,0,104);
 INSERT INTO `candidate` VALUES (3179,35023,'Peter Marshall','marshall_proEU',178,287,0,104);
 INSERT INTO `candidate` VALUES (3180,3068,'David Furness','DavidFurnessGB',66,289,0,104);
 INSERT INTO `candidate` VALUES (3181,917,'Michael Jones','Michael4Sussex',2,291,0,0);
@@ -3378,7 +3378,7 @@ DROP TABLE IF EXISTS `constituency`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `constituency` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mapit_id` int(11) NOT NULL DEFAULT '0',
+  `mapit_id` int(11) NOT NULL DEFAULT 0,
   `demclub_id` varchar(20) DEFAULT NULL,
   `name` varchar(200) NOT NULL,
   `list_name` varchar(25) NOT NULL,
@@ -4279,4 +4279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-22 12:08:36
+-- Dump completed on 2019-11-22 19:37:53
