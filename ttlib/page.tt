@@ -84,6 +84,7 @@ body {
           <ul class="nav navbar-nav">
             <li[% IF page == 'home' %] class="active"[% END %]><a href="/">Home</a></li>
             <li[% IF page == 'constituencies' %] class="active"[% END %]><a href="/c/">Constituencies</a></li>
+            <li[% IF page == 'parties' %] class="active"[% END %]><a href="/p/">Parties</a></li>
             <li[% IF page == 'stats' %] class="active"[% END %]><a href="/stats/">Statistics</a></li>
             <li[% IF page == 'about' %] class="active"[% END %]><a href="/about/">About</a></li>
           </ul>

@@ -18,7 +18,7 @@
             <b>Tweeting Candidates</b>
             <ul>
 [%   FOREACH cand IN c.tweeting_candidates -%]
-              <li>[% cand.name %] ([% cand.party.name %])<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% IF cand.twitter_problem == 104 %] <b><i>(protected account)</i></b>[% END %][% IF cand.twitter_problem == 106 %] <b><i>(blocks @twittelection)</i></b>[% END %]</li>
+              <li>[% cand.name %] (<a href="/p/[% cand.party.slugname %].html">[% cand.party.name %]</a>)<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% IF cand.twitter_problem == 104 %] <b><i>(protected account)</i></b>[% END %][% IF cand.twitter_problem == 106 %] <b><i>(blocks @twittelection)</i></b>[% END %]</li>
 [%   END -%]
             </ul>
 [% END -%]
