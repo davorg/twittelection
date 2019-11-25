@@ -43,7 +43,7 @@
 [% FOR p IN party -%]
 [% NEXT UNLESS p.count_candidates -%]
                 <tr>
-                  <td>[% p.name %]</td>
+                  <td><a href="/p/[% p.slugname %].html">[% p.name %]</a></td>
                   <td>[% p.count_candidates %]</td>
                   <td>[% p.count_tweeting_candidates %]</td>
                   <td>[% p.count_tweeting_candidates * 100 / p.count_candidates | format('%.1f') %]</td>
