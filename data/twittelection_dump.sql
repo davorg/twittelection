@@ -1926,7 +1926,7 @@ INSERT INTO `candidate` VALUES (2285,22075,'Philip Scott','Phil4DundeeEast',1,18
 INSERT INTO `candidate` VALUES (2286,54893,'Jim Malone','malone4dunwest',2,185,0,0);
 INSERT INTO `candidate` VALUES (2288,39769,'Clare Ambrosino','iammaeve',1,191,0,0);
 INSERT INTO `candidate` VALUES (2289,26484,'Henry Gent','',4,193,0,0);
-INSERT INTO `candidate` VALUES (2290,71980,'Pam Gosal','PamGosal_Bains',1,194,0,0);
+INSERT INTO `candidate` VALUES (2290,71980,'Pam Gosal-Baines','PamGosal_Bains',1,194,0,0);
 INSERT INTO `candidate` VALUES (2291,34422,'Michael Spracklin','NewhamGreens',4,195,0,0);
 INSERT INTO `candidate` VALUES (2292,3449,'Damian Hinds','DamianHinds',1,196,0,0);
 INSERT INTO `candidate` VALUES (2293,5292,'Jake Lambert','JakeyLambert',2,204,0,0);
@@ -3588,7 +3588,7 @@ INSERT INTO `constituency` VALUES (190,65794,'E14000676','Ealing, Southall','eal
 INSERT INTO `constituency` VALUES (191,65823,'E14000677','Easington','easington','1189567831500906497','2019-11-11 09:21:03','2019-11-11 09:54:45',NULL);
 INSERT INTO `constituency` VALUES (192,66128,'N06000005','East Antrim','east-antrim','1189567835036704768','2019-11-18 12:40:33','2019-11-18 12:41:27',NULL);
 INSERT INTO `constituency` VALUES (193,65813,'E14000678','East Devon','east-devon','1189567838060732416','2019-11-22 09:42:30','2019-11-22 09:42:57',NULL);
-INSERT INTO `constituency` VALUES (194,14415,'S14000018','East Dunbartonshire','east-dunbartonshire','1189567841751711744','2019-11-26 09:34:30','2019-11-26 09:34:49',NULL);
+INSERT INTO `constituency` VALUES (194,14415,'S14000018','East Dunbartonshire','east-dunbartonshire','1189567841751711744','2019-11-26 16:40:09','2019-11-26 16:40:17',NULL);
 INSERT INTO `constituency` VALUES (195,65573,'E14000679','East Ham','east-ham','1189567845388169216','2019-11-15 09:28:21','2019-11-15 10:02:38',NULL);
 INSERT INTO `constituency` VALUES (196,65569,'E14000680','East Hampshire','east-hampshire','1189567847829254150','2019-11-21 09:43:50','2019-11-21 09:44:36',NULL);
 INSERT INTO `constituency` VALUES (197,14416,'S14000019','East Kilbride, Strathaven and Lesmahagow','east-kilbride-strathaven','1189567851654463488','2019-11-15 09:28:22','2019-11-15 10:02:40',NULL);
@@ -4076,7 +4076,7 @@ CREATE TABLE `party` (
 
 LOCK TABLES `party` WRITE;
 /*!40000 ALTER TABLE `party` DISABLE KEYS */;
-INSERT INTO `party` VALUES (1,52,'Conservative','conservative','1196501513826455552','2019-11-26 13:42:19','2019-11-26 13:44:39');
+INSERT INTO `party` VALUES (1,52,'Conservative','conservative','1196501513826455552','2019-11-26 16:40:09','2019-11-26 16:42:26');
 INSERT INTO `party` VALUES (2,53,'Labour','labour','1196502258646736897','2019-11-21 11:44:27','2019-11-22 09:59:57');
 INSERT INTO `party` VALUES (3,90,'Liberal Democrat','liberal-democrat','1196503157968379904','2019-11-21 11:44:27','2019-11-22 10:01:58');
 INSERT INTO `party` VALUES (4,63,'Green','green1','1196712061117620224','2019-11-21 11:44:27','2019-11-26 09:43:35');
@@ -4279,4 +4279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-26 13:46:22
+-- Dump completed on 2019-11-26 16:43:11
