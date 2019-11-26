@@ -1,5 +1,8 @@
 #footer {
   background-color: #bebebe;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 20px 0;
 }
 
 body {
