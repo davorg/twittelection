@@ -79,6 +79,10 @@ sub process_con {
     add_candidate($_, $db_con, $party, $ap);
 
     $con_changed = 1;
+    
+    $party->update({
+      candidates_updated_time => DateTime->now,
+    });
   }
 
   for (values %$both) {
@@ -89,6 +93,10 @@ sub process_con {
       update_cand(@$_, $party, $db_con, $ap);
 
       $con_changed = 1;
+
+      $party->update({
+        candidates_updated_time => DateTime->now,
+      });
     }
   }
 
@@ -115,6 +123,10 @@ sub delete_cand {
   $a->logger->info('* Deleting ' . $cand->name . ' / ' .
       $cand->party->name .
       ' / ' . $cand->twitter);
+
+  $cand->party->update({
+    candidates_updated_time => DateTime->now,
+  });
 
   $cand->delete;
 
