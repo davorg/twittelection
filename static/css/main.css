@@ -1,0 +1,32 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  background-color: #bebebe;
+  padding-top: 20px;
+}
+
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  margin-bottom: 60px;
+  min-height: 100%;
+}
+
+div#counter {
+  font-weight: bold;
+  font-size: 5em;
+}
+
+hr {
+  width: 80%;
+  background-color: #666;
+  height: 1px;
+  border-color : transparent;
+}
