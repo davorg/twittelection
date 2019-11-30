@@ -1,36 +1,27 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -CS
 
 use strict;
 use warnings;
 use 5.010;
 use lib 'lib';
 
-use FindBin '$Bin';
-use Template;
-
 use TwittElection::App;
 
-my $app = TwittElection::App->new;
-my $sch = $app->schema;
-my $url = $app->base_url;
+my $te_app = TwittElection::App->new;
 
-my $tt = Template->new({
-  ABSOLUTE     => 1,
-  INCLUDE_PATH => "$Bin/../ttlib",
-  OUTPUT_PATH  => "$Bin/../docs",
-  ENCODING     => 'utf8',
-});
+my @urls = build_constituency_pages($te_app);
 
-my @urls = build_constituency_pages($tt, $sch, $url);
+push @urls, build_party_pages($te_app);
+push @urls, build_stats_page($te_app);
+push @urls, build_static_pages($te_app);
 
-push @urls, build_party_pages($tt, $sch, $url);
-push @urls, build_stats_page($tt, $sch, $url);
-push @urls, build_static_pages($tt, $sch, $url);
-
-build_sitemap($tt, @urls);
+build_sitemap($te_app, @urls);
 
 sub build_constituency_pages {
-  my ($tt, $sch, $url) = @_;
+  my ($app) = @_;
+  my $sch = $app->schema;
+  my $url = $app->base_url;
+  my $tt  = $app->tt;
   my @return;
 
   foreach my $c ($sch->resultset('Constituency')->all) {
@@ -56,7 +47,10 @@ sub build_constituency_pages {
 }
 
 sub build_party_pages {
-  my ($tt, $sch, $url) = @_;
+  my ($app) = @_;
+  my $sch = $app->schema;
+  my $url = $app->base_url;
+  my $tt  = $app->tt;
   my @return;
 
   foreach my $p ($sch->resultset('Party')->sort_by_name->all) {
@@ -82,7 +76,10 @@ sub build_party_pages {
 }
 
 sub build_stats_page {
-  my ($tt, $sch, $url) = @_;
+  my ($app) = @_;
+  my $sch = $app->schema;
+  my $url = $app->base_url;
+  my $tt  = $app->tt;
 
   my $cand_rs  = $sch->resultset('Candidate');
   my $party_rs = $sch->resultset('Party');
@@ -103,7 +100,9 @@ sub build_stats_page {
 }
 
 sub build_static_pages {
-  my ($tt, $sch, $url) = @_;
+  my ($app) = @_;
+  my $url = $app->base_url;
+  my $tt  = $app->tt;
   my @returns;
 
   for (qw[index about/index]) {
@@ -118,9 +117,9 @@ sub build_static_pages {
 }
 
 sub build_sitemap {
-  my ($tt, @urls) = @_;
+  my ($app, @urls) = @_;
 
-  $tt->process('sitemap.tt', { urls => \@urls }, 'sitemap.xml');
+  $app->tt->process('sitemap.tt', { urls => \@urls }, 'sitemap.xml', {binmode => ':utf8'});
 
   return;
 }
