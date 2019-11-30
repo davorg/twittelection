@@ -21,74 +21,109 @@ my $tt = Template->new({
   ENCODING     => 'utf8',
 });
 
-my @urls;
+my @urls = build_constituency_pages($tt, $sch, $url);
 
-foreach my $c ($sch->resultset('Constituency')->all) {
-#  next unless $c->candidates->count;
-  my $path = 'c/' . $c->slug_name . '.html';
-  $tt->process('constituency.tt', { c => $c, url => "$url/$path" }, $path,
-               {binmode => ':utf8'})
+push @urls, build_party_pages($tt, $sch, $url);
+push @urls, build_stats_page($tt, $sch, $url);
+push @urls, build_static_pages($tt, $sch, $url);
+
+build_sitemap($tt, @urls);
+
+sub build_constituency_pages {
+  my ($tt, $sch, $url) = @_;
+  my @return;
+
+  foreach my $c ($sch->resultset('Constituency')->all) {
+    #  next unless $c->candidates->count;
+    my $path = 'c/' . $c->slug_name . '.html';
+    $tt->process('constituency.tt', { c => $c, url => "$url/$path" }, $path,
+                {binmode => ':utf8'})
+      or die $tt->error;
+
+    push @return, "$url/$path";
+  }
+
+  $tt->process('constituencies.tt', {
+      constits => [ $sch->resultset('Constituency')->all ],
+      url      => "$url/c/",
+    },
+    'c/index.html', {binmode => ':utf8'})
     or die $tt->error;
 
-  push @urls, "$url/$path";
+    push @return, "$url/c/";
+
+    return @return;
 }
 
-$tt->process('constituencies.tt', {
-  constits => [ $sch->resultset('Constituency')->all ],
-  url      => "$url/c/",
-},
-             'c/index.html', {binmode => ':utf8'})
-    or die $tt->error;
-    
-push @urls, "$url/c/";
+sub build_party_pages {
+  my ($tt, $sch, $url) = @_;
+  my @return;
 
-foreach my $p ($sch->resultset('Party')->sort_by_name->all) {
-  next unless $p->candidates->count;
-  my $path = 'p/' . $p->slugname . '.html';
-  $tt->process('party.tt', { p => $p, url => "$url/$path" }, $path,
-               {binmode => ':utf8'})
+  foreach my $p ($sch->resultset('Party')->sort_by_name->all) {
+    next unless $p->candidates->count;
+    my $path = 'p/' . $p->slugname . '.html';
+    $tt->process('party.tt', { p => $p, url => "$url/$path" }, $path,
+                 {binmode => ':utf8'})
+      or die $tt->error;
+
+    push @return, "$url/$path";
+  }
+
+  $tt->process('parties.tt', {
+    parties => [ $sch->resultset('Party')->sort_by_name->all ],
+    url     => "$url/p/",
+  },
+   'p/index.html', {binmode => ':utf8'})
     or die $tt->error;
 
-  # Add later
-  # push @urls, "$url/$path";
+  push @return, "$url/p/";
+
+  return @return;
 }
 
-$tt->process('parties.tt', {
-  parties => [ $sch->resultset('Party')->sort_by_name->all ],
-  url     => "$url/p/",
-},
-             'p/index.html', {binmode => ':utf8'})
-    or die $tt->error;
+sub build_stats_page {
+  my ($tt, $sch, $url) = @_;
 
-# Add later
-# push @urls, "$url/p/";
+  my $cand_rs  = $sch->resultset('Candidate');
+  my $party_rs = $sch->resultset('Party');
+  my @party    = $party_rs-> all;
 
-my $cand_rs  = $sch->resultset('Candidate');
-my $party_rs = $sch->resultset('Party');
-my @party    = $party_rs-> all;
+  @party = sort { $b->count_candidates <=> $a->count_candidates } @party;
 
-@party = sort { $b->count_candidates <=> $a->count_candidates } @party;
+  $tt->process('stats/index.tt', {
+    num_cands         => $cand_rs->count,
+    num_twit_cands    => $cand_rs->filter_tweeting->count,
+    num_no_twit_cands => $cand_rs->filter_nontweeting->count,
+    party             => \@party,
+    url               => "$url/stats/",
+  }, 'stats/index.html', { binmode => ':utf8' })
+    or die $tt->error;;
 
-$tt->process('stats/index.tt', {
-  num_cands         => $cand_rs->count,
-  num_twit_cands    => $cand_rs->filter_tweeting->count,
-  num_no_twit_cands => $cand_rs->filter_nontweeting->count,
-  party             => \@party,
-  url               => "$url/stats/",
-}, 'stats/index.html', { binmode => ':utf8' })
-  or die $tt->error;;
-  
-push @urls, "$url/stats/";
-
-for (qw[index about/index]) {
-  my ($path, $page) = split m|/|;
-  $path = '' if $path eq 'index';
-  $tt->process("$_.tt", { url => "$url/$path" }, "$_.html", { binmode => ':utf8' });
-  
-  push @urls, "$url/$path";
+  return "$url/stats/";
 }
 
-$tt->process('sitemap.tt', { urls => \@urls }, 'sitemap.xml');
+sub build_static_pages {
+  my ($tt, $sch, $url) = @_;
+  my @returns;
+
+  for (qw[index about/index]) {
+    my ($path, $page) = split m|/|;
+    $path = '' if $path eq 'index';
+    $tt->process("$_.tt", { url => "$url/$path" }, "$_.html", { binmode => ':utf8' });
+
+    push @returns, "$url/$path";
+  }
+
+  return @returns;
+}
+
+sub build_sitemap {
+  my ($tt, @urls) = @_;
+
+  $tt->process('sitemap.tt', { urls => \@urls }, 'sitemap.xml');
+
+  return;
+}
 
 #my @redirections = map {
 #  chomp;
