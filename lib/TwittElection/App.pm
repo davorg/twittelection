@@ -10,6 +10,8 @@ use LWP::Simple;
 use Text::CSV_XS;
 use DateTime;
 use URI;
+use FindBin '$Bin';
+use Template;
 
 use TwittElection::Twitter;
 use TwittElection::Schema;
@@ -43,6 +45,21 @@ sub _build_twitter {
   $t->authorise;
 
   return $t;
+}
+
+has tt => (
+  is         => 'ro',
+  isa        => 'Template',
+  lazy_build => 1,
+);
+
+sub _build_tt {
+  return Template->new({
+    ABSOLUTE     => 1,
+    INCLUDE_PATH => "$Bin/../ttlib",
+    OUTPUT_PATH  => "$Bin/../docs",
+    ENCODING     => 'utf8',
+  });
 }
 
 has schema => (
