@@ -37,7 +37,7 @@ CREATE TABLE `candidate` (
   KEY `constituency_id` (`constituency_id`),
   CONSTRAINT `candidate_ibfk_1` FOREIGN KEY (`party_id`) REFERENCES `party` (`id`),
   CONSTRAINT `candidate_ibfk_2` FOREIGN KEY (`constituency_id`) REFERENCES `constituency` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3811 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3813 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ INSERT INTO `candidate` VALUES (155,71313,'Kevin Harper','BolsoverBrexit',156,67
 INSERT INTO `candidate` VALUES (156,71314,'Mark Logan','',1,68,0,0);
 INSERT INTO `candidate` VALUES (157,71315,'Trevor Jones','trevjonesbrexit',156,68,0,0);
 INSERT INTO `candidate` VALUES (158,11687,'Mark Cunningham','TBPBoltonSE',156,69,0,0);
-INSERT INTO `candidate` VALUES (159,11663,'Kevin John Walsh','KevWalshBolton',3,69,0,0);
+INSERT INTO `candidate` VALUES (159,11663,'Kevin Walsh','KevWalshBolton',3,69,0,0);
 INSERT INTO `candidate` VALUES (160,663,'Julie Hilling','JulieHilling',2,70,0,0);
 INSERT INTO `candidate` VALUES (161,34653,'Rebecca Forrest','Rebecca4MP',3,70,0,0);
 INSERT INTO `candidate` VALUES (163,19844,'Rebecca Hanson','Rebecca4Bootle',3,71,0,0);
@@ -254,7 +254,7 @@ INSERT INTO `candidate` VALUES (265,6894,'Paul Woodhead','paulewoodhead',4,112,0
 INSERT INTO `candidate` VALUES (267,5426,'Anna Firth','anna_firth',1,113,0,0);
 INSERT INTO `candidate` VALUES (269,12679,'Bablin Molik','bablinmolik',3,114,0,0);
 INSERT INTO `candidate` VALUES (271,38612,'Mohamed Ali','Mohamed_Y_Ali',1,115,0,0);
-INSERT INTO `candidate` VALUES (272,8442,'Christopher John Butler','WelshButler',156,115,0,0);
+INSERT INTO `candidate` VALUES (272,8442,'Chris Butler','WelshButler',156,115,0,0);
 INSERT INTO `candidate` VALUES (273,9473,'Rhys Taylor','syhrtaylor',3,115,0,0);
 INSERT INTO `candidate` VALUES (274,23385,'Dan Schmeising','danschm_',3,116,0,104);
 INSERT INTO `candidate` VALUES (276,28723,'Nasir Adam','Nazplaidcymru',7,116,0,0);
@@ -313,7 +313,7 @@ INSERT INTO `candidate` VALUES (355,268,'Chris Southall','chrisjsuk',4,144,0,0);
 INSERT INTO `candidate` VALUES (357,26974,'Simon Baynes','baynes_simon',1,146,0,0);
 INSERT INTO `candidate` VALUES (359,8097,'Joanne Thomas','JoThomas4CW',2,147,0,0);
 INSERT INTO `candidate` VALUES (360,71375,'David Wilkins','Dave4ClwydWest',3,147,0,0);
-INSERT INTO `candidate` VALUES (361,71376,'Huw Elfed Williams','plaidclwydwest',7,147,0,0);
+INSERT INTO `candidate` VALUES (361,71376,'Elfed Williams','plaidclwydwest',7,147,0,0);
 INSERT INTO `candidate` VALUES (362,8414,'Hugh Gaffney','hgaffney48',2,148,0,0);
 INSERT INTO `candidate` VALUES (363,22218,'Steven Bonnar','StevenBonnarSNP',11,148,0,0);
 INSERT INTO `candidate` VALUES (364,71378,'Tina McKay','Tina4Colchester',2,149,0,0);
@@ -340,7 +340,7 @@ INSERT INTO `candidate` VALUES (389,71386,'Khalil Yousuf','KhalilYousuf',3,157,0
 INSERT INTO `candidate` VALUES (390,34382,'Laura Smith','LauraSmithMP',2,158,0,0);
 INSERT INTO `candidate` VALUES (391,71388,'Matthew Wood','MatthewPeterWoo',156,158,0,0);
 INSERT INTO `candidate` VALUES (392,53351,'Te Ata Browne','TEATABROWNE',4,158,0,0);
-INSERT INTO `candidate` VALUES (393,53444,'Matthew Cameron Theobald','Matthew_LibDem',3,158,0,0);
+INSERT INTO `candidate` VALUES (393,53444,'Matthew Theobald','Matthew_LibDem',3,158,0,0);
 INSERT INTO `candidate` VALUES (394,4159,'Kieran John Mullan','KieranMullanUK',1,158,0,0);
 INSERT INTO `candidate` VALUES (395,47063,'Mario Creatura','MarioCreatura',1,159,0,0);
 INSERT INTO `candidate` VALUES (396,71389,'Simon Sprague','simon_sprague',3,159,0,0);
@@ -620,7 +620,7 @@ INSERT INTO `candidate` VALUES (742,6595,'Denis Rixson','RDJRixson',3,300,0,0);
 INSERT INTO `candidate` VALUES (743,3552,'Jim Ferguson','JimFergusonUK',156,26,0,0);
 INSERT INTO `candidate` VALUES (744,34603,'Tom Hunt','tomhunt1988',1,301,0,0);
 INSERT INTO `candidate` VALUES (745,71496,'Nicola Thomas','NTBrexitParty',156,301,0,0);
-INSERT INTO `candidate` VALUES (746,4593,'Adrian Trett','Juvelad',3,301,0,0);
+INSERT INTO `candidate` VALUES (746,4593,'Adrian Hyyrylainen-Trett','Juvelad',3,301,0,0);
 INSERT INTO `candidate` VALUES (747,4645,'Barry Broom','IpswichGreens',4,301,0,0);
 INSERT INTO `candidate` VALUES (750,4912,'Vix Lowthion','VixL',4,302,0,0);
 INSERT INTO `candidate` VALUES (752,71497,'Nick Wakeling','nickwakeling1',3,303,0,0);
@@ -731,7 +731,7 @@ INSERT INTO `candidate` VALUES (882,4514,'Vikki Slade','vikki4mdnp',3,364,0,0);
 INSERT INTO `candidate` VALUES (883,60393,'Joanne Oldale','OldaleJoanne',2,364,0,0);
 INSERT INTO `candidate` VALUES (884,58950,'Natalie Carswell','CarswellGreen',4,364,0,0);
 INSERT INTO `candidate` VALUES (885,19724,'Steffan Aquarone','Steffanaquarone',3,365,0,0);
-INSERT INTO `candidate` VALUES (886,61419,'Robert Liam Eggleston','RobbieEggleston',3,366,0,0);
+INSERT INTO `candidate` VALUES (886,61419,'Robert Eggleston','RobbieEggleston',3,366,0,0);
 INSERT INTO `candidate` VALUES (888,4601,'Francie Molloy','FrancieMolloy',17,367,0,0);
 INSERT INTO `candidate` VALUES (889,71532,'Sue Howarth','howarthsg',4,368,0,0);
 INSERT INTO `candidate` VALUES (890,71536,'Faye Clements','clemmyBP',156,369,0,0);
@@ -828,7 +828,7 @@ INSERT INTO `candidate` VALUES (1001,66313,'Rob Edwards','greensandcleans',4,416
 INSERT INTO `candidate` VALUES (1002,103,'Chris Boyle','MrChrisBoyle',3,417,0,0);
 INSERT INTO `candidate` VALUES (1003,71564,'Richard Whelan','RWhelan4NWarks',3,418,0,0);
 INSERT INTO `candidate` VALUES (1006,6347,'Nicola Day','NicolaDay78',4,419,0,0);
-INSERT INTO `candidate` VALUES (1008,33881,'Michael Keith Peacock','MPeacockLD',3,420,0,0);
+INSERT INTO `candidate` VALUES (1008,33881,'Michael Peacock','MPeacockLD',3,420,0,0);
 INSERT INTO `candidate` VALUES (1009,23981,'David Alexander Stephen Lindsay','',6,420,0,0);
 INSERT INTO `candidate` VALUES (1011,51908,'Carl Benfield','carlbenfield',4,422,0,0);
 INSERT INTO `candidate` VALUES (1012,1640,'Andrew Bridgen','ABridgen',1,422,0,0);
@@ -1214,7 +1214,7 @@ INSERT INTO `candidate` VALUES (1503,6056,'Martin Docherty','MartinJDocherty',11
 INSERT INTO `candidate` VALUES (1504,71730,'Emma Jane Stockdale','EmmaJStockdale',156,619,0,0);
 INSERT INTO `candidate` VALUES (1506,54859,'Jack Gilmore','JackGilmore1',1,620,0,0);
 INSERT INTO `candidate` VALUES (1507,14707,'Simon Thomson','SimonThomson1',3,620,0,0);
-INSERT INTO `candidate` VALUES (1509,3737,'Matthew Hancock','MattHancock',1,621,0,0);
+INSERT INTO `candidate` VALUES (1509,3737,'Matt Hancock','MattHancock',1,621,0,0);
 INSERT INTO `candidate` VALUES (1510,35090,'Donald Allwright','DFJA',4,621,0,0);
 INSERT INTO `candidate` VALUES (1511,36364,'Órfhlaith Begley','OrfhlaithBegley',17,622,0,0);
 INSERT INTO `candidate` VALUES (1512,19738,'Beverley Nielsen','BeverleyNielsen',3,623,0,0);
@@ -1359,7 +1359,7 @@ INSERT INTO `candidate` VALUES (1673,16,'Stephen Dorrell','stephen_dorrell',3,10
 INSERT INTO `candidate` VALUES (1674,71823,'Lucy Burke','Lucy4BurySouth',2,104,0,0);
 INSERT INTO `candidate` VALUES (1675,23768,'Paul Hopfensperger','CllrHoffy',6,105,0,0);
 INSERT INTO `candidate` VALUES (1678,19897,'Steffan Webb','plaidystumtaf',7,115,0,0);
-INSERT INTO `candidate` VALUES (1679,27802,'Glanville Owen Rhys Thomas','',7,120,0,0);
+INSERT INTO `candidate` VALUES (1679,27802,'Rhys Thomas','',7,120,0,0);
 INSERT INTO `candidate` VALUES (1680,20055,'Louise McPhater','loucoll',2,123,0,0);
 INSERT INTO `candidate` VALUES (1682,8884,'Zahid Chauhan','ChauhanZahid',2,129,0,0);
 INSERT INTO `candidate` VALUES (1683,3369,'Theresa Villiers','',1,138,0,0);
@@ -1563,7 +1563,7 @@ INSERT INTO `candidate` VALUES (1896,11349,'David Figgins','Figgins4BSE',4,69,0,
 INSERT INTO `candidate` VALUES (1897,34432,'Liz Spencer','',4,68,0,0);
 INSERT INTO `candidate` VALUES (1898,384,'Tobias Ellwood','Tobias_Ellwood',1,74,0,0);
 INSERT INTO `candidate` VALUES (1900,71869,'Lucy O\'Sullivan','Lucyos',156,84,0,104);
-INSERT INTO `candidate` VALUES (1901,6447,'Michael Alex Burghart','alexburghart',1,85,0,0);
+INSERT INTO `candidate` VALUES (1901,6447,'Alex Burghart','alexburghart',1,85,0,0);
 INSERT INTO `candidate` VALUES (1903,71890,'Oliver Durose','olydurose',2,85,0,0);
 INSERT INTO `candidate` VALUES (1907,71894,'Peter Dawe','SuperHero_Dawe',156,111,0,0);
 INSERT INTO `candidate` VALUES (1908,26650,'Chris Simpson','',4,126,0,0);
@@ -1728,10 +1728,10 @@ INSERT INTO `candidate` VALUES (2077,66990,'Sam North','SNorthLD',3,633,0,0);
 INSERT INTO `candidate` VALUES (2078,34132,'Robert Alexander Courts','robertcourts',1,634,0,0);
 INSERT INTO `candidate` VALUES (2079,2148,'Emma Reynolds','EmmaReynoldsMP',2,637,0,0);
 INSERT INTO `candidate` VALUES (2080,71382,'David Walker','wa1kerclan',156,641,0,0);
-INSERT INTO `candidate` VALUES (2081,31906,'Rebecca Cooper','BeccyCooper4Lab',2,643,0,0);
+INSERT INTO `candidate` VALUES (2081,31906,'Beccy Cooper','BeccyCooper4Lab',2,643,0,0);
 INSERT INTO `candidate` VALUES (2082,1173,'Robin Lunn','rlunn47',2,647,0,0);
 INSERT INTO `candidate` VALUES (2083,1016,'Nigel Mills','nigelmills',1,12,0,0);
-INSERT INTO `candidate` VALUES (2084,71929,'Steffie Roberts','SteffieSioned',2,14,0,0);
+INSERT INTO `candidate` VALUES (2084,71929,'Steffie Williams Roberts','SteffieSioned',2,14,0,0);
 INSERT INTO `candidate` VALUES (2085,5266,'Dan Jarvis','DanJarvisMP',2,25,0,0);
 INSERT INTO `candidate` VALUES (2087,26136,'Alexa Collins','AlexaCollinsDes',2,34,0,0);
 INSERT INTO `candidate` VALUES (2088,2210,'Huw Merriman','HuwMerriman',1,46,0,0);
@@ -2297,7 +2297,7 @@ INSERT INTO `candidate` VALUES (2685,49344,'Claire Breeze','ClaireBreeze66',2,41
 INSERT INTO `candidate` VALUES (2686,72060,'Lorna Robertson','ljsmithy2',2,433,0,0);
 INSERT INTO `candidate` VALUES (2687,70543,'Wazz Mughal','WazzMughal',1,491,0,0);
 INSERT INTO `candidate` VALUES (2688,58510,'Malik Rofidi','RofidiMohd',2,492,0,0);
-INSERT INTO `candidate` VALUES (2689,4341,'Tanmanjit Singh Dhesi','TanDhesi',2,505,0,0);
+INSERT INTO `candidate` VALUES (2689,4341,'Tan Dhesi','TanDhesi',2,505,0,0);
 INSERT INTO `candidate` VALUES (2690,72065,'Callum Anderson','Cavlar_Anderson',2,526,0,0);
 INSERT INTO `candidate` VALUES (2691,55255,'Alan MacKenzie','Alan4Cotswolds',2,572,0,0);
 INSERT INTO `candidate` VALUES (2692,66242,'Liz Pole','LizPoleLabour',2,577,0,0);
@@ -2442,7 +2442,7 @@ INSERT INTO `candidate` VALUES (2845,72151,'James Edward Buckley','',156,60,0,0)
 INSERT INTO `candidate` VALUES (2846,72144,'Neil Holden','neilholden7',6,61,0,0);
 INSERT INTO `candidate` VALUES (2847,53030,'Gary Coleman','',6,62,0,0);
 INSERT INTO `candidate` VALUES (2848,61820,'Rebecca Daniels','',4,62,0,0);
-INSERT INTO `candidate` VALUES (2849,72259,'Chelsea Marie Annett','ChelsieeWelshie',3,63,0,0);
+INSERT INTO `candidate` VALUES (2849,72259,'Chelsea-Marie Annett','ChelsieeWelshie',3,63,0,0);
 INSERT INTO `candidate` VALUES (2851,42379,'Vicky Anderson','Vicky_LibDem',3,64,0,0);
 INSERT INTO `candidate` VALUES (2852,69743,'Adrian Pepper','thepepperview',1,64,0,0);
 INSERT INTO `candidate` VALUES (2853,34907,'Lisabela Zxywhiddm Marschild','TheSpaceNavies',172,64,0,104);
@@ -2506,7 +2506,7 @@ INSERT INTO `candidate` VALUES (2913,72272,'Charlie Briggs','',176,101,0,0);
 INSERT INTO `candidate` VALUES (2914,72271,'Karen Helsby Entwistle','karen4burnley',6,101,0,0);
 INSERT INTO `candidate` VALUES (2915,60116,'Cliff Waterman','cliff_for',2,105,0,0);
 INSERT INTO `candidate` VALUES (2916,13544,'Jane Pratt','Jane4MCC',1,106,0,0);
-INSERT INTO `candidate` VALUES (2917,72287,'Cheryl Ann Mcdonald','',2,107,0,0);
+INSERT INTO `candidate` VALUES (2917,72287,'Cheryl McDonald','',2,107,0,0);
 INSERT INTO `candidate` VALUES (2918,72553,'Peter James Quentin','',1,109,0,0);
 INSERT INTO `candidate` VALUES (2919,1088,'Joshua Ogunleye','',97,109,0,0);
 INSERT INTO `candidate` VALUES (2920,72552,'Cass Jean-Claude Cass-Horne','HorneCass',156,109,0,0);
@@ -2757,7 +2757,6 @@ INSERT INTO `candidate` VALUES (3170,30711,'James Monaghan','',3,278,0,0);
 INSERT INTO `candidate` VALUES (3171,72429,'Pete Wilks','',6,278,0,0);
 INSERT INTO `candidate` VALUES (3172,72428,'Waj Ali','WajAliBrexparty',156,278,0,0);
 INSERT INTO `candidate` VALUES (3173,72577,'Zaid Yaqoob Marham','Zaid4Henley',2,280,0,0);
-INSERT INTO `candidate` VALUES (3174,65593,'Anna Coda','herefordlabour',2,281,0,0);
 INSERT INTO `candidate` VALUES (3175,56395,'Alistair David Lindsay','',5,282,0,0);
 INSERT INTO `candidate` VALUES (3176,72603,'Brian William Percival','',6,282,0,0);
 INSERT INTO `candidate` VALUES (3177,67604,'Alan Graves Jnr','AlanJackGraves',156,286,0,0);
@@ -3275,7 +3274,6 @@ INSERT INTO `candidate` VALUES (3714,54416,'Scott Robert Marmion','MarmionScott'
 INSERT INTO `candidate` VALUES (3715,3753,'Robin Tilbrook','RobinTilbrook',40,85,0,0);
 INSERT INTO `candidate` VALUES (3716,72620,'Louise Walker','',2,102,0,0);
 INSERT INTO `candidate` VALUES (3717,20423,'Pauline Church','Pauline__Church',1,163,0,0);
-INSERT INTO `candidate` VALUES (3718,49911,'Ian McLean','McleanSdp',115,163,0,0);
 INSERT INTO `candidate` VALUES (3719,7447,'Rebecca Rees-Evans','',156,163,0,0);
 INSERT INTO `candidate` VALUES (3720,27143,'Andrew Chainey','CynonValleyPart',190,163,0,0);
 INSERT INTO `candidate` VALUES (3721,3124,'Jonathan Bramall','JonBramall',3,180,0,104);
@@ -3332,7 +3330,7 @@ INSERT INTO `candidate` VALUES (3773,49826,'Ged McGrath','GerardMcGrath16',156,2
 INSERT INTO `candidate` VALUES (3774,72642,'Kamran Hussain','kam_hussain5',3,325,0,0);
 INSERT INTO `candidate` VALUES (3775,33221,'Dean Carroll','dc4battlefield',1,417,0,0);
 INSERT INTO `candidate` VALUES (3776,54626,'Michael Welton','mikeymagnetic',4,457,0,0);
-INSERT INTO `candidate` VALUES (3777,72135,'Stuart Robert Mccutcheon','',6,519,0,0);
+INSERT INTO `candidate` VALUES (3777,72135,'Stuart Robert McCutcheon','',6,519,0,0);
 INSERT INTO `candidate` VALUES (3778,34766,'Caroline Hollins','',1,311,0,0);
 INSERT INTO `candidate` VALUES (3779,3666,'Waheed Rafiq','waheedrafiq33',3,52,0,104);
 INSERT INTO `candidate` VALUES (3780,63797,'Ross Walker','',6,67,0,0);
@@ -3366,6 +3364,8 @@ INSERT INTO `candidate` VALUES (3807,36425,'Paul Harris','paulharrissc',3,597,0,
 INSERT INTO `candidate` VALUES (3808,21623,'David Stevens','',3,148,0,0);
 INSERT INTO `candidate` VALUES (3809,34857,'Shade Adoh','ShadeAdoh',1,598,0,0);
 INSERT INTO `candidate` VALUES (3810,23291,'Amanda Wright','Amanda_Burbage',1,329,0,0);
+INSERT INTO `candidate` VALUES (3811,33218,'Ian McLean','McleanSdp',115,163,0,0);
+INSERT INTO `candidate` VALUES (3812,5934,'Anna Coda','herefordlabour',2,281,0,0);
 /*!40000 ALTER TABLE `candidate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3408,7 +3408,7 @@ INSERT INTO `constituency` VALUES (10,65892,'E14000532','Altrincham and Sale Wes
 INSERT INTO `constituency` VALUES (11,66103,'W07000043','Alyn and Deeside','alyn-and-deeside','1189559849249574912','2019-11-18 08:29:40','2019-11-18 08:33:44','2019-11-19 09:15:46');
 INSERT INTO `constituency` VALUES (12,65809,'E14000533','Amber Valley','amber-valley','1189559853196423168','2019-11-15 15:57:19','2019-11-15 15:57:34','2019-11-19 09:15:46');
 INSERT INTO `constituency` VALUES (13,14401,'S14000004','Angus','angus','1189559855784366080','2019-11-15 09:28:15','2019-11-15 09:29:16','2019-11-19 09:15:46');
-INSERT INTO `constituency` VALUES (14,66108,'W07000057','Arfon','arfon','1189559859190095873','2019-11-18 08:29:40','2019-11-18 08:33:45','2019-11-19 09:15:47');
+INSERT INTO `constituency` VALUES (14,66108,'W07000057','Arfon','arfon','1189559859190095873','2019-12-06 15:58:18','2019-12-06 15:58:29',NULL);
 INSERT INTO `constituency` VALUES (15,14402,'S14000005','Argyll and Bute','argyll-and-bute','1189559861836734466','2019-11-18 12:40:31','2019-11-18 12:40:42','2019-11-19 09:15:47');
 INSERT INTO `constituency` VALUES (16,65784,'E14000534','Arundel and South Downs','arundel-and-south-downs','1189559865519329282','2019-12-06 09:50:04','2019-12-06 09:50:16',NULL);
 INSERT INTO `constituency` VALUES (17,65895,'E14000535','Ashfield','ashfield','1189559867129946112','2019-11-28 08:01:52','2019-11-28 08:02:12',NULL);
@@ -3457,13 +3457,13 @@ INSERT INTO `constituency` VALUES (59,65981,'E14000570','Blackburn','blackburn',
 INSERT INTO `constituency` VALUES (60,65583,'E14000571','Blackley and Broughton','blackley-and-broughton','1189560010071855104','2019-11-15 12:25:04','2019-11-15 12:25:12',NULL);
 INSERT INTO `constituency` VALUES (61,65750,'E14000572','Blackpool North and Cleveleys','blackpool-north-and-cleve','1189560012672249859','2019-12-02 10:39:42','2019-12-02 10:39:53',NULL);
 INSERT INTO `constituency` VALUES (62,65679,'E14000573','Blackpool South','blackpool-south','1189560015159472128','2019-12-02 10:39:42','2019-12-02 10:39:53',NULL);
-INSERT INTO `constituency` VALUES (63,66093,'W07000072','Blaenau Gwent','blaenau-gwent','1189560018703732736','2019-11-28 08:01:53','2019-11-28 08:02:16',NULL);
+INSERT INTO `constituency` VALUES (63,66093,'W07000072','Blaenau Gwent','blaenau-gwent','1189560018703732736','2019-12-06 15:58:19','2019-12-06 15:58:30',NULL);
 INSERT INTO `constituency` VALUES (64,65805,'E14000574','Blaydon','blaydon','1189560021320900611','2019-11-25 08:47:22','2019-11-25 08:47:42',NULL);
 INSERT INTO `constituency` VALUES (65,65753,'E14000575','Blyth Valley','blyth-valley','1189560023082590208','2019-11-25 08:47:22','2019-11-25 08:47:43',NULL);
 INSERT INTO `constituency` VALUES (66,65841,'E14000576','Bognor Regis and Littlehampton','bognor-regis-and-littleha','1189560027226562560','2019-11-15 09:28:17','2019-11-15 09:29:42',NULL);
 INSERT INTO `constituency` VALUES (67,65628,'E14000577','Bolsover','bolsover','1189560030699360258','2019-12-03 10:02:23','2019-12-03 10:02:54',NULL);
 INSERT INTO `constituency` VALUES (68,65646,'E14000578','Bolton North East','bolton-north-east','1189560034252021761','2019-11-18 12:40:32','2019-11-18 12:40:52',NULL);
-INSERT INTO `constituency` VALUES (69,65712,'E14000579','Bolton South East','bolton-south-east','1189560036030373888','2019-12-02 10:39:42','2019-12-02 10:39:53',NULL);
+INSERT INTO `constituency` VALUES (69,65712,'E14000579','Bolton South East','bolton-south-east','1189560036030373888','2019-12-06 15:58:19','2019-12-06 15:58:30',NULL);
 INSERT INTO `constituency` VALUES (70,65738,'E14000580','Bolton West','bolton-west','1189560038609821698','2019-11-13 16:47:31','2019-11-13 16:47:42',NULL);
 INSERT INTO `constituency` VALUES (71,65821,'E14000581','Bootle','bootle','1189560041369677825','2019-12-05 09:19:06','2019-12-05 09:19:26',NULL);
 INSERT INTO `constituency` VALUES (72,65969,'E14000582','Boston and Skegness','boston-and-skegness','1189560044540645377','2019-11-18 12:40:32','2019-11-18 12:40:54',NULL);
@@ -3479,7 +3479,7 @@ INSERT INTO `constituency` VALUES (81,66088,'W07000068','Brecon and Radnorshire'
 INSERT INTO `constituency` VALUES (82,66065,'E14000591','Brent Central','brent-central','1189562908684029953','2019-11-25 08:47:23','2019-11-25 08:47:44',NULL);
 INSERT INTO `constituency` VALUES (83,65595,'E14000592','Brent North','brent-north','1189562912249188353','2019-11-25 08:47:23','2019-11-25 08:47:44',NULL);
 INSERT INTO `constituency` VALUES (84,65958,'E14000593','Brentford and Isleworth','brentford-and-isleworth','1189562915344523266','2019-11-06 14:15:08','2019-11-06 14:15:47',NULL);
-INSERT INTO `constituency` VALUES (85,65685,'E14000594','Brentwood and Ongar','brentwood-and-ongar','1189562919022944256','2019-11-18 08:29:41','2019-11-18 08:33:57',NULL);
+INSERT INTO `constituency` VALUES (85,65685,'E14000594','Brentwood and Ongar','brentwood-and-ongar','1189562919022944256','2019-12-06 15:58:19','2019-12-06 15:58:30',NULL);
 INSERT INTO `constituency` VALUES (86,66095,'W07000073','Bridgend','bridgend','1189562921770246145','2019-11-21 09:43:49','2019-11-21 09:44:29',NULL);
 INSERT INTO `constituency` VALUES (87,65620,'E14000595','Bridgwater and West Somerset','bridgwater-and-west-somer','1189562925708656641','2019-11-18 08:29:41','2019-11-18 08:33:57',NULL);
 INSERT INTO `constituency` VALUES (88,66000,'E14000596','Brigg and Goole','brigg-and-goole','1189562929491955720','2019-11-15 09:28:18','2019-11-15 09:45:22',NULL);
@@ -3501,7 +3501,7 @@ INSERT INTO `constituency` VALUES (103,66015,'E14000611','Bury North','bury-nort
 INSERT INTO `constituency` VALUES (104,65975,'E14000612','Bury South','bury-south','1189562985989230594','2019-12-06 09:50:04','2019-12-06 09:50:18',NULL);
 INSERT INTO `constituency` VALUES (105,66035,'E14000613','Bury St Edmunds','bury-st-edmunds','1189562992989478913','2019-11-18 12:40:32','2019-11-18 12:41:05',NULL);
 INSERT INTO `constituency` VALUES (106,66106,'W07000076','Caerphilly','caerphilly','1189562996584042498','2019-11-15 09:28:18','2019-11-15 09:45:31',NULL);
-INSERT INTO `constituency` VALUES (107,14406,'S14000009','Caithness, Sutherland and Easter Ross','caithness-sutherland-and','1189562999067070465','2019-11-28 08:01:54','2019-11-28 08:02:18',NULL);
+INSERT INTO `constituency` VALUES (107,14406,'S14000009','Caithness, Sutherland and Easter Ross','caithness-sutherland-and','1189562999067070465','2019-12-06 15:58:19','2019-12-06 15:58:31',NULL);
 INSERT INTO `constituency` VALUES (108,65906,'E14000614','Calder Valley','calder-valley','1189563002628067328','2019-11-15 09:28:18','2019-11-15 09:45:32',NULL);
 INSERT INTO `constituency` VALUES (109,65913,'E14000615','Camberwell and Peckham','camberwell-and-peckham','1189563031879147522','2019-11-30 09:44:52','2019-11-30 09:46:00',NULL);
 INSERT INTO `constituency` VALUES (110,65826,'E14000616','Camborne and Redruth','camborne-and-redruth','1189563036018925568','2019-11-19 09:16:08','2019-11-19 09:16:22',NULL);
@@ -3509,12 +3509,12 @@ INSERT INTO `constituency` VALUES (111,65927,'E14000617','Cambridge','cambridge'
 INSERT INTO `constituency` VALUES (112,65790,'E14000618','Cannock Chase','cannock-chase','1189563044449476608','2019-11-15 09:28:19','2019-11-15 09:45:33',NULL);
 INSERT INTO `constituency` VALUES (113,65878,'E14000619','Canterbury','canterbury','1189563047062528005','2019-11-15 09:28:19','2019-11-15 09:45:35',NULL);
 INSERT INTO `constituency` VALUES (114,66090,'W07000050','Cardiff Central','cardiff-central','1189563051583983617','2019-11-18 12:40:32','2019-11-18 12:41:07',NULL);
-INSERT INTO `constituency` VALUES (115,66120,'W07000051','Cardiff North','cardiff-north','1189563055656656897','2019-11-14 08:33:57','2019-11-14 08:34:28',NULL);
+INSERT INTO `constituency` VALUES (115,66120,'W07000051','Cardiff North','cardiff-north','1189563055656656897','2019-12-06 15:58:19','2019-12-06 15:58:31',NULL);
 INSERT INTO `constituency` VALUES (116,66119,'W07000080','Cardiff South and Penarth','cardiff-south-and-penarth','1189563060182245378','2019-11-28 08:01:54','2019-11-28 08:02:19',NULL);
 INSERT INTO `constituency` VALUES (117,66114,'W07000079','Cardiff West','cardiff-west','1189563064506601472','2019-12-06 09:50:05','2019-12-06 09:50:18',NULL);
 INSERT INTO `constituency` VALUES (118,65929,'E14000620','Carlisle','carlisle','1189563066192683010','2019-11-15 15:57:20','2019-11-15 15:57:37',NULL);
 INSERT INTO `constituency` VALUES (119,66089,'W07000067','Carmarthen East and Dinefwr','carmarthen-east-and-dinef','1189563071657926657','2019-11-18 12:40:32','2019-11-18 12:41:09',NULL);
-INSERT INTO `constituency` VALUES (120,66109,'W07000066','Carmarthen West and South Pembrokeshire','carmarthen-west-and-south','1189563078251372545','2019-11-25 08:47:23','2019-11-25 08:47:45',NULL);
+INSERT INTO `constituency` VALUES (120,66109,'W07000066','Carmarthen West and South Pembrokeshire','carmarthen-west-and-south','1189563078251372545','2019-12-06 15:58:19','2019-12-06 15:58:32',NULL);
 INSERT INTO `constituency` VALUES (121,65972,'E14000621','Carshalton and Wallington','carshalton-and-wallington','1189563083137716225','2019-11-22 09:42:29','2019-11-22 09:42:56',NULL);
 INSERT INTO `constituency` VALUES (122,65914,'E14000622','Castle Point','castle-point','1189563087608864773','2019-11-28 08:01:54','2019-11-28 08:02:19',NULL);
 INSERT INTO `constituency` VALUES (123,14407,'S14000010','Central Ayrshire','central-ayrshire','1189563090435751938','2019-11-15 09:28:19','2019-11-15 09:45:41',NULL);
@@ -3541,7 +3541,7 @@ INSERT INTO `constituency` VALUES (143,66021,'E14000641','City of Durham','city-
 INSERT INTO `constituency` VALUES (144,66030,'E14000642','Clacton','clacton','1189563167187361794','2019-11-15 15:57:20','2019-11-15 15:57:38',NULL);
 INSERT INTO `constituency` VALUES (145,66057,'E14000643','Cleethorpes','cleethorpes','1191627335189094400','2019-11-18 12:40:33','2019-11-18 12:41:13',NULL);
 INSERT INTO `constituency` VALUES (146,66121,'W07000062','Clwyd South','clwyd-south','1189563170773520389','2019-11-18 08:29:42','2019-11-18 08:34:05',NULL);
-INSERT INTO `constituency` VALUES (147,66100,'W07000059','Clwyd West','clwyd-west','1189563173352947712','2019-11-18 08:29:42','2019-11-18 08:34:06',NULL);
+INSERT INTO `constituency` VALUES (147,66100,'W07000059','Clwyd West','clwyd-west','1189563173352947712','2019-12-06 15:58:19','2019-12-06 15:58:32',NULL);
 INSERT INTO `constituency` VALUES (148,14408,'S14000011','Coatbridge, Chryston and Bellshill','coatbridge-chryston-and','1189563177312358401','2019-12-05 09:19:06','2019-12-05 09:19:28',NULL);
 INSERT INTO `constituency` VALUES (149,65926,'E14000644','Colchester','colchester','1189563181007548416','2019-11-13 19:31:22','2019-11-13 19:31:37',NULL);
 INSERT INTO `constituency` VALUES (150,65835,'E14000645','Colne Valley','colne-valley','1189563183498960898','2019-11-18 08:29:42','2019-11-18 08:34:07',NULL);
@@ -3552,12 +3552,12 @@ INSERT INTO `constituency` VALUES (154,65636,'E14000649','Coventry North East','
 INSERT INTO `constituency` VALUES (155,65575,'E14000650','Coventry North West','coventry-north-west','1189567702857408512','2019-12-05 09:19:06','2019-12-05 09:19:29',NULL);
 INSERT INTO `constituency` VALUES (156,65877,'E14000651','Coventry South','coventry-south','1189567706061819904','2019-11-21 09:43:50','2019-11-21 09:44:34',NULL);
 INSERT INTO `constituency` VALUES (157,65781,'E14000652','Crawley','crawley','1189567709148860417','2019-11-15 09:28:20','2019-11-15 09:45:56',NULL);
-INSERT INTO `constituency` VALUES (158,65572,'E14000653','Crewe and Nantwich','crewe-and-nantwich','1189567714274283520','2019-12-06 09:50:05','2019-12-06 09:50:19',NULL);
+INSERT INTO `constituency` VALUES (158,65572,'E14000653','Crewe and Nantwich','crewe-and-nantwich','1189567714274283520','2019-12-06 15:58:19','2019-12-06 15:58:33',NULL);
 INSERT INTO `constituency` VALUES (159,65603,'E14000654','Croydon Central','croydon-central','1189567719307403264','2019-11-18 12:40:33','2019-11-18 12:41:16',NULL);
 INSERT INTO `constituency` VALUES (160,65867,'E14000655','Croydon North','croydon-north','1189567723371683842','2019-12-03 12:58:39','2019-12-03 12:58:49',NULL);
 INSERT INTO `constituency` VALUES (161,65923,'E14000656','Croydon South','croydon-south','1189567727691882496','2019-11-15 09:28:20','2019-11-15 09:45:57',NULL);
 INSERT INTO `constituency` VALUES (162,14409,'S14000012','Cumbernauld, Kilsyth and Kirkintilloch East','cumbernauld-kilsyth-and','1189567732662059008','2019-11-28 08:01:55','2019-11-28 08:02:21',NULL);
-INSERT INTO `constituency` VALUES (163,66105,'W07000070','Cynon Valley','cynon-valley','1189567735535153152','2019-11-25 08:47:23','2019-11-25 08:47:46',NULL);
+INSERT INTO `constituency` VALUES (163,66105,'W07000070','Cynon Valley','cynon-valley','1189567735535153152','2019-12-06 15:58:20','2019-12-06 15:58:33',NULL);
 INSERT INTO `constituency` VALUES (164,65985,'E14000657','Dagenham and Rainham','dagenham-and-rainham','1189567738257248256','2019-11-25 08:47:23','2019-11-25 08:47:47',NULL);
 INSERT INTO `constituency` VALUES (165,65802,'E14000658','Darlington','darlington','1189567741335920641','2019-12-02 10:39:43','2019-12-02 10:39:55',NULL);
 INSERT INTO `constituency` VALUES (166,66011,'E14000659','Dartford','dartford','1189567743810510848','2019-11-18 08:29:42','2019-11-18 08:34:08',NULL);
@@ -3675,7 +3675,7 @@ INSERT INTO `constituency` VALUES (277,65967,'E14000739','Hemel Hempstead','heme
 INSERT INTO `constituency` VALUES (278,66018,'E14000740','Hemsworth','hemsworth','1191631482646933505','2019-11-15 14:50:11','2019-11-15 14:50:21',NULL);
 INSERT INTO `constituency` VALUES (279,65754,'E14000741','Hendon','hendon','1189575563196981249','2019-11-13 16:47:33','2019-11-13 16:47:53',NULL);
 INSERT INTO `constituency` VALUES (280,65786,'E14000742','Henley','henley','1189575567567413248','2019-11-15 09:28:25','2019-11-15 10:37:29',NULL);
-INSERT INTO `constituency` VALUES (281,65582,'E14000743','Hereford and South Herefordshire','hereford-and-south-herefo','1189575572093059072','2019-11-25 08:47:24','2019-11-25 08:47:52',NULL);
+INSERT INTO `constituency` VALUES (281,65582,'E14000743','Hereford and South Herefordshire','hereford-and-south-herefo','1189575572093059072','2019-12-06 15:58:20','2019-12-06 15:58:34',NULL);
 INSERT INTO `constituency` VALUES (282,66003,'E14000744','Hertford and Stortford','hertford-and-stortford','1189575575150747649','2019-11-28 16:52:23','2019-11-28 16:52:32',NULL);
 INSERT INTO `constituency` VALUES (283,65994,'E14000745','Hertsmere','hertsmere','1189575576518049792','2019-12-02 13:01:43','2019-12-02 13:01:51',NULL);
 INSERT INTO `constituency` VALUES (284,65850,'E14000746','Hexham','hexham','1189575579101736960','2019-11-15 13:06:47','2019-11-15 13:07:06',NULL);
@@ -3695,7 +3695,7 @@ INSERT INTO `constituency` VALUES (297,65630,'E14000759','Ilford North','ilford-
 INSERT INTO `constituency` VALUES (298,65585,'E14000760','Ilford South','ilford-south','1189575632855994368','2019-11-15 14:50:11','2019-11-15 14:50:22',NULL);
 INSERT INTO `constituency` VALUES (299,14434,'S14000038','Inverclyde','inverclyde','1189575638866378755','2019-11-18 08:32:30','2019-11-18 09:01:01',NULL);
 INSERT INTO `constituency` VALUES (300,14435,'S14000039','Inverness, Nairn, Badenoch and Strathspey','inverness-nairn-badenoc','1189575642368663563','2019-11-18 12:40:34','2019-11-18 12:41:44',NULL);
-INSERT INTO `constituency` VALUES (301,65925,'E14000761','Ipswich','ipswich','1189575646151892995','2019-11-05 08:03:50','2019-11-05 08:21:05',NULL);
+INSERT INTO `constituency` VALUES (301,65925,'E14000761','Ipswich','ipswich','1189575646151892995','2019-12-06 15:58:21','2019-12-06 15:58:34',NULL);
 INSERT INTO `constituency` VALUES (302,65791,'E14000762','Isle of Wight','isle-of-wight','1189575651814248448','2019-11-14 12:49:59','2019-11-14 12:50:13',NULL);
 INSERT INTO `constituency` VALUES (303,65937,'E14000763','Islington North','islington-north','1189575656155295747','2019-11-25 08:47:25','2019-11-25 08:47:53',NULL);
 INSERT INTO `constituency` VALUES (304,65882,'E14000764','Islington South and Finsbury','islington-south-and-finsb','1189575660752265218','2019-11-19 09:16:10','2019-11-19 09:16:26',NULL);
@@ -3760,7 +3760,7 @@ INSERT INTO `constituency` VALUES (362,65718,'E14000813','Mid Bedfordshire','mid
 INSERT INTO `constituency` VALUES (363,66007,'E14000814','Mid Derbyshire','mid-derbyshire','1189551627356856321','2019-11-18 08:32:31','2019-11-18 09:01:17',NULL);
 INSERT INTO `constituency` VALUES (364,66061,'E14000815','Mid Dorset and North Poole','mid-dorset-and-north-pool','1189551630326386688','2019-11-25 08:47:25','2019-11-25 08:47:57',NULL);
 INSERT INTO `constituency` VALUES (365,65949,'E14000816','Mid Norfolk','mid-norfolk','1189551633140715520','2019-11-18 08:32:32','2019-11-18 09:01:19',NULL);
-INSERT INTO `constituency` VALUES (366,65999,'E14000817','Mid Sussex','mid-sussex','1189551635019849729','2019-11-15 09:28:28','2019-11-15 11:27:41',NULL);
+INSERT INTO `constituency` VALUES (366,65999,'E14000817','Mid Sussex','mid-sussex','1189551635019849729','2019-12-06 15:58:21','2019-12-06 15:58:35',NULL);
 INSERT INTO `constituency` VALUES (367,66133,'N06000010','Mid Ulster','mid-ulster','1189551637897060352','2019-11-15 09:28:28','2019-11-15 11:27:43',NULL);
 INSERT INTO `constituency` VALUES (368,65888,'E14000818','Mid Worcestershire','mid-worcestershire','1189551639818067969','2019-11-07 14:21:55','2019-11-07 14:55:43',NULL);
 INSERT INTO `constituency` VALUES (369,65998,'E14000819','Middlesbrough','middlesbrough','1189551640795402240','2019-11-18 08:32:32','2019-11-18 09:01:20',NULL);
@@ -3814,7 +3814,7 @@ INSERT INTO `constituency` VALUES (416,65605,'E14000852','North Thanet','north-t
 INSERT INTO `constituency` VALUES (417,65720,'E14000853','North Tyneside','north-tyneside','1189551761952051203','2019-12-06 09:50:07','2019-12-06 09:50:22',NULL);
 INSERT INTO `constituency` VALUES (418,66024,'E14000854','North Warwickshire','north-warwickshire','1189551762895785984','2019-11-15 09:28:30','2019-11-15 11:28:06',NULL);
 INSERT INTO `constituency` VALUES (419,65565,'E14000855','North West Cambridgeshire','north-west-cambridgeshire','1189551764871274501','2019-11-15 09:28:30','2019-11-15 11:28:07',NULL);
-INSERT INTO `constituency` VALUES (420,65859,'E14000856','North West Durham','north-west-durham','1189551767631159298','2019-12-05 09:19:09','2019-12-05 09:19:33',NULL);
+INSERT INTO `constituency` VALUES (420,65859,'E14000856','North West Durham','north-west-durham','1189551767631159298','2019-12-06 15:58:21','2019-12-06 15:58:35',NULL);
 INSERT INTO `constituency` VALUES (421,65894,'E14000857','North West Hampshire','north-west-hampshire','1189551770571280384','2019-11-15 09:28:30','2019-11-15 11:28:08',NULL);
 INSERT INTO `constituency` VALUES (422,65776,'E14000858','North West Leicestershire','north-west-leicestershire','1189551772475498496','2019-11-15 09:28:30','2019-11-15 11:28:09',NULL);
 INSERT INTO `constituency` VALUES (423,65713,'E14000859','North West Norfolk','north-west-norfolk','1189551774358749184','2019-11-21 09:43:52','2019-11-21 09:44:46',NULL);
@@ -3899,7 +3899,7 @@ INSERT INTO `constituency` VALUES (501,65563,'E14000926','Shrewsbury and Atcham'
 INSERT INTO `constituency` VALUES (502,65610,'E14000927','Sittingbourne and Sheppey','sittingbourne-and-sheppey','1189551980143955968','2019-11-21 09:43:53','2019-11-21 09:44:49',NULL);
 INSERT INTO `constituency` VALUES (503,65986,'E14000928','Skipton and Ripon','skipton-and-ripon','1189551984065548289','2019-11-25 08:47:26','2019-11-25 08:48:02',NULL);
 INSERT INTO `constituency` VALUES (504,65920,'E14000929','Sleaford and North Hykeham','sleaford-and-north-hykeha','1189551987739762688','2019-11-28 08:01:58','2019-11-28 08:02:43',NULL);
-INSERT INTO `constituency` VALUES (505,65680,'E14000930','Slough','slough','1189551990659043334','2019-11-21 09:43:53','2019-11-21 09:44:49',NULL);
+INSERT INTO `constituency` VALUES (505,65680,'E14000930','Slough','slough','1189551990659043334','2019-12-06 15:58:22','2019-12-06 15:58:36',NULL);
 INSERT INTO `constituency` VALUES (506,65879,'E14000931','Solihull','solihull','1189551993561452545','2019-11-11 09:21:07','2019-11-11 10:29:50',NULL);
 INSERT INTO `constituency` VALUES (507,65812,'E14000932','Somerton and Frome','somerton-and-frome','1189551996304580608','2019-11-28 08:01:58','2019-11-28 08:02:43',NULL);
 INSERT INTO `constituency` VALUES (508,66137,'N06000014','South Antrim','south-antrim','1189551999278342144','2019-11-14 08:33:59','2019-11-14 08:34:41',NULL);
@@ -3913,7 +3913,7 @@ INSERT INTO `constituency` VALUES (515,65684,'E14000938','South East Cornwall','
 INSERT INTO `constituency` VALUES (516,66051,'E14000939','South Holland and The Deepings','south-holland-and-the-dee','1189552020757340160','2019-11-15 09:28:34','2019-11-15 11:52:34',NULL);
 INSERT INTO `constituency` VALUES (517,66034,'E14000940','South Leicestershire','south-leicestershire','1189552021629747200','2019-11-18 18:36:57','2019-11-18 18:39:55',NULL);
 INSERT INTO `constituency` VALUES (518,65666,'E14000941','South Norfolk','south-norfolk','1189552024653717504','2019-11-18 08:32:34','2019-11-18 09:18:36',NULL);
-INSERT INTO `constituency` VALUES (519,65902,'E14000942','South Northamptonshire','south-northamptonshire','1189552025664708614','2019-11-19 09:16:12','2019-11-19 09:16:36',NULL);
+INSERT INTO `constituency` VALUES (519,65902,'E14000942','South Northamptonshire','south-northamptonshire','1189552025664708614','2019-12-06 15:58:22','2019-12-06 15:58:36',NULL);
 INSERT INTO `constituency` VALUES (520,65951,'E14000943','South Ribble','south-ribble','1189552029485748224','2019-11-15 09:28:34','2019-11-15 11:52:36',NULL);
 INSERT INTO `constituency` VALUES (521,65719,'E14000944','South Shields','south-shields','1189552032996298752','2019-11-25 08:47:27','2019-11-25 08:48:02',NULL);
 INSERT INTO `constituency` VALUES (522,65943,'E14000945','South Staffordshire','south-staffordshire','1189552034799902720','2019-11-18 08:32:34','2019-11-18 09:18:37',NULL);
@@ -4015,7 +4015,7 @@ INSERT INTO `constituency` VALUES (617,65716,'E14001031','West Dorset','west-dor
 INSERT INTO `constituency` VALUES (618,14456,'S14000059','West Dunbartonshire','west-dunbartonshire','1189552303784771584','2019-11-15 09:28:37','2019-11-15 12:24:42',NULL);
 INSERT INTO `constituency` VALUES (619,66058,'E14001032','West Ham','west-ham','1189552306783768576','2019-11-28 08:01:59','2019-11-28 08:02:46',NULL);
 INSERT INTO `constituency` VALUES (620,65873,'E14001033','West Lancashire','west-lancashire','1189552309048610816','2019-11-21 09:43:54','2019-11-21 09:44:55',NULL);
-INSERT INTO `constituency` VALUES (621,65629,'E14001034','West Suffolk','west-suffolk','1189552311221309440','2019-11-18 12:40:38','2019-11-18 13:08:29',NULL);
+INSERT INTO `constituency` VALUES (621,65629,'E14001034','West Suffolk','west-suffolk','1189552311221309440','2019-12-06 15:58:23','2019-12-06 15:58:37',NULL);
 INSERT INTO `constituency` VALUES (622,66141,'N06000018','West Tyrone','west-tyrone','1189552315407196161','2019-11-18 08:32:35','2019-11-18 09:18:55',NULL);
 INSERT INTO `constituency` VALUES (623,65758,'E14001035','West Worcestershire','west-worcestershire','1189552316690714624','2019-11-15 09:28:38','2019-11-15 12:24:45',NULL);
 INSERT INTO `constituency` VALUES (624,65851,'E14001036','Westminster North','westminster-north','1189552318536134656','2019-11-18 12:40:38','2019-11-18 13:08:30',NULL);
@@ -4037,7 +4037,7 @@ INSERT INTO `constituency` VALUES (639,65948,'E14001051','Wolverhampton South We
 INSERT INTO `constituency` VALUES (640,65577,'E14001052','Worcester','worcester','1189552367420633090','2019-11-28 08:01:59','2019-11-28 08:02:47',NULL);
 INSERT INTO `constituency` VALUES (641,65625,'E14001053','Workington','workington','1189552372311379968','2019-11-25 08:47:27','2019-11-25 08:48:08',NULL);
 INSERT INTO `constituency` VALUES (642,65757,'E14001054','Worsley and Eccles South','worsley-and-eccles-south','1189552375079546880','2019-11-15 09:28:38','2019-11-15 12:24:54',NULL);
-INSERT INTO `constituency` VALUES (643,65562,'E14001055','Worthing West','worthing-west','1189552377906520070','2019-11-18 08:32:35','2019-11-18 09:18:57',NULL);
+INSERT INTO `constituency` VALUES (643,65562,'E14001055','Worthing West','worthing-west','1189552377906520070','2019-12-06 15:58:23','2019-12-06 15:58:38',NULL);
 INSERT INTO `constituency` VALUES (644,66113,'W07000044','Wrexham','wrexham','1189552380783874054','2019-11-19 09:16:12','2019-11-19 09:16:39',NULL);
 INSERT INTO `constituency` VALUES (645,66010,'E14001056','Wycombe','wycombe','1189552384730636289','2019-11-21 09:43:54','2019-11-21 09:44:56',NULL);
 INSERT INTO `constituency` VALUES (646,65695,'E14001057','Wyre and Preston North','wyre-and-preston-north','1189552387440152577','2019-12-02 10:39:46','2019-12-02 10:40:04',NULL);
@@ -4076,13 +4076,13 @@ CREATE TABLE `party` (
 
 LOCK TABLES `party` WRITE;
 /*!40000 ALTER TABLE `party` DISABLE KEYS */;
-INSERT INTO `party` VALUES (1,52,'Conservative','conservative','1196501513826455552','2019-12-06 09:50:08','2019-12-06 09:52:44');
-INSERT INTO `party` VALUES (2,53,'Labour','labour','1196502258646736897','2019-12-06 09:50:05','2019-12-06 09:54:58');
-INSERT INTO `party` VALUES (3,90,'Liberal Democrat','liberal-democrat','1196503157968379904','2019-12-06 09:50:04','2019-11-22 10:01:58');
+INSERT INTO `party` VALUES (1,52,'Conservative','conservative','1196501513826455552','2019-12-06 15:58:23','2019-12-06 09:52:44');
+INSERT INTO `party` VALUES (2,53,'Labour','labour','1196502258646736897','2019-12-06 15:58:23','2019-12-06 09:54:58');
+INSERT INTO `party` VALUES (3,90,'Liberal Democrat','liberal-democrat','1196503157968379904','2019-12-06 15:58:21','2019-11-22 10:01:58');
 INSERT INTO `party` VALUES (4,63,'Green','green1','1196712061117620224','2019-12-05 09:19:08','2019-11-26 09:43:35');
 INSERT INTO `party` VALUES (5,85,'UK Independence Party','uk-independence-party1','1196712416479973378','2019-11-28 08:01:55','2019-11-26 09:43:55');
-INSERT INTO `party` VALUES (6,2,'Independent','independent1','1196712432774844416','2019-12-06 09:50:08','2019-11-26 13:44:59');
-INSERT INTO `party` VALUES (7,77,'Plaid Cymru - The Party of Wales','plaid-cymru-the-party-o1','1196712540434251776','2019-11-21 11:44:27','2019-11-26 09:44:35');
+INSERT INTO `party` VALUES (6,2,'Independent','independent1','1196712432774844416','2019-12-06 15:58:22','2019-11-26 13:44:59');
+INSERT INTO `party` VALUES (7,77,'Plaid Cymru - The Party of Wales','plaid-cymru-the-party-o1','1196712540434251776','2019-12-06 15:58:19','2019-11-26 09:44:35');
 INSERT INTO `party` VALUES (8,2269,'Class War','class-war','1199262693800189954','2019-11-21 11:44:27','2019-11-26 09:44:42');
 INSERT INTO `party` VALUES (9,2034,'Justice For Men & Boys','justice-for-men-boys','1199262724498305029','2019-11-21 11:44:27','2019-11-26 09:44:49');
 INSERT INTO `party` VALUES (10,1931,'National Health Action Party','national-health-action-pa','1199262749534101505','2019-11-21 11:44:27','2019-11-26 09:44:55');
@@ -4190,7 +4190,7 @@ INSERT INTO `party` VALUES (111,616,'Animal Welfare Party','animal-welfare-party
 INSERT INTO `party` VALUES (112,2638,'World Peace Through Song','',NULL,'2019-11-21 11:44:27','2000-01-01 00:00:00');
 INSERT INTO `party` VALUES (113,2563,'Population Party UK','',NULL,'2019-11-21 11:44:27','2000-01-01 00:00:00');
 INSERT INTO `party` VALUES (114,1765,'British Democratic Party','',NULL,'2019-11-21 11:44:27','2000-01-01 00:00:00');
-INSERT INTO `party` VALUES (115,243,'Social Democratic Party','social-democratic-party1','1196712827874091009','2019-12-06 09:50:08','2019-11-25 09:52:26');
+INSERT INTO `party` VALUES (115,243,'Social Democratic Party','social-democratic-party1','1196712827874091009','2019-12-06 15:58:20','2019-11-25 09:52:26');
 INSERT INTO `party` VALUES (116,866,'Free Public Transport Party','',NULL,'2019-11-21 11:44:27','2000-01-01 00:00:00');
 INSERT INTO `party` VALUES (117,1871,'The Realists\' Party','',NULL,'2019-11-21 11:44:27','2000-01-01 00:00:00');
 INSERT INTO `party` VALUES (118,2662,'Restore the Family For Children\'s Sake','',NULL,'2019-11-21 11:44:27','2000-01-01 00:00:00');
@@ -4231,7 +4231,7 @@ INSERT INTO `party` VALUES (152,2641,'Give Me Back Elmo','',NULL,'2019-11-21 11:
 INSERT INTO `party` VALUES (153,860,'The U(niversal) Party','',NULL,'2019-11-21 11:44:27','2000-01-01 00:00:00');
 INSERT INTO `party` VALUES (154,2674,'Rebooting Democracy','rebooting-democracy1','1196712838439612417','2019-11-21 11:44:27','2019-11-25 09:52:27');
 INSERT INTO `party` VALUES (155,2728,'Digital Democracy','',NULL,'2019-11-21 11:44:27','2000-01-01 00:00:00');
-INSERT INTO `party` VALUES (156,7931,'The Brexit Party','the-brexit-party1','1196712840268320768','2019-12-06 09:50:07','2019-11-26 13:45:42');
+INSERT INTO `party` VALUES (156,7931,'The Brexit Party','the-brexit-party1','1196712840268320768','2019-12-06 15:58:19','2019-11-26 13:45:42');
 INSERT INTO `party` VALUES (157,6595,'Renew','renew1','1196713044648304642','2019-11-21 11:44:27','2019-11-25 09:53:10');
 INSERT INTO `party` VALUES (158,3902,'Ashfield Independents','ashfield-independents1','1196713050159628288','2019-11-21 11:44:27','2019-11-25 09:53:11');
 INSERT INTO `party` VALUES (159,6662,'Democrats and Veterans Direct Democracy Party','democrats-and-veterans-di','1196713052068036609','2019-11-21 11:44:27','2019-11-25 09:53:11');
@@ -4279,4 +4279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-06 10:28:46
+-- Dump completed on 2019-12-06 15:59:08
