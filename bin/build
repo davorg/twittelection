@@ -107,7 +107,8 @@ sub build_static_pages {
 
   for (qw[index about/index]) {
     my ($path, $page) = split m|/|;
-    $path = '' if $path eq 'index';
+    $path .= '/';
+    $path = '' if $path eq 'index/';
     $tt->process("$_.tt", { url => "$url/$path" }, "$_.html", { binmode => ':utf8' });
 
     push @returns, "$url/$path";
