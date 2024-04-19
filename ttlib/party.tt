@@ -6,14 +6,14 @@
         <h1>[% p.name %]</h1>
         <div class="row">
           <div class="col-sm-8">
-[% INSERT widgets.tt -%]
-          </div>
-          <div class="col-sm-4">
             <ul>
 [% FOREACH cand IN p.candidates_rs.sort_by_name -%]
               <li>[% cand.name %] (<a href="[% cand.constituency.url %]">[% cand.constituency.name %]</a>)[% IF cand.twitter %]<br><a href="https://twitter.com/[% cand.twitter %]">@[% cand.twitter %]</a>[% END %]</li>
 [% END -%]
             </ul>
+          </div>
+          <div class="col-sm-4">
+[% INSERT widgets.tt -%]
           </div>
         </div>
       </div>
