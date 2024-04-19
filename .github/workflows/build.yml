@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install cpanminus
       run: sudo apt update && sudo apt install cpanminus
@@ -38,7 +38,7 @@ jobs:
         if [ "$GIT_STATUS" != "" ]; then git push; fi
 
     - name: Update pages artifact
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with:
         path: docs/
 
@@ -54,5 +54,5 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
 
