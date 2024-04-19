@@ -30,3 +30,8 @@ hr {
   height: 1px;
   border-color : transparent;
 }
+
+.tab-pane {
+  margin-top: 20px;
+}
+
