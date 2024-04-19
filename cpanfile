@@ -1,7 +1,9 @@
 requires 'DateTime';
+requires 'Exporter';
 requires 'FindBin';
 requires 'Getopt::Long';
 requires 'JSON';
+requires 'LWP::Protocol::https';
 requires 'LWP::Simple';
 requires 'LWP::UserAgent';
 requires 'List::Util';
@@ -10,6 +12,7 @@ requires 'Moose::Role';
 requires 'Moose';
 requires 'MooseX::MarkAsMethods';
 requires 'MooseX::NonMoose';
+requires 'Net::Twitter';
 requires 'Scalar::Util';
 requires 'Sys::RunAlone';
 requires 'Template';
