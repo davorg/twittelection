@@ -1,0 +1,18 @@
+             <!-- AddToAny BEGIN -->
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style pb-3">
+                <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                <a class="a2a_button_x"></a>
+                <a class="a2a_button_facebook"></a>
+                <a class="a2a_button_mastodon"></a>
+                <a class="a2a_button_threads"></a>
+                <a class="a2a_button_bluesky"></a>
+                <a class="a2a_button_reddit"></a>
+                <a class="a2a_button_email"></a>
+                <a class="a2a_button_copy_link"></a>
+            </div>
+            <script async src="https://static.addtoany.com/menu/page.js"></script>
+            <!-- AddToAny END -->
+            <!-- Twitter BEGIN -->
+            <a class="twitter-timeline" href="https://twitter.com/TwittElection?ref_src=twsrc%5Etfw">Tweets by TwittElection</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <!-- Twitter END -->
