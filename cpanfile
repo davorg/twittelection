@@ -1,4 +1,5 @@
 requires 'DateTime';
+requires 'DBIx::Class::Schema';
 requires 'Exporter';
 requires 'FindBin';
 requires 'Getopt::Long';
