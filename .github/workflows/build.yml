@@ -18,7 +18,7 @@ jobs:
 
     - name: Install modules
       run: |
-          cpanm --installdeps --notest .
+          cpanm --sudo --installdeps --notest .
 
     - name: Create pages
       run: |
