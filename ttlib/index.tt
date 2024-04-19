@@ -1,26 +1,20 @@
 [% WRAPPER page.tt
    page = 'home' -%]
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
       <div class="container">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-lg-8">
             <img style="float:right; padding: 0 0 5px 5px" src="/234px-Ballot_Box_Silhouette.svg.png" alt="">
-            <h1>2 May 2024</h1>
+            <h1>Next election imminent... ish</h1>
             <div id="counter"></div>
-            <p>So the 2019 general election is over. The next UK general election is due to take place by 2 May 2024. But who knows what might happen by then.</p>
+            <p>It's April 2024 and there's going to be an election sometime this year (or, maybe, very early next year - it has to be before 28 Jan 2025). But we don't know any more than that.</p>
             <hr>
             <p>As for the last two elections, we have created a Twitter list for each of the 650 parliamentary constituencies in the UK and we are populating those lists with the known candidates from those constituencies (using data from those lovely people at <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>). This will, hopefully, make it easier for you to find your candidates on Twitter and follow what they are saying.</p>
             <p>Just go to our <a href="/c/">constituencies page</a> and find your constituency on the list. You can find out which constituency you can vote in by visiting <a href="https://members.parliament.uk/constituencies/">this useful page</a>.</p>
             <p><b>Update (25 Nov):</b> As well as our traditional constituency lists, we have now added <a href="/p/">lists for every party standing in this general election</a>. Please let us know if you find those useful.</p>
           </div>
-          <div class="col-md-4">
-            <a class="twitter-timeline" href="https://twitter.com/TwittElection" data-widget-id="557981942126497792">Tweets by @TwittElection</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
-            <div class="addthis_native_toolbox"></div>
+          <div class="col-lg-4">
+[% INSERT widgets.tt -%]
           </div>
         </div>
       </div>
-    </div>
 [% END -%]

@@ -11,16 +11,15 @@
      END;
    END %]
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
       <div class="container">
         <h1>Constituencies</h1>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-sm-8">
             <p>Find your constituency in the list below.</p>
             <p>You can find your constituency from your postcode on
               <a href="http://www.parliament.uk/mps-lords-and-offices/mps/">Parliament's web site</a>.</p>
             <p>Jump to: [% letters.join(' | ') %]</p>
-<table class="table table-striped table-condensed table-bordered">
+<table class="table table-striped table-sm table-bordered">
 [% prev_letter = '';
    FOREACH c IN constits;
      letter = c.name.substr(0, 1);
@@ -32,11 +31,8 @@
    END -%]
 </table>
           </div>
-          <div class="col-md-4">
-            <a class="twitter-timeline" href="https://twitter.com/TwittElection" data-widget-id="557981942126497792">Tweets by @TwittElection</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
-            <div class="addthis_native_toolbox"></div>
+          <div class="col-sm-4">
+[% INCLUDE widgets.tt -%]
           </div>
         </div>
       </div>

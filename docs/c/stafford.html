@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
   <head>
     <meta name="google-site-verification" content="HLLWtUo79tD2Q-IdJGZxpGmwygtSUjSgFsLSQYaWH9w" />
     <meta charset="utf-8">
@@ -34,7 +34,10 @@
 
     <link href="https://twittelection.co.uk/c/stafford.html" rel="canonical">
     <link rel="alternate" href="https://twittelection.co.uk/c/stafford.html" hreflang="en-gb" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
 
     <script type="application/ld+json">
@@ -51,65 +54,32 @@
 }
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">TwittElection</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/c/">Constituencies</a></li>
-            <li><a href="/p/">Parties</a></li>
-            <li><a href="/stats/">Statistics</a></li>
-            <li><a href="/about/">About</a></li>
-          </ul>
-          <!-- ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Share
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="socials"><g:plusone annotation="inline" width="150"></g:plusone> </li>
-                <li class="socials"><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-                <li class="socials"><div class="fb-like" data-send="false" data-width="150" data-show-faces="true"></div></li>
-              </ul>
-            </li>
-          </ul -->
-          <!-- form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form -->
-        </div><!--/.navbar-collapse -->
+    <div class="navbar navbar-dark bg-dark fixed-top navbar-expand-sm">
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand ms-3" href="/">TwittElection</a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/c/">Constituencies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/p/">Parties</a></li>
+          <li class="nav-item"><a class="nav-link" href="/stats/">Statistics</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+        </ul>
       </div>
     </div>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <div class="bg-light p-5 rounded-3 mb-4">
       <div class="container">
         <h1>Stafford</h1>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-sm-8">
 <a class="twitter-timeline" href="https://twitter.com/TwittElection/lists/stafford" data-widget-id="464129893937082368" data-list-owner-screen-name="TwittElection" data-list-slug="stafford">Tweets from https://twitter.com/TwittElection/lists/stafford</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
-          <div class="col-md-4">
+          <div class="col-sm-4">
             <p>This page contains details of the candidates for the
               Stafford constituency in the December 2019 UK general
               election.</p>
@@ -123,24 +93,36 @@
             <b>Corrections</b>
             <p><small>If you wish to make any corrections to this list, please see the
               <a href="https://candidates.democracyclub.org.uk/elections/parl.stafford.2019-12-12">Stafford page</a> on <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>.</small></p>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
             <div class="addthis_native_toolbox"></div>
+            <a class="twitter-timeline" href="https://twitter.com/TwittElection?ref_src=twsrc%5Etfw">Tweets by TwittElection</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
           </div>
         </div>
       </div>
+
     </div>
-
-
-    <div id="footer">
+    <footer id="footer">
       <div class="container">
-        <p class="muted"><a href="https://democracyclub.org.uk/"><img style="float:right;" src="/democracyclub.png" alt="Democracy Club" /></a> Made by <a href="https://twitter.com/davorg/">@davorg</a></p>
+        <p class="text-muted"><a href="https://democracyclub.org.uk/"><img style="float:right;" src="/democracyclub.png" alt="Democracy Club" /></a> Made by <a href="https://twitter.com/davorg/">@davorg</a></p>
       </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery-1.11.0.min.js"><\/script>')</script>
-    <script src="/js/jquery.tablesorter.min.js"></script>
+    </footer>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!-- Javascript libraries -->
+    <!-- jQuery (needed for TableSorter) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+
+    <!-- TableSorter -->
+    <script src="https://cdn.jsdelivr.net/npm/tablesorter@2.31.3/dist/js/jquery.tablesorter.combined.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"></script>
+
+    <!-- Custom scripts -->
     <script src="/js/plugins.js"></script>
     <script src="/js/main.js"></script>
 
@@ -157,5 +139,5 @@
     </script>
 <!-- Go to www.addthis.com/dashboard to customize your tools --> <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56165a02d0fe210e"></script> 
   </body>
-  <!-- Built at: 10:16:06 20-Dec-2019 -->
+  <!-- Built at: 10:32:08 19-Apr-2024 -->
 </html>

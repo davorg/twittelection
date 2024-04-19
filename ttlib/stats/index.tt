@@ -1,12 +1,10 @@
 [% WRAPPER page.tt
    title = 'Statistics'
    page = 'stats' -%]
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
       <div class="container">
         <h1>Stats</h1>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-sm-8">
             <p>Here are some statistics about the data on this site.</p>
             <p class="alert alert-warning" role="alert">It's worth pointing
               out that we get our data from
@@ -85,13 +83,9 @@
 [% END -%]
 
           </div>
-          <div class="col-md-4">
-            <a class="twitter-timeline" href="https://twitter.com/TwittElection" data-widget-id="557981942126497792">Tweets by @TwittElection</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
-            <div class="addthis_native_toolbox"></div>
+          <div class="col-sm-4">
+[% INCLUDE widgets.tt -%]
           </div>
         </div>
       </div>
-    </div>
 [% END -%]
