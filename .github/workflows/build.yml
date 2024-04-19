@@ -22,7 +22,7 @@ jobs:
 
     - name: Create pages
       run: |
-        perl bin/build
+        bin/build
 
     - name: Commit new page
       if: github.repository == 'davorg/twittelection'
