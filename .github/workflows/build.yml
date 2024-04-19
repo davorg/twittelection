@@ -21,6 +21,8 @@ jobs:
           cpanm --sudo --installdeps --notest .
 
     - name: Create pages
+      env:
+        PERL5LIB: lib
       run: |
         bin/build
 
