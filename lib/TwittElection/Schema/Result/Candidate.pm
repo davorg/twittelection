@@ -48,8 +48,9 @@ __PACKAGE__->table("candidate");
 
 =head2 yournextmp_id
 
-  data_type: 'integer'
+  data_type: 'int'
   is_nullable: 0
+  size: 11
 
 =head2 name
 
@@ -60,32 +61,38 @@ __PACKAGE__->table("candidate");
 =head2 twitter
 
   data_type: 'varchar'
+  default_value: null
   is_nullable: 1
   size: 200
 
 =head2 party_id
 
-  data_type: 'integer'
+  data_type: 'int'
   is_foreign_key: 1
   is_nullable: 0
+  size: 11
 
 =head2 constituency_id
 
-  data_type: 'integer'
+  data_type: 'int'
+  default_value: null
   is_foreign_key: 1
   is_nullable: 1
+  size: 11
 
 =head2 current_mp
 
-  data_type: 'integer'
+  data_type: 'int'
   default_value: 0
   is_nullable: 0
+  size: 11
 
 =head2 twitter_problem
 
   data_type: 'smallint'
   default_value: 0
   is_nullable: 0
+  size: 6
 
 =cut
 
@@ -93,19 +100,30 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "yournextmp_id",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "int", is_nullable => 0, size => 11 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "twitter",
-  { data_type => "varchar", is_nullable => 1, size => 200 },
+  {
+    data_type => "varchar",
+    default_value => \"null",
+    is_nullable => 1,
+    size => 200,
+  },
   "party_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  { data_type => "int", is_foreign_key => 1, is_nullable => 0, size => 11 },
   "constituency_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
+  {
+    data_type => "int",
+    default_value => \"null",
+    is_foreign_key => 1,
+    is_nullable => 1,
+    size => 11,
+  },
   "current_mp",
-  { data_type => "integer", default_value => 0, is_nullable => 0 },
+  { data_type => "int", default_value => 0, is_nullable => 0, size => 11 },
   "twitter_problem",
-  { data_type => "smallint", default_value => 0, is_nullable => 0 },
+  { data_type => "smallint", default_value => 0, is_nullable => 0, size => 6 },
 );
 
 =head1 PRIMARY KEY
@@ -122,7 +140,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<yournextmp_id>
+=head2 C<yournextmp_id_unique>
 
 =over 4
 
@@ -132,7 +150,7 @@ __PACKAGE__->set_primary_key("id");
 
 =cut
 
-__PACKAGE__->add_unique_constraint("yournextmp_id", ["yournextmp_id"]);
+__PACKAGE__->add_unique_constraint("yournextmp_id_unique", ["yournextmp_id"]);
 
 =head1 RELATIONS
 
@@ -149,10 +167,10 @@ __PACKAGE__->belongs_to(
   "TwittElection::Schema::Result::Constituency",
   { id => "constituency_id" },
   {
-    is_deferrable => 1,
+    is_deferrable => 0,
     join_type     => "LEFT",
-    on_delete     => "RESTRICT",
-    on_update     => "RESTRICT",
+    on_delete     => "NO ACTION",
+    on_update     => "NO ACTION",
   },
 );
 
@@ -168,12 +186,12 @@ __PACKAGE__->belongs_to(
   "party",
   "TwittElection::Schema::Result::Party",
   { id => "party_id" },
-  { is_deferrable => 1, on_delete => "RESTRICT", on_update => "RESTRICT" },
+  { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07043 @ 2017-05-20 10:26:00
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uJvpnzO4IW9E1bBHm9OpWA
+# Created by DBIx::Class::Schema::Loader v0.07051 @ 2024-04-20 15:48:42
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jFbSO9BGSq+lZdoTmGr5sw
 
 sub dump {
   my $self = shift;

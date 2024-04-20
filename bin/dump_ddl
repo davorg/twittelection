@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dir=$(dirname "$0")
+# shellcheck disable=SC1091
+. "$dir/func_defs"
+
+check_vars
+
+echo Dumping database DDL
+mysqldump --skip-extended-insert -d \
+  -h"$TE_DB_HOST" \
+  -P"${TE_PORT:-3306}" \
+  -u"$TE_DB_USER" \
+  -p"$TE_DB_PASS" \
+  "$TE_DB_NAME" > data/twittelection_ddl.sql

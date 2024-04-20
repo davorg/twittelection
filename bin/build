@@ -5,6 +5,8 @@ use warnings;
 use 5.010;
 use lib 'lib';
 
+use open ':std', IO => ':encoding(UTF-8)';
+
 use TwittElection::App;
 
 my $te_app = TwittElection::App->new;

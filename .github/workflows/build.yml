@@ -23,6 +23,7 @@ jobs:
     - name: Create pages
       env:
         PERL5LIB: lib
+        TE_DB_FILE: data/twittelection.sqlite
       run: |
         bin/build
 

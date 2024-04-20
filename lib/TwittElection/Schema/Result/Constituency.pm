@@ -48,13 +48,15 @@ __PACKAGE__->table("constituency");
 
 =head2 mapit_id
 
-  data_type: 'integer'
+  data_type: 'int'
   default_value: 0
   is_nullable: 0
+  size: 11
 
 =head2 demclub_id
 
   data_type: 'varchar'
+  default_value: null
   is_nullable: 1
   size: 20
 
@@ -73,27 +75,26 @@ __PACKAGE__->table("constituency");
 =head2 list_id
 
   data_type: 'varchar'
+  default_value: null
   is_nullable: 1
   size: 20
 
 =head2 candidates_updated_time
 
   data_type: 'datetime'
-  datetime_undef_if_invalid: 1
   default_value: '2000-01-01 00:00:00'
   is_nullable: 0
 
 =head2 list_rebuilt_time
 
   data_type: 'datetime'
-  datetime_undef_if_invalid: 1
   default_value: '2000-01-01 00:00:00'
   is_nullable: 0
 
 =head2 list_checked_time
 
   data_type: 'datetime'
-  datetime_undef_if_invalid: 1
+  default_value: null
   is_nullable: 1
 
 =cut
@@ -102,35 +103,39 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "mapit_id",
-  { data_type => "integer", default_value => 0, is_nullable => 0 },
+  { data_type => "int", default_value => 0, is_nullable => 0, size => 11 },
   "demclub_id",
-  { data_type => "varchar", is_nullable => 1, size => 20 },
+  {
+    data_type => "varchar",
+    default_value => \"null",
+    is_nullable => 1,
+    size => 20,
+  },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "list_name",
   { data_type => "varchar", is_nullable => 0, size => 25 },
   "list_id",
-  { data_type => "varchar", is_nullable => 1, size => 20 },
+  {
+    data_type => "varchar",
+    default_value => \"null",
+    is_nullable => 1,
+    size => 20,
+  },
   "candidates_updated_time",
   {
-    data_type => "datetime",
-    datetime_undef_if_invalid => 1,
+    data_type     => "datetime",
     default_value => "2000-01-01 00:00:00",
-    is_nullable => 0,
+    is_nullable   => 0,
   },
   "list_rebuilt_time",
   {
-    data_type => "datetime",
-    datetime_undef_if_invalid => 1,
+    data_type     => "datetime",
     default_value => "2000-01-01 00:00:00",
-    is_nullable => 0,
+    is_nullable   => 0,
   },
   "list_checked_time",
-  {
-    data_type => "datetime",
-    datetime_undef_if_invalid => 1,
-    is_nullable => 1,
-  },
+  { data_type => "datetime", default_value => \"null", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -147,7 +152,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<mapit_id>
+=head2 C<mapit_id_unique>
 
 =over 4
 
@@ -157,7 +162,7 @@ __PACKAGE__->set_primary_key("id");
 
 =cut
 
-__PACKAGE__->add_unique_constraint("mapit_id", ["mapit_id"]);
+__PACKAGE__->add_unique_constraint("mapit_id_unique", ["mapit_id"]);
 
 =head1 RELATIONS
 
@@ -177,8 +182,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07043 @ 2017-05-19 11:30:15
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:P6IDzPsfV7meFi0pTChp2g
+# Created by DBIx::Class::Schema::Loader v0.07051 @ 2024-04-20 15:48:42
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:tL+Kp+r4dTMVemxg0R4UnQ
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 

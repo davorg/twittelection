@@ -48,8 +48,9 @@ __PACKAGE__->table("party");
 
 =head2 yournextmp_id
 
-  data_type: 'integer'
+  data_type: 'int'
   is_nullable: 0
+  size: 11
 
 =head2 name
 
@@ -67,20 +68,19 @@ __PACKAGE__->table("party");
 =head2 list_id
 
   data_type: 'varchar'
+  default_value: null
   is_nullable: 1
   size: 20
 
 =head2 candidates_updated_time
 
   data_type: 'datetime'
-  datetime_undef_if_invalid: 1
   default_value: '2000-01-01 00:00:00'
   is_nullable: 0
 
 =head2 list_rebuilt_time
 
   data_type: 'datetime'
-  datetime_undef_if_invalid: 1
   default_value: '2000-01-01 00:00:00'
   is_nullable: 0
 
@@ -90,26 +90,29 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "yournextmp_id",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "int", is_nullable => 0, size => 11 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
   "list_name",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 25 },
   "list_id",
-  { data_type => "varchar", is_nullable => 1, size => 20 },
+  {
+    data_type => "varchar",
+    default_value => \"null",
+    is_nullable => 1,
+    size => 20,
+  },
   "candidates_updated_time",
   {
-    data_type => "datetime",
-    datetime_undef_if_invalid => 1,
+    data_type     => "datetime",
     default_value => "2000-01-01 00:00:00",
-    is_nullable => 0,
+    is_nullable   => 0,
   },
   "list_rebuilt_time",
   {
-    data_type => "datetime",
-    datetime_undef_if_invalid => 1,
+    data_type     => "datetime",
     default_value => "2000-01-01 00:00:00",
-    is_nullable => 0,
+    is_nullable   => 0,
   },
 );
 
@@ -127,7 +130,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<yournextmp_id>
+=head2 C<yournextmp_id_unique>
 
 =over 4
 
@@ -137,7 +140,7 @@ __PACKAGE__->set_primary_key("id");
 
 =cut
 
-__PACKAGE__->add_unique_constraint("yournextmp_id", ["yournextmp_id"]);
+__PACKAGE__->add_unique_constraint("yournextmp_id_unique", ["yournextmp_id"]);
 
 =head1 RELATIONS
 
@@ -157,8 +160,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2019-11-18 18:47:56
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pGYSPBlZJK6+u/x8g8AVtg
+# Created by DBIx::Class::Schema::Loader v0.07051 @ 2024-04-20 15:48:42
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uXVcimGBfAjqH9+8qtLBQw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

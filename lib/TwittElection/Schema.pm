@@ -17,10 +17,12 @@ __PACKAGE__->load_namespaces;
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 
+use DBD::SQLite::Constants ':dbd_sqlite_string_mode';
+
 sub get_schema {
   my $class = shift;
 
-  my @vars = qw(TE_DB_HOST TE_DB_NAME TE_DB_USER TE_DB_PASS);
+  my @vars = qw(TE_DB_FILE);
   my @missing;
 
   foreach (@vars) {
@@ -31,11 +33,13 @@ sub get_schema {
     die "You need to define these environment variables: @missing\n";
   }
 
-  return ($class->connect(
-    "dbi:mysql:database=$ENV{TE_DB_NAME}:host=$ENV{TE_DB_HOST}",
-    $ENV{TE_DB_USER}, $ENV{TE_DB_PASS},
-    { mysql_enable_utf8 => 1 },  
-  ) or die);
+  my $dbh = $class->connect(
+    "dbi:SQLite:database=$ENV{TE_DB_FILE}",
+  ) or die;
+
+#  $dbh->{sqlite_string_mode} = DBD_SQLITE_STRING_MODE_BYTES;
+
+  return $dbh;
 }
 
 __PACKAGE__->meta->make_immutable(inline_constructor => 0);
