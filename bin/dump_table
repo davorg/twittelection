@@ -6,4 +6,5 @@ then
   exit 1
 fi
 
-mysqldump -u"$TE_DB_USER" -p"$TE_DB_PASS" -h"$TE_DB_HOST" "$TE_DB_NAME" --no-create-info "$1" > "db/$1.dat"
+echo ".mode insert" > "db/$1.dat"
+echo ".dump $1" | sqlite3 "$TE_DB_FILE" >> "db/$1.dat"

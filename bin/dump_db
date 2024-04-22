@@ -6,10 +6,9 @@ dir=$(dirname "$0")
 
 check_vars
 
+
+dump_file="data/twittelection_dump.sql"
+
 echo Dumping database
-mysqldump --skip-extended-insert \
-  -h"$TE_DB_HOST" \
-  -P"${TE_PORT:-3306}" \
-  -u"$TE_DB_USER" \
-  -p"$TE_DB_PASS" \
-  "$TE_DB_NAME" > data/twittelection_dump.sql
+echo ".tables" | sqlite3 "$TE_DB_FILE" | while read table; do echo "DROP TABLE IF EXISTS $table;"; done > "$dump_file"
+echo ".dump" | sqlite3 "$TE_DB_FILE" >> "$dump_file"

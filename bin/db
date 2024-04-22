@@ -8,7 +8,7 @@ check_vars
 
 if [ $# -eq 0 ]
 then
-  mysql -h"$TE_DB_HOST" -u"$TE_DB_USER" -p"$TE_DB_PASS" "$TE_DB_NAME"
+  sqlite3 "$TE_DB_FILE"
 else
-  echo "$*" | mysql -t -h"$TE_DB_HOST" -u"$TE_DB_USER" -p"$TE_DB_PASS" "$TE_DB_NAME"
+  echo "$*" | sqlite3 "$TE_DB_FILE"
 fi

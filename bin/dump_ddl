@@ -6,10 +6,7 @@ dir=$(dirname "$0")
 
 check_vars
 
+ddl_file="data/twittelection_ddl.sql"
+
 echo Dumping database DDL
-mysqldump --skip-extended-insert -d \
-  -h"$TE_DB_HOST" \
-  -P"${TE_PORT:-3306}" \
-  -u"$TE_DB_USER" \
-  -p"$TE_DB_PASS" \
-  "$TE_DB_NAME" > data/twittelection_ddl.sql
+echo ".schema" | sqlite3 "$TE_DB_FILE" > "$ddl_file"
