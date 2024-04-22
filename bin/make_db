@@ -6,26 +6,20 @@ dir=$(dirname "$0")
 
 check_vars
 
-root_user=$1
-
-# Drop existing database
-echo "DROP DATABASE IF EXISTS $TE_DB_NAME" | mysql -h"$TE_DB_HOST" -u"$root_user" -p
-
-# Create database
-echo "CREATE DATABASE $TE_DB_NAME" | mysql -h"$TE_DB_HOST" -u"$root_user" -p
-
-# Create user and permissions
-echo "GRANT ALL ON $TE_DB_NAME.* TO '$TE_DB_USER'@'localhost' IDENTIFIED BY '$TE_DB_PASS'" | mysql -h"$TE_DB_HOST" -u"$root_user" -p
+# Backup existing database file
+if [[ -f "$TE_DB_FILE" ]]
+then
+  mv "$TE_DB_FILE" "${TE_DB_FILE}.bak"
+fi
 
 # Load DDL
-mysql -h"$TE_DB_HOST" -u"$TE_DB_USER" -p"$TE_DB_PASS" -D"$TE_DB_NAME" < db/twittelect.sql
+sqlite3 "$TE_DB_FILE" < db/twittelect.sql
 
 # Load data
-mysql -h"$TE_DB_HOST" -u"$TE_DB_USER" -p"$TE_DB_PASS" -D"$TE_DB_NAME" < db/constituency.dat
-mysql -h"$TE_DB_HOST" -u"$TE_DB_USER" -p"$TE_DB_PASS" -D"$TE_DB_NAME" < db/party.dat
+sqlite3 "$TE_DB_FILE" < db/constituency.dat
+sqlite3 "$TE_DB_FILE" < db/party.dat
 
 if [[ -f db/candidate.tsv ]]
 then
   bin/load_cand
 fi
-
