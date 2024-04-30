@@ -5,27 +5,33 @@ use warnings;
 use 5.010;
 use lib 'lib';
 
-use JSON;
+use Data::Printer;
+
+use Text::CSV;
 use Text::Unidecode;
 
 use TwittElection::Schema;
 
-open my $js_fh, '<', 'db/constit.json' or die $!;
+my $csv = Text::CSV->new ({ binary => 1, auto_diag => 1 });
 
-my $json = join '', <$js_fh>;
-
-my $data = decode_json($json);
+my @fields = @{ $csv->getline(*ARGV) };
 
 my $sch = TwittElection::Schema->get_schema;
 
 my $con_rs = $sch->resultset('Constituency');
 
-my $m = 1;
-foreach (@$data) {
+while (my $row = $csv->getline(*ARGV)) {
+  my %data;
+  @data{@fields} = @$row;
+
+  p %data;
+
   $con_rs->create({
-    name => $_->{name},
-    list_name => list_name($_->{name}),
-    mapit_id => $m++,
+    name =>       $data{name},
+    list_name =>  list_name($data{name}),
+    three_code => $data{three_code},
+    region =>     $data{region},
+    nation =>     $data{nation},
   });
 }
 
@@ -33,7 +39,7 @@ sub list_name {
   my ($name) = @_;
 
   $name = lc unidecode($name);
-  $name =~ s/\s+/_/g;
+  $name =~ s/\s+/-/g;
 
   return $name;
 }

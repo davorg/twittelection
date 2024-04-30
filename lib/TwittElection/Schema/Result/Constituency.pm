@@ -46,25 +46,30 @@ __PACKAGE__->table("constituency");
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 mapit_id
+=head2 three_code
 
-  data_type: 'int'
+  data_type: 'char'
   default_value: 0
   is_nullable: 0
-  size: 11
-
-=head2 demclub_id
-
-  data_type: 'varchar'
-  default_value: null
-  is_nullable: 1
-  size: 20
+  size: 3
 
 =head2 name
 
   data_type: 'varchar'
   is_nullable: 0
   size: 200
+
+=head2 region
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 50
+
+=head2 nation
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 50
 
 =head2 list_name
 
@@ -102,17 +107,14 @@ __PACKAGE__->table("constituency");
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
-  "mapit_id",
-  { data_type => "int", default_value => 0, is_nullable => 0, size => 11 },
-  "demclub_id",
-  {
-    data_type => "varchar",
-    default_value => \"null",
-    is_nullable => 1,
-    size => 20,
-  },
+  "three_code",
+  { data_type => "char", default_value => 0, is_nullable => 0, size => 3 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 200 },
+  "region",
+  { data_type => "varchar", is_nullable => 0, size => 50 },
+  "nation",
+  { data_type => "varchar", is_nullable => 0, size => 50 },
   "list_name",
   { data_type => "varchar", is_nullable => 0, size => 25 },
   "list_id",
@@ -152,17 +154,29 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<mapit_id_unique>
+=head2 C<name_unique>
 
 =over 4
 
-=item * L</mapit_id>
+=item * L</name>
 
 =back
 
 =cut
 
-__PACKAGE__->add_unique_constraint("mapit_id_unique", ["mapit_id"]);
+__PACKAGE__->add_unique_constraint("name_unique", ["name"]);
+
+=head2 C<three_code_unique>
+
+=over 4
+
+=item * L</three_code>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("three_code_unique", ["three_code"]);
 
 =head1 RELATIONS
 
@@ -182,8 +196,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07051 @ 2024-04-20 15:48:42
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:tL+Kp+r4dTMVemxg0R4UnQ
+# Created by DBIx::Class::Schema::Loader v0.07051 @ 2024-04-30 15:00:07
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:mv8nlkFMGjCb8FqXr3vrdA
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 
