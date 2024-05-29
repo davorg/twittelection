@@ -6,7 +6,11 @@
             <img style="float:right; padding: 0 0 5px 5px" src="/234px-Ballot_Box_Silhouette.svg.png" alt="">
             <h1>Next election imminent... ish</h1>
             <div id="counter"></div>
-            <p>It's April 2024 and there's going to be an election sometime this year (or, maybe, very early next year - it has to be before 28 Jan 2025). But we don't know any more than that.</p>
+            <p>The election has been called - taking pretty much everyone by surprise.</p>
+            <p>We are investigating whether we are able to run TwittElection for this election. It's possible
+              that Elon Musk's changes at Twitter have made it prohibitively expensive to run the site (it's
+              also possible that he's driven so many people away from the site, that it's not worth doing it
+              this time!)</p>
             <hr>
             <p>As for the last two elections, we have created a Twitter list for each of the 650 parliamentary constituencies in the UK and we are populating those lists with the known candidates from those constituencies (using data from those lovely people at <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>). This will, hopefully, make it easier for you to find your candidates on Twitter and follow what they are saying.</p>
             <p>Just go to our <a href="/c/">constituencies page</a> and find your constituency on the list. You can find out which constituency you can vote in by visiting <a href="https://members.parliament.uk/constituencies/">this useful page</a>.</p>
