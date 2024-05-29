@@ -37,7 +37,7 @@ sub build_constituency_pages {
   }
 
   $tt->process('constituencies.tt', {
-      constits => [ $sch->resultset('Constituency')->all ],
+      constits => [ sort { $a->name cmp $b->name } $sch->resultset('Constituency')->all ],
       url      => "$url/c/",
     },
     'c/index.html', {binmode => ':utf8'})
