@@ -1,5 +1,5 @@
 function daysToGo () {
-  var targetDate = new Date("Jul 24, 2024 00:00:00");
+  var targetDate = new Date("Jul 04, 2024 00:00:00");
   var secsToGo = (targetDate - new Date()) / 1000;
 
   return Math.floor(secsToGo / (60 * 60 * 24)) + 1;
