@@ -26,7 +26,7 @@ $app->delay(0);
 
 if (@ARGV) {
   $con_rs = $app->constituency_rs->search({
-    mapit_id => \@ARGV,
+    three_code => \@ARGV,
   });
   $app->delay(0);
   $app->force(1);
