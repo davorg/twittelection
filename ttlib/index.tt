@@ -4,12 +4,15 @@
         <div class="row">
           <div class="col-lg-8">
             <img style="float:right; padding: 0 0 5px 5px" src="/234px-Ballot_Box_Silhouette.svg.png" alt="">
-            <h1>Next election is soon!</h1>
+            <h1>15 August 2029</h1>
             <div id="counter"></div>
-            <p>The election has been called - taking pretty much everyone by
-              surprise.</p>
-            <p>But sadly, we won't be running TwittElection this time. This
-              is mostly for three reasons:</p>
+            <p>That's the latest possible date for the next UK general election.
+              And given the size of the government's majority, it's probably not
+              going to be much earlier thatn that.</p>
+            <p>We didn't run TwittElection for the 2024 election. And, unless there
+              are changes to the way Twitter/X is run in the next four years, we're
+              unlikely to run it for the next one either. This is mostly for three
+              reasons:</p>
             <ul>
               <li>The <abbr title="Application Programming Interface">API</abbr>
                 that we've been using has been turned off, and I don't have
@@ -25,7 +28,7 @@
             <p>We hope to be back at some point in the future, doing something
               similar, but using different tools.</p>
             <hr>
-            <p>For every UK general election since 2015, we have created a Twitter list for each of the 650 parliamentary constituencies in the UK and we are populating those lists with the known candidates from those constituencies (using data from those lovely people at <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>). This will, hopefully, make it easier for you to find your candidates on Twitter and follow what they are saying.</p>
+            <p>For every UK general election between 2015 and 2019, we created a Twitter list for each of the 650 parliamentary constituencies in the UK and we populated those lists with the known candidates from those constituencies (using data from those lovely people at <a href="https://candidates.democracyclub.org.uk/">Democracy Club</a>). This, hopefully, made it easier for you to find your candidates on Twitter and follow what they are saying.</p>
             <p>Just go to our <a href="/c/">constituencies page</a> and find your constituency on the list. You can find out which constituency you can vote in by visiting <a href="https://members.parliament.uk/constituencies/">this useful page</a>.</p>
             <p><b>Update (25 Nov 2019):</b> As well as our traditional constituency lists, we have now added <a href="/p/">lists for every party standing in this general election</a>. Please let us know if you find those useful.</p>
           </div>
